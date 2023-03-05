@@ -1,0 +1,36 @@
+@import '@/_vars';
+
+.productPage {
+
+    padding: 20px 0;
+
+    @media all and (min-width: $tablet) {
+        display: flex;
+        gap: 20px;
+    }
+    
+
+    &__{
+        &image{
+            width: 100%;
+            height: 50vh;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+
+            @media all and (min-width: $tablet) {
+                width: 600px;
+                height: 600px;
+            }
+        }
+
+        &info {
+            width: 100%;
+
+            @media all and (min-width: $tablet) {
+                width: 600px;
+            }
+        
+        }
+    }
+}

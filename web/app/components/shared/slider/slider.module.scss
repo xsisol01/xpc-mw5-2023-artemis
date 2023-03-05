@@ -1,0 +1,52 @@
+
+@import '@/_vars';
+
+
+.slider {
+    &__{
+        &title {
+
+        }
+
+        &inner {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        &item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &input {
+            border: 1px solid $color-black-400;
+            outline: none;
+            height: 32px;
+            width: 100px;
+            padding: 5px;
+            font-size: 14px;
+            background-color: $color-white-1000;
+            color: $color-black-900;
+
+            /* Chrome, Safari, Edge, Opera */
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            /* Firefox */
+            &[type=number] {
+                -moz-appearance: textfield;
+            }
+        }
+        
+
+        &label {
+            font-size: 12px;
+            color: $color-black-700;
+        }
+
+    }
+}

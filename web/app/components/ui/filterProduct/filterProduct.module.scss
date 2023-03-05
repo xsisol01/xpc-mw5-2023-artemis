@@ -1,0 +1,24 @@
+.filterProduct {
+    min-width: 240px;
+    width: 240px;
+    padding: 20px 0;
+
+    &__ {
+        &inner {
+            width: inherit;
+            position: fixed;
+            width: inherit;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            position: fixed;
+            max-height: 92vh;
+
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+}

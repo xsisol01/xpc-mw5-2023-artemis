@@ -1,0 +1,10 @@
+@import '@/_vars';
+
+.adminMenu {
+    height: 100vh;
+    width: 200px;
+    position: fixed;
+    left: 0;
+    top: 56px;
+    background-color: $color-black-850;
+}

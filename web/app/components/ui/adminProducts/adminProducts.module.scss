@@ -1,0 +1,19 @@
+@import '@/_vars';
+
+.adminProducts {
+
+    &__ {
+        &searchContainer {
+            background-color: $color-black-900;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &searchBar {
+            height: 32px;
+            width: 80%;
+        }
+    }
+}
