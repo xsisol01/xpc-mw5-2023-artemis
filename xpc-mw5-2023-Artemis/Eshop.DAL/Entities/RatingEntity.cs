@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Eshop.DAL.Entities
 {
-    internal class RatingEntity
+    internal class RatingEntity : EntityBase
     {
         private int _stars;
         public string Text { get; set; }
-        public int Stars
+        public required int Stars
         {
             get { return _stars; }
             set

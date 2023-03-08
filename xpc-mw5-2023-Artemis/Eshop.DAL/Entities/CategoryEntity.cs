@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Eshop.DAL.Entities
 {
-    internal class CategoryEntity
+    internal class CategoryEntity : EntityBase
     {
-        private string Name { get; set; }
-
-        private ICollection<ProductEntity>  Products { get; set; }
+        public string Name { get; set; }
+        public ICollection<ProductEntity>  Products { get; set; }
     }
 }

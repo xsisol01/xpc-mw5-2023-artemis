@@ -9,13 +9,9 @@ namespace Eshop.DAL.Entities
     internal class ProducerEntity
     {
         //TODO implementaion of IEntity = ID
-
         public string Name { get; set; }
-
-        public string Image { get; set; }
-
+        public string ImageUrl { get; set; }
         public string Country { get; set; }
-
         public ICollection<ProductEntity> Products { get; set; }
     }
 }

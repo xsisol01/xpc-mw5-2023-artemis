@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Eshop.DAL.Entities
 {
-    internal class ProductEntity
+    internal class ProductEntity : EntityBase
     {
-        //TODO implementaion of IEntity = ID
-
+        
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         public string Description { get; set; }
