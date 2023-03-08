@@ -8,5 +8,6 @@ namespace Eshop.DAL.Entities
 {
     internal class ProducerEntity
     {
+        //ahoj
     }
 }
