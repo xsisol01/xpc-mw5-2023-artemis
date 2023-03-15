@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Eshop.DAL.Entities
+namespace Eshop.webAPI.Models
 {
     internal abstract class EntityBase : IEntity
     {
