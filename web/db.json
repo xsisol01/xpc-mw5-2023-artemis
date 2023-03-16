@@ -39,7 +39,7 @@
       "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
       "weight": 3.3,
       "count": 150,
-      "producer": "apple",
+      "producer": "samsumg",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
@@ -54,7 +54,7 @@
       "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
       "weight": 3.3,
       "count": 0,
-      "producer": "apple",
+      "producer": "microsoft",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
@@ -84,7 +84,7 @@
       "image": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
       "weight": 3.3,
       "count": 5,
-      "producer": "apple",
+      "producer": "samsumg",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
@@ -99,7 +99,7 @@
       "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
       "weight": 3.3,
       "count": 5,
-      "producer": "apple",
+      "producer": "microsoft",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
@@ -144,7 +144,7 @@
       "image": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
       "weight": 3.3,
       "count": 5,
-      "producer": "apple",
+      "producer": "myprotein",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
@@ -189,7 +189,7 @@
       "image": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
       "weight": 3.3,
       "count": 5,
-      "producer": "apple",
+      "producer": "samsumg",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
@@ -219,7 +219,7 @@
       "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
       "weight": 3.3,
       "count": 5,
-      "producer": "apple",
+      "producer": "microsoft",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
@@ -234,7 +234,7 @@
       "image": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
       "weight": 3.3,
       "count": 5,
-      "producer": "apple",
+      "producer": "zara",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
@@ -249,7 +249,7 @@
       "image": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
       "weight": 3.3,
       "count": 5,
-      "producer": "apple",
+      "producer": "myprotein",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
@@ -264,7 +264,7 @@
       "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
       "weight": 3.3,
       "count": 5,
-      "producer": "apple",
+      "producer": "zara",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
@@ -279,7 +279,7 @@
       "image": "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg",
       "weight": 3.3,
       "count": 5,
-      "producer": "apple",
+      "producer": "myprotein",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
@@ -294,11 +294,24 @@
       "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
       "weight": 3.3,
       "count": 5,
-      "producer": "apple",
+      "producer": "zara",
       "rating": {
         "rate": 3.9,
         "description": "rating description"
       }
     }
+  ],
+  "categories": [
+    "electronics",
+    "jewelery",
+    "men's clothing",
+    "women's clothing"
+  ],
+  "producers": [
+    "apple",
+    "samsumg",
+    "zara",
+    "myprotein",
+    "microsoft"
   ]
 }

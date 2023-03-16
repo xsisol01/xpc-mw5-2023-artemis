@@ -2,7 +2,8 @@ import Link from 'next/link'
 
 import classNames from 'classnames'
 
-import {Rating, IProduct} from '@/app/config/globalExport'
+import { IProduct } from '@/app/store/product/product.type'
+import Rating from '@/app/components/shared/rating/Rating'
 
 import styles from './productItem.module.scss'
 

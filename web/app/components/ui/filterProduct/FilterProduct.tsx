@@ -1,6 +1,10 @@
+import { useGetCategoriesQuery } from "@/app/store/product/product.api";
 import { useState } from "react"
 
-import { FilterDropdown, Slider, useGetCategoriesQuery, ScrollableList } from "@/app/config/globalExport"
+import Dropdown from "@/app/components/shared/dropdown/dropdown";
+import ScrollableList from "@/app/components/shared/scrollableList/ScrollableList";
+import Slider from "@/app/components/shared/slider/Slider";
+
 
 import styles from './filterProduct.module.scss'
 
@@ -13,44 +17,44 @@ const FilterProduct: React.FC = () => {
     return (
         <aside className={styles.filterProduct}>
             <div className={styles.filterProduct__inner}>
-                <FilterDropdown title='Category'>
-                    <ScrollableList maxHeight={300} options={data?.map(t => ({text: t}))}/>
-                </FilterDropdown>
+                <Dropdown title='Category'>
+                    <ScrollableList maxHeight={300} options={data?.map(t => ({text: t})) as any}/>
+                </Dropdown>
 
 
-                <FilterDropdown title='Price'>
+                <Dropdown title='Price'>
                     <>
                         <Slider uid='price' />
                     </>
-                </FilterDropdown>
+                </Dropdown>
 
 
-                <FilterDropdown title='Weight'>
+                <Dropdown title='Weight'>
                     <>
                         <Slider uid='weight' />
                     </>
-                </FilterDropdown>
+                </Dropdown>
           
                 
 
-                <FilterDropdown title='Brand'>
+                <Dropdown title='Brand'>
                     <>
                         <div>Brand</div>
                     </>
-                </FilterDropdown>
+                </Dropdown>
 
 
-                <FilterDropdown title='Rating'>
+                <Dropdown title='Rating'>
                     <>
                         <Slider uid='rating' />
                     </>
-                </FilterDropdown>
+                </Dropdown>
 
-                <FilterDropdown title='In Stock'>
+                <Dropdown title='In Stock'>
                     <>
                         <div>inStock</div>
                     </>
-                </FilterDropdown>
+                </Dropdown>
             </div>
         </aside>
     )

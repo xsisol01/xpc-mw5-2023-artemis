@@ -1,13 +1,15 @@
+import { useGetProductQuery } from '@/app/store/product/product.api'
 import { useRouter } from 'next/router'
-
-import { Preloader, ProductPage, HeaderLayout } from '@/app/config/globalExport';
-
-import { useGetProductQuery } from '@/app/config/globalExport';
+import HeaderLayout from '@/app/components/layout/headerLayout/HeaderLayout'
+import Preloader from '@/app/components/shared/preloader/Preloader'
+import ProductPage from '@/app/components/ui/productPage/ProductPage'
 
 const ProductScreen: React.FC = () => {
 
     const router = useRouter()
     const { pid } = router.query
+
+    if (!pid) return <Preloader />
 
     const {data, isLoading, error} = useGetProductQuery(Number(pid))
 

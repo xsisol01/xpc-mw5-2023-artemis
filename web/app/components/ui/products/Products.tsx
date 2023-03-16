@@ -1,6 +1,10 @@
 import  {useState } from 'react'
 
-import { LoadMoreButton, Product, Preloader, useGetProductsQuery } from '@/app/config/globalExport'
+import { useGetProductsQuery } from '@/app/store/product/product.api'
+
+import Preloader from '@/app/components/shared/preloader/Preloader'
+import LoadMoreButton from '@/app/components/ui/loadMoreButton/LoadMoreButton'
+import ProductItem from '@/app/components/ui/productItem/ProductItem'
 
 import { productsData } from './products.data'
 
@@ -15,7 +19,7 @@ const Products: React.FC = () => {
         : (
             <div  className={styles.products}>
                 <div className={styles.products__items}>
-                    {products?.map(product => <Product key={product.id} {...product} />)}
+                    {products?.map(product => <ProductItem key={product.id} {...product} />)}
                 </div>
                 <div className={styles.products__more}>
                     <LoadMoreButton onClick={loadMore} />

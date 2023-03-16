@@ -1,9 +1,13 @@
 import { useContext } from 'react'
 
-import { Container, IProduct, ProductInfo, RoleContext } from '@/app/config/globalExport'
+
 
 import styles from './productPage.module.scss'
 import AdminProductInfo from './AdminProductInfo'
+import { IProduct } from '@/app/store/product/product.type'
+import { RoleContext } from '@/app/providers/roleContextProvider'
+import Container from '../../layout/container/Container'
+import ProductInfo from './ProductInfo'
 
 const ProductPage: React.FC<IProduct> = (props) => {
     const {isAdmin} = useContext(RoleContext)

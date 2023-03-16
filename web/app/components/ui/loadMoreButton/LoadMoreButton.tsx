@@ -1,7 +1,7 @@
 import { loadMoreButtonData } from './loadMoreButtonData'
 
 import styles from './loadMoreButton.module.scss'
-import ResizingButton from '../../shared/ResizingButton/ResizingButton'
+import ResizingButton from '@/app/components/shared/ResizingButton/ResizingButton'
 
 interface IProps {
     onClick: () => void

@@ -1,5 +1,9 @@
-import {FilterProduct, Products, HeaderLayout, Container} from '@/app/config/globalExport'
 
+
+import Container from '@/app/components/layout/container/Container'
+import HeaderLayout from '@/app/components/layout/headerLayout/HeaderLayout'
+import FilterProduct from '@/app/components/ui/filterProduct/FilterProduct'
+import Products from '@/app/components/ui/products/Products'
 import styles from './homeScreen.module.scss'
 
 const HomeScreen: React.FC = () => {

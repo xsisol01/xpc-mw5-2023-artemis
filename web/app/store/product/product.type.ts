@@ -1,6 +1,6 @@
-interface IRating {
+type IRating = {
     rate: number
-    count: number
+    description: string
 }
 
 export interface IProduct {
@@ -8,7 +8,10 @@ export interface IProduct {
     title: string
     price: number
     description: string
+    producer: string,
     category: string
+    weight: number
+    count: number
     image: string
     rating: IRating
 }

@@ -1,5 +1,8 @@
 
-import {FilterProduct, Products, IProduct, HeaderLayout} from '@/app/config/globalExport'
+import { IProduct } from '@/app/store/product/product.type'
+import HeaderLayout from '@/app/components/layout/headerLayout/HeaderLayout'
+import FilterProduct from '@/app/components/ui/filterProduct/FilterProduct'
+import Products from '@/app/components/ui/products/Products'
 
 import styles from './homePage.module.scss'
 

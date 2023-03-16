@@ -1,4 +1,8 @@
-import { SearchProduct, Logo, Navbar } from '@/app/config/globalExport'
+
+
+import Logo from '@/app/components/shared/logo/Logo'
+import SearchProduct from '@/app/components/shared/searchProduct/SearchProduct'
+import Navbar from '@/app/components/ui/navbar/Navbar'
 
 import styles from './headerLayout.module.scss'
 
@@ -25,9 +29,5 @@ const HeaderLayout: React.FC<IProps> = ({children, contentPage}) => {
         </div>
     )
 }
-
-
-
-
 
 export default HeaderLayout

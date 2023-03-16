@@ -1,5 +1,10 @@
-import { HeadButton, HeadLink, RoleContext } from '@/app/config/globalExport'
+
+
+
+import { RoleContext } from '@/app/providers/roleContextProvider'
 import { useContext } from 'react'
+import HeadLink from '../headButton/HeadLink'
+import HeadButton from '../headButton/HeadButton'
 
 import { navbarData } from './navbar.data'
 
