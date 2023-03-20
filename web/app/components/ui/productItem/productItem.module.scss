@@ -3,6 +3,7 @@
 .productItem {
     width: 197px;
     cursor: pointer;
+    position: relative;
 
     &:focus{
         
@@ -46,6 +47,15 @@
             font-weight: 700;
             line-height: 22px;
             color: $color-black-900;
+        }
+
+        &stockChecker {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 10px;
+            padding: 0 3px;
+            border-radius: 10px;
         }
 
     }

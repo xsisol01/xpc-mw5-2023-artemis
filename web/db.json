@@ -11,7 +11,7 @@
       "count": 5,
       "producer": "apple",
       "rating": {
-        "rate": 3.9,
+        "rate": 5,
         "description": "rating description"
       }
     },
@@ -26,7 +26,7 @@
       "count": 0,
       "producer": "apple",
       "rating": {
-        "rate": 3.9,
+        "rate": 0,
         "description": "rating description"
       }
     },
@@ -41,7 +41,7 @@
       "count": 150,
       "producer": "samsumg",
       "rating": {
-        "rate": 3.9,
+        "rate": 1,
         "description": "rating description"
       }
     },
@@ -56,7 +56,7 @@
       "count": 0,
       "producer": "microsoft",
       "rating": {
-        "rate": 3.9,
+        "rate": 2,
         "description": "rating description"
       }
     },
@@ -71,7 +71,7 @@
       "count": 5,
       "producer": "apple",
       "rating": {
-        "rate": 3.9,
+        "rate": 4,
         "description": "rating description"
       }
     },
@@ -305,7 +305,19 @@
     "electronics",
     "jewelery",
     "men's clothing",
-    "women's clothing"
+    "women's clothing",
+    "Mobile phones",
+    "Game consoles",
+    "Household furniture",
+    "Home appliances",
+    "Clothing",
+    "Snow Sports",
+    "Camping & Hiking",
+    "Yard Games",
+    "Moisturizers",
+    "Masks",
+    "Exfoliators",
+    "Serums"
   ],
   "producers": [
     "apple",

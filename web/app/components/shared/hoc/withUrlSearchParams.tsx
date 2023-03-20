@@ -1,25 +1,39 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect, FC } from 'react'
 
-interface IProps {
-    Component: React.FC
-    searchParam: string
-}
+import { useRouter } from 'next/router'
 
-const withUrlSearchParams = ({Component, searchParam} :IProps) => {
-    const [urlSearchParams, setUrlSearchParams] = useState({})
+function withUrlSearchParams <T>(Component: FC<T>) {
+    const [urlSearchParams, setUrlSearchParams] = useState({} as URLSearchParams)
+
+    const router = useRouter();
 
     useEffect(() => {
         const url = new URL(window.location.href)
-        const query = new URLSearchParams(url.search)
-        const allParams = query.values()
+        const urlParams = new URLSearchParams(url.search)
 
-        setUrlSearchParams(allParams)
-
+        setUrlSearchParams(urlParams)
     }, [])
 
-    return (props: any) => (
-        <Component {...props} urlSearchParams={urlSearchParams} />
-    )
+    return (props: T) => {
+        return <Component {...props} getParam={getParam} setParam={setParam} />
+    } 
+
+    function getParam(paramName: string) {
+        return urlSearchParams.get(paramName)
+    }
+
+    function setParam(name:string, value:string) {
+        let currentQuery = {}
+
+        if (Object.keys(router.query).length) {
+            currentQuery = router.query
+        }
+
+        router.push({query: {
+            ...currentQuery,
+            [name.toLowerCase()]: value.toLowerCase()
+        }})
+    }
 }
 
 export default withUrlSearchParams

@@ -6,8 +6,11 @@ import { IProduct } from '@/app/store/product/product.type'
 import Rating from '@/app/components/shared/rating/Rating'
 
 import styles from './productItem.module.scss'
+import StockChecker from '../../shared/inStockChecker/StockChecker'
 
-const ProductItem: React.FC<IProduct> = ({id, title, image, price, rating}) => {
+const ProductItem: React.FC<IProduct> = ({id, title, image, price, rating, count}) => {
+
+    const isInStock = (count > 0)
 
     return (
         <Link href='/product/[pid]' as={`/product/${id}`} className={styles.productItem}>
@@ -31,6 +34,8 @@ const ProductItem: React.FC<IProduct> = ({id, title, image, price, rating}) => {
                     </div>
                 </div>
             </div>
+
+            <StockChecker isInStock={isInStock} className={styles.productItem__stockChecker} />
         </Link>
         
     )

@@ -12,6 +12,7 @@
             justify-content: space-between;
             padding: 0 10px;
             border-bottom: 1px solid $color-white-1000;
+            z-index: $z-index-max;
         }
 
         &content{

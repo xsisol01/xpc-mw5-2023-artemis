@@ -1,0 +1,25 @@
+@import '@/_vars';
+
+.stockChecker {
+  white-space: normal;
+  overflow: hidden;
+  color: transparent;
+  
+  width: 14px;
+  height: 14px;
+
+  &:hover {
+    width: auto;
+    color: $color-white-1000;
+  }
+
+  &__ {
+    &inStock {
+      background-color: $color-green-1000;
+    }
+
+    &notInStock {
+      background-color: $color-red-1000;
+    }
+  }
+}

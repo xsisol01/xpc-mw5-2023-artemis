@@ -1,0 +1,28 @@
+@import '@/_vars';
+
+.radio {
+  display: flex;
+
+  &__ {
+    &option {
+
+      & + & {
+        margin-left: 20px;
+      }
+
+      display: flex;
+      align-items: center;
+    }
+
+    &input {
+      cursor: pointer;
+      margin-right: 5px;
+
+      
+    }
+
+    &label {
+      cursor: pointer;
+    }
+  }
+}

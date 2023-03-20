@@ -6,11 +6,27 @@
     height: 100%;
 
 
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    //-ms-overflow-style: none;  /* IE and Edge */
+    //scrollbar-width: none;  /* Firefox */
 
+    // &::-webkit-scrollbar {
+    //     display: none;
+    // }
+
+    /* width */
     &::-webkit-scrollbar {
-        display: none;
+        width: 3px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #fff;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $color-black-900;
+        border-radius: 4px;
     }
 
     &__ {
@@ -19,6 +35,10 @@
             font-size: 18px;
             cursor: pointer;
             color: $color-black-900;
+        }
+
+        &active {
+            font-weight: bold;
         }
     }
 }
