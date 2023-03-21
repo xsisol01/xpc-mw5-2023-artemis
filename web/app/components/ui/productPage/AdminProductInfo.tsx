@@ -6,13 +6,14 @@ import { currencyFormatter } from "@/app/utils/currencyFormatter";
 import Rating from "@/app/components/shared/rating/Rating";
 import ResizingButton from "@/app/components/shared/ResizingButton/ResizingButton";
 
-import { IProduct } from "@/app/store/product/product.type";
+import { IProduct, ICreateProduct } from "@/app/store/product/product.type";
 
 import styles from './productInfo.module.scss'
 import { useGetCategoriesQuery, useGetProducersQuery } from "@/app/store/product/product.api";
 import { productPageData } from "./productPage.data";
+import ProductInfoImages from "./productInfoImage/ProductInfoImages";
 
-const AdminProductInfo: React.FC<IProduct> = (props) => {
+const AdminProductInfo: React.FC<IProduct | ICreateProduct> = (props) => {
 
     const {register, handleSubmit} = useForm<IProduct>({defaultValues: props})
 
@@ -31,10 +32,7 @@ const AdminProductInfo: React.FC<IProduct> = (props) => {
             })}
             onSubmit={handleSubmit(onSubmit)}
         >
-            <div
-            className={styles.productInfo__image}
-            style={{backgroundImage: `url("${props.image}")`}}
-            ></div>
+            <ProductInfoImages image={props.image} isAdmin={true} register={register} />
             <div className={styles.productInfo__text}>
                 <input
                     className={styles.productInfo__title}
@@ -66,13 +64,9 @@ const AdminProductInfo: React.FC<IProduct> = (props) => {
                         {...register('price', {required: true})}
                         type='number'
                     />
+                    CZK
                 </div>
                 
-
-                <div className={styles.productInfo__rating}>
-                    <Rating {...props.rating} />
-                </div>
-
                 <div  className={styles.productInfo__weight}>
                     {productPageData.weight}: 
                     <input

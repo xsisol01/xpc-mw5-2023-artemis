@@ -15,3 +15,14 @@ export interface IProduct {
     image: string
     rating: IRating
 }
+
+export interface ICreateProduct {
+    title: string
+    price: number
+    description: string
+    producer: string,
+    category: string
+    weight: number
+    count: number
+    image: string
+}

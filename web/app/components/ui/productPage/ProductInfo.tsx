@@ -9,6 +9,7 @@ import {productPageData} from './productPage.data'
 
 import styles from './productInfo.module.scss'
 import { count } from "console";
+import ProductInfoImages from "./productInfoImage/ProductInfoImages";
 
 const ProductInfo: React.FC<IProduct> = (
     {title, price, description, category, rating, image, producer, weight, count}
@@ -18,10 +19,7 @@ const ProductInfo: React.FC<IProduct> = (
 
     return (
         <div className={styles.productInfo}>
-            <div
-            className={styles.productInfo__image}
-            style={{backgroundImage: `url("${image}")`}}
-            ></div>
+            <ProductInfoImages image={image} isAdmin={false} />
             <div className={styles.productInfo__text}>
                 <div className={styles.productInfo__title}>
                     {title}

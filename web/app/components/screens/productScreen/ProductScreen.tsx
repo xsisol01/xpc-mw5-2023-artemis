@@ -25,7 +25,7 @@ const ProductScreen: React.FC = () => {
 
     return (
         <HeaderLayout>
-                <ProductPage {...data} />
+            <ProductPage {...data} />
         </HeaderLayout>
     )
 

@@ -20,7 +20,6 @@ function withUrlSearchParams <T>(Component: FC<T>) {
     } 
 
     function getParam(paramName: string) {
-        debugger
         return urlSearchParams.get && urlSearchParams.get(paramName)
     }
 
@@ -35,8 +34,6 @@ function withUrlSearchParams <T>(Component: FC<T>) {
             ...currentQuery,
             [name.toLowerCase()]: value.toLowerCase()
         }})
-
-        debugger
     }
 }
 

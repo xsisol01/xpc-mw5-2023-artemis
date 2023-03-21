@@ -1,14 +1,22 @@
+import {useContext} from 'react'
+
 import Link from 'next/link'
 
 import classNames from 'classnames'
 
 import { IProduct } from '@/app/store/product/product.type'
 import Rating from '@/app/components/shared/rating/Rating'
+import StockChecker from '@/app/components/shared/inStockChecker/StockChecker'
+import DeleteButton from '@/app/components/shared/deleteButton/DeleteButton'
+
+import {FaTimes} from 'react-icons/fa'
+
+import { RoleContext } from '@/app/providers/roleContextProvider'
 
 import styles from './productItem.module.scss'
-import StockChecker from '../../shared/inStockChecker/StockChecker'
 
 const ProductItem: React.FC<IProduct> = ({id, title, image, price, rating, count}) => {
+    const {isAdmin} = useContext(RoleContext)
 
     const isInStock = (count > 0)
 
@@ -35,7 +43,16 @@ const ProductItem: React.FC<IProduct> = ({id, title, image, price, rating, count
                 </div>
             </div>
 
-            <StockChecker isInStock={isInStock} className={styles.productItem__stockChecker} />
+            {!isAdmin && <StockChecker isInStock={isInStock} className={styles.productItem__stockChecker} />}
+            {isAdmin && (
+                <DeleteButton
+                    id={id}
+                    className={styles.productItem__delete}
+                    elementType='product'
+                >
+                    <FaTimes className={styles.productItem__deleteIcon} />
+                </DeleteButton>
+            )}
         </Link>
         
     )
