@@ -1,10 +1,6 @@
+import { getLoweredLetters } from '@/app/utils/getLoweredLetters';
+
 export const isTextEqual = (first: string, second: string) => {
-  return lowerText(first) === lowerText(second)
+  return getLoweredLetters(first) === getLoweredLetters(second)
 }
 
-export const lowerText = (text: string) => {
-  return text
-    .replace(' ', '')
-    .replace(`'`, '')
-    .toLowerCase()
-}

@@ -41,7 +41,7 @@ const ProductInfo: React.FC<IProduct> = (
                     <Rating {...rating} />
                 </div>
                 <div  className={styles.productInfo__weight}>
-                    {productPageData.weigth}: {weight} kg
+                    {weight} kg
                 </div>
                 <div className={styles.productInfo__description}>
                     {capitalizeText(description)}

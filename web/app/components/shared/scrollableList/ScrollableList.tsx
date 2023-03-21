@@ -1,7 +1,8 @@
 
 
 import { capitalizeText } from '@/app/utils/capitalizeText'
-import { isTextEqual, lowerText } from '@/app/utils/isTextEqual'
+import { getLoweredLetters } from '@/app/utils/getLoweredLetters'
+import { isTextEqual } from '@/app/utils/isTextEqual'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
 import styles from './scrollableList.module.scss'
@@ -31,7 +32,7 @@ const ScrollableList: React.FC<IScrollableListProps> =(
     },[])
 
     useEffect(() => {
-        const param = lowerText(selected)
+        const param = getLoweredLetters(selected)
 
         console.log('param', param)
 
@@ -51,12 +52,6 @@ const ScrollableList: React.FC<IScrollableListProps> =(
             ) )}
         </ul>
     )
-
-    function getLetters(string: string) {
-        return string
-            .replace(' ', '')
-            .replace(`'`, '')
-    }
 }
 
 export default ScrollableList

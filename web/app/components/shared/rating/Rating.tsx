@@ -6,11 +6,11 @@ import styles from './rating.module.scss'
 
 interface IProps {
     rate: number,
-    count?: number,
+    description?: string,
     size?: string
 }
 
-const Rating: React.FC<IProps> = ({rate, count, size}) => {
+const Rating: React.FC<IProps> = ({rate, description, size}) => {
     return (
         <div className={styles.rating}>
             <div className={styles.rating__rate}>
@@ -26,11 +26,10 @@ const Rating: React.FC<IProps> = ({rate, count, size}) => {
                         ({rate})
                     </div>
                 )}
-                
             </div>
-            {count && size !== 'small' && (
-                <div className={styles.rating__count}>
-                    {count}
+            {description && size !== 'small' && (
+                <div className={styles.rating__description}>
+                    {description}
                 </div>
             )}
         </div>

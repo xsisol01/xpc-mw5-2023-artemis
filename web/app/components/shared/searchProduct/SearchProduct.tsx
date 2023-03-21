@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import classNames from 'classnames'
 
@@ -7,13 +7,29 @@ import { FaSearch } from 'react-icons/fa'
 import { searchProductData } from './searchProduct.data'
 
 import style from './searchProduct.module.scss'
+import { getLoweredLetters } from '@/app/utils/getLoweredLetters'
 
-interface IProps {
+export interface ISearchProductProps {
+    uid: string
     className: string
+    getParam?: (name: string) => string
+    setParam?: (name: string, value: string) => void
 }
 
-const SearchProduct: React.FC<IProps> = ({className}) => {
+const SearchProduct: React.FC<ISearchProductProps> = ({uid, className, getParam, setParam}) => {
     const [value, setValue] = useState('')
+
+    useEffect(() => {
+        const paramFromUrl = getParam && getParam(uid)
+
+        if (paramFromUrl) {
+            setValue(paramFromUrl)
+        }
+    }, [])
+
+    useEffect(() => {
+        setParam && setParam(uid, getLoweredLetters(value))
+    }, [value])
 
     return (
         <div className={classNames({

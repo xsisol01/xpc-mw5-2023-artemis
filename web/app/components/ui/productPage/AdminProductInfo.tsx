@@ -19,13 +19,11 @@ const AdminProductInfo: React.FC<IProduct> = (props) => {
     const {data: categories} = useGetCategoriesQuery(1);
     const {data: producers} = useGetProducersQuery(1);
     
-
     const onSubmit: SubmitHandler<IProduct> = (data) => {
         console.log(data)
     }
 
     return (
-    
         <form
             className={classNames({
                 [styles.productInfo]: true,
@@ -40,19 +38,19 @@ const AdminProductInfo: React.FC<IProduct> = (props) => {
             <div className={styles.productInfo__text}>
                 <input
                     className={styles.productInfo__title}
-                    {...(register('title'), {required: true})}
+                    {...register('title', {required: true})}
                     type='text'
                 />
  
                 <div className={styles.productInfo__flex}>
-                    <select {...(register('producer'), {required: true})} className={styles.productInfo__producer}>
+                    <select {...register('producer', {required: true})} className={styles.productInfo__producer}>
                         {producers?.map(producer => (
                             <option key={producer} value={producer}>
                                 {producer}
                             </option>
                         ))}
                     </select>
-                    <select {...(register('category'), {required: true})} className={styles.productInfo__category}>
+                    <select {...register('category', {required: true})} className={styles.productInfo__category}>
                         {categories?.map(category => (
                             <option key={category} value={category}>
                                 {category}
@@ -61,32 +59,40 @@ const AdminProductInfo: React.FC<IProduct> = (props) => {
                     </select>
                 </div>
 
-                <input
-                    className={styles.productInfo__price}
-                    {...(register('price'),
-                        {required: true}
-                    )}
-                    type='number'
-                />
+                <div>
+                    Price: 
+                    <input
+                        className={styles.productInfo__price}
+                        {...register('price', {required: true})}
+                        type='number'
+                    />
+                </div>
+                
 
                 <div className={styles.productInfo__rating}>
                     <Rating {...props.rating} />
                 </div>
 
                 <div  className={styles.productInfo__weight}>
-                    {productPageData.weigth}: 
+                    {productPageData.weight}: 
                     <input
                         className={styles.productInfo__price}
-                        {...(register('weight'),
-                            {required: true}
-                        )}
+                        {...register('weight', {required: true})}
                         type='number'
                     /> {productPageData.unit}
                 </div>
                 
-                
+                <textarea {...register('description', {required: true})} className={styles.productInfo__description} />
 
-                <textarea {...(register('description'), {required: true})} className={styles.productInfo__description} />
+                <div>
+                    Count: 
+                <input
+                    className={styles.productInfo__count}
+                    {...register('count', {required: true})}
+                    type='number'
+                    />
+                </div>
+                
 
                 <ResizingButton text='Submit' type='submit' className={styles.productInfo__submit}  />
             </div>

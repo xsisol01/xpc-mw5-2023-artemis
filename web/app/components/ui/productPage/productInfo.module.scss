@@ -137,6 +137,19 @@
                 background-color: $color-green-1000;
                 padding: 10px 20px;
             }
+
+            &count {
+                margin-bottom: 20px;
+                border: 1px solid $color-black-900;
+                color: $color-black-900;
+                margin-left: 10px;
+            }
+
+            &price {
+                border: 1px solid $color-black-900;
+                color: $color-black-900;
+                margin-left: 10px;
+            }
         }
     }
 }

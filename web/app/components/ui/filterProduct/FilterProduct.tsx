@@ -13,7 +13,6 @@ import { filterProductData, fieldTypeData, IFilterItem } from "./filterProduct.d
 
 import styles from './filterProduct.module.scss'
 
-
 interface TField{
     uid: string
     options?: any
@@ -31,8 +30,6 @@ const FilterProduct: React.FC = () => {
         isLoading: isProducerLoading,
         error: producersError
     } = useGetProducersQuery(1)
-
-    console.log('categories', categories)
 
     return (
         <aside className={styles.filterProduct}>
