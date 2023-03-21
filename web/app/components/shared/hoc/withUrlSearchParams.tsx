@@ -3,6 +3,7 @@ import { useState, useEffect, FC } from 'react'
 import { useRouter } from 'next/router'
 
 function withUrlSearchParams <T>(Component: FC<T>) {
+    
     const [urlSearchParams, setUrlSearchParams] = useState({} as URLSearchParams)
 
     const router = useRouter();
@@ -19,7 +20,8 @@ function withUrlSearchParams <T>(Component: FC<T>) {
     } 
 
     function getParam(paramName: string) {
-        return urlSearchParams.get(paramName)
+        debugger
+        return urlSearchParams.get && urlSearchParams.get(paramName)
     }
 
     function setParam(name:string, value:string) {
@@ -33,6 +35,8 @@ function withUrlSearchParams <T>(Component: FC<T>) {
             ...currentQuery,
             [name.toLowerCase()]: value.toLowerCase()
         }})
+
+        debugger
     }
 }
 

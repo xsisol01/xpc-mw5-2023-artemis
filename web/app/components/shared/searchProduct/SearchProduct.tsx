@@ -17,18 +17,22 @@ export interface ISearchProductProps {
 }
 
 const SearchProduct: React.FC<ISearchProductProps> = ({uid, className, getParam, setParam}) => {
-    const [value, setValue] = useState('')
+    const [value, setValue] = useState<string>()
 
     useEffect(() => {
-        const paramFromUrl = getParam && getParam(uid)
+        if (!value && !value?.length) {
+            const paramFromUrl = getParam && getParam(uid)
 
-        if (paramFromUrl) {
-            setValue(paramFromUrl)
+            if (paramFromUrl) {
+                setValue(paramFromUrl)
+            }
         }
-    }, [])
+    })
 
     useEffect(() => {
-        setParam && setParam(uid, getLoweredLetters(value))
+        if (setParam && value) {
+            setParam(uid, getLoweredLetters(value))
+        }
     }, [value])
 
     return (
