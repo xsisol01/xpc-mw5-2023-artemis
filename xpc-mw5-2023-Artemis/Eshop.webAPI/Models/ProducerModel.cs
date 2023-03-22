@@ -11,7 +11,7 @@ namespace Eshop.webAPI.Models
         public string Description { get; set; }
         public string Country { get; set; }
         public List<Product> Products { get; set; }
-        
+
         public static ProducerModel Empty => new()
         {
             Id = Guid.NewGuid(),
@@ -22,6 +22,6 @@ namespace Eshop.webAPI.Models
             Products = new List<Product>()
         };
 
-        
+
     }
 }

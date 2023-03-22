@@ -15,5 +15,11 @@
                 }
             }
         }
+        public static Rating Empty => new()
+        {
+            Id = Guid.NewGuid(),
+            Text = string.Empty,
+            Stars = 0
+        };
     }
 }
