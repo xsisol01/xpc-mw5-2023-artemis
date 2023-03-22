@@ -11,18 +11,16 @@ namespace Eshop.webAPI.Models
         public string Description { get; set; }
         public string Country { get; set; }
         public List<Product> Products { get; set; }
-
-        public ProducerModel(string name, string imageUrl, string description, string country)
+        
+        public static ProducerModel Empty => new()
         {
-            Id= Guid.NewGuid();
-            Name= name;
-            ImageUrl= imageUrl;
-            Description= description;
-            Country= country;
-            Products= new List<Product>();
-        }
-
-
+            Id = Guid.NewGuid(),
+            Name = string.Empty,
+            ImageUrl = string.Empty,
+            Description = string.Empty,
+            Country = string.Empty,
+            Products = new List<Product>()
+        };
         
     }
 }

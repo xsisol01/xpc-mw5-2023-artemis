@@ -12,10 +12,6 @@ namespace Eshop.webAPI.FakeDB
 
         ProducerModel producer1 = new ProducerModel()
         {
-            Name = "Adidas",
-            Country = "USA",
-            Description = 
-
             
         }
         public void addProducer(ProducerModel newProducer)
