@@ -1,6 +1,6 @@
 ﻿namespace Eshop.webAPI.Models
 {
-    internal class Rating : EntityBase
+    public class Rating : EntityBase
     {
         private int _stars;
         public string Text { get; set; }

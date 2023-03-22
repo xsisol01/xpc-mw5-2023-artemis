@@ -1,6 +1,6 @@
 ﻿namespace Eshop.webAPI.Models
 {
-    internal class Product : EntityBase
+    public class Product : EntityBase
     {
         public string Name { get; set; }
         public string ImageUrl { get; set; }

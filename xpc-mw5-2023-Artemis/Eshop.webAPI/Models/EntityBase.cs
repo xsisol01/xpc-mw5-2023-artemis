@@ -2,8 +2,8 @@
 
 namespace Eshop.webAPI.Models
 {
-    internal abstract class EntityBase : IEntity
+    public abstract class EntityBase : IEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }
