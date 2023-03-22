@@ -1,8 +1,18 @@
-﻿namespace Eshop.webAPI.Models
+﻿using System;
+
+namespace Eshop.webAPI.Models
+
 
 {
-    public class Producer : EntityBase
+    public class ProducerModel : ModelBase
     {
+        public static ProducerModel Empty => new()
+        {
+            Id = Guid.NewGuid(),
+            Name = string.Empty,
+            Description = string.Empty
+        };
+
         public string Name { get; set; }
         public int ImageUrl { get; set; }
         public string Description { get; set; }
