@@ -10,6 +10,13 @@ namespace Eshop.webAPI.FakeDB
     {
         private List<ProducerModel> producers = new List<ProducerModel>();
 
+        ProducerModel producer1 = new ProducerModel()
+        {
+            Name = "Adidas",
+            
+
+            
+        }
         public void addProducer(ProducerModel newProducer)
         {
             producers.Add(newProducer);

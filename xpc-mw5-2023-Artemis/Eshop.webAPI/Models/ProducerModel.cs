@@ -6,17 +6,23 @@ namespace Eshop.webAPI.Models
 {
     public class ProducerModel : ModelBase
     {
-        public static ProducerModel Empty => new()
-        {
-            Id = Guid.NewGuid(),
-            Name = string.Empty,
-            Description = string.Empty
-        };
-
         public string Name { get; set; }
-        public int ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
         public string Description { get; set; }
         public string Country { get; set; }
         public List<Product> Products { get; set; }
+
+        public ProducerModel(string name, string imageUrl, string description, string country)
+        {
+            Id= Guid.NewGuid();
+            Name= name;
+            ImageUrl= imageUrl;
+            Description= description;
+            Country= country;
+            Products= new List<Product>();
+        }
+
+
+        
     }
 }
