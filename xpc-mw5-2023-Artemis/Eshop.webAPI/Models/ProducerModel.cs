@@ -21,6 +21,7 @@ namespace Eshop.webAPI.Models
             Country = string.Empty,
             Products = new List<Product>()
         };
+
         
     }
 }

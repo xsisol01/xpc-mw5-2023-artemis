@@ -6,17 +6,39 @@ using System.Security.Cryptography;
 
 namespace Eshop.webAPI.FakeDB
 {
-    public class FakeDb
+    public static class FakeDb
     {
-        private List<ProducerModel> producers = new List<ProducerModel>();
+        private static List<ProducerModel> producers = new List<ProducerModel>();
 
-        ProducerModel producer1 = new ProducerModel()
+        
+        public static List<ProducerModel> getProducers()
         {
-            
+            return producers;
+
         }
-        public void addProducer(ProducerModel newProducer)
+
+        public static void initializeFakeDb()
         {
-            producers.Add(newProducer);
+            ProducerModel producer1 = new ProducerModel()
+            {
+                Name = "Adidas",
+                ImageUrl = "fjalsdjflkasdjfla",
+                Description = "Adidas is us brand producing clothes since xxxx.",
+                Country = "USA",
+
+            };
+
+            ProducerModel producer2 = new ProducerModel()
+            {
+                Name = "Nike",
+                ImageUrl = "fjalsdjflkasdjfla",
+                Description = "Nike is us brand producing clothes since xxxx.",
+                Country = "USA",
+
+            };
+
+            producers.Add(producer1);
+            producers.Add(producer2);
 
         }
 
