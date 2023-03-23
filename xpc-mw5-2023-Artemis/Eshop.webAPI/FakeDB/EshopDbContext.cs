@@ -17,6 +17,11 @@ namespace Eshop.webAPI.FakeDB
 
         }
 
+        public static void addProducer(ProducerModel newProducer)
+        {
+            producers.Add(newProducer);
+        }
+
         public static void initializeFakeDb()
         {
             ProducerModel producer1 = new ProducerModel()
