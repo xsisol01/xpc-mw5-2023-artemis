@@ -2,7 +2,7 @@
 
 namespace Eshop.webAPI.Models
 {
-    internal interface IEntity
+    public interface IModel
     {
         Guid Id { get; set; }
     }

@@ -2,10 +2,18 @@
 
 namespace Eshop.webAPI.Models
 {
-    internal class Category : EntityBase
+    public class Category : ModelBase
     {
         public string Name { get; set; }
-        public ICollection<Product> Products { get; set; }
+
+
+
+
+        public static Category Empty => new()
+        {
+            Id = Guid.NewGuid(),
+            Name = string.Empty
+        };
 
     }
 }

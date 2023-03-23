@@ -1,32 +1,48 @@
 ﻿using Eshop.webAPI.Models;
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using Microsoft.EntityFrameworkCore;
-
+using System.Linq;
+using System.Security.Cryptography;
 
 namespace Eshop.webAPI.FakeDB
 {
-    public class EshopDbContext : DbContext
+    public static class FakeDb
     {
-        public EshopDbContext(DbContextOptions<EshopDbContext> options) : base(options)
+        private static List<ProducerModel> producers = new List<ProducerModel>();
+
+        
+        public static List<ProducerModel> getProducers()
         {
+            return producers;
+
         }
 
-        public EshopDbContext() : base(new DbContextOptionsBuilder<EshopDbContext>()
-        .UseInMemoryDatabase("EshopInMemoryDatabase")
-            .Options)
+        public static void initializeFakeDb()
         {
+            ProducerModel producer1 = new ProducerModel()
+            {
+                Name = "Adidas",
+                ImageUrl = "fjalsdjflkasdjfla",
+                Description = "Adidas is us brand producing clothes since xxxx.",
+                Country = "USA",
+
+            };
+
+            ProducerModel producer2 = new ProducerModel()
+            {
+                Name = "Nike",
+                ImageUrl = "fjalsdjflkasdjfla",
+                Description = "Nike is us brand producing clothes since xxxx.",
+                Country = "USA",
+
+            };
+
+            producers.Add(producer1);
+            producers.Add(producer2);
+
         }
 
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Producer> Producers { get; set; }
-        public DbSet<Rating> Ratings { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // Add any additional configuration for your models here
-        }
     }
 
 }

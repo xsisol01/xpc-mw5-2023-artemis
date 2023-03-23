@@ -1,6 +1,6 @@
 ﻿namespace Eshop.webAPI.Models
 {
-    internal class Rating : EntityBase
+    public class Rating : ModelBase
     {
         private int _stars;
         public string Text { get; set; }
@@ -15,5 +15,11 @@
                 }
             }
         }
+        public static Rating Empty => new()
+        {
+            Id = Guid.NewGuid(),
+            Text = string.Empty,
+            Stars = 0
+        };
     }
 }
