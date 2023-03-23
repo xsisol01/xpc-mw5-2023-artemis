@@ -1,3 +1,4 @@
+import {FC, memo} from 'react'
 
 import classNames from 'classnames'
 import styles from './resizingButton.module.scss'
@@ -9,7 +10,7 @@ interface IProps {
     type?: 'button' | 'submit' | 'reset' | undefined
 }
 
-const ResizingButton: React.FC<IProps> = ({text, className, onClick, type = 'button'}) => {
+const ResizingButton: FC<IProps> = memo(({text, className, onClick, type = 'button'}) => {
 
     return (
         <button type={type} onClick={onClick} className={classNames({
@@ -19,6 +20,6 @@ const ResizingButton: React.FC<IProps> = ({text, className, onClick, type = 'but
             {text}
         </button>
     )
-}
+})
 
 export default ResizingButton

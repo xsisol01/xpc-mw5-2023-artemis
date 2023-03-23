@@ -1,3 +1,5 @@
+import {FC, memo} from 'react'
+
 import classNames from 'classnames'
 
 import { AiFillStar } from 'react-icons/ai'
@@ -10,7 +12,7 @@ interface IProps {
     size?: string
 }
 
-const Rating: React.FC<IProps> = ({rate, description, size}) => {
+const Rating: FC<IProps> = memo(({rate, description, size}) => {
     return (
         <div className={styles.rating}>
             <div className={styles.rating__rate}>
@@ -49,6 +51,6 @@ const Rating: React.FC<IProps> = ({rate, description, size}) => {
 
         return stars;
     }
-}
+})
 
 export default Rating

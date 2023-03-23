@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from 'react'
+import { useState, useEffect, ChangeEvent, FC, memo } from 'react'
 import { useForm } from "react-hook-form"
 
 import { isValid } from './slider.validation'
@@ -12,7 +12,7 @@ export interface ISliderProps {
     setParam: (name: string, value: string) => void
 }
 
-const Slider: React.FC<ISliderProps> = ({uid, getParam, setParam, inputType = 'number'}) => {
+const Slider: FC<ISliderProps> = memo(({uid, getParam, setParam, inputType = 'number'}) => {
     const [data, setData] = useState({});
 
     const minId = `${uid}-min`
@@ -65,11 +65,10 @@ const Slider: React.FC<ISliderProps> = ({uid, getParam, setParam, inputType = 'n
     )
 
     function handleChange(name: string, value: string) {
-        //if(isValid(getValues(minId), getValues(maxId))) {
+        if(isValid(getValues(minId), getValues(maxId))) {
             setParam(name, value)
-        //}
-    }
-    
-}
+        }
+    }  
+})
 
 export default Slider

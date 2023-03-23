@@ -1,3 +1,5 @@
+import {FC, memo} from 'react'
+
 import classNames from "classnames";
 
 import { IProduct } from "@/app/store/product/product.type";
@@ -11,7 +13,7 @@ import styles from './productInfo.module.scss'
 import { count } from "console";
 import ProductInfoImages from "./productInfoImage/ProductInfoImages";
 
-const ProductInfo: React.FC<IProduct> = (
+const ProductInfo: FC<IProduct> = memo((
     {title, price, description, category, rating, image, producer, weight, count}
     ) => {
 
@@ -57,6 +59,6 @@ const ProductInfo: React.FC<IProduct> = (
             </div>
         </div>
     )
-}
+})
 
 export default ProductInfo

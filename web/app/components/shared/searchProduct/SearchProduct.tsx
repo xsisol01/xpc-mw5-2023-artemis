@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, FC, memo } from 'react'
 
 import classNames from 'classnames'
 
@@ -16,7 +16,7 @@ export interface ISearchProductProps {
     setParam?: (name: string, value: string) => void
 }
 
-const SearchProduct: React.FC<ISearchProductProps> = ({uid, className, getParam, setParam}) => {
+const SearchProduct: FC<ISearchProductProps> = memo(({uid, className, getParam, setParam}) => {
     const [value, setValue] = useState<string>()
 
     useEffect(() => {
@@ -56,6 +56,6 @@ const SearchProduct: React.FC<ISearchProductProps> = ({uid, className, getParam,
     function inputHandler(event: React.ChangeEvent<HTMLInputElement>): void {
         setValue(event.target.value)
     }
-}
+})
 
 export default SearchProduct

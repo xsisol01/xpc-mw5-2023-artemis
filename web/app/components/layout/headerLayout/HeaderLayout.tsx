@@ -1,3 +1,4 @@
+import {FC, memo} from 'react'
 
 import Logo from '@/app/components/shared/logo/Logo'
 import SearchProduct, { ISearchProductProps } from '@/app/components/shared/searchProduct/SearchProduct'
@@ -11,7 +12,7 @@ interface IProps {
     contentPage?: string
 }
 
-const HeaderLayout: React.FC<IProps> = ({children, contentPage}) => {
+const HeaderLayout: FC<IProps> = memo(({children, contentPage}) => {
     return (
         <div className={styles.headerLayout}>
             <div className={styles.headerLayout__ribbon}>
@@ -29,6 +30,6 @@ const HeaderLayout: React.FC<IProps> = ({children, contentPage}) => {
             </div>
         </div>
     )
-}
+})
 
 export default HeaderLayout

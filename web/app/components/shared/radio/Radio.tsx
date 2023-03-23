@@ -1,3 +1,5 @@
+import {FC, memo} from 'react'
+
 import { useEffect, useState } from 'react'
 
 import styles from './radio.module.scss'
@@ -14,7 +16,7 @@ export interface IRadioProps {
   getParam: (name: string) => string
 }
 
-const Radio: React.FC<IRadioProps> = ({options, uid, setParam, getParam}) => {
+const Radio: FC<IRadioProps> = memo(({options, uid, setParam, getParam}) => {
   const [selected, setSelected] = useState('')
 
   useEffect(() => {
@@ -47,6 +49,6 @@ const Radio: React.FC<IRadioProps> = ({options, uid, setParam, getParam}) => {
       ))}
     </div>
   )
-}
+})
 
 export default Radio

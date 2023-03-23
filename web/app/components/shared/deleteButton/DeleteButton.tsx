@@ -1,4 +1,4 @@
-
+import {FC, memo} from 'react'
 
 interface IProps {
   className?: string
@@ -7,7 +7,7 @@ interface IProps {
   children: React.ReactNode
 }
 
-const DeleteButton: React.FC<IProps> = ({className = '', id, elementType, children}) => {
+const DeleteButton: FC<IProps> = memo(({className = '', id, elementType, children}) => {
 
 
   return (
@@ -27,6 +27,6 @@ const DeleteButton: React.FC<IProps> = ({className = '', id, elementType, childr
       console.log('delete: ', elementType, '/', id)
     }
   }
-}
+})
 
 export default DeleteButton

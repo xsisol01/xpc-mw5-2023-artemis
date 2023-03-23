@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
 import Link from "next/link";
 
 import styles from './errorScreen.module.scss'
 
-export default function ErrorScreen(){
+export default memo(function ErrorScreen(){
 
     const [ pageX, setPageX ] = useState<number>(0)
     const [ pageY, setPageY ] = useState<number>(0)
@@ -77,4 +77,4 @@ export default function ErrorScreen(){
         setMouseX(event.pageX / -pageX)
         setxAxis(-mouseX * 100 - 100)
     }
-}
+})

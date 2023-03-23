@@ -1,10 +1,12 @@
+import {FC, memo} from 'react'
+
 import { useGetProductQuery } from '@/app/store/product/product.api'
 import { useRouter } from 'next/router'
 import HeaderLayout from '@/app/components/layout/headerLayout/HeaderLayout'
 import Preloader from '@/app/components/shared/preloader/Preloader'
 import ProductPage from '@/app/components/ui/productPage/ProductPage'
 
-const ProductScreen: React.FC = () => {
+const ProductScreen: FC = memo(() => {
 
     const router = useRouter()
     const { pid } = router.query
@@ -28,7 +30,6 @@ const ProductScreen: React.FC = () => {
             <ProductPage {...data} />
         </HeaderLayout>
     )
-
-}
+})
 
 export default ProductScreen

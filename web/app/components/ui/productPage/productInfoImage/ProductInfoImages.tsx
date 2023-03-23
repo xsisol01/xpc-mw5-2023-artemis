@@ -1,4 +1,4 @@
-
+import {FC, memo} from 'react'
 
 import { RoleContext } from '@/app/providers/roleContextProvider'
 import { IProduct } from '@/app/store/product/product.type'
@@ -10,16 +10,23 @@ import { BlobServiceClient, ContainerClient } from '@azure/storage-blob'
 import {FaPlus} from 'react-icons/fa'
 
 import styles from './productInfoImage.module.scss'
+import Image from '@/app/components/shared/image/Image'
 
 interface IProps {
   image: string
   isAdmin: boolean
-  register: UseFormRegister<IProduct>
+  register?: (fieldName: string) => UseFormRegister<IProduct>
 }
 
-const ProductInfoImage: React.FC<IProps> = ({image, isAdmin, register}) => {
+const ProductInfoImage: FC<IProps> = memo(({image, isAdmin, register}) => {
 
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState<File>()
+
+  let registerFunc = (fieldName: string) => ({} as UseFormRegister<IProduct>)
+
+  if (register) {
+    registerFunc = register
+  }
 
   useEffect(() => {
     console.log(file)
@@ -27,30 +34,31 @@ const ProductInfoImage: React.FC<IProps> = ({image, isAdmin, register}) => {
     uploadFile()
   }, [file])
 
-  const imageStyle = {backgroundImage: `url("${image}")`}
-
   return (
     <div className={styles.productInfoImage}>
       {!isAdmin && (
-        <div
-        className={styles.productInfoImage__image}
-        style={imageStyle}
-        ></div >
+        <Image
+          className={styles.productInfoImage__image}
+          src={image}
+        />
       )}
       {isAdmin && (
         <>
           <div className={styles.productInfoImage__placeholder}></div>
           <input
-            {...register('image')}
+            {...registerFunc('image')}
             type='file'
             className={styles.productInfoImage__input}
             accept=".jpg,.png"
             onChange={handleChange}
           />
           
-          
           <FaPlus className={styles.productInfoImage__placeholderIcon} />
-          <div className={styles.productInfoImage__small} style={imageStyle}></div>
+
+          <Image
+          className={styles.productInfoImage__small}
+          src={image}
+        />
 
         </>
       )}
@@ -59,7 +67,11 @@ const ProductInfoImage: React.FC<IProps> = ({image, isAdmin, register}) => {
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 
-    setFile(event.target.files[0])
+    const { files } = event.target
+
+    if (files) {
+      setFile(files[0])
+    }
   }
 
   async function uploadFile() {
@@ -76,13 +88,14 @@ const ProductInfoImage: React.FC<IProps> = ({image, isAdmin, register}) => {
       access: 'container'
     })
 
-    const blobClient = containerClient.getBlockBlobClient(file.name)
+    if (file) {
+      const blobClient = containerClient.getBlockBlobClient(file.name)
 
-    const options = {blobHTTPHeaders: {blobContentType: file.type}}
-
-    await blobClient.uploadBrowserData(file, options)
-
+      const options = {blobHTTPHeaders: {blobContentType: file.type}}
+  
+      await blobClient.uploadBrowserData(file, options)
+    }
   }
-}
+})
 
 export default ProductInfoImage

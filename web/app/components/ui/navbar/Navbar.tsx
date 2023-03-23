@@ -1,5 +1,4 @@
-
-
+import {FC, memo} from 'react'
 
 import { RoleContext } from '@/app/providers/roleContextProvider'
 import { useContext } from 'react'
@@ -10,7 +9,7 @@ import { navbarData } from './navbar.data'
 
 import styles from './navbar.module.scss'
 
-const Navbar: React.FC = () => {
+const Navbar: FC = memo(() => {
     const {isAdmin, setIsAdmin} = useContext(RoleContext)
 
     return (
@@ -31,6 +30,6 @@ const Navbar: React.FC = () => {
             </ul>
         </nav>
     )
-}
+})
 
 export default Navbar

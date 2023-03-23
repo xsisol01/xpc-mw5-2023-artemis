@@ -1,3 +1,4 @@
+import {FC, memo} from 'react'
 
 import classNames from "classnames";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -13,7 +14,7 @@ import { useGetCategoriesQuery, useGetProducersQuery } from "@/app/store/product
 import { productPageData } from "./productPage.data";
 import ProductInfoImages from "./productInfoImage/ProductInfoImages";
 
-const AdminProductInfo: React.FC<IProduct | ICreateProduct> = (props) => {
+const AdminProductInfo: FC<IProduct | ICreateProduct> = memo((props) => {
 
     const {register, handleSubmit} = useForm<IProduct>({defaultValues: props})
 
@@ -32,7 +33,7 @@ const AdminProductInfo: React.FC<IProduct | ICreateProduct> = (props) => {
             })}
             onSubmit={handleSubmit(onSubmit)}
         >
-            <ProductInfoImages image={props.image} isAdmin={true} register={register} />
+            <ProductInfoImages image={props.image} isAdmin={true} />
             <div className={styles.productInfo__text}>
                 <input
                     className={styles.productInfo__title}
@@ -93,6 +94,6 @@ const AdminProductInfo: React.FC<IProduct | ICreateProduct> = (props) => {
         </form>
         
     )
-}
+})
 
 export default AdminProductInfo

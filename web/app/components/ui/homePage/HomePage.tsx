@@ -1,3 +1,4 @@
+import {FC, memo} from 'react'
 
 import { IProduct } from '@/app/store/product/product.type'
 import HeaderLayout from '@/app/components/layout/headerLayout/HeaderLayout'
@@ -11,7 +12,7 @@ interface IProps {
     isLoading: boolean
 }
 
-const HomePage: React.FC<IProps> = () => {
+const HomePage: FC<IProps> = memo(() => {
     return (
         <div className={styles.homePage}>
             <HeaderLayout contentPage='home'>
@@ -22,6 +23,6 @@ const HomePage: React.FC<IProps> = () => {
             </HeaderLayout>
         </div>
     )
-}
+})
 
 export default HomePage

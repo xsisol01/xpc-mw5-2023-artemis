@@ -1,3 +1,5 @@
+import {FC, memo} from 'react'
+
 import styles from './headButton.module.scss'
 
 interface IProps {
@@ -5,13 +7,13 @@ interface IProps {
     onClick: () => void
 }
 
-const HeadButon: React.FC<IProps> = ({children, onClick}) => {
+const HeadButton: FC<IProps> = memo(({children, onClick}) => {
     return (
         <button onClick={onClick} className={styles.headButton}>
             {children}
         </button>
     )
-}
+})
 
 
-export default HeadButon
+export default HeadButton

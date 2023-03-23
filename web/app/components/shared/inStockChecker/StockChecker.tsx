@@ -1,3 +1,4 @@
+import {FC, memo} from 'react'
 
 import classNames from "classnames"
 
@@ -10,7 +11,7 @@ type TProps = {
   className?: string
 }
 
-const StockChecker: React.FC<TProps> = ({isInStock, className}) => {
+const StockChecker: FC<TProps> = memo(({isInStock, className}) => {
 
   return (
     <div className={classNames({
@@ -22,7 +23,6 @@ const StockChecker: React.FC<TProps> = ({isInStock, className}) => {
       {isInStock ? stockCheckerData.inStock : stockCheckerData.notInStock}
     </div>
   )
+})
 
-
-}
 export default StockChecker

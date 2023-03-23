@@ -1,8 +1,9 @@
+import {FC, memo} from 'react'
 
 import Image from 'next/image';
 import styles from './preloader.module.scss'
 
-const Preloader: React.FC = () => {
+const Preloader: FC = memo(() => {
 
   return (
     <div className={styles.preloader}>
@@ -15,7 +16,6 @@ const Preloader: React.FC = () => {
          />
     </div>
     )
-
-}
+})
 
 export default Preloader

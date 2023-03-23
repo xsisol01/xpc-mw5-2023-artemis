@@ -1,4 +1,4 @@
-
+import {FC, memo} from 'react'
 
 import Container from '@/app/components/layout/container/Container'
 import HeaderLayout from '@/app/components/layout/headerLayout/HeaderLayout'
@@ -6,7 +6,7 @@ import FilterProduct from '@/app/components/ui/filterProduct/FilterProduct'
 import Products from '@/app/components/ui/products/Products'
 import styles from './homeScreen.module.scss'
 
-const HomeScreen: React.FC = () => {
+const HomeScreen: FC = memo(() => {
     return (
         <div className={styles.homeScreen}>
             <HeaderLayout contentPage='home'>
@@ -19,6 +19,6 @@ const HomeScreen: React.FC = () => {
             </HeaderLayout>
         </div>
     )
-}
+})
 
 export default HomeScreen

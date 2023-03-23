@@ -1,0 +1,16 @@
+@import '@/_vars';
+
+.producerLayout {
+  display: flex;
+  gap: 20px;
+
+  &__{
+    &items {
+      padding: 5px 0;
+      min-width: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+}

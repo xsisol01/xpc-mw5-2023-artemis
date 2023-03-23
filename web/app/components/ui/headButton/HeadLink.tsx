@@ -1,3 +1,5 @@
+import {FC, memo} from 'react'
+
 import Link from "next/link"
 
 import styles from './headButton.module.scss'
@@ -7,13 +9,12 @@ interface IProps {
     link: string
 }
 
-const HeadLink: React.FC<IProps> = ({children, link}) => {
+const HeadLink: FC<IProps> = memo(({children, link}) => {
     return (
         <Link href={link} className={styles.headButton}>
             {children}
         </Link>
     )
-}
-
+})
 
 export default HeadLink

@@ -1,3 +1,5 @@
+import {FC, memo} from 'react'
+
 import { loadMoreButtonData } from './loadMoreButtonData'
 
 import styles from './loadMoreButton.module.scss'
@@ -7,7 +9,7 @@ interface IProps {
     onClick: () => void
 }
 
-const LoadMoreButton: React.FC<IProps> = ({onClick}) => {
+const LoadMoreButton: FC<IProps> = memo(({onClick}) => {
 
     return (
         <ResizingButton
@@ -16,6 +18,6 @@ const LoadMoreButton: React.FC<IProps> = ({onClick}) => {
             onClick={onClick}
         />
     )
-}
+})
 
 export default LoadMoreButton;

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, FC, memo } from 'react'
 
 import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io'
 
@@ -9,7 +9,7 @@ interface IProps {
     children: React.ReactNode
 }
 
-const Dropdown: React.FC<IProps> = ({title, children}) => {
+const Dropdown: FC<IProps> = memo(({title, children}) => {
     const [ isOpen, setIsOpen ] = useState(false);
 
     return (
@@ -33,6 +33,6 @@ const Dropdown: React.FC<IProps> = ({title, children}) => {
             )}
         </div>
     )
-}
+})
 
 export default Dropdown

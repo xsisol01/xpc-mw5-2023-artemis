@@ -1,5 +1,5 @@
 import { useGetCategoriesQuery, useGetProducersQuery } from "@/app/store/product/product.api";
-import { useState } from "react"
+import { FC, memo } from "react"
 
 import Dropdown from "@/app/components/shared/dropdown/dropdown";
 import ScrollableList, { IScrollableListProps } from "@/app/components/shared/scrollableList/ScrollableList";
@@ -18,7 +18,7 @@ interface TField{
     options?: any
 }
 
-const FilterProduct: React.FC = () => {
+const FilterProduct: FC = memo(() => {
 
     const {
         data: categories,
@@ -106,6 +106,6 @@ const FilterProduct: React.FC = () => {
                 return () => null
         }
     }
-}
+})
 
 export default FilterProduct

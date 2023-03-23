@@ -1,3 +1,4 @@
+import { IProducer } from '@/app/store/product/producer.type';
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import { IProduct } from './product.type'
 
@@ -11,11 +12,14 @@ export const productApi = createApi({
         getProduct: build.query<IProduct, number>({
             query: (productId: number) => `products/${productId}`
         }),
-        getCategories: build.query<string[], number>({
+        getCategories: build.query<string[], null>({
             query: () => `categories`
         }),
-        getProducers: build.query<string[], number>({
+        getProducers: build.query<IProducer[], null>({
             query: () => `producers`
+        }),
+        getProducer: build.query<IProducer, string>({
+            query: (producerId: string) => `producers/${producerId}`
         })
     })
 })
@@ -24,5 +28,6 @@ export const {
     useGetProductsQuery,
     useGetProductQuery,
     useGetCategoriesQuery,
-    useGetProducersQuery
+    useGetProducersQuery,
+    useGetProducerQuery
 } = productApi

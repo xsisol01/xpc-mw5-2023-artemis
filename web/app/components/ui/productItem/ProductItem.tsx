@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import {useContext, FC, memo} from 'react'
 
 import Link from 'next/link'
 
@@ -14,15 +14,20 @@ import {FaTimes} from 'react-icons/fa'
 import { RoleContext } from '@/app/providers/roleContextProvider'
 
 import styles from './productItem.module.scss'
+import Image from '../../shared/image/Image'
 
-const ProductItem: React.FC<IProduct> = ({id, title, image, price, rating, count}) => {
+const ProductItem: FC<IProduct> = memo(({id, title, image, price, rating, count}) => {
     const {isAdmin} = useContext(RoleContext)
 
     const isInStock = (count > 0)
 
     return (
         <Link href='/product/[pid]' as={`/product/${id}`} className={styles.productItem}>
-            <div style={{backgroundImage: `url("${image}")`}} className={styles.productItem__image}></div>
+            <Image  
+                className={styles.productItem__image}
+                size='cover'
+                src={image}
+            />
             <div className={classNames({
                 [styles.productItem__info]: true,
                 [styles.info]: true
@@ -56,6 +61,6 @@ const ProductItem: React.FC<IProduct> = ({id, title, image, price, rating, count
         </Link>
         
     )
-}
+})
 
 export default ProductItem

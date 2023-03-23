@@ -2,15 +2,14 @@ import { useState, useEffect, FC } from 'react'
 
 import { useRouter } from 'next/router'
 
-function withUrlSearchParams <T>(Component: FC<T>) {
+function withUrlSearchParams <T>(Component: FC<T>): FC<T> {
     
     const [urlSearchParams, setUrlSearchParams] = useState({} as URLSearchParams)
 
     const router = useRouter();
 
     useEffect(() => {
-        const url = new URL(window.location.href)
-        const urlParams = new URLSearchParams(url.search)
+        const urlParams = getNewUrlSearchParams()
 
         setUrlSearchParams(urlParams)
     }, [])
@@ -20,7 +19,8 @@ function withUrlSearchParams <T>(Component: FC<T>) {
     } 
 
     function getParam(paramName: string) {
-        return urlSearchParams.get && urlSearchParams.get(paramName)
+        const urlParams = getNewUrlSearchParams()
+        return urlParams.get && urlParams.get(paramName)
     }
 
     function setParam(name:string, value:string) {
@@ -34,6 +34,11 @@ function withUrlSearchParams <T>(Component: FC<T>) {
             ...currentQuery,
             [name.toLowerCase()]: value.toLowerCase()
         }})
+    }
+
+    function getNewUrlSearchParams() {
+        const url = new URL(window.location.href)
+        return new URLSearchParams(url.search)
     }
 }
 

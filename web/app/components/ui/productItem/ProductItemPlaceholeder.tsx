@@ -1,3 +1,5 @@
+import {FC, memo} from 'react'
+
 import classNames from "classnames"
 import Link from "next/link"
 
@@ -5,7 +7,7 @@ import {TiPlus} from 'react-icons/ti'
 
 import styles from './productItem.module.scss'
 
-const ProductItemPlaceholder = () => {
+const ProductItemPlaceholder: FC = memo(() => {
   
   return (
     <Link href="product/new" className={classNames({
@@ -15,6 +17,6 @@ const ProductItemPlaceholder = () => {
       <TiPlus className={styles.productItem__placeholderIcon} />
     </Link>
   )
-}
+})
 
 export default ProductItemPlaceholder
