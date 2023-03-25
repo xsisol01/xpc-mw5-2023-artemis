@@ -6,14 +6,5 @@ namespace Eshop.webAPI.Models
     {
         public string Name { get; set; }
 
-
-
-
-        public static Category Empty => new()
-        {
-            Id = Guid.NewGuid(),
-            Name = string.Empty
-        };
-
     }
 }

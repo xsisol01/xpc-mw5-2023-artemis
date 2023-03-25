@@ -4,7 +4,7 @@
     {
         private int _stars;
         public string Text { get; set; }
-        public required int Stars
+        public int Stars
         {
             get { return _stars; }
             set
