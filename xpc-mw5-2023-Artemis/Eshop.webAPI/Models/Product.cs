@@ -8,7 +8,7 @@
         public float? Price { get; set; }
         public float? Weight { get; set; }
         public int StockQuantity { get; set; }
-        public Category Category { get; set; }
+        public CategoryModel Category { get; set; }
         public ProducerModel Producer { get; set; }
         public Rating Rating { get; set; }
 

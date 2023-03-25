@@ -8,8 +8,8 @@ namespace Eshop.webAPI.Configurations
     {
         public MapperInitializer()
         {
-            CreateMap<Category, CategoryDTO>().ReverseMap();
-            CreateMap<Category, CreateCategoryDTO>().ReverseMap();
+            CreateMap<CategoryModel, CategoryDTO>().ReverseMap();
+            CreateMap<CategoryModel, CreateCategoryDTO>().ReverseMap();
         }  
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Eshop.webAPI.Models
 {
-    public class Category : ModelBase
+    public class CategoryModel : ModelBase
     {
         public string Name { get; set; }
 
-        public Category()
+        public CategoryModel()
         {
             Id= Guid.NewGuid();
         }

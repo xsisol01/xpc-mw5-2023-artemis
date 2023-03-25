@@ -65,7 +65,7 @@ namespace Eshop.webAPI.Controllers
             }
             try
             {
-                var category = _mapper.Map<Category>(categoryDTO);  //Convert to DTO for input
+                var category = _mapper.Map<CategoryModel>(categoryDTO);  //Convert to DTO for input
                 FakeDatabase.AddCategory(category);
 
                 return CreatedAtRoute("GetCategory", new { name = category.Name }, category);        

@@ -5,14 +5,14 @@ namespace Eshop.webAPI.FakeDB
 {
     public static class FakeDatabase
     {
-        private static List<Category> categories = new List<Category>();
+        private static List<CategoryModel> categories = new List<CategoryModel>();
 
-        public static List<Category> Categories 
+        public static List<CategoryModel> Categories 
         {
             get { return categories;} 
         }
 
-        public static void AddCategory(Category newCategory)
+        public static void AddCategory(CategoryModel newCategory)
         {
             categories.Add(newCategory);
         }
@@ -20,10 +20,10 @@ namespace Eshop.webAPI.FakeDB
         public static void InitDatabase()
         {
 
-            categories.Add(new Category() { Id = Guid.NewGuid(), Name = "Vrtačky" });
-            categories.Add(new Category() { Id = Guid.NewGuid(), Name = "Šrobováky" });
-            categories.Add(new Category() { Id = Guid.NewGuid(), Name = "Lopaty" });
-            categories.Add(new Category() { Id = Guid.NewGuid(), Name = "Hrable" });
+            categories.Add(new CategoryModel() { Id = Guid.NewGuid(), Name = "Vrtačky" });
+            categories.Add(new CategoryModel() { Id = Guid.NewGuid(), Name = "Šrobováky" });
+            categories.Add(new CategoryModel() { Id = Guid.NewGuid(), Name = "Lopaty" });
+            categories.Add(new CategoryModel() { Id = Guid.NewGuid(), Name = "Hrable" });
             
         }
     }
