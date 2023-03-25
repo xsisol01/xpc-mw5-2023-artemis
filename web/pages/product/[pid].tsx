@@ -3,7 +3,9 @@ import { NextPage } from "next";
 
 
 const Product: NextPage = () => {
-    return <ProductScreen />
+    return (
+        <ProductScreen />
+    ) 
 }
 
 export default Product

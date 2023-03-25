@@ -7,10 +7,21 @@ import {TiPlus} from 'react-icons/ti'
 
 import styles from './productItem.module.scss'
 
-const ProductItemPlaceholder: FC = memo(() => {
+interface IProps {
+  producer?: string
+}
+
+const ProductItemPlaceholder: FC<IProps> = memo(({producer}) => {
   
+  const href = {
+    pathname: '/product/new',
+    query: {
+      producer
+    }
+  }
+
   return (
-    <Link href="product/new" className={classNames({
+    <Link href={href} className={classNames({
       [styles.productItem]: true,
       [styles.productItem__placeholder]: true,
     })}>

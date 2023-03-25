@@ -1,33 +1,38 @@
-import {FC, memo} from 'react'
+import {FC, memo, useContext} from 'react'
 
-import { useGetProductQuery } from '@/app/store/product/product.api'
 import { useRouter } from 'next/router'
+
+
 import HeaderLayout from '@/app/components/layout/headerLayout/HeaderLayout'
 import Preloader from '@/app/components/shared/preloader/Preloader'
 import ProductPage from '@/app/components/ui/productPage/ProductPage'
+import { RoleContext } from '@/app/providers/roleContextProvider'
+import { useGetProduct } from '@/app/hooks/product/useGetProduct'
 
 const ProductScreen: FC = memo(() => {
+    const {isAdmin} = useContext(RoleContext)
 
-    const router = useRouter()
-    const { pid } = router.query
+    const {query, push} = useRouter()
 
-    if (!pid) return <Preloader />
-
-    const {data, isLoading, error} = useGetProductQuery(Number(pid))
+    const {product, isLoading, } = useGetProduct(String(query.pid))
 
     if (isLoading) {
         return  <Preloader />
     }
 
-    if (!data) {
-        router.push("/404")
+    if (!product) {
+        push("/404")
 
-        return null
+        return (
+            <HeaderLayout>
+                <div>Not Found</div>
+            </HeaderLayout>
+        )
     }
 
     return (
-        <HeaderLayout>
-            <ProductPage {...data} />
+        <HeaderLayout >
+            <ProductPage {...product} isAdmin={isAdmin} />
         </HeaderLayout>
     )
 })

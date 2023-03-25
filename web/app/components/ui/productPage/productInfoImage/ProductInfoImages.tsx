@@ -1,8 +1,7 @@
-import {FC, memo} from 'react'
+import {FC, memo, useEffect, useState } from 'react'
 
 import { RoleContext } from '@/app/providers/roleContextProvider'
 import { IProduct } from '@/app/store/product/product.type'
-import React, { useContext, useEffect, useState } from 'react'
 import { UseFormRegister } from 'react-hook-form'
 
 import { BlobServiceClient, ContainerClient } from '@azure/storage-blob'
@@ -19,7 +18,6 @@ interface IProps {
 }
 
 const ProductInfoImage: FC<IProps> = memo(({image, isAdmin, register}) => {
-
   const [file, setFile] = useState<File>()
 
   let registerFunc = (fieldName: string) => ({} as UseFormRegister<IProduct>)
@@ -31,7 +29,7 @@ const ProductInfoImage: FC<IProps> = memo(({image, isAdmin, register}) => {
   useEffect(() => {
     console.log(file)
 
-    uploadFile()
+    //uploadFile()
   }, [file])
 
   return (
@@ -55,11 +53,12 @@ const ProductInfoImage: FC<IProps> = memo(({image, isAdmin, register}) => {
           
           <FaPlus className={styles.productInfoImage__placeholderIcon} />
 
-          <Image
-          className={styles.productInfoImage__small}
-          src={image}
-        />
-
+          {image.length > 0 && (
+            <Image
+              className={styles.productInfoImage__small}
+              src={image}
+            />
+          )}
         </>
       )}
     </div>

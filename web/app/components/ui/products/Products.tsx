@@ -1,31 +1,27 @@
-import  {useContext, useState, FC, memo } from 'react'
-
-import { useGetProductsQuery } from '@/app/store/product/product.api'
+import  {useContext, FC, memo } from 'react'
 
 import Preloader from '@/app/components/shared/preloader/Preloader'
-import LoadMoreButton from '@/app/components/ui/loadMoreButton/LoadMoreButton'
 import ProductItem from '@/app/components/ui/productItem/ProductItem'
-
-import { productsData } from './products.data'
 
 import styles from './products.module.scss'
 import { RoleContext } from '@/app/providers/roleContextProvider'
 import ProductItemPlaceholder from '../productItem/ProductItemPlaceholeder'
 import { IProduct } from '@/app/store/product/product.type'
+import { useGetAllProduct } from '@/app/hooks/product/useGetAllProducts'
 
 interface IProps {
     products?: IProduct[]
+    producer?: string
 }
 
-const Products: FC<IProps> = memo(({products: propsProducts}) => {
+const Products: FC<IProps> = memo(({products: propsProducts, producer}) => {
     const {isAdmin} = useContext(RoleContext)
 
     if (propsProducts) {
         return renderProducts(propsProducts)
     }
 
-    const [productCount, setProductCount] = useState<number>(productsData.loadingProductCount)
-    const {data: fetchProducts, isLoading, error} = useGetProductsQuery(productCount);
+    const {products: fetchProducts, isLoading} = useGetAllProduct();
 
     return isLoading || !fetchProducts
         ? <Preloader />
@@ -36,22 +32,11 @@ const Products: FC<IProps> = memo(({products: propsProducts}) => {
         return (
             <div  className={styles.products}>
                 <div className={styles.products__items}>
-                    {isAdmin && <ProductItemPlaceholder />}
-                    {products?.map(product => <ProductItem key={product.id} {...product} />)}
+                    {isAdmin && <ProductItemPlaceholder producer={producer} />}
+                    {products?.map(product => <ProductItem key={product.id} {...product} isAdmin={isAdmin} />)}
                 </div>
-                {
-                    !propsProducts && (
-                        <div className={styles.products__more}>
-                            <LoadMoreButton onClick={loadMore} />
-                        </div>
-                    )
-                }
             </div>
         )
-    }
-
-    function loadMore() {
-        setProductCount(prev => prev + productsData.loadingProductCount);
     }
 })
 

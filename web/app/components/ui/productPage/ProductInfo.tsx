@@ -10,7 +10,6 @@ import Rating from "@/app/components/shared/rating/Rating";
 import {productPageData} from './productPage.data'
 
 import styles from './productInfo.module.scss'
-import { count } from "console";
 import ProductInfoImages from "./productInfoImage/ProductInfoImages";
 
 const ProductInfo: FC<IProduct> = memo((

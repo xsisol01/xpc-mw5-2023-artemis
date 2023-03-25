@@ -1,5 +1,4 @@
-import { useGetCategoriesQuery, useGetProducersQuery } from "@/app/store/product/product.api";
-import { FC, memo } from "react"
+import { FC, memo, useEffect } from "react"
 
 import Dropdown from "@/app/components/shared/dropdown/dropdown";
 import ScrollableList, { IScrollableListProps } from "@/app/components/shared/scrollableList/ScrollableList";
@@ -12,6 +11,8 @@ import withUrlSearchParams from "@/app/components/shared/hoc/withUrlSearchParams
 import { filterProductData, fieldTypeData, IFilterItem } from "./filterProduct.data";
 
 import styles from './filterProduct.module.scss'
+import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
+import { useGetAllProducers } from "@/app/hooks/producer/useGetAllProducers";
 
 interface TField{
     uid: string
@@ -21,15 +22,22 @@ interface TField{
 const FilterProduct: FC = memo(() => {
 
     const {
-        data: categories,
+        categories,
         isLoading: isCategoryLoading,
-        error: categoriesError
-    } = useGetCategoriesQuery(1);
+    } = useGetAllCategories();
     const {
-        data: producers,
-        isLoading: isProducerLoading,
-        error: producersError
-    } = useGetProducersQuery(1)
+        producers,
+        isLoading: isProducerLoading
+    } = useGetAllProducers()
+
+    
+
+    useEffect(() => {
+        console.log('categories', categories)
+        console.log('producers', producers)
+
+    }, [categories, producers])
+
 
     return (
         <aside className={styles.filterProduct}>
