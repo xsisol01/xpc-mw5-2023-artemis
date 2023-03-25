@@ -1,14 +1,12 @@
 import { FC, memo } from "react";
 
-import { IProducer } from "@/app/store/product/producer.type";
-
 import styles from './producersContent.module.scss'
-import { useGetProducerQuery } from "@/app/store/product/product.api";
 import Preloader from "../../shared/preloader/Preloader";
 import { useRouter } from "next/router";
 import Image from "../../shared/image/Image";
 import Products from "../products/Products";
 import { capitalizeText } from "@/app/utils/capitalizeText";
+import { useGetProducer } from "@/app/hooks/producer/useGetProducer";
 
 
 const ProducersContent: FC = memo(() => {
@@ -21,7 +19,7 @@ const ProducersContent: FC = memo(() => {
     return <Preloader />
   }
 
-  const {data: producer, isLoading} = useGetProducerQuery(pid.toString())
+  const {producer, isLoading} = useGetProducer(pid.toString())
 
   console.log(producer)
   
@@ -48,7 +46,7 @@ const ProducersContent: FC = memo(() => {
             </div>
           </div>
           <div className={styles.producersContent__products}>
-            <Products products={producer.products} />
+            <Products products={producer.products} producer={producer.id} />
           </div>
         </>
           

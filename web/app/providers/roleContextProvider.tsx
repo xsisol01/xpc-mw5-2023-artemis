@@ -1,4 +1,4 @@
-import { useContext, createContext, useState, useMemo, Dispatch, SetStateAction, FC, memo } from 'react';
+import { createContext, useState, useMemo, Dispatch, SetStateAction, FC, memo } from 'react';
 
 
 interface IContext {
@@ -20,6 +20,9 @@ const RoleContextProvider: FC<IProps> = memo(({children}) => {
         isAdmin,
         setIsAdmin
     }), [isAdmin])
+
+    console.log('RoleContextProvider', isAdmin)
+
 
     return(
         <RoleContext.Provider value={value}>

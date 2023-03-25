@@ -8,12 +8,16 @@ import Container from '@/app/components/layout/container/Container'
 import AdminProductInfo from './AdminProductInfo'
 import ProductInfo from './ProductInfo'
 
-const ProductPage: FC<IProduct> = memo((props) => {
-    const {isAdmin} = useContext(RoleContext)
+interface IProps {
+    isAdmin: boolean
+}
+
+const ProductPage: FC<IProduct & IProps> = memo((props) => {
+    //const {isAdmin} = useContext(RoleContext)
 
     return (
         <Container>
-            {isAdmin ? (
+            {props.isAdmin ? (
                 <AdminProductInfo {...props} />
             ) : (
                 <ProductInfo {...props} />

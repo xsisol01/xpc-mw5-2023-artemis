@@ -1,4 +1,4 @@
-import {useContext, FC, memo} from 'react'
+import {FC, memo} from 'react'
 
 import Link from 'next/link'
 
@@ -11,14 +11,16 @@ import DeleteButton from '@/app/components/shared/deleteButton/DeleteButton'
 
 import {FaTimes} from 'react-icons/fa'
 
-import { RoleContext } from '@/app/providers/roleContextProvider'
+
 
 import styles from './productItem.module.scss'
 import Image from '../../shared/image/Image'
 
-const ProductItem: FC<IProduct> = memo(({id, title, image, price, rating, count}) => {
-    const {isAdmin} = useContext(RoleContext)
+interface IProps {
+    isAdmin: boolean
+}
 
+const ProductItem: FC<IProduct & IProps> = memo(({id, title, image, price, rating, count, isAdmin}) => {
     const isInStock = (count > 0)
 
     return (
@@ -48,8 +50,8 @@ const ProductItem: FC<IProduct> = memo(({id, title, image, price, rating, count}
                 </div>
             </div>
 
-            {!isAdmin && <StockChecker isInStock={isInStock} className={styles.productItem__stockChecker} />}
-            {isAdmin && (
+            {isAdmin ? 
+            (
                 <DeleteButton
                     id={id}
                     className={styles.productItem__delete}
@@ -57,7 +59,10 @@ const ProductItem: FC<IProduct> = memo(({id, title, image, price, rating, count}
                 >
                     <FaTimes className={styles.productItem__deleteIcon} />
                 </DeleteButton>
+            ) : (
+                <StockChecker isInStock={isInStock} className={styles.productItem__stockChecker} />
             )}
+
         </Link>
         
     )

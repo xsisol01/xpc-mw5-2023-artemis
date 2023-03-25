@@ -5,15 +5,16 @@ import { IProducer } from "@/app/store/product/producer.type";
 import styles from './producerLayout.module.scss'
 import ProducerItem from "@/app/components/ui/producerItem/ProducerItem";
 import Link from "next/link";
-import { useGetProducersQuery } from "@/app/store/product/product.api";
 import Preloader from "../../shared/preloader/Preloader";
+import { useGetAllProducers } from "@/app/hooks/producer/useGetAllProducers";
 
 interface IProps{
   children?: ReactNode
 }
 
 const ProducerLayout: FC<IProps> = memo(({ children }) => {
-  const {data: producers, isLoading} = useGetProducersQuery(null)
+  
+  const { producers, isLoading} = useGetAllProducers()
 
   if (!producers) {
     return <Preloader />
@@ -23,11 +24,10 @@ const ProducerLayout: FC<IProps> = memo(({ children }) => {
     <div className={styles.producerLayout}>
       <ul className={styles.producerLayout__items}>
         {producers?.map(producer => (
-          <li>
+          <li key={producer.id}>
             <Link
               href='/producer/[pid]'
               as={`/producer/${producer.id}`}
-              key={producer.id}
             >
               <ProducerItem
                 id={producer.id}

@@ -25,7 +25,7 @@ const Image: FC<IProps> = memo((
     backgroundPosition: position,
     backgroundRepeat: 'no-repeat',
     width,
-    height
+    height,
   }
 
   return (
