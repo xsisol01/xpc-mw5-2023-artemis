@@ -7,6 +7,7 @@ namespace Eshop.webAPI.FakeDB
     {
         private static List<CategoryModel> categories = new List<CategoryModel>();
         private static List<CommodityModel> commodities= new List<CommodityModel>();
+        private static List<ManufacturerModel> manufacturers = new List<ManufacturerModel>();
 
         public static List<CategoryModel> Categories 
         {
@@ -16,6 +17,10 @@ namespace Eshop.webAPI.FakeDB
         public static List<CommodityModel> Commodities 
         {
             get { return commodities; }
+        }
+        public static List<ManufacturerModel> Manufacturers
+        {
+            get { return manufacturers; }
         }
 
         public static void AddCategory(CategoryModel newCategory)
@@ -27,6 +32,10 @@ namespace Eshop.webAPI.FakeDB
         {
             commodities.Add(newCommodity);
         }
+        public static void AddManufacturer(ManufacturerModel newManufacturer)
+        {
+            categories.Add(newManufacturer);
+        }
 
         public static void InitDatabase()
         {
@@ -35,6 +44,10 @@ namespace Eshop.webAPI.FakeDB
             categories.Add(new CategoryModel() { Id = Guid.NewGuid(), Name = "Šrobováky" });
             categories.Add(new CategoryModel() { Id = Guid.NewGuid(), Name = "Lopaty" });
             categories.Add(new CategoryModel() { Id = Guid.NewGuid(), Name = "Hrable" });
+            manufacturers.Add(new ManufacturerModel() { Id = Guid.NewGuid(), Name = "Bosch" });
+            manufacturers.Add(new ManufacturerModel() { Id = Guid.NewGuid(), Name = "Parkside" });
+            manufacturers.Add(new ManufacturerModel() { Id = Guid.NewGuid(), Name = "Ferrida" });
+            manufacturers.Add(new ManufacturerModel() { Id = Guid.NewGuid(), Name = "Blackmont" });
 
             //commodities.Add(new CommodityModel() {
             //    Id = Guid.NewGuid(),
@@ -57,10 +70,10 @@ namespace Eshop.webAPI.FakeDB
             //    StockQuantity= 12,
             //    Weight = (float?)2.5,
             //    Review = Add(new ReviewModel() { })
-                
+
             //})
-                                                    
-            
+
+
         }
     }
 }
