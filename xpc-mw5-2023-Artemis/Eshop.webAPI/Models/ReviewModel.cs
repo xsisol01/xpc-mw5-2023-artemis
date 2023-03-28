@@ -1,25 +1,14 @@
 ﻿namespace Eshop.webAPI.Models
 {
-    public class Rating : ModelBase
+    public class ReviewModel : ModelBase
     {
-        private int _stars;
-        public string Text { get; set; }
-        public int Stars
+        public int Stars { get; set; }
+        public string Description { get; set; }
+        public string Title { get; set; }
+
+        public ReviewModel()
         {
-            get { return _stars; }
-            set
-            {
-                if (value < 1 || value > 5)
-                {
-                    throw new ArgumentException("Star rating must be between 1 and 5.");
-                }
-            }
+            Id = Guid.NewGuid();
         }
-        public static Rating Empty => new()
-        {
-            Id = Guid.NewGuid(),
-            Text = string.Empty,
-            Stars = 0
-        };
     }
 }
