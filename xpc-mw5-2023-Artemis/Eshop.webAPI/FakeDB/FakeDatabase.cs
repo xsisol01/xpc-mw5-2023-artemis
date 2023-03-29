@@ -1,6 +1,7 @@
 ﻿using Eshop.webAPI.Models;
 using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.Intrinsics.X86;
 using System.Threading.Tasks;
 
 namespace Eshop.webAPI.FakeDB
@@ -20,6 +21,7 @@ namespace Eshop.webAPI.FakeDB
         {
             get { return commodities; }
         }
+
         public static List<ManufacturerModel> Manufacturers
         {
             get { return manufacturers; }
@@ -34,116 +36,414 @@ namespace Eshop.webAPI.FakeDB
         {
             commodities.Add(newCommodity);
         }
+
         public static void AddManufacturer(ManufacturerModel newManufacturer)
         {
-            categories.Add(newManufacturer);
+            manufacturers.Add(newManufacturer);
         }
 
         public static void InitDatabase()
         {
+            //CategoryModel instances initialization
 
-            categories.Add(new CategoryModel() { Id = Guid.NewGuid(), Name = "Vrtačky" });
-            categories.Add(new CategoryModel() { Id = Guid.NewGuid(), Name = "Šrobováky" });
-            categories.Add(new CategoryModel() { Id = Guid.NewGuid(), Name = "Lopaty" });
-            categories.Add(new CategoryModel() { Id = Guid.NewGuid(), Name = "Hrable" });
-            manufacturers.Add(new ManufacturerModel() { Id = Guid.NewGuid(), Name = "Bosch" });
-            manufacturers.Add(new ManufacturerModel() { Id = Guid.NewGuid(), Name = "Parkside" });
-            manufacturers.Add(new ManufacturerModel() { Id = Guid.NewGuid(), Name = "Ferrida" });
-            manufacturers.Add(new ManufacturerModel() { Id = Guid.NewGuid(), Name = "Blackmont" });
+            var vrtacky = new CategoryModel() { Id = Guid.NewGuid(), Name = "Vrtačky" };
+            var utahovacky = new CategoryModel() { Id = Guid.NewGuid(), Name = "Uťahovačky" };
+            var skrutkovace = new CategoryModel() { Id = Guid.NewGuid(), Name = "Skrutkovače" };
+            var lopaty = new CategoryModel() { Id = Guid.NewGuid(), Name = "Lopaty" };
+            var hrable = new CategoryModel() { Id = Guid.NewGuid(), Name = "Hrable" };
+            var vytrhavaceBuriny = new CategoryModel() { Id = Guid.NewGuid(), Name = "Vytrhávače buriny" };
+            var silaznePlachty = new CategoryModel() { Id = Guid.NewGuid(), Name = "Silážne plachty" };
+            
+            //ManufacturerModel instances initialization
 
-            //commodities.Add(new CommodityModel() {
-            //    Id = Guid.NewGuid(),
-            //    Category = (from c in categories
-            //                where c.Name == "Vrtačky"
-            //                select c).FirstOrDefault(),
-            //    Name = "Vŕtacie a sekacie kladivo PBH 800 A1",
-            //    Description = "Na výkonné opracovávanie betónu, kameňa, kovu alebo dreva\r\n" +
-            //                  "Pneumatické kladivo s vysokou silou úderu\r\n" +
-            //                  "Rýchloupínacie skľučovadlo s upnutím podľa systému SDS plus\r\n" +
-            //                  "Centrálny prepínač pre všetky funkcie: Vŕtanie\r\n" +
-            //                  "Príklepové vŕtanie so zapnutou funkciou kladiva\r\n" +
-            //                  "Nastavenie polohy sekáča\r\n" +
-            //                  "Sekanie so zapnutou funkciou kladiva\r\n" +
-            //                  "Nasaditeľné rýchloupínacie skľučovadlo pre vrtáky s okrúhlou stopkou\r\n" +
-            //                  "Protišmykové držadlo s mäkkým povrchom\r\n" +
-            //                  "Predné držadlo otočné o 360°\r\nV praktickom úschovnom kufríku\r\n",
-            //    ImageUrl = "TODO/TODO/TODO",
-            //    Price = (float?)59.99,
-            //    StockQuantity= 12,
-            //    Weight = (float?)2.5,
-            //    Review = Add(new ReviewModel() { })
+            var bosch = new ManufacturerModel() { 
+                Id = Guid.NewGuid(), 
+                Name = "Bosch",
+                Country = "Nemecko",
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Spoločnosť Bosch, ktorá bola založená Robertom Boschom v Stuttgarte," +
+                              " pôsobí na trhu už od roku 1886, kedy začínala len s telefónnymi systémami a elektrickými zvončekmi." +
+                              " V súčasnosti je oblasť pôsobenia veľmi široká a do jej sortimentu patrí najrôznejšie vybavenie" +
+                              " pre každodenný život, od ručného a elektrického náradia cez záhradnú techniku, autobatérie," +
+                              " autodiely až po kuchynské a domáce spotrebiče."
+            };
 
-            //})
+            var parkside = new ManufacturerModel() { 
+                Id = Guid.NewGuid(), 
+                Name = "Parkside",
+                Country = "Nemecko",
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "S PARKSIDE si môžeš byť istý: aby si mohol úlohy v dome a v záhrade zvládnuť sám," +
+                              " dostaneš najvyššiu kvalitu a výkon za najlepšiu možnú cenu. Môžeš očakávať nespočetné množstvo" +
+                              " oblastí použitia, rôzne výkonnostné triedy a naše vlastné produktové systémy – napríklad našu " +
+                              "akumulátorovú technológiu. Naša ponuka je taká široká, že v nej nájdeš presne to, čo potrebuješ, " +
+                              "či si začiatočník, alebo profesionál. Od bezuhlíkového motora až po inteligentné pripojenie " +
+                              "prostredníctvom aplikácie, tešiť sa môžeš aj na stále nové funkcie."
+            };
 
+            var ferrida = new ManufacturerModel() { 
+                Id = Guid.NewGuid(), 
+                Name = "Ferrida",
+                Country = "Nemecko",
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Značka Ferrida predstavuje to najlepšie náradie pre všetkých domácich majstrov, " +
+                              "príležitostných hodinových manželov a záhradkárov.Zodpovedne a s nasadením vám " +
+                              "prinášame kvalitné náradie a stroje, ktoré vydržia dlhé roky a pritom výrazne nezasiahnu"+
+                              "do rodinného rozpočtu. Zveľaďte svoj byt, dom, chatu alebo záhradu pomocou Ferrida"+
+                              "vŕtačiek, brúsok, kotúčových píl, skrutkovačov, kosačiek alebo vertikutátorov. " +
+                              "Všetky naše výrobky starostlivo navrhujeme a konštruujeme s myšlienkou, že sú určené pre všetkých, " +
+                              "od úplných začiatočníkov až po zdatných domácich majstrov, ktorí vedia, čo a ako.Či už ste kutil alebo kutilka, " +
+                              "s náradím Ferrida dotiahnete svoj projekt do konca!"
+            };
+            var blackmont = new ManufacturerModel() {
+                Id = Guid.NewGuid(), 
+                Name = "Blackmont",
+                Country = "Rakúsko",
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Blackmont prináša na trh auto-moto doplnky, ako sú ochranné plachty, strešné boxy, nabíjacie káble, " +
+                               "reťaze na kolesá, praktické súpravy náradia, pracovné oblečenie alebo efektívne nabíjačky autobatérií. " +
+                               "Pestrý sortiment dopĺňajú aj chladiace boxy a autochladničky, ideálna výbava na cesty. To všetko s vysokým " +
+                               "štandardom kvality a s ohľadom na rozumnú cenovú dostupnosť. Blackmont doplnky si zamilujú nielen nadšenci " +
+                               "motorových vozidiel, ale aj bežní používatelia."
+            };
 
-            var com1 = new CommodityModel()
-            {
+            var fiskars = new ManufacturerModel() { 
                 Id = Guid.NewGuid(),
-                Category = (from c in categories
-                            where c.Name == "Vrtačky"
-                            select c).FirstOrDefault(),
+                Name = "Fiskars",
+                Country = "Fínsko",
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Fiskars už od svojho založenia absolútne vyniká a dá vyniknúť aj Vám . Fiskars vám dovolí prácu si " +
+                              "užívať a nie sa drieť. Fiskars to je : Premyslená funkčnosť každého nástroja pre jednoduchšiu prácu. " +
+                              "Dokonalá ergonómia a pohodlie pre pevné uchopenie. Špičkové materiály pre čo najvyššiu kvalitu. " +
+                              "Mimoriadna výdrž a trvanlivosť. Nadčasový dizajn"
+            };
+
+            var juta = new ManufacturerModel() { 
+                Id = Guid.NewGuid(), 
+                Name = "JUTA",
+                Country = "Česká republika",
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "JUTA a. s. je významným českým výrobcom širokého sortimentu produktov pre stavebníctvo a poľnohospodárstvo, " +
+                              "obalových materiálov a umelého trávniku pre šport a volný čas. S 18 závodmi a ročným obratom " +
+                              "7,5 miliárd korún sa riadi k najväčším výrobcom v jednotlivých odvetviach. Viac než 75% produkcie je " +
+                              "určená pre vývoz do celého sveta, čím sa JUTA značnou mierou podieľa na celkovom exporte českého priemyslu."
+            };
+            var makita = new ManufacturerModel() { 
+                Id = Guid.NewGuid(),
+                Name = "Makita", 
+                Country = "Japonsko",
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Makita vďačí za svoju reputáciu výrobe náradia špičkovej kvality, ktoré začala vyrábať pred viac " +
+                              "ako 100 rok-mi, keď v r. 1915 Masaburo Makita s tromi spolupracovníkmi zakladajú v Nagoya City firmu " +
+                              "na výrobu elektromotorov generátorov." 
+            };
+
+
+            //CommodityModel instances initialization
+
+
+            var vrt1 = new CommodityModel() {
+                Id = Guid.NewGuid(),
                 Name = "Vŕtacie a sekacie kladivo PBH 800 A1",
-                Description = "Na výkonné opracovávanie betónu, kameňa, kovu alebo dreva\r\n" +
-                              "Pneumatické kladivo s vysokou silou úderu\r\n" +
-                              "Rýchloupínacie skľučovadlo s upnutím podľa systému SDS plus\r\n" +
-                              "Centrálny prepínač pre všetky funkcie: Vŕtanie\r\n" +
-                              "Príklepové vŕtanie so zapnutou funkciou kladiva\r\n" +
-                              "Nastavenie polohy sekáča\r\n" +
-                              "Sekanie so zapnutou funkciou kladiva\r\n" +
-                              "Nasaditeľné rýchloupínacie skľučovadlo pre vrtáky s okrúhlou stopkou\r\n" +
-                              "Protišmykové držadlo s mäkkým povrchom\r\n" +
-                              "Predné držadlo otočné o 360°\r\nV praktickom úschovnom kufríku\r\n",
-                ImageUrl = "TODO/TODO/TODO",
                 Price = (float?)59.99,
-                StockQuantity = 12,
                 Weight = (float?)2.5,
-                Manufacturer = null     //todo
-                
+                StockQuantity = 12,
+                Manufacturer = parkside,  
+                Category = vrtacky,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Na výkonné opracovávanie betónu, kameňa, kovu alebo dreva. Pneumatické kladivo s vysokou silou úderu " +
+                              "Rýchloupínacie skľučovadlo s upnutím podľa systému SDS plus. Centrálny prepínač pre všetky funkcie: Vŕtanie, " +
+                              "príklepové vŕtanie so zapnutou funkciou kladiva, nastavenie polohy sekáča, sekanie so zapnutou funkciou kladiva, " +
+                              "nasaditeľné rýchloupínacie skľučovadlo pre vrtáky s okrúhlou stopkou, protišmykové držadlo s mäkkým povrchom, " +
+                              "predné držadlo otočné o 360° v praktickom úschovnom kufríku",
+                  
             };
 
-            //com1.addReview();
-
-            var com2 = new CommodityModel()
+            var vrt2 = new CommodityModel()
             {
                 Id = Guid.NewGuid(),
-                Category = (from c in categories
-                            where c.Name == "Vrtačky"
-                            select c).FirstOrDefault(),
-                Name = "Elektrická vrtačka s priklepom Makita HP1630K",
-                Description = "Renomovaný japonský výrobce elektrického nářadí Makita přichází na trh s velmi šikovným modelem elektrické vrtačky s příklepem HP1630K," +
-                              "která se stane nedílnou součástí vaší díly.Tento model se může pochlubit především vysoce kvalitním zpracováním zaručujícím spolehlivý chod," +
-                              "dále solidním výkonem a praktickou sadou příslušenství,ve které najdete vše, co budete k práci potřebovat.Jedná se o model vhodný jak ke klasickému šroubování," +
-                               "tak standardnímu vrtání s příklepem.Poradí si kromě dřeva také s ocelí nebo betonem.",
-                ImageUrl = "TODO/TODO/TODO",
+                Name = "Elektrická vrtačka s príklepom Makita HP1630K",
                 Price = (float?)85.99,
-                StockQuantity = 3,
-                Weight = (float?)3.8,
-                Manufacturer = null //todo
-
+                Weight = (float?)2.1,
+                StockQuantity = 4,
+                Manufacturer = makita,
+                Category = vrtacky,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Renomovaný japonský výrobca elektrického náradi Maktia prichádza na trh s veľmi šikovným modelom elktrickej " +
+                              "vrtačky s príklepom HP1630K, ktorá sa stane neoddeliteľnou súčasťou vašej dieľne. Tento model sa môže pochváliť " +
+                              "predovšetkým vysoko kvalitným spracovaním zaručujúcim spoľahlivý chod, ďalej solidným výkonom a praktickou sadou " +
+                              "príslušenstva, v ktorej nájdete všetko, čo budete k práci potrebovať. Jedná sa o model ku klasickému šrébovaniu " +
+                              "tak ku 3tandardnému vŕtaniu s príklepom. Poradí si s drevom, oceľou alebo beténom."
             };
 
-            var com3 = new CommodityModel()
+            var skrut1 = new CommodityModel()
             {
                 Id = Guid.NewGuid(),
-                Category = (from c in categories
-                            where c.Name == "Šrobováky"
-                            select c).FirstOrDefault(),
-                Name = "Sada nářadí Makita E-10528 6 ks",
-                Description = "Mějte všechno nářadí vždy u sebe a pracujte tak naplno po celý den.Sada nářadí Makita obsahuje 6 kusů šroubováků o rozměrech SL4.0x100," +
-                              "SL5.5x100,PH1x100,PH2x100,PZ1x80," +
-                              "PZ2x100.Rukojeti jsou vyrobeny z velmi kvalitního materiálu odolného proti oleji," +
-                              "nehrozí jim tedy nebezpečí jakéhokoliv poškození a navíc svým ergonomickým tvarem vám zajistí plně komfortní práci.Rukojeť také disponuje speciálním značením," +
-                              "které velmi usnadňuje identifikaci nástroje.Samotný šroubovák je vyroben z kvalitní Cr - V oceli," +
-                              "která zajišťuje dlouhou životnost,a pro pohodlnější skladování je ještě špička šroubováku magneticky upravena.",
+                Name = "FERRIDA sada skrutkovačov 6 ks",
+                Price = (float?)8.39,
+                Weight = (float?)0.3,
+                StockQuantity = 8,
+                Manufacturer = ferrida,
+                Category = skrutkovace,
                 ImageUrl = "TODO/TODO/TODO",
-                Price = (float?)85.99,
-                StockQuantity = 3,
-                Weight = (float?)3.8,
-                Manufacturer = null //todo
+                Description = "Sada skrutkovačov – 3 veľkosti plochých (3×75, 5.5×100, 6.5×100mm) a 3 veľkosti krížových (0×75, 1×75, 2×100mm) skrutkovačov, " +
+                              "magnetické špičky, ergonomická rukoväť, chróm-vanádiová oceľ"
+            };
 
+            var skrut2 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Makita E-13502 sada skrutkovačov 6 ks",
+                Price = (float?)19.90,
+                Weight = (float?)0.256,
+                StockQuantity = 16,
+                Manufacturer = makita,
+                Category = skrutkovace,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Sada skrutkovačov – s ergonomickou protišmykovou rukoväťou, obsahuje PZ1 × 80 mm, PZ2 × 100 mm, SL4,0 × 100 mm, " +
+                              "SL5,5 × 100 mm, SL6,5 × 125 mm, SL8,0 × 150 mm - 3,32 €/ks"
+            };
+
+            var skrut3 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "MAKITA E-13530 sada skrutkovačov T10-T30, 5 ks",
+                Price = (float?)18.90,
+                Weight = (float?)0.318,
+                StockQuantity = 7,
+                Manufacturer = makita,
+                Category = skrutkovace,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Sada skrutkovačov – s ergonomickou protišmykovou rukoväťou, T10×100mm, T15×100mm, T20×100mm, T25×100mm, T30×100mm - 3,78 €/ks"
+            };
+
+            var utah1 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Bosch GDR 18V-200 C (2× 4,0Ah ProCore, Lboxx 136)",
+                Price = (float?)426.90,
+                Weight = (float?)1.1,
+                StockQuantity = 2,
+                Manufacturer = bosch ,
+                Category = utahovacky,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Rázový uťahovák aku, typ prichytenia: vnútorný šesťhran 1/4, 3400ot./min, krútiaci moment 200Nm"
+            };
+
+            var utah2 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Makita TW140DSAEX",
+                Price = (float?)165.90,
+                Weight = (float?)1,
+                StockQuantity = 6,
+                Manufacturer = makita,
+                Category = utahovacky,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Rázový uťahovák aku, typ prichytenia: vonkajší štvorhran 3/8\", 2600ot./min, krútiaci moment 135Nm"
+            };
+
+            var utah3 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "PARKSIDE® Aku rázový uťahovák na kolesá auta PASSK 20-Li B2 20 V",
+                Price = (float?)79.99,
+                Weight = (float?)1.4,
+                StockQuantity = 9,
+                Manufacturer = parkside,
+                Category = utahovacky ,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Výkonný rázový uťahovák na montáž kolies osobných automobilov, plynulo nastaviteľný počet otáčok/úderov, " +
+                              "5 predvoliteľných stupňov krútiaceho momentu: 100/150/200/300/400 Nm, protišmykové držadlo s mäkkým povrchom, " +
+                              "praktická spona na opasok, vrátane otvárača na fľaše, zabudované LED pracovné svetlo"
+            };
+
+            var lop1 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fiskars Lopata Solid",
+                Price = (float?)18.90,
+                Weight = (float?)0.756,
+                StockQuantity = 21,
+                Manufacturer = fiskars,
+                Category = lopaty,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Lopata rovný tvar čepele."
+            };
+
+            var lop2 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fiskars Lopata Ergonomics",
+                Price = (float?)32.90,
+                Weight = (float?)0.678,
+                StockQuantity = 5,
+                Manufacturer = fiskars,
+                Category = lopaty,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Lopata rovný tvar čepele, ergonomický úchyt."
+            };
+
+            var lop3 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fiskars Lopata Xact",
+                Price = (float?)46.90,
+                Weight = (float?)0.551,
+                StockQuantity = 8,
+                Manufacturer = fiskars,
+                Category = lopaty,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Lopata s čepeľou so šírkou 24 cm, rovný tvar čepele."
+            };
+
+            var hrab1 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fiskars Hrable na lístie Solid L",
+                Price = (float?)17.90,
+                Weight = (float?)0.268,
+                StockQuantity = 11,
+                Manufacturer = fiskars,
+                Category = hrable,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Hrable na lístie, so záberom 52 cm, materiál pracovnej časti: plast."
+            };
+
+            var hrab2 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fiskars QuikFit Hrable na lístie L",
+                Price = (float?)15.90,
+                Weight = (float?)0.178,
+                StockQuantity = 3 ,
+                Manufacturer = fiskars,
+                Category = hrable,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Hrable na lístie, so záberom 50 cm, materiál pracovnej časti: plast + potreba dokúpiť Náasadu Fiskars Quickfit."
+            };
+
+            var hrab3 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "PARKSIDE® Teleskopické hrable",
+                Price = (float?)11.90,
+                Weight = (float?)0.313,
+                StockQuantity = 23,
+                Manufacturer = parkside,
+                Category = hrable,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Extra široké hrable s 24 stabilnými hrotmi (12 na každej strane) na rýchle a dôkladné hrabanie – tiež na veľkých plochách."
+            };
+
+            var vytrh1 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "FISKARS Vytrhávač buriny SmartFit",
+                Price = (float?)59.90,
+                Weight = (float?)0.955,
+                StockQuantity = 2,
+                Manufacturer = fiskars,
+                Category = vytrhavaceBuriny,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Vytrhávač buriny – dĺžka 119 cm, teleskopický, hmotnosť 1,25 kg, čierna farba."
+            };
+
+            var vytrh2 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "FERRIDA WB 6020",
+                Price = (float?)28.62,
+                Weight = (float?)0.568,
+                StockQuantity = 6,
+                Manufacturer = ferrida,
+                Category = vytrhavaceBuriny,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Odstraňovač buriny elektrický, 2000W, teleskopická rukoväť, prietok vzduchu 500 l / min, 2 teplotné stupne 50 ° C / 600 ° C, " +
+                              "vymeniteľné nástavce, možno použiť aj ako teplovzdušnú pištoľ, podpaľovač grilu, rozmrazovač"
+            };
+
+            var vytrh3 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fiskars Vytrhávač buriny QuikFit",
+                Price = (float?)10.90,
+                Weight = (float?)0.156,
+                StockQuantity = 6,
+                Manufacturer = fiskars,
+                Category = vytrhavaceBuriny,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Vytrhávač buriny – vhodný na odstránenie burín, materiál bórová oceľ, mechanizmus zámku QuikFit na pripojenie na univerzálny " +
+                              "pracovný adaptér alebo násadu"
+            };
+
+            var silaz1 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "JUTA Silážna plachta 10x20 m, 150u, čierna",
+                Price = (float?)89.65,
+                Weight = (float?)2.9,
+                StockQuantity = 5,
+                Manufacturer = juta,
+                Category = silaznePlachty,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Silážne plachty sú vyrábané z hygienicky nezávadného koextrudovaného polyetylénu."
+            };
+
+            var silaz2 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "JUTA Silážna plachta 10x10 m, 150u, čierna",
+                Price = (float?)45.32,
+                Weight = (float?)1.5,
+                StockQuantity = 12,
+                Manufacturer = juta,
+                Category = silaznePlachty,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Silážne plachty sú vyrábané z hygienicky nezávadného koextrudovaného polyetylénu."
+            };
+
+            var silaz3 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "JUTA Silážna plachta 10x25 m, 150u, čierna/biela",
+                Price = (float?)129.65,
+                Weight = (float?)8.5,
+                StockQuantity = 5,
+                Manufacturer = juta,
+                Category = silaznePlachty,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Silážne plachty sú vyrábané z hygienicky nezávadného koextrudovaného polyetylénu. Čierna/Biela."
+            };
+
+            var silaz4 = new CommodityModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "JUTA Silážna plachta 10x5 m, 150u, čierna/biela",
+                Price = (float?)37.25,
+                Weight = (float?)1.4,
+                StockQuantity = 32,
+                Manufacturer = juta,
+                Category = silaznePlachty,
+                ImageUrl = "TODO/TODO/TODO",
+                Description = "Silážne plachty sú vyrábané z hygienicky nezávadného koextrudovaného polyetylénu.  Čierna/Biela."
             };
 
 
+            //predloha na commoditymodel
+
+            //var silaz1 = new CommodityModel()
+            //{
+            //    Id = Guid.NewGuid(),
+            //    Name = "",
+            //    Price = (float?)18.90,
+            //    Weight = (float?)0.318,
+            //    StockQuantity = ,
+            //    Manufacturer = ,
+            //    Category = ,
+            //    ImageUrl = "TODO/TODO/TODO",
+            //    Description = ""
+            //};
 
             //com2.addReview();
 
