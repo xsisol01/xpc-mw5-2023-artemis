@@ -482,6 +482,10 @@ namespace Eshop.webAPI.FakeDB
             commodities.Add(silaz3);
             commodities.Add(silaz4);
 
+            fiskars.addCommodity(lop1);
+            fiskars.addCommodity(lop2);
+            fiskars.addCommodity(lop3);
+
 
 
 

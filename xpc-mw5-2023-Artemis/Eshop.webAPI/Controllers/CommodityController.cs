@@ -10,13 +10,13 @@ namespace Eshop.webAPI.Controllers
     [ApiController]
     public class CommodityController : ControllerBase
     {
-        private readonly ILogger<CommodityController> _logger;
-        private readonly IMapper _mapper;
+        private readonly ILogger<CommodityController> logger;
+        private readonly IMapper mapper;
 
         public CommodityController(ILogger<CommodityController> logger, IMapper mapper)
         {
-            _logger = logger;
-            _mapper = mapper;
+            this.logger = logger;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -30,9 +30,28 @@ namespace Eshop.webAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(GetCommodities)}");
+                logger.LogError(ex, $"Something Went Wrong in the {nameof(GetCommodities)}");
+                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+            }
+        }
+
+        [HttpGet("{name}", Name = "GetCommodity")]
+        public IActionResult GetCommodityByName(string name)
+        {
+            try
+            {
+                var commodity = (from c in FakeDatabase.Commodities
+                                 where c.Name == name
+                                 select c).FirstOrDefault();
+                //var result = _mapper.Map<CategoryDTO>(category); //Convert to DTO for output
+                return Ok(commodity);        //status 200 with data
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, $"Something Went Wrong in the {nameof(GetCommodityByName)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
         }
     }
 }
+

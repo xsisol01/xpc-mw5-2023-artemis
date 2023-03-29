@@ -9,7 +9,6 @@ namespace Eshop.webAPI.Models
         public CategoryModel()
         {
             Id= Guid.NewGuid();
-            //mozno sem este aj NAME definovat
         }
 
     }

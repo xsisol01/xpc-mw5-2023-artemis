@@ -6,17 +6,22 @@ namespace Eshop.webAPI.Models
 {
     public class ManufacturerModel : ModelBase
     {
+        private readonly List<CommodityModel> commodities = new List<CommodityModel>();
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         public string Description { get; set; }
         public string Country { get; set; }
         public List<CommodityModel> Commodities { get; }
 
-        public static ManufacturerModel Empty => new()
+        public ManufacturerModel()
         {
-            Id = Guid.NewGuid(),
-        };
+            Id = Guid.NewGuid();
+        }
 
+        public void addCommodity(CommodityModel commodity)
+        {
+            commodities.Add(commodity);
+        }
 
     }
 }

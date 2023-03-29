@@ -12,13 +12,13 @@ namespace Eshop.webAPI.Controllers
     [ApiController]
     public class ManufacturerController : ControllerBase
     {
-        private readonly ILogger<ManufacturerController> _logger;
-        private readonly IMapper _mapper;
+        private readonly ILogger<ManufacturerController> logger;
+        private readonly IMapper mapper;
 
         public ManufacturerController(ILogger<ManufacturerController> logger, IMapper mapper)
         {
-            _logger = logger;
-            _mapper = mapper;
+            this.logger = logger;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -27,12 +27,12 @@ namespace Eshop.webAPI.Controllers
             try
             {
                 var manufacturers = FakeDatabase.Manufacturers;
-                var results = _mapper.Map<IList<ManufacturerDTO>>(manufacturers); //Convert to DTO for output
+                var results = mapper.Map<IList<ManufacturerDTO>>(manufacturers); //Convert to DTO for output
                 return Ok(results);        //status 200 with data
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(GetManufacturers)}");
+                logger.LogError(ex, $"Something Went Wrong in the {nameof(GetManufacturers)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
         }
@@ -45,12 +45,12 @@ namespace Eshop.webAPI.Controllers
                 var manufacturer = (from c in FakeDatabase.Manufacturers
                                     where c.Name == name
                                     select c).FirstOrDefault();
-                var result = _mapper.Map<CategoryDTO>(manufacturer); //Convert to DTO for output
+                var result = mapper.Map<CategoryDTO>(manufacturer); //Convert to DTO for output
                 return Ok(result);        //status 200 with data
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(GetManufacturerByName)}");
+                logger.LogError(ex, $"Something Went Wrong in the {nameof(GetManufacturerByName)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
         }
@@ -60,19 +60,19 @@ namespace Eshop.webAPI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _logger.LogError($"Invalid POST attempt in {nameof(CreateManufacturer)})");
+                logger.LogError($"Invalid POST attempt in {nameof(CreateManufacturer)})");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
             try
             {
-                var manufacturer = _mapper.Map<ManufacturerModel>(manufacturerDTO);  //Convert to DTO for input
+                var manufacturer = mapper.Map<ManufacturerModel>(manufacturerDTO);  //Convert to DTO for input
                 FakeDatabase.AddManufacturer(manufacturer);
 
                 return CreatedAtRoute("GetManufacturer", new { name = manufacturer.Name }, manufacturer);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(GetManufacturerByName)}");
+                logger.LogError(ex, $"Something Went Wrong in the {nameof(GetManufacturerByName)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
 
