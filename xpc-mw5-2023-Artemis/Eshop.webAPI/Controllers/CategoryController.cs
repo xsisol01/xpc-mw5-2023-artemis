@@ -86,10 +86,17 @@ namespace Eshop.webAPI.Controllers
             }
             try
             {
-                var category = _mapper.Map<CategoryModel>(categoryDTO);  //Convert to DTO for input
-                FakeDatabase.AddCategory(category);
-
-                return CreatedAtRoute("GetCategory", new { name = category.Name }, category);        
+                var category = _mapper.Map<CategoryModel>(categoryDTO);                          //Convert to DTO for input
+                if (FakeDatabase.Categories.Any(c => c.Name == category.Name))
+                {
+                    _logger.LogError($"Invalid POST attempt in {nameof(CreateCategory)})");     //if record with same name already exists
+                    return BadRequest("Submitted data is invalid");
+                }
+                else
+                {
+                    FakeDatabase.AddCategory(category);
+                    return CreatedAtRoute("GetCategory", new { name = category.Name }, category);
+                }
             }
             catch (Exception ex)
             {
