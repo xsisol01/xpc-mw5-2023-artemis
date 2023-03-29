@@ -447,9 +447,40 @@ namespace Eshop.webAPI.FakeDB
 
             //com2.addReview();
 
-            commodities.Add(com1);
-            commodities.Add(com2);
-            commodities.Add(com3);
+            categories.Add(vrtacky);
+            categories.Add(utahovacky);
+            categories.Add(hrable);
+            categories.Add(lopaty);
+            categories.Add(vytrhavaceBuriny);
+            categories.Add(skrutkovace);
+            categories.Add(silaznePlachty);
+
+            manufacturers.Add(makita);
+            manufacturers.Add(bosch);
+            manufacturers.Add(parkside);
+            manufacturers.Add(ferrida);
+            manufacturers.Add(fiskars);
+            manufacturers.Add(juta);
+            manufacturers.Add(blackmont);
+
+            commodities.Add(vrt1);
+            commodities.Add(vrt2);
+            commodities.Add(utah1);
+            commodities.Add(utah2);
+            commodities.Add(utah3);
+            commodities.Add(hrab1);
+            commodities.Add(hrab2);
+            commodities.Add(hrab3);
+            commodities.Add(lop1);
+            commodities.Add(lop2);
+            commodities.Add(lop3);
+            commodities.Add(vytrh1);
+            commodities.Add(vytrh2);
+            commodities.Add(vytrh3);
+            commodities.Add(silaz1);
+            commodities.Add(silaz2);
+            commodities.Add(silaz3);
+            commodities.Add(silaz4);
 
 
 
