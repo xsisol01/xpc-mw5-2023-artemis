@@ -6,7 +6,7 @@ namespace Eshop.webAPI.Models
 {
     public class ManufacturerModel : ModelBase
     {
-        private readonly List<CommodityModel> commodities = new List<CommodityModel>();
+        private readonly List<CommodityModel> _commodities = new List<CommodityModel>();
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         public string Description { get; set; }
@@ -20,7 +20,7 @@ namespace Eshop.webAPI.Models
 
         public void addCommodity(CommodityModel commodity)
         {
-            commodities.Add(commodity);
+            _commodities.Add(commodity);
         }
 
     }
