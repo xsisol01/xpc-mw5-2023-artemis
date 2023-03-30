@@ -439,6 +439,148 @@ namespace Eshop.webAPI.FakeDB
                 Description = "Silážne plachty sú vyrábané z hygienicky nezávadného koextrudovaného polyetylénu.  Čierna/Biela."
             };
 
+            var reviewVrt1 = new ReviewModel()
+            {
+                Stars = 5,
+                Description = "Nepoznám lepšiu vrtačku, odporúčam",
+                Title = "Doporučuje produkt"
+            };
+
+            var reviewVrt2 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "Negativem může být trochu vyšší cenovka, avšak za investované peníze získáte přístroj s dvourychlostní převodovkou a dobrými vrtacími parametry",
+                Title = "Doporučuje produkt"
+            };
+
+            var reviewUtah1 = new ReviewModel()
+            {
+                Stars = 3,
+                Description = "Utahovačku lze použít kdekoliv na stavbě a není třeba vozit kompresor,ale rychle se vybijí. ",
+                Title = "Dost"
+            };
+
+            var reviewUtah2 = new ReviewModel()
+            {
+                Stars = 2,
+                Description = "PO 10 DNECH PŘESTAL FUNGOVAT.",
+                Title = "Great value!"
+            };
+
+            var reviewUtah3 = new ReviewModel()
+            {
+                Stars = 1,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+
+            var reviewHrab1 = new ReviewModel()
+            {
+                Stars = 5,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+
+            var reviewHrab2 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+            var reviewHrab3 = new ReviewModel()
+            {
+                Stars = 3,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+            var reviewLop1 = new ReviewModel()
+            {
+                Stars = 2,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+            var reviewLop2 = new ReviewModel()
+            {
+                Stars = 1,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+            var reviewLop3 = new ReviewModel()
+            {
+                Stars = 5,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+
+            var reviewVytrh1 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+            var reviewVytrh2 = new ReviewModel()
+            {
+                Stars = 3,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+            var reviewVytrh3 = new ReviewModel()
+            {
+                Stars = 2,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+            var reviewSilaz1 = new ReviewModel()
+            {
+                Stars = 1,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+            var reviewSilaz2 = new ReviewModel()
+            {
+                Stars = 5,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+            var reviewSilaz3 = new ReviewModel()
+            {
+                Stars = 3,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+
+            var reviewSilaz4 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+
+            var reviewSkrut1 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+
+            var reviewSkrut2 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+
+            var reviewSkrut3 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "Tá",
+                Title = "Great value!"
+            };
+
+
+
+
+
 
             //predloha na commoditymodel
 
@@ -491,6 +633,37 @@ namespace Eshop.webAPI.FakeDB
             commodities.Add(silaz2);
             commodities.Add(silaz3);
             commodities.Add(silaz4);
+            commodities.Add(skrut1);
+            commodities.Add(skrut2);
+            commodities.Add(skrut3);
+            
+
+
+
+            vrt1.addReview(reviewVrt1);
+            vrt2.addReview(reviewVrt2);
+            utah1.addReview(reviewUtah1);
+            utah2.addReview(reviewUtah2);
+            utah3.addReview(reviewUtah3);
+            hrab1.addReview(reviewHrab1);
+            hrab2.addReview(reviewHrab2);
+            hrab3.addReview(reviewHrab3);
+            lop1.addReview(reviewLop1);
+            lop2.addReview(reviewLop2);
+            lop3.addReview(reviewLop3);
+            vytrh1.addReview(reviewVytrh1);
+            vytrh2.addReview(reviewVytrh2);
+            vytrh3.addReview(reviewVytrh3);
+            silaz1.addReview(reviewSilaz1);
+            silaz2.addReview(reviewSilaz2);
+            silaz3.addReview(reviewSilaz3);
+            silaz4.addReview(reviewSilaz4);
+            skrut1.addReview(reviewSkrut1);
+            skrut2.addReview(reviewSkrut2);
+            skrut3.addReview(reviewSkrut3);
+
+
+
 
             fiskars.addCommodity(lop1);
             fiskars.addCommodity(lop2);
