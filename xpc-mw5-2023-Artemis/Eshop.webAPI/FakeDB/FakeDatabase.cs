@@ -11,6 +11,7 @@ namespace Eshop.webAPI.FakeDB
         private static List<CategoryModel> categories = new List<CategoryModel>();
         private static List<CommodityModel> commodities= new List<CommodityModel>();
         private static List<ManufacturerModel> manufacturers = new List<ManufacturerModel>();
+        private static List<ReviewModel> reviews = new List<ReviewModel>();
 
         public static List<CategoryModel> Categories 
         {
@@ -25,6 +26,10 @@ namespace Eshop.webAPI.FakeDB
         public static List<ManufacturerModel> Manufacturers
         {
             get { return manufacturers; }
+        }
+        public static List<ReviewModel> Reviews
+        {
+            get { return reviews;}
         }
 
         public static void AddCategory(CategoryModel newCategory)
@@ -41,7 +46,10 @@ namespace Eshop.webAPI.FakeDB
         {
             manufacturers.Add(newManufacturer);
         }
-
+        public static void AddReview(ReviewModel newReview)
+        {
+            reviews.Add(newReview);
+        }
         public static void InitDatabase()
         {
             //CategoryModel instances initialization
@@ -156,6 +164,7 @@ namespace Eshop.webAPI.FakeDB
                               "príklepové vŕtanie so zapnutou funkciou kladiva, nastavenie polohy sekáča, sekanie so zapnutou funkciou kladiva, " +
                               "nasaditeľné rýchloupínacie skľučovadlo pre vrtáky s okrúhlou stopkou, protišmykové držadlo s mäkkým povrchom, " +
                               "predné držadlo otočné o 360° v praktickom úschovnom kufríku",
+                
                   
             };
 
@@ -215,6 +224,7 @@ namespace Eshop.webAPI.FakeDB
                 Category = skrutkovace,
                 ImageUrl = "TODO/TODO/TODO",
                 Description = "Sada skrutkovačov – s ergonomickou protišmykovou rukoväťou, T10×100mm, T15×100mm, T20×100mm, T25×100mm, T30×100mm - 3,78 €/ks"
+                
             };
 
             var utah1 = new CommodityModel()
