@@ -1,10 +1,12 @@
-import {FC, memo} from 'react'
+import {FC, memo, SyntheticEvent, useContext, useEffect, useState} from 'react'
 
 import classNames from 'classnames'
 
 import { AiFillStar } from 'react-icons/ai'
 
 import styles from './rating.module.scss'
+import { RoleContext } from '@/app/providers/roleContextProvider'
+import { Rating as MURaring } from '@mui/material'
 
 interface IProps {
     rate: number,
@@ -13,6 +15,22 @@ interface IProps {
 }
 
 const Rating: FC<IProps> = memo(({rate, description, size}) => {
+    const [value, setValue] = useState<number | null>(null)
+    const {isAdmin} = useContext(RoleContext)
+
+    function onRate(event: SyntheticEvent<Element, Event>, newValue: number | null) {
+        event.preventDefault()
+        event.stopPropagation()
+
+        if (value !== newValue) {
+            setValue(newValue);
+        }
+    }
+
+    useEffect(() => {
+        console.log(value)
+    }, [value])
+
     return (
         <div className={styles.rating}>
             <div className={styles.rating__rate}>
@@ -21,7 +39,12 @@ const Rating: FC<IProps> = memo(({rate, description, size}) => {
                     [styles.stars__small]: size === 'small',
                     [styles.stars__full]: size !== 'small'
                 })}>
-                    {renderStars()}
+                    <MURaring
+                        name="rating"
+                        value={rate}
+                        onChange={onRate}
+                        readOnly={isAdmin}
+                    />
                 </div>
                 {size !== 'small' && (
                     <div className={styles.rating__value}>
@@ -38,19 +61,7 @@ const Rating: FC<IProps> = memo(({rate, description, size}) => {
     )
 
 
-    function renderStars(): React.ReactNode[] {
-        const stars: React.ReactNode[] = [];
-
-        for (let i = 1; i <= 5; i++) {
-            stars.push(
-                <div key={`rating-${i}`} className={i <= Math.floor(rate) ? styles.gold : ''}>
-                    <AiFillStar />
-                </div>
-            )
-        }
-
-        return stars;
-    }
+    
 })
 
 export default Rating

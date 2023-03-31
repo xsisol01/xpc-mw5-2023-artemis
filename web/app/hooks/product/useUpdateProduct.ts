@@ -9,14 +9,14 @@ import { IProduct } from "@/app/types/product.type";
 
 export const useUpdateProduct = (data: IProduct) => {
   const {push} = useRouter()
-  const { setIsAdmin} = useContext(RoleContext)
+  const { setIsAdmin } = useContext(RoleContext)
 
-  const { isLoading, mutateAsync } = useMutation(
+  const { isLoading, mutateAsync: updateProduct } = useMutation(
     ['update product', data],
-    () => ProductService.update(data),
+    (data: IProduct) => ProductService.update(data),
     {
       onSuccess: () => {
-        alert('Product has been created')
+        alert('Product has been updated')
 
         setIsAdmin(false)
         
@@ -24,9 +24,9 @@ export const useUpdateProduct = (data: IProduct) => {
       },
       onError: (error) => {
         console.log(error)
-      },
+      }
     }
   )
   
-  return { isLoading, mutateAsync }
+  return { isLoading, updateProduct }
 }

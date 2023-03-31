@@ -3,16 +3,7 @@
 .headerLayout {
     &__{
         &ribbon{
-            position: fixed;
-            background-color: $color-black-900;
-            width: 100%;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 10px;
-            border-bottom: 1px solid $color-white-1000;
-            z-index: $z-index-max;
+            background-color: $color-black-1000;
         }
 
         &content{

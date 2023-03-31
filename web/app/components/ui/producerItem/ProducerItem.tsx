@@ -1,12 +1,11 @@
 import { FC, memo } from "react";
 
-import { IProducer } from "@/app/store/product/producer.type";
-
 import styles from './producerItem.module.scss'
 import Image from "@/app/components/shared/image/Image";
 import { capitalizeText } from "@/app/utils/capitalizeText";
 import { useRouter } from "next/router";
 import classNames from "classnames";
+import { Grid } from "@mui/material";
 
 
 interface IProps {
@@ -21,7 +20,9 @@ const ProducerItem: FC<IProps> = memo(({ id, name, imageUrl }) => {
   const { pid } = router.query
 
   return (
-    <div className={ classNames({
+    <Grid item xs={12} md={5}
+      
+     className={ classNames({
       [styles.producerItem]: true,
       [styles.producerItem__active]: pid === id
     })}>
@@ -32,7 +33,7 @@ const ProducerItem: FC<IProps> = memo(({ id, name, imageUrl }) => {
         height={50}
         />
       <div>{capitalizeText(name)}</div>
-    </div>
+    </Grid>
   )
 })
 

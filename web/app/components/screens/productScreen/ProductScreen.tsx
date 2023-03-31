@@ -6,12 +6,9 @@ import { useRouter } from 'next/router'
 import HeaderLayout from '@/app/components/layout/headerLayout/HeaderLayout'
 import Preloader from '@/app/components/shared/preloader/Preloader'
 import ProductPage from '@/app/components/ui/productPage/ProductPage'
-import { RoleContext } from '@/app/providers/roleContextProvider'
 import { useGetProduct } from '@/app/hooks/product/useGetProduct'
 
 const ProductScreen: FC = memo(() => {
-    const {isAdmin} = useContext(RoleContext)
-
     const {query, push} = useRouter()
 
     const {product, isLoading, } = useGetProduct(String(query.pid))
@@ -32,7 +29,7 @@ const ProductScreen: FC = memo(() => {
 
     return (
         <HeaderLayout >
-            <ProductPage {...product} isAdmin={isAdmin} />
+            <ProductPage {...product} />
         </HeaderLayout>
     )
 })
