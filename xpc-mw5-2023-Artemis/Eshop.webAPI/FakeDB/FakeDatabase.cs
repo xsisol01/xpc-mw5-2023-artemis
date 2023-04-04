@@ -1,4 +1,5 @@
 ﻿using Eshop.webAPI.Models;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.Intrinsics.X86;
@@ -11,6 +12,7 @@ namespace Eshop.webAPI.FakeDB
         private static List<CategoryModel> categories = new List<CategoryModel>();
         private static List<CommodityModel> commodities= new List<CommodityModel>();
         private static List<ManufacturerModel> manufacturers = new List<ManufacturerModel>();
+
 
         public static List<CategoryModel> Categories 
         {
@@ -486,6 +488,7 @@ namespace Eshop.webAPI.FakeDB
             fiskars.addCommodity(lop2);
             fiskars.addCommodity(lop3);
 
+            
 
 
 
