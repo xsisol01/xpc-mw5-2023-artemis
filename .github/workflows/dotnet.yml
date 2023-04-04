@@ -19,13 +19,12 @@ jobs:
           dotnet-version: '7.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore -s xpc-mw5-2023-Artemis.sln
+        run: dotnet restore Artemis/xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln
 
       - name: Build
-        run: dotnet build --configuration Release -s xpc-mw5-2023-Artemis.sln
-
+        run: dotnet build --configuration Release  Artemis/xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln
       - name: Run tests
-        run: dotnet test --verbosity normal -s xpc-mw5-2023-Artemis.sln
+        run: dotnet test --verbosity normal Artemis/xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln
 
   test:
     runs-on: windows-latest
@@ -39,10 +38,9 @@ jobs:
           dotnet-version: '7.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore -s xpc-mw5-2023-Artemis.sln
+        run: dotnet restore Artemis/xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln
 
       - name: Build
-        run: dotnet build --configuration Release -s xpc-mw5-2023-Artemis.sln
-
+        run: dotnet build --configuration Release Artemis/xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln
       - name: Run tests
-        run: dotnet test --verbosity normal -s xpc-mw5-2023-Artemis.sln
+        run: dotnet test --verbosity normal  Artemis/xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln
