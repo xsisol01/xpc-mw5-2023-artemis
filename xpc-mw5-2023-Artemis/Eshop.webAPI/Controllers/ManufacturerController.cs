@@ -4,6 +4,7 @@ using Eshop.webAPI.FakeDB;
 using Eshop.webAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Xml.Linq;
 
 namespace Eshop.webAPI.Controllers
@@ -12,13 +13,13 @@ namespace Eshop.webAPI.Controllers
     [ApiController]
     public class ManufacturerController : ControllerBase
     {
-        private readonly ILogger<ManufacturerController> logger;
-        private readonly IMapper mapper;
+        private readonly ILogger<ManufacturerController> _logger;
+        private readonly IMapper _mapper;
 
         public ManufacturerController(ILogger<ManufacturerController> logger, IMapper mapper)
         {
-            this.logger = logger;
-            this.mapper = mapper;
+            _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -27,55 +28,147 @@ namespace Eshop.webAPI.Controllers
             try
             {
                 var manufacturers = FakeDatabase.Manufacturers;
-                var results = mapper.Map<IList<ManufacturerDTO>>(manufacturers); //Convert to DTO for output
-                return Ok(results);        //status 200 with data
+                var results = _mapper.Map<List<ManufacturerDTO>>(manufacturers);
+                return Ok(results);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, $"Something Went Wrong in the {nameof(GetManufacturers)}");
+                _logger.LogError(ex, $"Something went wrong in {nameof(GetManufacturers)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
         }
 
-        [HttpGet("{name}", Name = "GetManufacturer")]
+
+        [HttpGet("byId/{id}")]
+        public IActionResult GetManufacturer(Guid id)
+        {
+            try
+            {
+                var manufacturer = FakeDatabase.Manufacturers.FirstOrDefault(m => m.Id == id);
+
+                if (manufacturer != null)
+                {
+                    var result = _mapper.Map<ManufacturerDTO>(manufacturer);
+                    return Ok(result);
+                }
+                else
+                {
+                    _logger.LogWarning($"Manufacturer with ID '{id}' not found");
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error in {nameof(GetManufacturer)}");
+                return StatusCode(500, "Internal Server Error. Please try again later.");
+            }
+        }
+
+
+        [HttpGet("byName/{name}")]
         public IActionResult GetManufacturerByName(string name)
         {
             try
             {
-                var manufacturer = (from c in FakeDatabase.Manufacturers
-                                    where c.Name == name
-                                    select c).FirstOrDefault();
-                var result = mapper.Map<CategoryDTO>(manufacturer); //Convert to DTO for output
-                return Ok(result);        //status 200 with data
+                var manufacturer = FakeDatabase.Manufacturers.FirstOrDefault(m => m.Name == name);
+
+                if (manufacturer != null)
+                {
+                    var result = _mapper.Map<ManufacturerDTO>(manufacturer);
+                    return Ok(result);
+                }
+                else
+                {
+                    _logger.LogWarning($"Manufacturer with name '{name}' not found");
+                    return NotFound();
+                }
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, $"Something Went Wrong in the {nameof(GetManufacturerByName)}");
+                _logger.LogError(ex, $"Something went wrong in {nameof(GetManufacturerByName)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
         }
+
 
         [HttpPost]
         public IActionResult CreateManufacturer([FromBody] CreateManufacturerDTO manufacturerDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                logger.LogError($"Invalid POST attempt in {nameof(CreateManufacturer)})");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
-            }
             try
             {
-                var manufacturer = mapper.Map<ManufacturerModel>(manufacturerDTO);  //Convert to DTO for input
+                if (FakeDatabase.Manufacturers.Any(m => m.Name == manufacturerDTO.Name))
+                {
+                    _logger.LogWarning($"Category with name '{manufacturerDTO.Name}' already exists");
+                    return Conflict();
+                }
+
+                var manufacturer = _mapper.Map<ManufacturerModel>(manufacturerDTO);
                 FakeDatabase.AddManufacturer(manufacturer);
 
-                return CreatedAtRoute("GetManufacturer", new { name = manufacturer.Name }, manufacturer);
+                var result = _mapper.Map<ManufacturerDTO>(manufacturer);
+                return CreatedAtRoute("GetManufacturer", new { id = result.Id }, result);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, $"Something Went Wrong in the {nameof(GetManufacturerByName)}");
+                _logger.LogError(ex, $"Something went wrong in {nameof(CreateManufacturer)}");
+                return StatusCode(500, "Internal Server Error. Please try again later.");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteManufacturer(Guid id)
+        {
+            try
+            {
+                var manufacturer = FakeDatabase.Manufacturers.FirstOrDefault(m => m.Id == id);
+
+                if (manufacturer == null)
+                {
+                    _logger.LogWarning($"Could not find manufacturer with id '{id}'");
+                    return NotFound();
+                }
+
+                FakeDatabase.Manufacturers.Remove(manufacturer);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Something went wrong while deleting manufacturer with id '{id}'");
+                return StatusCode(500, "Internal Server Error. Please try again later.");
+            }
+        }
+
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateManufacturer(Guid id, [FromBody] CreateManufacturerDTO manufacturerDTO)
+        {
+            try
+            {
+                var existingManufacturer = FakeDatabase.Manufacturers.FirstOrDefault(m => m.Id == id);
+                if (existingManufacturer == null)
+                {
+                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateManufacturer)})");
+                    return BadRequest("Manufacturer not found.");
+                }
+
+                var newManufacturer = _mapper.Map<ManufacturerModel>(manufacturerDTO);
+                if (FakeDatabase.Manufacturers.Any(m => m.Id != id && m.Name == newManufacturer.Name))
+                {
+                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateManufacturer)})");
+                    return BadRequest("Manufacturer name already exists.");
+                }
+
+                existingManufacturer.Name = newManufacturer.Name;
+                var updatedManufacturerDTO = _mapper.Map<ManufacturerModel>(manufacturerDTO);
+                return Ok(updatedManufacturerDTO);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(UpdateManufacturer)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
-
         }
+
+
     }
 }

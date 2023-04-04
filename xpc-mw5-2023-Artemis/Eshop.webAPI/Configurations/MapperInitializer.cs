@@ -10,6 +10,10 @@ namespace Eshop.webAPI.Configurations
         {
             CreateMap<CategoryModel, CategoryDTO>().ReverseMap();
             CreateMap<CategoryModel, CreateCategoryDTO>().ReverseMap();
+            CreateMap<ManufacturerModel, ManufacturerDTO>().ReverseMap();
+            CreateMap<ManufacturerModel, CreateManufacturerDTO>().ReverseMap();
+            CreateMap<CommodityModel, CommodityDTO>().ReverseMap();
+            CreateMap<CommodityModel, CreateCommodityDTO>().ReverseMap();
         }  
     }
 }

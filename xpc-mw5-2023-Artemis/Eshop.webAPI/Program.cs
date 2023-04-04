@@ -1,6 +1,6 @@
 using Eshop.webAPI.Configurations;
 using Eshop.webAPI.FakeDB;
-
+using Eshop.webAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +28,8 @@ app.UseHttpsRedirection();
 
 // Initialization of FakeDatabase
 FakeDatabase.InitDatabase();
+StorageService<CommodityModel>.initStorageService();
+StorageService<ManufacturerModel>.initStorageService();
 
 app.UseAuthorization();
 

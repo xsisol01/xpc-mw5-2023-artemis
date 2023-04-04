@@ -27,37 +27,26 @@ namespace Eshop.webAPI.Controllers
         [HttpGet]
         public IActionResult GetCategories()
         {
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError($"Invalid GET attempt in {nameof(GetCategories)})");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
-            }
             try
             {
                 var categories = FakeDatabase.Categories;
-                var results = _mapper.Map<IList<CategoryDTO>>(categories);  //Convert to DTO for output
-                return Ok(results);                                         //return 200
+                var results = _mapper.Map<IList<CategoryDTO>>(categories);
+                return Ok(results); 
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(GetCategories)}");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                _logger.LogError(ex, $"Error in {nameof(GetCategories)}");
+                return StatusCode(500, "Internal Server Error. Please try again later.");
             }
         }
 
-        [HttpGet("{name}", Name = "GetCategory")]
-        public IActionResult GetCategoryByName(string name)
+        [HttpGet("byId/{id}")]
+        public IActionResult GetCategory(Guid id)
         {
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError($"Invalid GET attempt in {nameof(GetCategoryByName)})");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
-            }
             try
             {
-                var category = (from c in FakeDatabase.Categories
-                                where c.Name == name
-                                select c).FirstOrDefault();
+                var category = FakeDatabase.Categories.FirstOrDefault(c => c.Id == id);
+
                 if (category != null)
                 {
                     var result = _mapper.Map<CategoryDTO>(category);
@@ -65,114 +54,126 @@ namespace Eshop.webAPI.Controllers
                 }
                 else
                 {
-                    _logger.LogError($"Invalid GET attempt in {nameof(GetCategoryByName)})");
-                    return BadRequest("Submitted data is invalid");
+                    _logger.LogWarning($"Category with ID {id} not found");
+                    return NotFound();
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(GetCategoryByName)}");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                _logger.LogError(ex, $"Error in {nameof(GetCategory)}");
+                return StatusCode(500, "Internal Server Error. Please try again later.");
             }
         }
+
+
+        [HttpGet("byName/{name}")]
+        public IActionResult GetCategoryByName(string name)
+        {
+            try
+            {
+                var category = FakeDatabase.Categories.FirstOrDefault(c => c.Name == name);
+
+                if (category != null)
+                {
+                    var result = _mapper.Map<CategoryDTO>(category);
+                    return Ok(result);
+                }
+                else
+                {
+                    _logger.LogWarning($"Category with name '{name}' not found");
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error in {nameof(GetCategoryByName)}");
+                return StatusCode(500, "Internal Server Error. Please try again later.");
+            }
+        }
+
 
         [HttpPost]
         public IActionResult CreateCategory([FromBody] CreateCategoryDTO categoryDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError($"Invalid POST attempt in {nameof(CreateCategory)})");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
-            }
             try
             {
-                var category = _mapper.Map<CategoryModel>(categoryDTO);                          //Convert to DTO for input
-                if (FakeDatabase.Categories.Any(c => c.Name == category.Name))
+                if (FakeDatabase.Categories.Any(c => c.Name == categoryDTO.Name))
                 {
-                    _logger.LogError($"Invalid POST attempt in {nameof(CreateCategory)})");     //if record with same name already exists
-                    return BadRequest("Submitted data is invalid");
+                    _logger.LogWarning($"Category with name '{categoryDTO.Name}' already exists");
+                    return Conflict();
                 }
-                else
-                {
-                    FakeDatabase.AddCategory(category);
-                    return CreatedAtRoute("GetCategory", new { name = category.Name }, category);
-                }
+
+                var category = _mapper.Map<CategoryModel>(categoryDTO);
+                FakeDatabase.AddCategory(category);
+
+                var result = _mapper.Map<CategoryDTO>(category);
+                return CreatedAtRoute("GetCategory", new { id = category.Id }, result);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(CreateCategory)}");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                _logger.LogError(ex, $"Error in {nameof(CreateCategory)}");
+                return StatusCode(500, "Internal Server Error. Please try again later.");
             }
-
         }
 
-        
-        [HttpDelete("{name}")]
-        public IActionResult DeleteCategoryByName(string name)
+
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCategory(Guid id)
         {
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteCategoryByName)})");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
-            }
             try
             {
-                var toDeleteCategory = (from c in FakeDatabase.Categories
-                                        where c.Name == name
-                                        select c).FirstOrDefault();
+                var category = FakeDatabase.Categories.FirstOrDefault(c => c.Id == id);
 
-                if(toDeleteCategory != null)
+                if (category == null)
                 {
-                    FakeDatabase.Categories.Remove(toDeleteCategory);
+                    _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteCategory)}");
+                    return BadRequest("Category not found");
                 }
-                else
-                {
-                    _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteCategoryByName)}");
-                    return BadRequest("Submitted data is invalid");
-                }
-       
-                return NoContent();        
+
+                FakeDatabase.Categories.Remove(category);
+
+                return NoContent();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(DeleteCategoryByName)}");
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(DeleteCategory)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
         }
 
-        [HttpPut("{name}")]
-        public IActionResult UpdateCategoryByName(string name,[FromBody]CreateCategoryDTO categoryDTO)
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateCategory(Guid id, [FromBody] CreateCategoryDTO categoryDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError($"Invalid UPDATE attempt in {nameof(DeleteCategoryByName)})");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
-            }
             try
             {
+                var existingCategory = FakeDatabase.Categories.FirstOrDefault(c => c.Id == id);
+                if (existingCategory == null)
+                {
+                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCategory)})");
+                    return BadRequest("Category not found.");
+                }
+
                 var newCategory = _mapper.Map<CategoryModel>(categoryDTO);
-                var toUpdateCategory = (from c in FakeDatabase.Categories
-                                       where c.Name == name
-                                       select c).FirstOrDefault();
+                if (FakeDatabase.Categories.Any(c => c.Id != id && c.Name == newCategory.Name))
+                {
+                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCategory)})");
+                    return BadRequest("Category name already exists.");
+                }
 
-                if (toUpdateCategory != null)
-                {
-                    toUpdateCategory.Name = newCategory.Name;
-                    return CreatedAtRoute("GetCategory", new { name = toUpdateCategory.Name }, toUpdateCategory);
-                }
-                else
-                {
-                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCategoryByName)})");
-                    return BadRequest("Submitted data is invalid");
-                }
+                existingCategory.Name = newCategory.Name;
+                var updatedCategoryDTO = _mapper.Map<CategoryDTO>(existingCategory);
+                return Ok(updatedCategoryDTO);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(UpdateCategoryByName)}");
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(UpdateCategory)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
         }
-        
+
+
 
     }
 }

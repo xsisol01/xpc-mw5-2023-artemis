@@ -1,4 +1,5 @@
 ﻿using Eshop.webAPI.Models;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.Intrinsics.X86;
@@ -12,6 +13,7 @@ namespace Eshop.webAPI.FakeDB
         private static List<CommodityModel> commodities= new List<CommodityModel>();
         private static List<ManufacturerModel> manufacturers = new List<ManufacturerModel>();
         private static List<ReviewModel> reviews = new List<ReviewModel>();
+
 
         public static List<CategoryModel> Categories 
         {
@@ -50,6 +52,8 @@ namespace Eshop.webAPI.FakeDB
         {
             reviews.Add(newReview);
         }
+
+        
         public static void InitDatabase()
         {
             //CategoryModel instances initialization
@@ -442,14 +446,14 @@ namespace Eshop.webAPI.FakeDB
             var reviewVrt1 = new ReviewModel()
             {
                 Stars = 5,
-                Description = "Nepoznám lepšiu vrtačku, odporúčam",
-                Title = "Doporučuje produkt"
+                Description = "Měl jsem strach jak si poradí s panelem, ale jede pěkně",
+                Title = "Pro kutila perfekt"
             };
 
             var reviewVrt2 = new ReviewModel()
             {
                 Stars = 4,
-                Description = "Negativem může být trochu vyšší cenovka, avšak za investované peníze získáte přístroj s dvourychlostní převodovkou a dobrými vrtacími parametry",
+                Description = "Perfektná príklepová vŕtačka, jenom cena je vysoká",
                 Title = "Doporučuje produkt"
             };
 
@@ -457,124 +461,124 @@ namespace Eshop.webAPI.FakeDB
             {
                 Stars = 3,
                 Description = "Utahovačku lze použít kdekoliv na stavbě a není třeba vozit kompresor,ale rychle se vybijí. ",
-                Title = "Dost"
+                Title = "Dost drahá"
             };
 
             var reviewUtah2 = new ReviewModel()
             {
                 Stars = 2,
-                Description = "PO 10 DNECH PŘESTAL FUNGOVAT.",
-                Title = "Great value!"
+                Description = "PO 10 DNECH PŘESTALA FUNGOVAT.",
+                Title = "Hrozný"
             };
 
             var reviewUtah3 = new ReviewModel()
             {
                 Stars = 1,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "Odporúčam kľúč, veľmi kvalitný. V žiadnom ohľade sa nelíši od iných oveľa drahších dostupných na trhu.",
+                Title = "Veľmi dobrá hodnota za peniaze"
             };
 
             var reviewHrab1 = new ReviewModel()
             {
                 Stars = 5,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "ľahké, široký záber, výborne sa s nimi vyhrabáva lístie",
+                Title = "super na hrabanie lístia"
             };
 
             var reviewHrab2 = new ReviewModel()
             {
                 Stars = 4,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "velmi pevne a spolahlive hrable i ked na ich predchodcovy sa mi praskol ten priecny plech ktory fixuje rozostupy jednotlivych prstov. i po tejto skusenosti som ich znova kupil...snad vydrzi tento konkretny kus dlhsie",
+                Title = "Dá sa"
             };
             var reviewHrab3 = new ReviewModel()
             {
                 Stars = 3,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "bol bez nasady",
+                Title = "zatil neviem sneh sa stym spracovavat neda"
             };
             var reviewLop1 = new ReviewModel()
             {
-                Stars = 2,
-                Description = "Tá",
-                Title = "Great value!"
+                Stars = 5,
+                Description = "za málo peněz hodně muziky, uspokojí i náročnější uživatale, a dá se použít také jako ryč",
+                Title = "opravdu kvalitní lopata"
             };
             var reviewLop2 = new ReviewModel()
             {
                 Stars = 1,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "Divny tvar, na fotke vyzera dobre ale v skutočnosti nič moc. Pre pracu s touto lopatou by sa človek musel zbytočne zohynať a to pre nepodareny uhol na rúčke.",
+                Title = "nekupovať"
             };
             var reviewLop3 = new ReviewModel()
             {
                 Stars = 5,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "Zatím jsem ji nepoužil, ale věřím že splní mé očekávání. Ale ty staré jsem již vyhodil... :)",
+                Title = "Uvidíme"
             };
 
             var reviewVytrh1 = new ReviewModel()
             {
                 Stars = 4,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "ostavaju trocha velke diery ktore treba zahrabavat, ale inac to asi nejde, super",
+                Title = "Kupte si"
             };
             var reviewVytrh2 = new ReviewModel()
             {
                 Stars = 3,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "Uvítam by som o niečo dlhšie čeľuste na väčšie korene.",
+                Title = "Funguje, ako ukazujú videá."
             };
             var reviewVytrh3 = new ReviewModel()
             {
                 Stars = 2,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "Stejně velké díry po odstranění malého pevle",
+                Title = "Nedoporučuji"
             };
             var reviewSilaz1 = new ReviewModel()
             {
-                Stars = 1,
-                Description = "Tá",
-                Title = "Great value!"
+                Stars = 5,
+                Description = "Nepremokavá, Ľahko umývateľná",
+                Title = "Odporúčam"
             };
             var reviewSilaz2 = new ReviewModel()
             {
                 Stars = 5,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "Tenká fólia sa doporučuje používať aj v priebehu celého procesu silážovania",
+                Title = "Výborná"
             };
             var reviewSilaz3 = new ReviewModel()
             {
                 Stars = 3,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "Kosbou sú narušené bunkové steny a bunkové šťavy sú prístupné jednak mikroorganizmom",
+                Title = "Taký nič moc produkt"
             };
 
             var reviewSilaz4 = new ReviewModel()
             {
                 Stars = 4,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "Všetko v poriadku",
+                Title = "Som spokojný"
             };
 
             var reviewSkrut1 = new ReviewModel()
             {
-                Stars = 4,
-                Description = "Tá",
-                Title = "Great value!"
+                Stars = 3,
+                Description = "Slaby magnet",
+                Title = "Nic moc"
             };
 
             var reviewSkrut2 = new ReviewModel()
             {
                 Stars = 4,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "Praktické",
+                Title = "Super do každej domácnosti"
             };
 
             var reviewSkrut3 = new ReviewModel()
             {
                 Stars = 4,
-                Description = "Tá",
-                Title = "Great value!"
+                Description = "Budu potřebovat asi větší :)",
+                Title = "Supr cena výkon"
             };
 
 
@@ -669,6 +673,7 @@ namespace Eshop.webAPI.FakeDB
             fiskars.addCommodity(lop2);
             fiskars.addCommodity(lop3);
 
+            
 
 
 
