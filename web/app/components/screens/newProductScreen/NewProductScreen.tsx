@@ -10,7 +10,7 @@ const NewProductScreen: FC = memo(() => {
   return (
     <HeaderLayout>
       <Container>
-        <AdminProductInfo {...newProductData} />
+        {/* <AdminProductInfo {...newProductData} /> */}
       </Container>
     </HeaderLayout>
   ) 

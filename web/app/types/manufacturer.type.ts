@@ -1,6 +1,6 @@
 import { IProduct } from "./product.type"
 
-export interface IProducer {
+export interface IManufacturer{
   id: string
   name: string
   imageUrl: string

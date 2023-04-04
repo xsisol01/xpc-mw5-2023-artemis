@@ -12,7 +12,7 @@ import { filterProductData, fieldTypeData, IFilterItem } from "./filterProduct.d
 
 import styles from './filterProduct.module.scss'
 import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
-import { useGetAllProducers } from "@/app/hooks/producer/useGetAllProducers";
+import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
 
 interface TField{
     uid: string
@@ -26,17 +26,17 @@ const FilterProduct: FC = memo(() => {
         isLoading: isCategoryLoading,
     } = useGetAllCategories();
     const {
-        producers,
-        isLoading: isProducerLoading
-    } = useGetAllProducers()
+        manufacturers,
+        isLoading: isManufacturerLoading
+    } = useGetAllManufacturers()
 
     
 
     useEffect(() => {
         console.log('categories', categories)
-        console.log('producers', producers)
+        console.log('manufacturers', manufacturers)
 
-    }, [categories, producers])
+    }, [categories, manufacturers])
 
 
     return (
@@ -82,8 +82,8 @@ const FilterProduct: FC = memo(() => {
         switch (field.uid) {
             case 'category':
                 return categories ?? []
-            case 'producer':
-                return producers ?? []
+            case 'manufacturer':
+                return manufacturers ?? []
             default:
                 return []
         }

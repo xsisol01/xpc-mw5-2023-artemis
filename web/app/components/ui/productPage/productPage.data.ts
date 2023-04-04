@@ -18,7 +18,7 @@ export const productPageData = Object.freeze({
       rows: 1
     },
     {
-      name: 'producer',
+      name: 'manufacturer',
       xs: 12,
       md: 6,
       type: 'select',
@@ -70,7 +70,7 @@ export const productPageData = Object.freeze({
 
 export interface IProductField {
   type: string
-  name: 'title' | 'producer' | 'category' | 'price' | 'weight' | 'count' | 'description'
+  name: 'name' | 'manufacturer' | 'category' | 'price' | 'weight' | 'stockQuantity' | 'description'
   xs: number
   md: number
   required: boolean

@@ -4,8 +4,8 @@ export const navbarData = Object.freeze({
             "name": "home",
             "link": "/"
         },{
-            "name": "producers",
-            "link": "/producer"
+            "name": "manufacturers",
+            "link": "/manufacturer"
         }
     ],
     adminButton: 'Admin'

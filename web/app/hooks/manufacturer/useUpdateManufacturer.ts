@@ -3,24 +3,24 @@ import { useRouter } from 'next/router';
 import { useMutation } from "react-query";
 
 import { RoleContext } from '@/app/providers/roleContextProvider';
-import { ProducerService } from '@/app/services/producer.service';
-import { IProducer } from "@/app/types/producer.type";
+import { ManufacturerService } from '@/app/services/manufacturer.service';
+import { IManufacturer } from "@/app/types/manufacturer.type";
 
 
-export const useUpdateProducer = (data: IProducer) => {
+export const useUpdateManufacturer = (data: IManufacturer) => {
   const {push} = useRouter()
   const { setIsAdmin} = useContext(RoleContext)
 
   const { isLoading, mutateAsync } = useMutation(
-    ['update producer', data],
-    () => ProducerService.update(data),
+    ['update manufacturer', data],
+    () => ManufacturerService.update(data),
     {
       onSuccess: () => {
-        alert('Producer has been created')
+        alert('manufacturer has been created')
 
         setIsAdmin(false)
         
-        push(`/producer/${data.id}`)
+        push(`/manufacturer/${data.id}`)
       },
       onError: (error) => {
         console.log(error)

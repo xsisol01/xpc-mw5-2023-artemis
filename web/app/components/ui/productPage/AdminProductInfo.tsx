@@ -6,7 +6,7 @@ import { IProductField, productPageData } from "./productPage.data";
 import ProductInfoImages from "./productInfoImage/ProductInfoImages";
 import { useRouter } from "next/router";
 import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
-import { useGetAllProducers } from "@/app/hooks/producer/useGetAllProducers";
+import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
 import {
     Button,
     Grid,
@@ -22,34 +22,26 @@ import FormInput from "../../shared/formFields/FormInput";
 import FormSelect from "../../shared/formFields/FormSelect";
 
 const AdminProductInfo: FC<IProduct> = memo((props) => {
-    const [formData, setFormData] = useState<IProduct>(props);
-
-    console.log(props);
-
     const { categories } = useGetAllCategories();
-    const { producers } = useGetAllProducers();
-
-    const router = useRouter();
-    const { producer } = router.query;
-
-    const { handleSubmit, control, watch } = useForm<IProduct>({defaultValues: formData});
+    const { manufacturers } = useGetAllManufacturers();
+    const { isLoading, updateProduct } = useUpdateProduct(props);
+    const { handleSubmit, control, watch } = useForm<IProduct>({defaultValues: props});
 
     useEffect(() => {
-        const subscription = watch((value, { name, type }) => console.log(value, name, type));
+        const subscription = watch((value, { name, type }) => console.log('watch', value, name, type));
         return () => subscription.unsubscribe();
     }, [watch]);
 
-
-    const { isLoading, updateProduct } = useUpdateProduct(formData);
-
+    
     const onSubmit: SubmitHandler<IProduct> = async (data: IProduct) => {
         await updateProduct(data);
     };
 
     function getOptions(field: string) {
         switch (field) {
-            case 'producer':
-                return producers
+            case 'manufacturer':
+                //debugger
+                return manufacturers
             case 'category':
                 return categories
             default:
@@ -87,7 +79,7 @@ const AdminProductInfo: FC<IProduct> = memo((props) => {
                                         ? (
                                             <FormInput
                                                 name={name}
-                                                defaultValue={capitalizeText(formData[name]?.toString())}
+                                                defaultValue={capitalizeText(props[name]?.toString())}
                                                 control={control}
                                                 required={required}
                                                 rows={rows}
@@ -100,7 +92,7 @@ const AdminProductInfo: FC<IProduct> = memo((props) => {
                                                     options={getOptions(name)?.map(t => ({...t, label: t.name}))}
                                                     defaultValue={
                                                         getOptions(name)?.find(t => 
-                                                            t.name.toLowerCase() === formData[name].toString().toLowerCase()
+                                                            t.name.toLowerCase() === props[name].toString().toLowerCase()
                                                         )
                                                     }
                                                     control={control}
@@ -122,6 +114,9 @@ const AdminProductInfo: FC<IProduct> = memo((props) => {
                     disabled={isLoading}
                     type="submit"
                     color="success"
+                    sx={{
+                        backgroundColor: 'green'
+                    }}
                 >
                     {productPageData.submit}
                 </Button>

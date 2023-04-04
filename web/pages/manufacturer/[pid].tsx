@@ -1,23 +1,23 @@
 import Container from "@/app/components/layout/container/Container";
 import HeaderLayout from "@/app/components/layout/headerLayout/HeaderLayout";
-import ProducerLayout from "@/app/components/layout/producerLayout/ProducerLayout";
-import ProducersContent from "@/app/components/ui/producersContent/ProducersContent";
+import ManufacturerLayout from "@/app/components/layout/manufacturerLayout/ManufacturerLayout";
+import ManufacturerContent from "@/app/components/ui/manufacturersContent/ManufacturersContent";
 import { RoleContext } from "@/app/providers/roleContextProvider";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 
-const Producer: NextPage = () => {
+const Manufacturer: NextPage = () => {
     return (
         <HeaderLayout>
             <Container>
-                <ProducerLayout>
-                    <ProducersContent />
-                </ProducerLayout>
+                <ManufacturerLayout>
+                    <ManufacturerContent />
+                </ManufacturerLayout>
             </Container>
         </HeaderLayout>
         
     )
 }
 
-export default Producer
+export default Manufacturer

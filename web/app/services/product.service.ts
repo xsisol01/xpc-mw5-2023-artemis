@@ -29,6 +29,9 @@ export const ProductService = {
     } catch (error: any) {
       console.log(error.message)
     }
-    
+  },
+
+  async delete(id: string) {
+    instance.delete(`/${id}`)
   }
 }

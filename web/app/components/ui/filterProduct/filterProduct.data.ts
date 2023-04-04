@@ -26,8 +26,8 @@ export const filterProductData = Object.freeze([
       type: fieldTypeData.slider
     },
     {
-      title: 'Producer',
-      uid: 'producer',
+      title: 'Manufacturer',
+      uid: 'manufacturer',
       type: fieldTypeData.list,
       options: []
     },

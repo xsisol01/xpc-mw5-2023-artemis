@@ -12,10 +12,10 @@ import { IProduct } from '@/app/types/product.type'
 
 interface IProps {
     products?: IProduct[]
-    producer?: string
+    manufacturer?: string
 }
 
-const Products: FC<IProps> = memo(({products: propsProducts, producer}) => {
+const Products: FC<IProps> = memo(({products: propsProducts, manufacturer}) => {
     const {isAdmin} = useContext(RoleContext)
 
     if (propsProducts) {
@@ -32,8 +32,8 @@ const Products: FC<IProps> = memo(({products: propsProducts, producer}) => {
     function renderProducts(products: IProduct[]) {
         return (
             <Grid container spacing={2}>
-                {isAdmin && <ProductItemPlaceholder producer={producer} />}
-                {products?.map(product => <ProductItem key={product.id} {...product} isAdmin={isAdmin} />)}
+                {isAdmin && <ProductItemPlaceholder manufacturer={manufacturer} />}
+                {products?.map(product => <ProductItem key={product.id} {...product} />)}
             </Grid>
         )
     }

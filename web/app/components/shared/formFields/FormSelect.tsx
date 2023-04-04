@@ -26,60 +26,45 @@ const FormSelect: FC<IProps> = (
     rows
   }) => {
 
-    console.log('defaultValue', defaultValue)
+    const getOpObj = (option: any) => {
+      if (!option.id) option = options.find((op: any) => op.id === option);
+      return option;
+    };
 
   return (
     <Controller
       control={control}
       name={name}
       defaultValue={defaultValue}
-      render={({
-          field: { onChange, onBlur, value, name, ref },
-          fieldState: { invalid, isTouched, isDirty, error },
-          formState,
-      }) =>  {
-
-        console.log('value   ', value)
-
-
-        return (
+      render={(props) => (
           <Autocomplete
+              {...props}
               id={name}
               disablePortal
               getOptionLabel={option => capitalizeText(option.name)}
               isOptionEqualToValue={
                 (option, value) => 
-                  option.name.toLowerCase() === value.name.toLowerCase()
+                  value !== 0 && option.id === value.id
               }
-              defaultValue={value.name}
-              value={value.name}
-              onChange={onChange}
+              defaultValue={defaultValue}
+              onChange={(_, data) => props.field.onChange(data.id)}
               filterSelectedOptions={false}
               options={options}
-              renderInput={(params) =>
-                {
-                  console.log('params', params)
-                  return (
+              renderInput={(params) => (
                     <TextField
                       {...params}
+                      {...props.field}
                       sx={{width: '100%', ...sx}}
                       required={true}
+                      inputRef={props.field.ref}
                       rows={rows}
                       multiline={!!rows && rows > 1}
                       label={capitalizeText(name)}
-                      InputProps={{
-                        ...params.InputProps,
-                        value: value.name,
-                        onChange
-                      }}
                     />
                   )
-                } 
-                  
               }
           />
-      )
-      }
+        )
       }
   />
   )

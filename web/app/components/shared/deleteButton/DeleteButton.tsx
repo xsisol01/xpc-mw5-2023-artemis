@@ -1,3 +1,4 @@
+import { useDeleteProduct } from '@/app/hooks/product/useDeleteProduct'
 import {FC, memo} from 'react'
 
 interface IProps {
@@ -9,12 +10,7 @@ interface IProps {
 
 const DeleteButton: FC<IProps> = memo(({className = '', id, elementType, children}) => {
 
-
-  return (
-    <button className={className} onClick={onDelete}>
-      {children}
-    </button>
-  )
+  const {isLoading, deleteProduct} = useDeleteProduct(id.toString())
 
   function onDelete(event: React.MouseEvent<HTMLButtonElement>) {
     event.stopPropagation()
@@ -24,9 +20,17 @@ const DeleteButton: FC<IProps> = memo(({className = '', id, elementType, childre
     const isConfirmed = confirm("Are you sure?")
 
     if (isConfirmed) {
-      console.log('delete: ', elementType, '/', id)
+      deleteProduct(id.toString())
     }
   }
+
+  return (
+    <button className={className} onClick={onDelete}>
+      {children}
+    </button>
+  )
+
+  
 })
 
 export default DeleteButton
