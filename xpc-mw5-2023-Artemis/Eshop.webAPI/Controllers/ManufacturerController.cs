@@ -4,6 +4,7 @@ using Eshop.webAPI.FakeDB;
 using Eshop.webAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Xml.Linq;
 
 namespace Eshop.webAPI.Controllers
@@ -24,35 +25,64 @@ namespace Eshop.webAPI.Controllers
         [HttpGet]
         public IActionResult GetManufacturers()
         {
-            if (!ModelState.IsValid)
-            {
-                _logger.LogError($"Invalid GET attempt in {nameof(GetManufacturers)})");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
-            }
             try
             {
-                var manufac = StorageService<ManufacturerModel>.Storage;
-                //var manufacturers = FakeDatabase.Manufacturers;
-                var results = _mapper.Map<IList<ManufacturerDTO>>(manufac);  
-                return Ok(results);                                         
+                // Retrieve all manufacturers from the database
+                var manufacturers = FakeDatabase.Manufacturers;
+
+                // Convert the manufacturers to DTOs for output
+                var manufacturerDTOs = manufacturers.Select(m => _mapper.Map<ManufacturerDTO>(m)).ToList();
+
+                // Return a response with the manufacturer DTOs
+                return Ok(manufacturerDTOs);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(GetManufacturers)}");
+                // Log the error and return a generic error response
+                _logger.LogError(ex, $"Something went wrong in {nameof(GetManufacturers)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
         }
 
-        [HttpGet("{name}", Name = "GetManufacturer")]
-        public IActionResult GetManufacturerByName(string name)
+
+        [HttpGet("{id}", Name = "GetManufacturer")]
+        public IActionResult GetManufacturer(Guid id)
         {
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError($"Invalid POST attempt in {nameof(GetManufacturer)})");
+                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+            }
             try
             {
-                var manufacturer = (from c in FakeDatabase.Manufacturers
-                                    where c.Name == name
-                                    select c).FirstOrDefault();
-                var result = _mapper.Map<CategoryDTO>(manufacturer); //Convert to DTO for output
-                return Ok(result);        //status 200 with data
+                var manufacturer = (from m in FakeDatabase.Manufacturers
+                                    where m.Id == id
+                                    select m).FirstOrDefault();
+                var result = _mapper.Map<ManufacturerDTO>(manufacturer);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(GetManufacturer)}");
+                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+            }
+        }
+
+        [HttpGet("{name}")]
+        public IActionResult GetManufacturerByName(string name)
+        {
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError($"Invalid POST attempt in {nameof(GetManufacturerByName)})");
+                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+            }
+            try
+            {
+                var manufacturer = (from m in FakeDatabase.Manufacturers
+                                    where m.Name == name
+                                    select m).FirstOrDefault();
+                var result = _mapper.Map<ManufacturerDTO>(manufacturer);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -83,5 +113,72 @@ namespace Eshop.webAPI.Controllers
             }
 
         }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteManufacturer(Guid id)
+        {
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteManufacturer)})");
+                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+            }
+            try
+            {
+                var toDeleteManufacturer = (from m in FakeDatabase.Manufacturers
+                                            where m.Id == id
+                                            select m).FirstOrDefault();
+
+                if (toDeleteManufacturer != null)
+                {
+                    FakeDatabase.Manufacturers.Remove(toDeleteManufacturer);
+                }
+                else
+                {
+                    _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteManufacturer)}");
+                    return BadRequest("Submitted data is invalid");
+                }
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(DeleteManufacturer)}");
+                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateManufacturer(Guid id, [FromBody] CreateManufacturerDTO manufacturerDTO)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateManufacturer)})");
+                    return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                }
+               
+                var toUpdateManufacturer = FakeDatabase.Manufacturers.FirstOrDefault(m => m.Id == id);
+
+                if (toUpdateManufacturer == null)
+                {
+                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateManufacturer)})");
+                    return BadRequest("Submitted data is invalid");
+                }
+
+                var updatedManufacturer = _mapper.Map<ManufacturerModel>(manufacturerDTO);
+                toUpdateManufacturer.Name = updatedManufacturer.Name;
+                toUpdateManufacturer.Country = updatedManufacturer.Country;
+                toUpdateManufacturer.ImageUrl = updatedManufacturer.ImageUrl;
+                toUpdateManufacturer.Description = updatedManufacturer.Description;
+
+                return CreatedAtRoute("GetCategory", new { id = toUpdateManufacturer.Id }, toUpdateManufacturer);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(UpdateManufacturer)}");
+                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+            }
+        }
+
     }
 }

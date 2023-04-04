@@ -12,6 +12,7 @@ namespace Eshop.webAPI.FakeDB
         private static List<CategoryModel> categories = new List<CategoryModel>();
         private static List<CommodityModel> commodities= new List<CommodityModel>();
         private static List<ManufacturerModel> manufacturers = new List<ManufacturerModel>();
+        private static List<ReviewModel> reviews = new List<ReviewModel>();
 
 
         public static List<CategoryModel> Categories 
@@ -28,6 +29,10 @@ namespace Eshop.webAPI.FakeDB
         {
             get { return manufacturers; }
         }
+        public static List<ReviewModel> Reviews
+        {
+            get { return reviews;}
+        }
 
         public static void AddCategory(CategoryModel newCategory)
         {
@@ -43,7 +48,12 @@ namespace Eshop.webAPI.FakeDB
         {
             manufacturers.Add(newManufacturer);
         }
+        public static void AddReview(ReviewModel newReview)
+        {
+            reviews.Add(newReview);
+        }
 
+        
         public static void InitDatabase()
         {
             //CategoryModel instances initialization
@@ -158,6 +168,7 @@ namespace Eshop.webAPI.FakeDB
                               "príklepové vŕtanie so zapnutou funkciou kladiva, nastavenie polohy sekáča, sekanie so zapnutou funkciou kladiva, " +
                               "nasaditeľné rýchloupínacie skľučovadlo pre vrtáky s okrúhlou stopkou, protišmykové držadlo s mäkkým povrchom, " +
                               "predné držadlo otočné o 360° v praktickom úschovnom kufríku",
+                
                   
             };
 
@@ -217,6 +228,7 @@ namespace Eshop.webAPI.FakeDB
                 Category = skrutkovace,
                 ImageUrl = "TODO/TODO/TODO",
                 Description = "Sada skrutkovačov – s ergonomickou protišmykovou rukoväťou, T10×100mm, T15×100mm, T20×100mm, T25×100mm, T30×100mm - 3,78 €/ks"
+                
             };
 
             var utah1 = new CommodityModel()
@@ -431,6 +443,148 @@ namespace Eshop.webAPI.FakeDB
                 Description = "Silážne plachty sú vyrábané z hygienicky nezávadného koextrudovaného polyetylénu.  Čierna/Biela."
             };
 
+            var reviewVrt1 = new ReviewModel()
+            {
+                Stars = 5,
+                Description = "Měl jsem strach jak si poradí s panelem, ale jede pěkně",
+                Title = "Pro kutila perfekt"
+            };
+
+            var reviewVrt2 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "Perfektná príklepová vŕtačka, jenom cena je vysoká",
+                Title = "Doporučuje produkt"
+            };
+
+            var reviewUtah1 = new ReviewModel()
+            {
+                Stars = 3,
+                Description = "Utahovačku lze použít kdekoliv na stavbě a není třeba vozit kompresor,ale rychle se vybijí. ",
+                Title = "Dost drahá"
+            };
+
+            var reviewUtah2 = new ReviewModel()
+            {
+                Stars = 2,
+                Description = "PO 10 DNECH PŘESTALA FUNGOVAT.",
+                Title = "Hrozný"
+            };
+
+            var reviewUtah3 = new ReviewModel()
+            {
+                Stars = 1,
+                Description = "Odporúčam kľúč, veľmi kvalitný. V žiadnom ohľade sa nelíši od iných oveľa drahších dostupných na trhu.",
+                Title = "Veľmi dobrá hodnota za peniaze"
+            };
+
+            var reviewHrab1 = new ReviewModel()
+            {
+                Stars = 5,
+                Description = "ľahké, široký záber, výborne sa s nimi vyhrabáva lístie",
+                Title = "super na hrabanie lístia"
+            };
+
+            var reviewHrab2 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "velmi pevne a spolahlive hrable i ked na ich predchodcovy sa mi praskol ten priecny plech ktory fixuje rozostupy jednotlivych prstov. i po tejto skusenosti som ich znova kupil...snad vydrzi tento konkretny kus dlhsie",
+                Title = "Dá sa"
+            };
+            var reviewHrab3 = new ReviewModel()
+            {
+                Stars = 3,
+                Description = "bol bez nasady",
+                Title = "zatil neviem sneh sa stym spracovavat neda"
+            };
+            var reviewLop1 = new ReviewModel()
+            {
+                Stars = 5,
+                Description = "za málo peněz hodně muziky, uspokojí i náročnější uživatale, a dá se použít také jako ryč",
+                Title = "opravdu kvalitní lopata"
+            };
+            var reviewLop2 = new ReviewModel()
+            {
+                Stars = 1,
+                Description = "Divny tvar, na fotke vyzera dobre ale v skutočnosti nič moc. Pre pracu s touto lopatou by sa človek musel zbytočne zohynať a to pre nepodareny uhol na rúčke.",
+                Title = "nekupovať"
+            };
+            var reviewLop3 = new ReviewModel()
+            {
+                Stars = 5,
+                Description = "Zatím jsem ji nepoužil, ale věřím že splní mé očekávání. Ale ty staré jsem již vyhodil... :)",
+                Title = "Uvidíme"
+            };
+
+            var reviewVytrh1 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "ostavaju trocha velke diery ktore treba zahrabavat, ale inac to asi nejde, super",
+                Title = "Kupte si"
+            };
+            var reviewVytrh2 = new ReviewModel()
+            {
+                Stars = 3,
+                Description = "Uvítam by som o niečo dlhšie čeľuste na väčšie korene.",
+                Title = "Funguje, ako ukazujú videá."
+            };
+            var reviewVytrh3 = new ReviewModel()
+            {
+                Stars = 2,
+                Description = "Stejně velké díry po odstranění malého pevle",
+                Title = "Nedoporučuji"
+            };
+            var reviewSilaz1 = new ReviewModel()
+            {
+                Stars = 5,
+                Description = "Nepremokavá, Ľahko umývateľná",
+                Title = "Odporúčam"
+            };
+            var reviewSilaz2 = new ReviewModel()
+            {
+                Stars = 5,
+                Description = "Tenká fólia sa doporučuje používať aj v priebehu celého procesu silážovania",
+                Title = "Výborná"
+            };
+            var reviewSilaz3 = new ReviewModel()
+            {
+                Stars = 3,
+                Description = "Kosbou sú narušené bunkové steny a bunkové šťavy sú prístupné jednak mikroorganizmom",
+                Title = "Taký nič moc produkt"
+            };
+
+            var reviewSilaz4 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "Všetko v poriadku",
+                Title = "Som spokojný"
+            };
+
+            var reviewSkrut1 = new ReviewModel()
+            {
+                Stars = 3,
+                Description = "Slaby magnet",
+                Title = "Nic moc"
+            };
+
+            var reviewSkrut2 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "Praktické",
+                Title = "Super do každej domácnosti"
+            };
+
+            var reviewSkrut3 = new ReviewModel()
+            {
+                Stars = 4,
+                Description = "Budu potřebovat asi větší :)",
+                Title = "Supr cena výkon"
+            };
+
+
+
+
+
 
             //predloha na commoditymodel
 
@@ -483,6 +637,37 @@ namespace Eshop.webAPI.FakeDB
             commodities.Add(silaz2);
             commodities.Add(silaz3);
             commodities.Add(silaz4);
+            commodities.Add(skrut1);
+            commodities.Add(skrut2);
+            commodities.Add(skrut3);
+            
+
+
+
+            vrt1.addReview(reviewVrt1);
+            vrt2.addReview(reviewVrt2);
+            utah1.addReview(reviewUtah1);
+            utah2.addReview(reviewUtah2);
+            utah3.addReview(reviewUtah3);
+            hrab1.addReview(reviewHrab1);
+            hrab2.addReview(reviewHrab2);
+            hrab3.addReview(reviewHrab3);
+            lop1.addReview(reviewLop1);
+            lop2.addReview(reviewLop2);
+            lop3.addReview(reviewLop3);
+            vytrh1.addReview(reviewVytrh1);
+            vytrh2.addReview(reviewVytrh2);
+            vytrh3.addReview(reviewVytrh3);
+            silaz1.addReview(reviewSilaz1);
+            silaz2.addReview(reviewSilaz2);
+            silaz3.addReview(reviewSilaz3);
+            silaz4.addReview(reviewSilaz4);
+            skrut1.addReview(reviewSkrut1);
+            skrut2.addReview(reviewSkrut2);
+            skrut3.addReview(reviewSkrut3);
+
+
+
 
             fiskars.addCommodity(lop1);
             fiskars.addCommodity(lop2);

@@ -1,5 +1,7 @@
 
 
 export const capitalizeText = (text: string): string => {
-    return text.charAt(0).toUpperCase() + text.slice(1);
+    return (text && text?.length > 0)
+        ? text?.charAt(0).toUpperCase() + text?.slice(1)
+        : ''
 }

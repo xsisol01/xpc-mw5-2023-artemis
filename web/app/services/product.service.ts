@@ -5,7 +5,7 @@ import { IProduct } from '@/app/types/product.type';
 const instance = axios.create({
   baseURL: `${process.env.apiUrl}/products`,
   headers: {
-    'Content-Type': 'application-json'
+    'Content-Type': 'application/json'
   }
 })
 
@@ -20,10 +20,15 @@ export const ProductService = {
   },
 
   async create(data: IProduct) {
-    instance.put('', data)
+    instance.post('', data)
   },
 
   async update(data: IProduct) {
-    instance.post(`/${data.id}`, data)
+    try{
+      instance.put(`/${data.id}`, {...data})
+    } catch (error: any) {
+      console.log(error.message)
+    }
+    
   }
 }

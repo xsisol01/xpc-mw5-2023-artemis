@@ -2,22 +2,17 @@ import { useContext, FC, memo } from 'react'
 
 import { RoleContext } from '@/app/providers/roleContextProvider'
 
-import { IProduct } from '@/app/store/product/product.type'
-
 import Container from '@/app/components/layout/container/Container'
 import AdminProductInfo from './AdminProductInfo'
 import ProductInfo from './ProductInfo'
+import { IProduct } from '@/app/types/product.type'
 
-interface IProps {
-    isAdmin: boolean
-}
-
-const ProductPage: FC<IProduct & IProps> = memo((props) => {
-    //const {isAdmin} = useContext(RoleContext)
+const ProductPage: FC<IProduct> = memo((props) => {
+    const {isAdmin} = useContext(RoleContext)
 
     return (
         <Container>
-            {props.isAdmin ? (
+            {isAdmin ? (
                 <AdminProductInfo {...props} />
             ) : (
                 <ProductInfo {...props} />

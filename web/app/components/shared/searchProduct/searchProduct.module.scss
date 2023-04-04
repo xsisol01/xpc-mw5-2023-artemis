@@ -3,6 +3,9 @@
 .searchProduct{
     position: relative;
 
+    max-width: 600px;
+    margin-right: 10px;
+
     &__{
         &input{
             width: 100%;

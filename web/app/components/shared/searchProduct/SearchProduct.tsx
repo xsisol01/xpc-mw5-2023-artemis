@@ -8,10 +8,11 @@ import { searchProductData } from './searchProduct.data'
 
 import style from './searchProduct.module.scss'
 import { getLoweredLetters } from '@/app/utils/getLoweredLetters'
+import { Search } from '@mui/icons-material'
 
 export interface ISearchProductProps {
     uid: string
-    className: string
+    className?: string
     getParam?: (name: string) => string
     setParam?: (name: string, value: string) => void
 }
@@ -38,7 +39,7 @@ const SearchProduct: FC<ISearchProductProps> = memo(({uid, className, getParam, 
     return (
         <div className={classNames({
             [style.searchProduct]: true,
-            [className]: true
+            [className ?? '']: true
         })}>
             <input
                 className={style.searchProduct__input}
@@ -46,9 +47,7 @@ const SearchProduct: FC<ISearchProductProps> = memo(({uid, className, getParam, 
                 value={value}
                 onInput={inputHandler}
                 />
-                <div className={style.searchProduct__icon}>
-                    <FaSearch />
-                </div>
+                <Search className={style.searchProduct__icon}/>
         </div>
     )
 

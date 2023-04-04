@@ -1,7 +1,6 @@
-import {FC, memo, useEffect, useState } from 'react'
+import {FC, memo, useContext, useEffect, useState } from 'react'
 
 import { RoleContext } from '@/app/providers/roleContextProvider'
-import { IProduct } from '@/app/store/product/product.type'
 import { UseFormRegister } from 'react-hook-form'
 
 import { BlobServiceClient, ContainerClient } from '@azure/storage-blob'
@@ -10,15 +9,16 @@ import {FaPlus} from 'react-icons/fa'
 
 import styles from './productInfoImage.module.scss'
 import Image from '@/app/components/shared/image/Image'
+import { IProduct } from '@/app/types/product.type'
 
 interface IProps {
   image: string
-  isAdmin: boolean
   register?: (fieldName: string) => UseFormRegister<IProduct>
 }
 
-const ProductInfoImage: FC<IProps> = memo(({image, isAdmin, register}) => {
+const ProductInfoImage: FC<IProps> = memo(({image, register}) => {
   const [file, setFile] = useState<File>()
+  const {isAdmin} = useContext(RoleContext)
 
   let registerFunc = (fieldName: string) => ({} as UseFormRegister<IProduct>)
 
