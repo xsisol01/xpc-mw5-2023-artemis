@@ -45,7 +45,38 @@ namespace Eshop.webAPI.Controllers
             }
         }
 
-        [HttpGet("{name}", Name = "GetCategory")]
+        [HttpGet("{id}", Name = "GetCategory")]
+        public IActionResult GetCategory(Guid id)
+        {
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError($"Invalid GET attempt in {nameof(GetCategory)})");
+                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+            }
+            try
+            {
+                var category = (from c in FakeDatabase.Categories
+                                where c.Id == id
+                                select c).FirstOrDefault();
+                if (category != null)
+                {
+                    var result = _mapper.Map<CategoryDTO>(category);
+                    return Ok(result);
+                }
+                else
+                {
+                    _logger.LogError($"Invalid GET attempt in {nameof(GetCategory)})");
+                    return BadRequest("Submitted data is invalid");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(GetCategory)}");
+                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+            }
+        }
+
+        [HttpGet("{name}")]
         public IActionResult GetCategoryByName(string name)
         {
             if (!ModelState.IsValid)
@@ -107,18 +138,18 @@ namespace Eshop.webAPI.Controllers
         }
 
         
-        [HttpDelete("{name}")]
-        public IActionResult DeleteCategoryByName(string name)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCategory(Guid id)
         {
             if (!ModelState.IsValid)
             {
-                _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteCategoryByName)})");
+                _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteCategory)})");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
             try
             {
                 var toDeleteCategory = (from c in FakeDatabase.Categories
-                                        where c.Name == name
+                                        where c.Id == id
                                         select c).FirstOrDefault();
 
                 if(toDeleteCategory != null)
@@ -127,7 +158,7 @@ namespace Eshop.webAPI.Controllers
                 }
                 else
                 {
-                    _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteCategoryByName)}");
+                    _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteCategory)}");
                     return BadRequest("Submitted data is invalid");
                 }
        
@@ -135,24 +166,24 @@ namespace Eshop.webAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(DeleteCategoryByName)}");
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(DeleteCategory)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
         }
 
-        [HttpPut("{name}")]
-        public IActionResult UpdateCategoryByName(string name,[FromBody]CreateCategoryDTO categoryDTO)
+        [HttpPut("{id}")]
+        public IActionResult UpdateCategory(Guid id,[FromBody]CreateCategoryDTO categoryDTO)
         {
             if (!ModelState.IsValid)
             {
-                _logger.LogError($"Invalid UPDATE attempt in {nameof(DeleteCategoryByName)})");
+                _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCategory)})");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
             try
             {
                 var newCategory = _mapper.Map<CategoryModel>(categoryDTO);
                 var toUpdateCategory = (from c in FakeDatabase.Categories
-                                       where c.Name == name
+                                       where c.Id == id
                                        select c).FirstOrDefault();
 
                 if (toUpdateCategory != null)
@@ -162,13 +193,13 @@ namespace Eshop.webAPI.Controllers
                 }
                 else
                 {
-                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCategoryByName)})");
+                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCategory)})");
                     return BadRequest("Submitted data is invalid");
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(UpdateCategoryByName)}");
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(UpdateCategory)}");
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
         }

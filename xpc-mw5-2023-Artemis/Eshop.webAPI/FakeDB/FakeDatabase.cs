@@ -50,6 +50,8 @@ namespace Eshop.webAPI.FakeDB
         {
             reviews.Add(newReview);
         }
+
+        
         public static void InitDatabase()
         {
             //CategoryModel instances initialization
