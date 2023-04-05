@@ -1,6 +1,4 @@
-﻿
-
-namespace Eshop.webAPI.Models
+﻿namespace Eshop.webAPI.Models
 {
     public class CategoryModel : ModelBase
     {

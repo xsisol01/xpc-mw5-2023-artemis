@@ -11,7 +11,7 @@ namespace Eshop.webAPI.Models
         public string ImageUrl { get; set; }
         public string Description { get; set; }
         public string Country { get; set; }
-        public List<CommodityModel> Commodities { get; }
+        public List<CommodityModel> Commodities { get { return _commodities; } }
 
         public ManufacturerModel()
         {

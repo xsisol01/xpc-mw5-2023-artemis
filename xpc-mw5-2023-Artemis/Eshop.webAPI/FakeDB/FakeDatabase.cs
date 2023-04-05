@@ -582,27 +582,6 @@ namespace Eshop.webAPI.FakeDB
             };
 
 
-
-
-
-
-            //predloha na commoditymodel
-
-            //var silaz1 = new CommodityModel()
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Name = "",
-            //    Price = (float?)18.90,
-            //    Weight = (float?)0.318,
-            //    StockQuantity = ,
-            //    Manufacturer = ,
-            //    Category = ,
-            //    ImageUrl = "TODO/TODO/TODO",
-            //    Description = ""
-            //};
-
-            //com2.addReview();
-
             categories.Add(vrtacky);
             categories.Add(utahovacky);
             categories.Add(hrable);
@@ -641,9 +620,6 @@ namespace Eshop.webAPI.FakeDB
             commodities.Add(skrut2);
             commodities.Add(skrut3);
             
-
-
-
             vrt1.addReview(reviewVrt1);
             vrt2.addReview(reviewVrt2);
             utah1.addReview(reviewUtah1);
@@ -666,12 +642,11 @@ namespace Eshop.webAPI.FakeDB
             skrut2.addReview(reviewSkrut2);
             skrut3.addReview(reviewSkrut3);
 
-
-
-
             fiskars.addCommodity(lop1);
             fiskars.addCommodity(lop2);
             fiskars.addCommodity(lop3);
+
+
 
             
 
