@@ -5,24 +5,34 @@ type IRating = {
 
 export interface IProduct {
     id: number
-    title: string
-    price: number
+    name: string
+    imageUrl: string
     description: string
-    producer: string,
+    price: number
+    manufacturer: string
     category: string
     weight: number
-    count: number
-    image: string
+    stockQuantity: number
     rating: IRating
 }
 
+
 export interface ICreateProduct {
-    title: string
-    price: number
+    name: string
+    imageUrl: string
     description: string
-    producer: string,
+    price: number | null
+    manufacturer: string
     category: string
-    weight: number
-    count: number
-    image: string
+    weight: number | null
+    stockQuantity: number | null
 }
+
+export interface IProductField {
+    type: string
+    name: 'name' | 'manufacturer' | 'category' | 'price' | 'weight' | 'stockQuantity' | 'description'
+    xs: number
+    md: number
+    required: boolean
+    rows: number
+  }

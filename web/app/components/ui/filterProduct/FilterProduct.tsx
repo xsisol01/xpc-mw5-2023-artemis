@@ -2,9 +2,8 @@ import { FC, memo, useEffect } from "react"
 
 import Dropdown from "@/app/components/shared/dropdown/dropdown";
 import ScrollableList, { IScrollableListProps } from "@/app/components/shared/scrollableList/ScrollableList";
-import Slider, { ISliderProps } from "@/app/components/shared/slider/Slider";
-import Preloader from "@/app/components/shared/preloader/Preloader";
-import Radio, { IRadioProps } from "@/app/components/shared/radio/Radio";
+import Slider, { ISliderProps } from "@/app/components/shared/formFields/slider/Slider";
+import Radio, { IRadioProps } from "@/app/components/shared/formFields/radio/Radio";
 
 import withUrlSearchParams from "@/app/components/shared/hoc/withUrlSearchParams";
 
@@ -12,11 +11,12 @@ import { filterProductData, fieldTypeData, IFilterItem } from "./filterProduct.d
 
 import styles from './filterProduct.module.scss'
 import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
-import { useGetAllProducers } from "@/app/hooks/producer/useGetAllProducers";
+import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
 
 interface TField{
     uid: string
     options?: any
+    unit?: string
 }
 
 const FilterProduct: FC = memo(() => {
@@ -26,31 +26,35 @@ const FilterProduct: FC = memo(() => {
         isLoading: isCategoryLoading,
     } = useGetAllCategories();
     const {
-        producers,
-        isLoading: isProducerLoading
-    } = useGetAllProducers()
+        manufacturers,
+        isLoading: isManufacturerLoading
+    } = useGetAllManufacturers()
 
     
 
     useEffect(() => {
         console.log('categories', categories)
-        console.log('producers', producers)
+        console.log('manufacturers', manufacturers)
 
-    }, [categories, producers])
+    }, [categories, manufacturers])
 
 
     return (
         <aside className={styles.filterProduct}>
             <div className={styles.filterProduct__inner}>
+
                 {
                     filterProductData.map(field => {
 
                         const Component = getComponent(field.type)
                         const componentType = getComponentType(field.type)
                         const componentOptions = getComponentOptions(field)
+                        const componentUnit = getComponentUnit(field)
 
                         let props: TField = {
-                            uid: field.uid
+                            uid: field.uid,
+                            unit: componentUnit
+
                         }
 
                         if( componentOptions.length ){
@@ -82,8 +86,8 @@ const FilterProduct: FC = memo(() => {
         switch (field.uid) {
             case 'category':
                 return categories ?? []
-            case 'producer':
-                return producers ?? []
+            case 'manufacturer':
+                return manufacturers ?? []
             default:
                 return []
         }
@@ -113,6 +117,10 @@ const FilterProduct: FC = memo(() => {
             default:
                 return () => null
         }
+    }
+
+    function getComponentUnit(field: IFilterItem) {
+        return field.unit ?? ''
     }
 })
 

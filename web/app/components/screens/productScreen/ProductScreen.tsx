@@ -2,19 +2,23 @@ import {FC, memo, useContext} from 'react'
 
 import { useRouter } from 'next/router'
 
+import { RoleContext } from '@/app/providers/roleContextProvider'
 
 import HeaderLayout from '@/app/components/layout/headerLayout/HeaderLayout'
-import Preloader from '@/app/components/shared/preloader/Preloader'
-import ProductPage from '@/app/components/ui/productPage/ProductPage'
 import { useGetProduct } from '@/app/hooks/product/useGetProduct'
+import AdminProductInfo from '../../ui/productPage/AdminProductInfo'
+import ProductInfo from '../../ui/productPage/ProductInfo'
+import { Container } from '@mui/system'
+import { CircularProgress } from '@mui/material'
 
 const ProductScreen: FC = memo(() => {
     const {query, push} = useRouter()
+    const {isAdmin} = useContext(RoleContext)
 
     const {product, isLoading, } = useGetProduct(String(query.pid))
 
     if (isLoading) {
-        return  <Preloader />
+        return  <CircularProgress />
     }
 
     if (!product) {
@@ -29,7 +33,13 @@ const ProductScreen: FC = memo(() => {
 
     return (
         <HeaderLayout >
-            <ProductPage {...product} />
+            <Container>
+                {isAdmin ? (
+                    <AdminProductInfo {...product} />
+                ) : (
+                    <ProductInfo {...product} />
+                )}
+            </Container>
         </HeaderLayout>
     )
 })

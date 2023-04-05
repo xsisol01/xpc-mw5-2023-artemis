@@ -1,0 +1,46 @@
+name: .NET Web API CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore ./xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln
+
+      - name: Build
+        run: dotnet build --configuration Release  ./xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln
+      - name: Run tests
+        run: dotnet test --verbosity normal ./xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln
+
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore ./xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln
+
+      - name: Build
+        run: dotnet build --configuration Release ./xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln
+      - name: Run tests
+        run: dotnet test --verbosity normal  ./xpc-mw5-2023-Artemis/xpc-mw5-2023-Artemis.sln

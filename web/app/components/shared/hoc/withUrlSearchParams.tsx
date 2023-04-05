@@ -26,6 +26,10 @@ function withUrlSearchParams <T>(Component: FC<T>): FC<T> {
     function setParam(name:string, value:string) {
         let currentQuery = {}
 
+        if(!value && !value.length) {
+            return
+        }
+
         if (Object.keys(router.query).length) {
             currentQuery = router.query
         }

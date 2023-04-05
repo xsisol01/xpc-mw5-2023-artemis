@@ -1,29 +1,29 @@
 import axios from 'axios';
 
-import { ICategory } from '@/app/types/category.type';
+import { IManufacturer } from '@/app/types/manufacturer.type';
 
 const instance = axios.create({
-  baseURL: `${process.env.apiUrl}/categories`,
+  baseURL: `${process.env.apiUrl}/manufacturers`,
   headers: {
     'Content-Type': 'application-json'
   }
 })
 
-export const CategoryService = {
+export const ManufacturerService = {
 
   async getAll() {
-    return instance.get<ICategory[]>('')
+    return instance.get<IManufacturer[]>('')
   },
   
   async get(id: string) {
-    return instance.get<ICategory>(`/${id}`)
+    return instance.get<IManufacturer>(`/${id}`)
   },
 
-  async create(data: ICategory) {
+  async create(data: IManufacturer) {
     instance.put('', data)
   },
 
-  async update(data: ICategory) {
+  async update(data: IManufacturer) {
     instance.post(`/${data.id}`, data)
   },
 

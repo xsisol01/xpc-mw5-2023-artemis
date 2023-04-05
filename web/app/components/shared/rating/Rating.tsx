@@ -46,11 +46,6 @@ const Rating: FC<IProps> = memo(({rate, description, size}) => {
                         readOnly={isAdmin}
                     />
                 </div>
-                {size !== 'small' && (
-                    <div className={styles.rating__value}>
-                        ({rate})
-                    </div>
-                )}
             </div>
             {description && size !== 'small' && (
                 <div className={styles.rating__description}>
@@ -59,9 +54,6 @@ const Rating: FC<IProps> = memo(({rate, description, size}) => {
             )}
         </div>
     )
-
-
-    
 })
 
 export default Rating
