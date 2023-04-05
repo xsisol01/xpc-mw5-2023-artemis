@@ -9,7 +9,6 @@
     public class ReviewDTO : CreateReviewDTO
     {
         public Guid Id { get; set; }
-        
     }
 
 

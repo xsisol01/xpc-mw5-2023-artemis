@@ -16,11 +16,8 @@ namespace Eshop.webAPI.DTO
 
     public class ManufacturerDTO : CreateManufacturerDTO
     {
-        
         public List<Guid> CommodityIds { get; set; }
         public Guid Id { get; set; }
-
-        
     }
 
 }
