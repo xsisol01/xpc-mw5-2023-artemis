@@ -3,8 +3,8 @@ import { FC, memo, useState, ReactNode } from "react";
 import styles from './ManufacturerLayout.module.scss'
 import ManufacturerItem from "@/app/components/ui/manufacturerItem/ManufacturerItem";
 import Link from "next/link";
-import Preloader from "../../shared/preloader/Preloader";
 import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
+import { CircularProgress } from "@mui/material";
 
 interface IProps{
   children?: ReactNode
@@ -15,7 +15,7 @@ const ManufacturerLayout: FC<IProps> = memo(({ children }) => {
   const { manufacturers, isLoading} = useGetAllManufacturers()
 
   if (!manufacturers) {
-    return <Preloader />
+    return <CircularProgress />
   }
 
   return (

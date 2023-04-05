@@ -1,13 +1,13 @@
 import  {useContext, FC, memo } from 'react'
 
-import Preloader from '@/app/components/shared/preloader/Preloader'
+
 import ProductItem from '@/app/components/ui/productItem/ProductItem'
 
 import styles from './products.module.scss'
 import { RoleContext } from '@/app/providers/roleContextProvider'
 import ProductItemPlaceholder from '../productItem/ProductItemPlaceholeder'
 import { useGetAllProduct } from '@/app/hooks/product/useGetAllProducts'
-import { Grid } from '@mui/material'
+import { CircularProgress, Grid } from '@mui/material'
 import { IProduct } from '@/app/types/product.type'
 
 interface IProps {
@@ -25,7 +25,7 @@ const Products: FC<IProps> = memo(({products: propsProducts, manufacturer}) => {
     const {products: fetchProducts, isLoading} = useGetAllProduct();
 
     return isLoading || !fetchProducts
-        ? <Preloader />
+        ? <CircularProgress />
         : renderProducts(fetchProducts)
 
 

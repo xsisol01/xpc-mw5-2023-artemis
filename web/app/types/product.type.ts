@@ -21,9 +21,18 @@ export interface ICreateProduct {
     name: string
     imageUrl: string
     description: string
-    price: number
+    price: number | null
     manufacturer: string
     category: string
-    weight: number
-    stockQuantity: number
+    weight: number | null
+    stockQuantity: number | null
 }
+
+export interface IProductField {
+    type: string
+    name: 'name' | 'manufacturer' | 'category' | 'price' | 'weight' | 'stockQuantity' | 'description'
+    xs: number
+    md: number
+    required: boolean
+    rows: number
+  }

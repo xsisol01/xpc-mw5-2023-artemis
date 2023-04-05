@@ -1,3 +1,5 @@
+import { IProductField } from "@/app/types/product.type";
+
 export const productPageData = Object.freeze({
   weight: "Weight",
   unit: "kg",
@@ -10,7 +12,7 @@ export const productPageData = Object.freeze({
   countPattern: '[0-9]?',
   fields: [
     {
-      name: 'title',
+      name: 'name',
       xs: 12,
       md: 12,
       type: 'text',
@@ -50,7 +52,7 @@ export const productPageData = Object.freeze({
       rows: 1
     },
     {
-      name: 'count',
+      name: 'stockQuantity',
       xs: 12,
       md: 6,
       type: 'text',
@@ -68,11 +70,3 @@ export const productPageData = Object.freeze({
   ] as IProductField[]
 })
 
-export interface IProductField {
-  type: string
-  name: 'name' | 'manufacturer' | 'category' | 'price' | 'weight' | 'stockQuantity' | 'description'
-  xs: number
-  md: number
-  required: boolean
-  rows: number
-}

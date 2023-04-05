@@ -28,7 +28,7 @@ const Header: FC<IProps> = ({contentPage}) => {
           </Typography>
           { contentPage === 'home' && 
               withUrlSearchParams<ISearchProductProps>(SearchProduct)({
-                  uid: 'search'
+                uid: 'search'
               })
           }
           <Box sx={{flexGrow: 1}}>

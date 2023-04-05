@@ -1,3 +1,5 @@
+import { ICreateProduct } from '@/app/types/product.type';
+
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { useMutation } from "react-query";
@@ -7,18 +9,16 @@ import { ProductService } from '@/app/services/product.service';
 import { IProduct } from "@/app/types/product.type";
 
 
-export const useCreateProduct = (data: IProduct) => {
+export const useCreateProduct = (data: ICreateProduct) => {
   const {push} = useRouter()
   const {setIsAdmin} = useContext(RoleContext)
 
-  const { isLoading, mutateAsync } = useMutation(
+  const { isLoading, mutateAsync: createProduct } = useMutation(
     ['create product', data],
-    () => ProductService.create(data),
+    (data: ICreateProduct) => ProductService.create(data),
     {
       onSuccess: () => {
         alert('Product has been created')
-        setIsAdmin(false)
-        push(`/product/${data.id}`)
       },
       onError: (error) => {
         console.log(error)
@@ -26,5 +26,5 @@ export const useCreateProduct = (data: IProduct) => {
     }
   )
   
-    return { isLoading, mutateAsync }
+    return { isLoading, createProduct }
 }

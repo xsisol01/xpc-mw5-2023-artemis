@@ -3,7 +3,6 @@ import { FC, memo, useEffect } from "react"
 import Dropdown from "@/app/components/shared/dropdown/dropdown";
 import ScrollableList, { IScrollableListProps } from "@/app/components/shared/scrollableList/ScrollableList";
 import Slider, { ISliderProps } from "@/app/components/shared/formFields/slider/Slider";
-import Preloader from "@/app/components/shared/preloader/Preloader";
 import Radio, { IRadioProps } from "@/app/components/shared/formFields/radio/Radio";
 
 import withUrlSearchParams from "@/app/components/shared/hoc/withUrlSearchParams";

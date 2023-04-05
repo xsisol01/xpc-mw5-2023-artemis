@@ -7,7 +7,7 @@ import { capitalizeText } from "@/app/utils/capitalizeText";
 import { currencyFormatter } from "@/app/utils/currencyFormatter";
 import Rating from "@/app/components/shared/rating/Rating";
 
-import {productPageData} from './productPage.data'
+import {productPageData} from '../../../data/productPage.data'
 
 import styles from './productInfo.module.scss'
 import ProductInfoImages from "./productInfoImage/ProductInfoImages";

@@ -1,3 +1,4 @@
+import { ICreateProduct } from '@/app/types/product.type';
 import axios from 'axios';
 
 import { IProduct } from '@/app/types/product.type';
@@ -19,7 +20,7 @@ export const ProductService = {
     return instance.get<IProduct>(`/${id}`)
   },
 
-  async create(data: IProduct) {
+  async create(data: ICreateProduct) {
     instance.post('', data)
   },
 

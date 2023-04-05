@@ -6,7 +6,7 @@ import classNames from 'classnames'
 
 import Rating from '@/app/components/shared/rating/Rating'
 import StockChecker from '@/app/components/shared/inStockChecker/StockChecker'
-import DeleteButton from '@/app/components/shared/deleteButton/DeleteButton'
+import DeleteButton from '@/app/components/shared/button/deleteButton/DeleteButton'
 
 import {FaTimes} from 'react-icons/fa'
 
