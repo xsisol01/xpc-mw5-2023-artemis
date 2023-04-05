@@ -29,6 +29,7 @@ namespace Eshop.webAPI.Controllers
             {
                 var manufacturers = FakeDatabase.Manufacturers;
                 var results = _mapper.Map<List<ManufacturerDTO>>(manufacturers);
+                
                 return Ok(results);
             }
             catch (Exception ex)
@@ -168,6 +169,7 @@ namespace Eshop.webAPI.Controllers
                 return StatusCode(500, "Internal Server Error. Please Try Again Later.");
             }
         }
+
 
 
     }

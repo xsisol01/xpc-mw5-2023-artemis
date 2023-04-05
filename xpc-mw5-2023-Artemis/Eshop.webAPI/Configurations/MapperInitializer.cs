@@ -10,10 +10,13 @@ namespace Eshop.webAPI.Configurations
         {
             CreateMap<CategoryModel, CategoryDTO>().ReverseMap();
             CreateMap<CategoryModel, CreateCategoryDTO>().ReverseMap();
-            CreateMap<ManufacturerModel, ManufacturerDTO>().ReverseMap();
+            CreateMap<ManufacturerModel, ManufacturerDTO>().ForMember(dest => dest.CommodityIds, opt => opt.MapFrom(src => src.Commodities.Select(c => c.Id))).ReverseMap(); 
             CreateMap<ManufacturerModel, CreateManufacturerDTO>().ReverseMap();
             CreateMap<CommodityModel, CommodityDTO>().ReverseMap();
             CreateMap<CommodityModel, CreateCommodityDTO>().ReverseMap();
+            CreateMap<ReviewModel, ReviewDTO>().ReverseMap();
+            CreateMap<ReviewModel, CreateReviewDTO>().ReverseMap();
+
         }  
     }
 }

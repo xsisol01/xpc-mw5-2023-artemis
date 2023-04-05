@@ -10,6 +10,18 @@
         public float? Price { get; set; }
         public float? Weight { get; set; }
         public int StockQuantity { get; set; }
+        public float? AverageRating
+        {
+            get
+            {
+                int sum = 0;
+                foreach (ReviewModel review in _reviews)
+                {
+                    sum = sum + review.Stars;
+                }
+                return sum / _reviews.Count();
+            }
+        }
         public CategoryModel Category { get; set; }
         public ManufacturerModel Manufacturer { get; set; }
         public List<ReviewModel>? Reviews { get { return _reviews; }}

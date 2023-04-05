@@ -28,8 +28,7 @@ app.UseHttpsRedirection();
 
 // Initialization of FakeDatabase
 FakeDatabase.InitDatabase();
-StorageService<CommodityModel>.initStorageService();
-StorageService<ManufacturerModel>.initStorageService();
+
 
 app.UseAuthorization();
 
