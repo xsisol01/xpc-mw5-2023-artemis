@@ -1,40 +1,34 @@
 import { FC, memo } from "react";
+import Link from "next/link";
 
-import styles from './manufacturerItem.module.scss'
-import Image from "@/app/components/shared/image/Image";
-import { capitalizeText } from "@/app/utils/capitalizeText";
-import { useRouter } from "next/router";
-import classNames from "classnames";
-import { Grid } from "@mui/material";
+import { IManufacturer } from "@/app/types/manufacturer.type";
 
+import { capitalize,ListItem, ListItemButton, Typography } from "@mui/material";
 
-interface IProps {
-  id: string
-  name: string
-  imageUrl: string
-}
-
-const ManufacturerItem: FC<IProps> = memo(({ id, name, imageUrl }) => {
-
-  const router = useRouter()
-  const { pid } = router.query
+const ManufacturerItem: FC<IManufacturer> = memo(({ id, name }) => {
 
   return (
-    <Grid item xs={12} md={5}
-      
-     className={ classNames({
-      [styles.manufacturerItem]: true,
-      [styles.manufacturerItem__active]: pid === id
-    })}>
-      <Image
-        className={styles.manufacturerItem__image}
-        src={imageUrl}
-        width={100}
-        height={50}
-        />
-      <div>{capitalizeText(name)}</div>
-    </Grid>
-  )
-})
+    <ListItem disablePadding component="li" key={id}>
+      <ListItemButton
+        sx={{
+          p: 0,
+          my: 1,
+          "& a": {
+            width: "100%",
+            height: "100%",
+            padding: 1,
+          },
+        }}
+      >
+        <Link
+          href="/manufacturer/[pid]"
+          as={`/manufacturer/${id}`}
+        >
+          <Typography variant="h6">{capitalize(name)}</Typography>
+        </Link>
+      </ListItemButton>
+    </ListItem>
+  );
+});
 
-export default ManufacturerItem
+export default ManufacturerItem;

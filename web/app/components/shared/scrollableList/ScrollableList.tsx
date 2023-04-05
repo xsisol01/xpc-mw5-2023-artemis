@@ -6,6 +6,7 @@ import { isTextEqual } from '@/app/utils/isTextEqual'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
 import styles from './scrollableList.module.scss'
+import { ListItem, ListItemButton, ListItemText } from '@mui/material'
 
 const MAX_HEIGHT = 380
 
@@ -43,16 +44,33 @@ const ScrollableList: FC<IScrollableListProps> = memo((
         setParam(uid, param)
     }, [selected])
 
+    function getIsSelected(optionId: string) {
+        return isTextEqual(selected ?? '', optionId)
+    }
+
+    function getOptionText(option: IOption, type: string) {
+        return getIsSelected(option.id) && type === 'primary'
+            ? capitalizeText(option.name)
+            : !getIsSelected(option.id) && type === 'secondary'
+            ? capitalizeText(option.name)
+            : null
+    }
+
     return (
-        <ul style={{maxHeight: `${maxHeight}px`}} className={styles.scrollableList}>
+        <ul>
             {options?.map(item => (
-                <li key={item.id} className={
-                classNames({
-                    [styles.scrollableList__item]: true,
-                    [styles.scrollableList__active]: isTextEqual(selected ?? '', item.id)
-                })}
-                onClick={() => setSelected(item.id)}
-                >{capitalizeText(item.name)}</li>
+                <ListItemButton
+                    key={item.id}
+                    onClick={() => setSelected(item.id)}
+                    sx={{ height: 40 }}
+                >
+                    <ListItem>
+                        <ListItemText
+                            secondary={getOptionText(item, 'secondary')}
+                            primary={getOptionText(item, 'primary')}
+                        />
+                    </ListItem>
+                </ListItemButton>
             ) )}
         </ul>
     )

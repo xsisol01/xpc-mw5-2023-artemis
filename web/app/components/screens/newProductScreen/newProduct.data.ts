@@ -3,11 +3,11 @@ import { ICreateProduct } from '@/app/types/product.type';
 
 export const newProductData: ICreateProduct = Object.freeze({
   name: '',
-  price: null,
+  price: 0,
   description: '',
   manufacturer: '',
   category: '',
-  weight: null,
-  stockQuantity: null,
+  weight: 0,
+  stockQuantity: 0,
   imageUrl: '',
 })

@@ -15,7 +15,7 @@ interface IProps {
 }
 
 const Rating: FC<IProps> = memo(({rate, description, size}) => {
-    const [value, setValue] = useState<number | null>(null)
+    const [value, setValue] = useState<number | null>(0)
     const {isAdmin} = useContext(RoleContext)
 
     function onRate(event: SyntheticEvent<Element, Event>, newValue: number | null) {

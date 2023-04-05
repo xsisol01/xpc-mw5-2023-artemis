@@ -6,6 +6,8 @@
   cursor: pointer;
   padding: 5px;
   border-radius: 5px;
+  box-shadow: none;
+  margin-bottom: 8px;
 
   &:hover {
     @extend .active;

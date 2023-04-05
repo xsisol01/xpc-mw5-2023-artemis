@@ -1,18 +1,21 @@
-import { FC, memo, useState, ReactNode } from "react";
+import { FC, memo, ReactNode } from "react";
 
-import styles from './ManufacturerLayout.module.scss'
+import styles from "./ManufacturerLayout.module.scss";
 import ManufacturerItem from "@/app/components/ui/manufacturerItem/ManufacturerItem";
-import Link from "next/link";
 import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
-import { CircularProgress } from "@mui/material";
+import {
+  CircularProgress,
+  Grid,
+  List,
+} from "@mui/material";
+import { Container } from "@mui/system";
 
-interface IProps{
-  children?: ReactNode
+interface IProps {
+  children?: ReactNode;
 }
 
 const ManufacturerLayout: FC<IProps> = memo(({ children }) => {
-  
-  const { manufacturers, isLoading} = useGetAllManufacturers()
+  const { manufacturers, isLoading } = useGetAllManufacturers();
 
   if (!manufacturers) {
     return <CircularProgress />
@@ -20,27 +23,34 @@ const ManufacturerLayout: FC<IProps> = memo(({ children }) => {
 
   return (
     <div className={styles.ManufacturerLayout}>
-      <ul className={styles.ManufacturerLayout__items}>
-        {manufacturers?.map(manufacturer => (
-          <li key={manufacturer.id}>
-            <Link
-              href='/manufacturer/[pid]'
-              as={`/manufacturer/${manufacturer.id}`}
-            >
-              <ManufacturerItem
-                id={manufacturer.id}
-                name={manufacturer.name}
-                imageUrl={manufacturer.imageUrl}
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <div className={styles.ManufacturerLayout__content}>
-        {children}
-      </div>
+      <Container>
+        {isLoading && <CircularProgress />}
+        {!isLoading && (
+          <Grid container spacing={2}>
+            <Grid item xs={3} component="nav">
+              <List
+                component="ul"
+                sx={{
+                  height: "90vh",
+                  bgcolor: "background.paper",
+                  position: "relative",
+                  overflow: "auto",
+                  "& ul": { padding: 0 },
+                }}
+              >
+                {manufacturers?.map((manufacturer) => (
+                  <ManufacturerItem {...manufacturer} />
+                ))}
+              </List>
+            </Grid>
+            <Grid item xs={9}>
+              {children}
+            </Grid>
+          </Grid>
+        )}
+      </Container>
     </div>
-  )
-})
+  );
+});
 
-export default ManufacturerLayout
+export default ManufacturerLayout;

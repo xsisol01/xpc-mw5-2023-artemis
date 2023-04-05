@@ -21,11 +21,11 @@ export interface ICreateProduct {
     name: string
     imageUrl: string
     description: string
-    price: number | null
+    price: number 
     manufacturer: string
     category: string
-    weight: number | null
-    stockQuantity: number | null
+    weight: number 
+    stockQuantity: number
 }
 
 export interface IProductField {

@@ -2,18 +2,14 @@ import {FC, memo, useContext} from 'react'
 
 import Link from 'next/link'
 
-import classNames from 'classnames'
-
 import Rating from '@/app/components/shared/rating/Rating'
 import StockChecker from '@/app/components/shared/inStockChecker/StockChecker'
 import DeleteButton from '@/app/components/shared/button/deleteButton/DeleteButton'
 
 import {FaTimes} from 'react-icons/fa'
 
-
-
 import styles from './productItem.module.scss'
-import { Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { Card, CardActions, CardContent, CardMedia, Grid, Skeleton, Typography } from '@mui/material'
 import { IProduct } from '@/app/types/product.type'
 import { capitalizeText } from '@/app/utils/capitalizeText'
 import { RoleContext } from '@/app/providers/roleContextProvider'
@@ -27,13 +23,22 @@ const ProductItem: FC<IProduct> = memo(({id, name, imageUrl, price, rating, stoc
         <Grid item xs={12} md={3} sm={6}>
             <Card sx={{height: '100%', position: 'relative'}}>
                 <Link href='/product/[pid]' as={`/product/${id}`} className={styles.productItem}>
-                    <CardMedia
-                        src={imageUrl}
-                        alt={name}
-                        title={name}
-                        sx={{height: 140}}
-                        component='img'
-                    />
+                    {imageUrl.length
+                        ? (
+                            <CardMedia
+                                src={imageUrl}
+                                alt={name}
+                                title={name}
+                                sx={{height: 140}}
+                                component='img'
+                            />
+                        ) : (
+                            <Skeleton
+                                sx={{ bgcolor: 'grey.300', width: '100%', height: 140 }}
+                                variant="rectangular"
+                            />
+                        )
+                    }
                 </Link>
                 <CardContent sx={{pb: 0}}>
                     <Typography variant='body1' component='h4'>
@@ -61,8 +66,6 @@ const ProductItem: FC<IProduct> = memo(({id, name, imageUrl, price, rating, stoc
                 ) : (
                     <StockChecker isInStock={isInStock} className={styles.productItem__stockChecker} />
                 )}
-
-                
             </Card>
         </Grid>
         

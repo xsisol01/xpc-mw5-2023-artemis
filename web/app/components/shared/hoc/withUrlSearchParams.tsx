@@ -34,10 +34,12 @@ function withUrlSearchParams <T>(Component: FC<T>): FC<T> {
             currentQuery = router.query
         }
 
-        router.push({query: {
+        const updatedParams = {
             ...currentQuery,
             [name.toLowerCase()]: value.toLowerCase()
-        }})
+        }
+
+        router.push({query: updatedParams})
     }
 
     function getNewUrlSearchParams() {

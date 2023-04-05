@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent, FC, memo } from 'react'
+import { useEffect, FC, memo } from 'react'
 import { useForm } from "react-hook-form"
 
 import { isValid } from './slider.validation'
@@ -21,16 +21,14 @@ const Slider: FC<ISliderProps> = memo(({uid, getParam, setParam, unit = ''}) => 
     const maxId = `${uid}-${SliderData.max}`
 
     const defaultValues = {
-        [minId]: getParam(minId),
-        [maxId]: getParam(maxId)
+        [minId]: getParam(minId) || '',
+        [maxId]: getParam(maxId) || ''
     }
 
     const { getValues, watch, control } = useForm({ defaultValues });
 
     useEffect(() => {
-        const subscription = watch((value, { name, type }) => {
-            console.log('watch', value, name, type)
-
+        const subscription = watch((value, { name }) => {
             if(name && value && isValid(getValues(minId), getValues(maxId))) {
                 setParam(name, value[name] ?? '')
             }
@@ -43,7 +41,7 @@ const Slider: FC<ISliderProps> = memo(({uid, getParam, setParam, unit = ''}) => 
         <form>
             <Grid container spacing={2}>
                 {Object.keys(defaultValues).map(k => (
-                    <Grid item xs={6}>
+                    <Grid item xs={6} key={k}>
                         <FormInput
                             control={control}
                             name={k}

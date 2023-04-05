@@ -284,16 +284,14 @@
       "id": 19
     },
     {
-      "name": "new title ",
-      "price": "500",
+      "name": "psylium",
+      "price": "1000000000000",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      "manufacturer": "1",
-      "category": "14",
-      "weight": "13",
-      "stockQuantity": null,
+      "manufacturer": "4",
+      "category": "7",
+      "weight": "93",
+      "stockQuantity": "1",
       "imageUrl": "",
-      "title": "New Product Name",
-      "count": "67",
       "id": 20
     }
   ],
@@ -363,9 +361,9 @@
     {
       "id": "1",
       "name": "apple",
-      "imageUrlUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
+      "imageUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
       "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
-      "stockQuantityry": "CZ",
+      "country": "CZ",
       "products": [
         {
           "id": 1,
@@ -447,9 +445,9 @@
     {
       "id": "2",
       "name": "samsumg",
-      "imageUrlUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
+      "imageUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
       "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-      "stockQuantityry": "USA",
+      "country": "USA",
       "products": [
         {
           "id": 3,
@@ -501,9 +499,9 @@
     {
       "id": "3",
       "name": "zara",
-      "imageUrlUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
+      "imageUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
       "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-      "stockQuantityry": "SK",
+      "country": "SK",
       "products": [
         {
           "id": 16,
@@ -555,9 +553,9 @@
     {
       "id": "4",
       "name": "myprotein",
-      "imageUrlUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
+      "imageUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
       "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-      "stockQuantityry": "EN",
+      "country": "EN",
       "products": [
         {
           "id": 19,
@@ -609,9 +607,9 @@
     {
       "id": "5",
       "name": "microsoft",
-      "imageUrlUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
+      "imageUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
       "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-      "stockQuantityry": "CZ",
+      "country": "CZ",
       "products": [
         {
           "id": 15,
