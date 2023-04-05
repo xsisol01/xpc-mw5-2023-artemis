@@ -8,7 +8,7 @@
       "category": "men's clothing",
       "imageUrl": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "apple",
       "rating": {
         "rate": 5,
@@ -23,7 +23,7 @@
       "category": "3",
       "imageUrl": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
       "weight": "14",
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "2",
       "rating": {
         "rate": 3.9,
@@ -38,7 +38,7 @@
       "category": "men's clothing",
       "imageUrl": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
       "weight": 3.3,
-      "count": 150,
+      "stockQuantity": 150,
       "manufacturer": "samsumg",
       "rating": {
         "rate": 1,
@@ -53,7 +53,7 @@
       "category": "men's clothing",
       "imageUrl": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
       "weight": "3.32",
-      "count": "23",
+      "stockQuantity": "23",
       "manufacturer": "microsoft",
       "rating": {
         "rate": 2,
@@ -68,7 +68,7 @@
       "category": "jewelery",
       "imageUrl": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "apple",
       "rating": {
         "rate": 4,
@@ -83,7 +83,7 @@
       "category": "jewelery",
       "imageUrl": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "samsumg",
       "rating": {
         "rate": 3.9,
@@ -98,7 +98,7 @@
       "category": "jewelery",
       "imageUrl": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "microsoft",
       "rating": {
         "rate": 3.9,
@@ -113,7 +113,7 @@
       "category": "jewelery",
       "imageUrl": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "apple",
       "rating": {
         "rate": 3.9,
@@ -128,7 +128,7 @@
       "category": "electronics",
       "imageUrl": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "apple",
       "rating": {
         "rate": 3.9,
@@ -143,7 +143,7 @@
       "category": "electronics",
       "imageUrl": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "myprotein",
       "rating": {
         "rate": 3.9,
@@ -158,7 +158,7 @@
       "category": "electronics",
       "imageUrl": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "apple",
       "rating": {
         "rate": 3.9,
@@ -173,7 +173,7 @@
       "category": "electronics",
       "imageUrl": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "apple",
       "rating": {
         "rate": 3.9,
@@ -188,7 +188,7 @@
       "category": "electronics",
       "imageUrl": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "samsumg",
       "rating": {
         "rate": 3.9,
@@ -203,7 +203,7 @@
       "category": "electronics",
       "imageUrl": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "apple",
       "rating": {
         "rate": 3.9,
@@ -218,7 +218,7 @@
       "category": "women's clothing",
       "imageUrl": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "microsoft",
       "rating": {
         "rate": 3.9,
@@ -233,7 +233,7 @@
       "category": "women's clothing",
       "imageUrl": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "zara",
       "rating": {
         "rate": 3.9,
@@ -248,7 +248,7 @@
       "category": "women's clothing",
       "imageUrl": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "myprotein",
       "rating": {
         "rate": 3.9,
@@ -263,7 +263,7 @@
       "category": "women's clothing",
       "imageUrl": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
       "weight": 3.3,
-      "count": 5,
+      "stockQuantity": 5,
       "manufacturer": "zara",
       "rating": {
         "rate": 3.9,
@@ -339,7 +339,7 @@
       "name": "apple",
       "imageUrlUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
       "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
-      "country": "CZ",
+      "stockQuantityry": "CZ",
       "products": [
         {
           "id": 1,
@@ -349,7 +349,7 @@
           "category": "men's clothing",
           "imageUrl": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "apple",
           "rating": {
             "rate": 5,
@@ -364,7 +364,7 @@
           "category": "men's clothing",
           "imageUrl": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
           "weight": 3.3,
-          "count": 0,
+          "stockQuantity": 0,
           "manufacturer": "apple",
           "rating": {
             "rate": 0,
@@ -379,7 +379,7 @@
           "category": "jewelery",
           "imageUrl": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "apple",
           "rating": {
             "rate": 4,
@@ -394,7 +394,7 @@
           "category": "electronics",
           "imageUrl": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "apple",
           "rating": {
             "rate": 3.9,
@@ -409,7 +409,7 @@
           "category": "electronics",
           "imageUrl": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "apple",
           "rating": {
             "rate": 3.9,
@@ -423,7 +423,7 @@
       "name": "samsumg",
       "imageUrlUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
       "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-      "country": "USA",
+      "stockQuantityry": "USA",
       "products": [
         {
           "id": 3,
@@ -433,7 +433,7 @@
           "category": "men's clothing",
           "imageUrl": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
           "weight": 3.3,
-          "count": 150,
+          "stockQuantity": 150,
           "manufacturer": "samsumg",
           "rating": {
             "rate": 1,
@@ -448,7 +448,7 @@
           "category": "jewelery",
           "imageUrl": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "samsumg",
           "rating": {
             "rate": 3.9,
@@ -463,7 +463,7 @@
           "category": "electronics",
           "imageUrl": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "samsumg",
           "rating": {
             "rate": 3.9,
@@ -477,7 +477,7 @@
       "name": "zara",
       "imageUrlUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
       "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-      "country": "SK",
+      "stockQuantityry": "SK",
       "products": [
         {
           "id": 16,
@@ -487,7 +487,7 @@
           "category": "women's clothing",
           "imageUrl": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "zara",
           "rating": {
             "rate": 3.9,
@@ -502,7 +502,7 @@
           "category": "women's clothing",
           "imageUrl": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "zara",
           "rating": {
             "rate": 3.9,
@@ -517,7 +517,7 @@
           "category": "women's clothing",
           "imageUrl": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "zara",
           "rating": {
             "rate": 3.9,
@@ -531,7 +531,7 @@
       "name": "myprotein",
       "imageUrlUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
       "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-      "country": "EN",
+      "stockQuantityry": "EN",
       "products": [
         {
           "id": 19,
@@ -541,7 +541,7 @@
           "category": "women's clothing",
           "imageUrl": "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "myprotein",
           "rating": {
             "rate": 3.9,
@@ -556,7 +556,7 @@
           "category": "women's clothing",
           "imageUrl": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "myprotein",
           "rating": {
             "rate": 3.9,
@@ -571,7 +571,7 @@
           "category": "electronics",
           "imageUrl": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "myprotein",
           "rating": {
             "rate": 3.9,
@@ -585,7 +585,7 @@
       "name": "microsoft",
       "imageUrlUrl": "https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png",
       "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-      "country": "CZ",
+      "stockQuantityry": "CZ",
       "products": [
         {
           "id": 15,
@@ -595,7 +595,7 @@
           "category": "women's clothing",
           "imageUrl": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "microsoft",
           "rating": {
             "rate": 3.9,
@@ -610,7 +610,7 @@
           "category": "jewelery",
           "imageUrl": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
           "weight": 3.3,
-          "count": 5,
+          "stockQuantity": 5,
           "manufacturer": "microsoft",
           "rating": {
             "rate": 3.9,
@@ -625,7 +625,7 @@
           "category": "men's clothing",
           "imageUrl": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
           "weight": 3.3,
-          "count": 0,
+          "stockQuantity": 0,
           "manufacturer": "microsoft",
           "rating": {
             "rate": 2,

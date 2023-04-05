@@ -11,6 +11,7 @@ export interface IFilterItem  {
   uid: string
   type: string
   options?: any
+  unit?: string
 }
 
 export const filterProductData = Object.freeze([
@@ -23,7 +24,8 @@ export const filterProductData = Object.freeze([
     {
       title: 'Price',
       uid: 'price',
-      type: fieldTypeData.slider
+      type: fieldTypeData.slider,
+      unit: 'CZK'
     },
     {
       title: 'Manufacturer',
@@ -34,7 +36,8 @@ export const filterProductData = Object.freeze([
     {
       title: 'Weight',
       uid: 'weight',
-      type: fieldTypeData.slider
+      type: fieldTypeData.slider,
+      unit: 'kg'
     },
     {
       title: 'Rating',

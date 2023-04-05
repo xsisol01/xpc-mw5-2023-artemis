@@ -2,9 +2,9 @@ import { FC, memo, useEffect } from "react"
 
 import Dropdown from "@/app/components/shared/dropdown/dropdown";
 import ScrollableList, { IScrollableListProps } from "@/app/components/shared/scrollableList/ScrollableList";
-import Slider, { ISliderProps } from "@/app/components/shared/slider/Slider";
+import Slider, { ISliderProps } from "@/app/components/shared/formFields/slider/Slider";
 import Preloader from "@/app/components/shared/preloader/Preloader";
-import Radio, { IRadioProps } from "@/app/components/shared/radio/Radio";
+import Radio, { IRadioProps } from "@/app/components/shared/formFields/radio/Radio";
 
 import withUrlSearchParams from "@/app/components/shared/hoc/withUrlSearchParams";
 
@@ -17,6 +17,7 @@ import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufa
 interface TField{
     uid: string
     options?: any
+    unit?: string
 }
 
 const FilterProduct: FC = memo(() => {
@@ -42,15 +43,19 @@ const FilterProduct: FC = memo(() => {
     return (
         <aside className={styles.filterProduct}>
             <div className={styles.filterProduct__inner}>
+
                 {
                     filterProductData.map(field => {
 
                         const Component = getComponent(field.type)
                         const componentType = getComponentType(field.type)
                         const componentOptions = getComponentOptions(field)
+                        const componentUnit = getComponentUnit(field)
 
                         let props: TField = {
-                            uid: field.uid
+                            uid: field.uid,
+                            unit: componentUnit
+
                         }
 
                         if( componentOptions.length ){
@@ -113,6 +118,10 @@ const FilterProduct: FC = memo(() => {
             default:
                 return () => null
         }
+    }
+
+    function getComponentUnit(field: IFilterItem) {
+        return field.unit ?? ''
     }
 })
 

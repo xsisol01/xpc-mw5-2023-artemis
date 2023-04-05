@@ -9,6 +9,7 @@ import { TextField } from "@mui/material";
 interface IProps {
   name: string
   defaultValue?: string | number
+  placeholder?: string
   control: any
   endAdornment?: ReactNode
   variant?: 'outlined' | 'standard' | 'filled'
@@ -19,7 +20,7 @@ interface IProps {
 }
 
 const FormInput: FC<IProps> = (
-  {name, defaultValue = '', control, endAdornment, variant = 'outlined', sx, style, rows, required = false}
+  {name, defaultValue = '', control, endAdornment, variant = 'outlined', sx, style, rows, required = false, placeholder}
   ) => {
 
   return (
@@ -31,7 +32,7 @@ const FormInput: FC<IProps> = (
           <TextField
               required={required}
               id={name}
-              label={capitalizeText(name)}
+              label={capitalizeText(placeholder ?? name)}
               variant={variant}
               multiline={!!rows && rows > 1}
               value={value}
