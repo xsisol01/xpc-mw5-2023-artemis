@@ -25,5 +25,9 @@ export const CategoryService = {
 
   async update(data: ICategory) {
     instance.post(`/${data.id}`, data)
+  },
+
+  async delete(id: string) {
+    instance.delete(`/${id}`)
   }
 }

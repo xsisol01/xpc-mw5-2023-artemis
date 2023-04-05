@@ -25,5 +25,9 @@ export const ManufacturerService = {
 
   async update(data: IManufacturer) {
     instance.post(`/${data.id}`, data)
+  },
+
+  async delete(id: string) {
+    instance.delete(`/${id}`)
   }
 }
