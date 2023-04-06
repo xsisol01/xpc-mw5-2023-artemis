@@ -28,7 +28,7 @@ export const ProductService = {
     try{
       instance.put(`/${data.id}`, {...data})
     } catch (error: any) {
-      console.log(error.message)
+      console.error(error.message)
     }
   },
 

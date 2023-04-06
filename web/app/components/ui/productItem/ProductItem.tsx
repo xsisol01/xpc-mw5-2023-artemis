@@ -13,6 +13,7 @@ import { Card, CardActions, CardContent, CardMedia, Grid, Skeleton, Typography }
 import { IProduct } from '@/app/types/product.type'
 import { capitalizeText } from '@/app/utils/capitalizeText'
 import { RoleContext } from '@/app/providers/roleContextProvider'
+import ImagePlaceholder from '../../shared/placeholder/ImagePlaceholder'
 
 
 const ProductItem: FC<IProduct> = memo(({id, name, imageUrl, price, rating, stockQuantity}) => {
@@ -33,9 +34,9 @@ const ProductItem: FC<IProduct> = memo(({id, name, imageUrl, price, rating, stoc
                                 component='img'
                             />
                         ) : (
-                            <Skeleton
-                                sx={{ bgcolor: 'grey.300', width: '100%', height: 140 }}
-                                variant="rectangular"
+                            <ImagePlaceholder
+                                alt={name}
+                                height={140}
                             />
                         )
                     }

@@ -1,26 +1,17 @@
-import { useContext } from 'react';
-import { useRouter } from 'next/router';
 import { useMutation } from "react-query";
 
-import { RoleContext } from '@/app/providers/roleContextProvider';
 import { ManufacturerService } from '@/app/services/manufacturer.service';
 import { IManufacturer } from "@/app/types/manufacturer.type";
 
 
 export const useUpdateManufacturer = (data: IManufacturer) => {
-  const {push} = useRouter()
-  const { setIsAdmin} = useContext(RoleContext)
 
-  const { isLoading, mutateAsync } = useMutation(
+  const { isLoading, mutateAsync: updateManufacturer } = useMutation(
     ['update manufacturer', data],
-    () => ManufacturerService.update(data),
+    (data: IManufacturer) => ManufacturerService.update(data),
     {
       onSuccess: () => {
-        alert('manufacturer has been created')
-
-        setIsAdmin(false)
-        
-        push(`/manufacturer/${data.id}`)
+        alert('manufacturer has been updated')
       },
       onError: (error) => {
         console.log(error)
@@ -28,5 +19,5 @@ export const useUpdateManufacturer = (data: IManufacturer) => {
     }
   )
   
-  return { isLoading, mutateAsync }
+  return { isLoading, updateManufacturer }
 }

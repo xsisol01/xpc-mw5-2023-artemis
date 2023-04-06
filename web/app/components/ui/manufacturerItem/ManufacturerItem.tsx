@@ -3,9 +3,11 @@ import Link from "next/link";
 
 import { IManufacturer } from "@/app/types/manufacturer.type";
 
-import { capitalize,ListItem, ListItemButton, Typography } from "@mui/material";
+import { capitalize,CircularProgress,ListItem, ListItemButton, Typography } from "@mui/material";
 
 const ManufacturerItem: FC<IManufacturer> = memo(({ id, name }) => {
+
+  if (!id || !name) return <CircularProgress />
 
   return (
     <ListItem disablePadding component="li" key={id}>

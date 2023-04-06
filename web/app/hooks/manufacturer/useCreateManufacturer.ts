@@ -4,21 +4,19 @@ import { useMutation } from "react-query";
 
 import { RoleContext } from '@/app/providers/roleContextProvider';
 import { ManufacturerService } from '@/app/services/manufacturer.service';
-import { IManufacturer } from "@/app/types/manufacturer.type";
+import { ICreateManufacturer } from "@/app/types/manufacturer.type";
 
 
-export const useCreateManufacturer = (data: IManufacturer) => {
+export const useCreateManufacturer = (data: ICreateManufacturer) => {
   const {push} = useRouter()
   const {setIsAdmin} = useContext(RoleContext)
 
-  const { isLoading, mutateAsync } = useMutation(
+  const { isLoading, mutateAsync: createManufacturer } = useMutation(
     ['create manufacturer', data],
-    () => ManufacturerService.create(data),
+    (data: ICreateManufacturer) => ManufacturerService.create(data),
     {
       onSuccess: () => {
         alert('manufacturer has been created')
-        setIsAdmin(false)
-        push(`/manufacturer/${data.id}`)
       },
       onError: (error) => {
         console.log(error)
@@ -26,5 +24,5 @@ export const useCreateManufacturer = (data: IManufacturer) => {
     }
   )
   
-    return { isLoading, mutateAsync }
+    return { isLoading, createManufacturer }
 }

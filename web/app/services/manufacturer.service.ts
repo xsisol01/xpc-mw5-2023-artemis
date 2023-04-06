@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-import { IManufacturer } from '@/app/types/manufacturer.type';
+import { IManufacturer, ICreateManufacturer } from '@/app/types/manufacturer.type';
 
 const instance = axios.create({
   baseURL: `${process.env.apiUrl}/manufacturers`,
   headers: {
-    'Content-Type': 'application-json'
+    'Content-Type': 'application/json'
   }
 })
 
@@ -19,12 +19,16 @@ export const ManufacturerService = {
     return instance.get<IManufacturer>(`/${id}`)
   },
 
-  async create(data: IManufacturer) {
-    instance.put('', data)
+  async create(data: ICreateManufacturer) {
+    instance.post('', data)
   },
 
   async update(data: IManufacturer) {
-    instance.post(`/${data.id}`, data)
+    try{
+      instance.put(`/${data.id}`, {...data})
+    } catch (error: any) {
+      console.error(error.message)
+    }
   },
 
   async delete(id: string) {

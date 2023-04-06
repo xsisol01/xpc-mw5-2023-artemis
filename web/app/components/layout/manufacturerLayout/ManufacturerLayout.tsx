@@ -1,55 +1,26 @@
 import { FC, memo, ReactNode } from "react";
 
-import styles from "./ManufacturerLayout.module.scss";
-import ManufacturerItem from "@/app/components/ui/manufacturerItem/ManufacturerItem";
-import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
-import {
-  CircularProgress,
-  Grid,
-  List,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
+import Manufacturers from "../../ui/manufacturers/Manufacturers";
+import { globalStyles } from "@/app/assets/styles/global.styles";
 
 interface IProps {
   children?: ReactNode;
 }
 
 const ManufacturerLayout: FC<IProps> = memo(({ children }) => {
-  const { manufacturers, isLoading } = useGetAllManufacturers();
-
-  if (!manufacturers) {
-    return <CircularProgress />
-  }
-
   return (
-    <div className={styles.ManufacturerLayout}>
-      <Container>
-        {isLoading && <CircularProgress />}
-        {!isLoading && (
-          <Grid container spacing={2}>
-            <Grid item xs={3} component="nav">
-              <List
-                component="ul"
-                sx={{
-                  height: "90vh",
-                  bgcolor: "background.paper",
-                  position: "relative",
-                  overflow: "auto",
-                  "& ul": { padding: 0 },
-                }}
-              >
-                {manufacturers?.map((manufacturer) => (
-                  <ManufacturerItem {...manufacturer} />
-                ))}
-              </List>
-            </Grid>
-            <Grid item xs={9}>
-              {children}
-            </Grid>
-          </Grid>
-        )}
-      </Container>
-    </div>
+    <Container>
+      <Grid container spacing={2}>
+        <Grid item xs={3} sx={{ ...globalStyles.fullScroll }}>
+          <Manufacturers />
+        </Grid>
+        <Grid item xs={9} sx={{ mt: 2, ...globalStyles.fullScroll }}>
+          {children}
+        </Grid>
+      </Grid>
+    </Container>
   );
 });
 

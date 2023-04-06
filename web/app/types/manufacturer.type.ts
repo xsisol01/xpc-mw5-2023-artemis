@@ -8,3 +8,19 @@ export interface IManufacturer{
   country: string
   products: IProduct[]
 }
+
+export interface IManufacturerField {
+  name: 'name' | 'country' | 'description'
+  xs: number
+  md: number
+  type: 'text' | 'select'
+  required: boolean
+  rows: number
+}
+
+export interface ICreateManufacturer {
+  name: string
+  imageUrl: string
+  description: string
+  country: string
+}

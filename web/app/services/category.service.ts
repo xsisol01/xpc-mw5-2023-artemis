@@ -5,7 +5,7 @@ import { ICategory } from '@/app/types/category.type';
 const instance = axios.create({
   baseURL: `${process.env.apiUrl}/categories`,
   headers: {
-    'Content-Type': 'application-json'
+    'Content-Type': 'application/json'
   }
 })
 

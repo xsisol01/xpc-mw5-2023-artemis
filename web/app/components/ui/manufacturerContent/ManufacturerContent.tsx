@@ -1,47 +1,46 @@
-import { useGetManufacturer } from "@/app/hooks/manufacturer/useGetManufacturer";
-import { Avatar, Box, CircularProgress, Grid } from "@mui/material";
-import { useRouter } from "next/router";
-import { FC } from "react";
-import Products from "../products/Products";
+import { FC, memo } from "react";
+
+import { IManufacturer } from "@/app/types/manufacturer.type";
+
+import { Box, capitalize, Grid, Typography } from "@mui/material";
+import Products from "@/app/components/ui/products/Products";
 
 
-const ManufacturerContent: FC = () => {
-  const {query} = useRouter()
-  const {pid} = query
-  if (!pid) return <CircularProgress />
+const ManufacturerContent: FC<IManufacturer> = memo(({
+  name, imageUrl, country, description, products, id
+}) => {
 
-  const {manufacturer, isLoading} = useGetManufacturer(pid.toString())
 
-  if (isLoading) {
-    return <CircularProgress />
-  }
-
-  console.log(manufacturer)
-
-  return manufacturer ? (
+  return (
     <div>
       <Grid container sx={{mb: 2}}>
         <Grid item xs={12} md={5}>
           <img
-            src={manufacturer.imageUrl}
+            src={imageUrl}
             alt='Company logo'
             loading="lazy"
           />
         </Grid>
         <Grid item xs={12} md={7}>
-          pid: {pid}
+          <Typography variant="h4" component='h1'>
+            {capitalize(name)}
+          </Typography >
+          <Typography variant="h6" component='h3'>
+            {country}
+          </Typography>
+          <Typography variant="body1" component='p'>
+            {description}
+          </Typography>
         </Grid>
       </Grid>
 
-      {manufacturer.products.length ? (
+      {products.length ? (
         <Box sx={{borderTop: '1px solid #ccc', pt: 2}}>
-          <Products products={manufacturer.products} manufacturer={manufacturer.id} />
+          <Products products={products} manufacturer={id} />
         </Box>
       ) : null}
-      
-      
     </div>
-  ) : null
-}
+  )
+})
 
 export default ManufacturerContent

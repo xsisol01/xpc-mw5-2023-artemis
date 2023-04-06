@@ -1,6 +1,5 @@
 import { createContext, useState, useMemo, Dispatch, SetStateAction, FC, memo } from 'react';
 
-
 interface IContext {
     isAdmin: boolean
     setIsAdmin: Dispatch<SetStateAction<boolean>>
@@ -13,16 +12,12 @@ interface IProps {
 }
 
 const RoleContextProvider: FC<IProps> = memo(({children}) => {
-
     const [ isAdmin, setIsAdmin ] = useState(false);
 
     const value = useMemo(() => ({
         isAdmin,
         setIsAdmin
     }), [isAdmin])
-
-    console.log('RoleContextProvider', isAdmin)
-
 
     return(
         <RoleContext.Provider value={value}>

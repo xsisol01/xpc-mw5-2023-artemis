@@ -17,7 +17,7 @@ const ProductItemPlaceholder: FC = memo(() => {
           sx={{ bgcolor: 'grey.900', width: '100%', height: '100%' }}
           variant="rectangular"
         />
-        </Card>
+      </Card>
     </Grid>
   )
 })

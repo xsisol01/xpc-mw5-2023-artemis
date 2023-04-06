@@ -16,7 +16,6 @@ export interface IProduct {
     rating: IRating
 }
 
-
 export interface ICreateProduct {
     name: string
     imageUrl: string
