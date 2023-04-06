@@ -46,7 +46,7 @@ const AdminProductInfo: FC<IProduct> = memo((props) => {
         <Grid item xs={6} sx={{ mb: 2 }}>
           <Grid container spacing={2}>
             {productPageData.fields.map(
-              ({ type, name, xs, md, required, rows }: IProductField) => (
+              ({ type, name, xs, md, required, rows, validation }: IProductField) => (
                   <Grid key={name} item xs={xs} md={md}>
                     {type === "text" ? (
                       <FormInput
@@ -57,6 +57,7 @@ const AdminProductInfo: FC<IProduct> = memo((props) => {
                         control={control}
                         required={required}
                         rows={rows}
+                        validation={validation}
                       />
                     ) : type === "select" ? (
                       getOptions(name)?.length && (
@@ -72,6 +73,7 @@ const AdminProductInfo: FC<IProduct> = memo((props) => {
                           control={control}
                           rows={rows}
                           required={required}
+                          validation={validation}
                         />
                       )
                     ) : (

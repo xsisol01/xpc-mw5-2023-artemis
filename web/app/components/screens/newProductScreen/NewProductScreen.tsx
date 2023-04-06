@@ -18,10 +18,17 @@ import FormSelect from "@/app/components/shared/formFields/FormSelect";
 import RightSubmitButton from "@/app/components/shared/button/submitButton/RightSubmitButton";
 import UploadImage from "@/app/components/shared/button/uploadImage/UploadImage";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
-
-
+import { RoleContext } from "@/app/providers/roleContextProvider";
 
 const NewProductScreen: FC = memo(() => {
+  const {push} = useRouter()
+  const {isAdmin} = useContext(RoleContext)
+
+  if (!isAdmin) {
+    push('/')
+    return null
+  }
+  
   const { categories } = useGetAllCategories();
   const { manufacturers } = useGetAllManufacturers();
   const { isLoading, createProduct } = useCreateProduct(newProductData);
@@ -73,7 +80,7 @@ const NewProductScreen: FC = memo(() => {
             <Grid item xs={6} sx={{ mb: 2 }}>
               <Grid container spacing={2}>
                 {productPageData.fields.map(
-                  ({ type, name, xs, md, required, rows }: IProductField) => {
+                  ({ type, name, xs, md, required, rows, validation }: IProductField) => {
           
                     return (
                       <Grid key={name} item xs={xs} md={md}>
@@ -87,6 +94,7 @@ const NewProductScreen: FC = memo(() => {
                             control={control}
                             required={required}
                             rows={rows}
+                            validation={validation}
                           />
                         ) : type === "select" 
                         ? (
@@ -103,6 +111,7 @@ const NewProductScreen: FC = memo(() => {
                               control={control}
                               rows={rows}
                               required={required}
+                              validation={validation}
                             />
                           )
                         ) : (

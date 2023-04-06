@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { Controller } from "react-hook-form";
+import { Controller, FieldValues, Validate } from "react-hook-form";
 
 import { capitalizeText } from "@/app/utils/capitalizeText";
 
@@ -17,17 +17,49 @@ interface IProps {
   style?: any
   rows?: number
   required?: boolean
+  validation: RegExp
 }
 
-const FormInput: FC<IProps> = (
-  {name, defaultValue = '', control, endAdornment, variant = 'outlined', sx, style, rows, required = false, placeholder}
+const FormInput: FC<IProps> = ({
+  name,
+  defaultValue = '',
+  control,
+  endAdornment,
+  variant = 'outlined',
+  sx,
+  style,
+  rows,
+  required = false,
+  placeholder,
+  validation
+  }
   ) => {
+
+  const isValid = (value: string) => {
+    return validation.test(value)
+  }
+
+  const getValidValue = (value: string) => {
+    if (value[value.length - 1] === '.') {
+      return value
+    }
+
+    const execObj = validation.exec(value)
+    return execObj ? execObj[0] : ''
+  }
 
   return (
     <Controller
       name={name}
       control={control}
       defaultValue={defaultValue}
+      rules={{
+        required,
+        pattern: {
+          value: validation,
+          message: ''
+        }
+      }}
       render={({ field: { onChange, value } }) => (
           <TextField
               required={required}
@@ -35,7 +67,7 @@ const FormInput: FC<IProps> = (
               label={capitalizeText(placeholder ?? name)}
               variant={variant}
               multiline={!!rows && rows > 1}
-              value={value}
+              value={value === 0 ? '' : getValidValue(value)}
               rows={rows}
               onChange={onChange}
               sx={{width: '100%', ...sx}}
@@ -43,6 +75,7 @@ const FormInput: FC<IProps> = (
                   endAdornment,
                   style: { width: "100%", ...style },
               }}
+              error={!isValid}
           />
       )}
     />

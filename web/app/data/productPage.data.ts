@@ -1,4 +1,5 @@
 import { IProductField } from "@/app/types/product.type";
+import { regex } from "./regex";
 
 export const productPageData = Object.freeze({
   weight: "Weight",
@@ -7,9 +8,6 @@ export const productPageData = Object.freeze({
   notInStock: "Not in stock",
   currency: 'CZK',
   submit: 'submit',
-  pricePattern: '[0-9]+(\\.[0-9][0-9]?)?',
-  weightPattern: '[0-9]+(\\.[0-9]?)?',
-  countPattern: '[0-9]?',
   fields: [
     {
       name: 'name',
@@ -17,7 +15,8 @@ export const productPageData = Object.freeze({
       md: 12,
       type: 'text',
       required: true,
-      rows: 1
+      rows: 1,
+      validation: regex.all
     },
     {
       name: 'manufacturer',
@@ -25,7 +24,8 @@ export const productPageData = Object.freeze({
       md: 6,
       type: 'select',
       required: true,
-      rows: 1
+      rows: 1,
+      validation: regex.all
     },
     {
       name: 'category',
@@ -33,7 +33,8 @@ export const productPageData = Object.freeze({
       md: 6,
       type: 'select',
       required: true,
-      rows: 1
+      rows: 1,
+      validation: regex.all
     },
     {
       name: 'price',
@@ -41,7 +42,8 @@ export const productPageData = Object.freeze({
       md: 6,
       type: 'text',
       required: true,
-      rows: 1
+      rows: 1,
+      validation: regex.price
     },
     {
       name: 'weight',
@@ -49,7 +51,8 @@ export const productPageData = Object.freeze({
       md: 6,
       type: 'text',
       required: true,
-      rows: 1
+      rows: 1,
+      validation: regex.weight
     },
     {
       name: 'stockQuantity',
@@ -57,7 +60,8 @@ export const productPageData = Object.freeze({
       md: 6,
       type: 'text',
       required: true,
-      rows: 1
+      rows: 1,
+      validation: regex.stockQuantity
     },
     {
       name: 'description',
@@ -65,7 +69,8 @@ export const productPageData = Object.freeze({
       md: 12,
       type: 'text',
       required: true,
-      rows: 10
+      rows: 10,
+      validation: regex.all
     },
   ] as IProductField[]
 })

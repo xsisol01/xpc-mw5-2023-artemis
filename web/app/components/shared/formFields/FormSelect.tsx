@@ -14,6 +14,7 @@ interface IProps {
   style?: any
   rows?: number
   required?: boolean
+  validation: RegExp
 }
 
 const FormSelect: FC<IProps> = (
@@ -23,19 +24,21 @@ const FormSelect: FC<IProps> = (
     control,
     defaultValue,
     sx,
-    rows
+    rows,
+    validation
   }) => {
-
-    const getOpObj = (option: any) => {
-      if (!option.id) option = options.find((op: any) => op.id === option);
-      return option;
-    };
 
   return (
     <Controller
       control={control}
       name={name}
       defaultValue={defaultValue}
+      rules={{
+        pattern: {
+          value: RegExp(validation),
+          message: ''
+        }
+      }}
       render={(props) => (
           <Autocomplete
               {...props}
