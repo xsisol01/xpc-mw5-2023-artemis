@@ -10,7 +10,7 @@ const RightSubmitButton: FC<IProps> = ({ disabled }) => {
   return (
     <Box
       component="div"
-      sx={{ display: "flex", justifyContent: "end", height: 40 }}
+      sx={{ display: "flex", justifyContent: "end", height: 40, mt: 2 }}
     >
       <SubmitButton disabled={disabled} />
     </Box>

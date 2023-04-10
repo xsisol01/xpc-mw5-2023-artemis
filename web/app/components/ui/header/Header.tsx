@@ -12,13 +12,7 @@ import { headerData } from './header.data'
 import styles from './header.module.scss'
 
 
-
-
-interface IProps {
-  contentPage?: 'home'
-}
-
-const Header: FC<IProps> = ({contentPage}) => {
+const Header: FC = () => {
 
   return (
     <AppBar>
@@ -26,11 +20,6 @@ const Header: FC<IProps> = ({contentPage}) => {
           <Typography noWrap={true} variant='h5' sx={{mr: 2, fontWeight: 700}}>
               {headerData.title.toUpperCase()}
           </Typography>
-          { contentPage === 'home' && 
-              withUrlSearchParams<ISearchProductProps>(SearchProduct)({
-                uid: 'search'
-              })
-          }
           <Box sx={{flexGrow: 1}}>
               <Navbar />
           </Box>

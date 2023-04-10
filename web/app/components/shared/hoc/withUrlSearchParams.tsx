@@ -1,18 +1,14 @@
-import { useState, useEffect, FC } from 'react'
+import { FC } from 'react'
 
 import { useRouter } from 'next/router'
+import { CircularProgress } from '@mui/material';
 
 function withUrlSearchParams <T>(Component: FC<T>): FC<T> {
-    
-    const [urlSearchParams, setUrlSearchParams] = useState({} as URLSearchParams)
-
     const router = useRouter();
 
-    useEffect(() => {
-        const urlParams = getNewUrlSearchParams()
-
-        setUrlSearchParams(urlParams)
-    }, [])
+    if (!router.isReady) {
+        return () => <CircularProgress />
+    }
 
     return (props: T) => {
         return <Component {...props} getParam={getParam} setParam={setParam} />
@@ -20,31 +16,48 @@ function withUrlSearchParams <T>(Component: FC<T>): FC<T> {
 
     function getParam(paramName: string) {
         const urlParams = getNewUrlSearchParams()
-        return urlParams.get && urlParams.get(paramName)
+        if (urlParams) {
+            return urlParams.get && urlParams.get(paramName)
+        }
     }
 
     function setParam(name:string, value:string) {
-        let currentQuery = {}
+            if (!value || !value.length) {
+                removeParam(name)
+                return
+            }
+    
+            const currentQuery = router.query
+    
+            router.push({query: {
+                ...currentQuery,
+                [name.toLowerCase()]: value.toLowerCase()
+            }})
+    }
 
-        if(!value && !value.length) {
-            return
-        }
+    function removeParam(name: string) {
+        let currentQuery = {}
 
         if (Object.keys(router.query).length) {
             currentQuery = router.query
         }
 
-        const updatedParams = {
-            ...currentQuery,
-            [name.toLowerCase()]: value.toLowerCase()
+        const filteredQueries = Object
+            .entries(currentQuery)
+            .filter(([key, value]) => key !== name)
+
+        const newRouter = {
+            query: Object.fromEntries(filteredQueries)
         }
 
-        router.push({query: updatedParams})
+        router.push({query: Object.fromEntries(filteredQueries)})
     }
 
     function getNewUrlSearchParams() {
-        const url = new URL(window.location.href)
-        return new URLSearchParams(url.search)
+        if (typeof window !== "undefined") {
+            const url = new URL(window.location.href)
+            return new URLSearchParams(url.search)
+        }
     }
 }
 

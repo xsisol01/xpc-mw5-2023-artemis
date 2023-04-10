@@ -6,6 +6,8 @@ import { isTextEqual } from "@/app/utils/isTextEqual";
 import { useEffect, useState } from "react";
 import { ListItem, ListItemButton, ListItemText } from "@mui/material";
 
+
+
 const MAX_HEIGHT = 380;
 
 export type IOption = {
@@ -61,7 +63,7 @@ const ScrollableList: FC<IScrollableListProps> = memo(
           <ListItemButton
             key={item.id}
             onClick={() => setSelected(item.id)}
-            sx={{ height: 40 }}
+            sx={{height: 40}}
           >
             <ListItem>
               <ListItemText

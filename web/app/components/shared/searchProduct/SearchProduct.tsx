@@ -1,60 +1,105 @@
-import { useEffect, useState, FC, memo } from 'react'
+import { useEffect, useState, FC, memo } from "react";
 
-import classNames from 'classnames'
+import classNames from "classnames";
 
-import { FaSearch } from 'react-icons/fa'
+import { FaSearch } from "react-icons/fa";
 
-import { searchProductData } from './searchProduct.data'
+import { searchProductData } from "./searchProduct.data";
 
-import style from './searchProduct.module.scss'
-import { getLoweredLetters } from '@/app/utils/getLoweredLetters'
-import { Search } from '@mui/icons-material'
+import style from "./searchProduct.module.scss";
+import { getLoweredLetters } from "@/app/utils/getLoweredLetters";
+import { Search as SearchIcon } from "@mui/icons-material";
+import { IconButton, InputBase, Paper } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
+
+import ClearIcon from "@mui/icons-material/Clear";
 
 export interface ISearchProductProps {
-    uid: string
-    className?: string
-    getParam?: (name: string) => string
-    setParam?: (name: string, value: string) => void
+  uid: string;
+  getParam?: (name: string) => string;
+  setParam?: (name: string, value: string) => void;
 }
 
-const SearchProduct: FC<ISearchProductProps> = memo(({uid, className, getParam, setParam}) => {
-    const [value, setValue] = useState<string>()
+const SearchProduct: FC<ISearchProductProps> = memo(
+  ({ uid, getParam, setParam }) => {
+    const { control, reset, watch } = useForm({
+      defaultValues: {
+        [uid]: getUrlParams(),
+      },
+    });
 
     useEffect(() => {
-        if (!value && !value?.length) {
-            const paramFromUrl = getParam && getParam(uid)
-
-            if (paramFromUrl) {
-                setValue(paramFromUrl)
-            }
+      const subscription = watch((value, { name }) => {
+        if (value && name) {
+          setUrlParams(value[uid] ?? "");
         }
-    })
+      });
 
-    useEffect(() => {
-        if (setParam && value) {
-            setParam(uid, getLoweredLetters(value))
-        }
-    }, [value])
+      return () => subscription.unsubscribe();
+    }, [watch]);
+
+    function resetSearchBar() {
+      setUrlParams('');
+      reset({ [uid]: '' });
+    }
+
+    function setUrlParams(text: string) {
+      if (setParam) {
+        setParam(uid, getLoweredLetters(text));
+      }
+    }
+
+    function getUrlParams() {
+        return getParam ? getParam(uid) : ''
+    }
 
     return (
-        <div className={classNames({
-            [style.searchProduct]: true,
-            [className ?? '']: true
-        })}>
-            <input
-                className={style.searchProduct__input}
+      <Paper
+        component="form"
+        sx={{
+          p: "2px 4px",
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+          mb: 2,
+        }}
+      >
+        <Controller
+          control={control}
+          name={"search"}
+          render={({ field }) => (
+            <>
+              <InputBase
+                {...field}
+                sx={{ ml: 1, flex: 1 }}
                 placeholder={searchProductData.placeholder}
-                value={value}
-                onInput={inputHandler}
-                />
-                <Search className={style.searchProduct__icon}/>
-        </div>
-    )
+                inputProps={{ "aria-label": searchProductData.ariaLabel }}
+              />
 
+              {field.value?.length ? (
+                <IconButton
+                  type="button"
+                  sx={{ p: "10px" }}
+                  aria-label="search"
+                  onClick={resetSearchBar}
+                >
+                  <ClearIcon />
+                </IconButton>
+              ) : (
+                <IconButton
+                  type="button"
+                  sx={{ p: "10px" }}
+                  aria-label="search"
+                >
+                  <SearchIcon />
+                </IconButton>
+              )}
+            </>
+          )}
+        />
+      </Paper>
+    );
+  }
+);
 
-    function inputHandler(event: React.ChangeEvent<HTMLInputElement>): void {
-        setValue(event.target.value)
-    }
-})
-
-export default SearchProduct
+export default SearchProduct;

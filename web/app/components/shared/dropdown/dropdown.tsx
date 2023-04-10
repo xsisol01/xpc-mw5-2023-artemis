@@ -39,6 +39,16 @@ const Dropdown: FC<IProps> = memo(({title, children}) => {
                     position: 'relative',
                     overflow: 'auto',
                     '& ul': { padding: 0 },
+                    "&::-webkit-scrollbar": {
+                        /* width */ width: "3px",
+                      },
+                      "&::-webkit-scrollbar-track": {
+                        /* Track */ backgroundColor: "#fff",
+                      },
+                      "&::-webkit-scrollbar-thumb": {
+                        /* Handle */ backgroundColor: "#ccc",
+                        borderRadius: "4px",
+                      },
                 }}
                 subheader={<li />}
                 component="div"
