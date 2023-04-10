@@ -11,7 +11,7 @@ export const useCreateManufacturer = (data: ICreateManufacturer) => {
   const {push} = useRouter()
   const {setIsAdmin} = useContext(RoleContext)
 
-  const { isLoading, mutateAsync: createManufacturer } = useMutation(
+  const { isLoading, mutateAsync: createManufacturer, isSuccess } = useMutation(
     ['create manufacturer', data],
     (data: ICreateManufacturer) => ManufacturerService.create(data),
     {
@@ -24,5 +24,5 @@ export const useCreateManufacturer = (data: ICreateManufacturer) => {
     }
   )
   
-    return { isLoading, createManufacturer }
+    return { isLoading, createManufacturer, isSuccess }
 }

@@ -1,11 +1,14 @@
 import { FC, memo } from "react";
 import Link from "next/link";
 
-import { IManufacturer } from "@/app/types/manufacturer.type";
-
 import { capitalize,CircularProgress,ListItem, ListItemButton, Typography } from "@mui/material";
+import { ILeftMenuItem } from "./leftMenuItem.type";
 
-const ManufacturerItem: FC<IManufacturer> = memo(({ id, name }) => {
+interface IProps {
+  linkTo: string
+}
+
+const LeftMenuItem: FC<ILeftMenuItem & IProps> = memo(({ id, name, linkTo }) => {
 
   if (!id || !name) return <CircularProgress />
 
@@ -23,8 +26,8 @@ const ManufacturerItem: FC<IManufacturer> = memo(({ id, name }) => {
         }}
       >
         <Link
-          href="/manufacturer/[pid]"
-          as={`/manufacturer/${id}`}
+          href={`/${linkTo}/[pid]`}
+          as={`/${linkTo}/${id}`}
         >
           <Typography variant="h6">{capitalize(name)}</Typography>
         </Link>
@@ -33,4 +36,4 @@ const ManufacturerItem: FC<IManufacturer> = memo(({ id, name }) => {
   );
 });
 
-export default ManufacturerItem;
+export default LeftMenuItem;

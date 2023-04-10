@@ -8,8 +8,11 @@ import { Box, capitalize,Card,ListItem, ListItemButton, Skeleton, Typography } f
 
 import {Add as AddIcon} from '@mui/icons-material';
 
+interface IProps {
+  linkTo: string
+}
 
-const AddManufacturer: FC = memo(() => {
+const CreateItem: FC<IProps> = memo(({linkTo}) => {
 
   return (
     <ListItem disablePadding component="li">
@@ -25,7 +28,7 @@ const AddManufacturer: FC = memo(() => {
         }}
       >
         <Link
-          href="/manufacturer/new"
+          href={`/${linkTo}/new`}
           style={{
             padding: 0,
             display: 'flex',
@@ -42,4 +45,4 @@ const AddManufacturer: FC = memo(() => {
   );
 });
 
-export default AddManufacturer;
+export default CreateItem;

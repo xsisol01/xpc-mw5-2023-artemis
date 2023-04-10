@@ -47,7 +47,6 @@ const FilterProduct: FC = memo(() => {
                     filterProductData.map(field => {
 
                         const Component = getComponent(field.type)
-                        const componentType = getComponentType(field.type)
                         const componentOptions = getComponentOptions(field)
                         const componentUnit = getComponentUnit(field)
 
@@ -67,7 +66,8 @@ const FilterProduct: FC = memo(() => {
                         return (
                             <Dropdown title={field.title} key={field.uid}>
                                 {
-                                    withUrlSearchParams<typeof componentType>(Component)({...props})
+                                    withUrlSearchParams<any>
+                                    (Component)({...props})
                                 }
                             </Dropdown>
                         )
@@ -90,19 +90,6 @@ const FilterProduct: FC = memo(() => {
                 return manufacturers ?? []
             default:
                 return []
-        }
-    }
-
-    function getComponentType(fieldType: string) {
-        switch (fieldType) {
-            case fieldTypeData.list:
-                return IScrollableListProps
-            case fieldTypeData.radio:
-                return IRadioProps
-            case fieldTypeData.slider:
-                return ISliderProps
-            default:
-                return null
         }
     }
 

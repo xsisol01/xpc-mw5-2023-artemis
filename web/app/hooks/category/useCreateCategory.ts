@@ -1,24 +1,19 @@
-import { useContext } from 'react';
-import { useRouter } from 'next/router';
+import { ICreateCategory } from './../../types/category.type';
+
 import { useMutation } from "react-query";
 
-import { RoleContext } from '@/app/providers/roleContextProvider';
+
 import { CategoryService } from '@/app/services/category.service';
-import { ICategory } from "@/app/types/category.type";
 
 
-export const useCreateCategory = (data: ICategory) => {
-  const {push} = useRouter()
-  const {setIsAdmin} = useContext(RoleContext)
+export const useCreateCategory = (data: ICreateCategory) => {
 
-  const { isLoading, mutateAsync } = useMutation(
+  const { isLoading, mutateAsync: createCategory, isSuccess } = useMutation(
     ['create category', data],
-    () => CategoryService.create(data),
+    (data: ICreateCategory) => CategoryService.create(data),
     {
       onSuccess: () => {
         alert('Category has been created')
-        setIsAdmin(false)
-        push(`/category/${data.id}`)
       },
       onError: (error) => {
         console.log(error)
@@ -26,5 +21,5 @@ export const useCreateCategory = (data: ICategory) => {
     }
   )
   
-    return { isLoading, mutateAsync }
+    return { isLoading, createCategory, isSuccess }
 }

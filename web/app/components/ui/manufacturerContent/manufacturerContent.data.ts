@@ -1,5 +1,6 @@
 import { IProduct } from '@/app/types/product.type';
 import { IManufacturer, IManufacturerField } from '@/app/types/manufacturer.type';
+import { regex } from '@/app/data/regex';
 
 export const manufacturerContentData = Object.freeze({
   defaultValues: {
@@ -17,7 +18,8 @@ export const manufacturerContentData = Object.freeze({
       md: 12,
       type: 'text',
       required: true,
-      rows: 1
+      rows: 1,
+      validation: regex.all
     },
     {
       name: 'country',
@@ -25,7 +27,8 @@ export const manufacturerContentData = Object.freeze({
       md: 12,
       type: 'text',
       required: true,
-      rows: 1
+      rows: 1,
+      validation: regex.all
     },
     {
       name: 'description',
@@ -33,7 +36,8 @@ export const manufacturerContentData = Object.freeze({
       md: 12,
       type: 'text',
       required: true,
-      rows: 10
+      rows: 10,
+      validation: regex.all
     }
 
   ] as IManufacturerField[]

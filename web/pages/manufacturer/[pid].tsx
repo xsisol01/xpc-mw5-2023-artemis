@@ -1,8 +1,9 @@
 
 import HeaderLayout from "@/app/components/layout/headerLayout/HeaderLayout";
-import ManufacturerLayout from "@/app/components/layout/manufacturerLayout/ManufacturerLayout";
+import LeftMenuLayout from "@/app/components/layout/leftMenuLayout/LeftMenuLayout";
 import AdminManufacturerContent from "@/app/components/ui/manufacturerContent/AdminManufacturerContent";
 import ManufacturerContent from "@/app/components/ui/manufacturerContent/ManufacturerContent";
+import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
 import { useGetManufacturer } from "@/app/hooks/manufacturer/useGetManufacturer";
 import { RoleContext } from "@/app/providers/roleContextProvider";
 import { CircularProgress } from "@mui/material";
@@ -20,19 +21,22 @@ const Manufacturer: NextPage = () => {
     }
 
     const {manufacturer, isLoading} = useGetManufacturer(pid.toString())
+    const {manufacturers, isLoading: isManufacturersLoading} = useGetAllManufacturers()
     
     return (
         <HeaderLayout>
-            <ManufacturerLayout>
-            {isLoading && <CircularProgress />}
-            {manufacturer && (
-                isAdmin 
-                ? <AdminManufacturerContent {...manufacturer} />
-                : <ManufacturerContent {...manufacturer} />
+            {isManufacturersLoading && <CircularProgress />}
+            {manufacturers && (
+                <LeftMenuLayout options={manufacturers} linkTo='manufacturer'>
+                    {isLoading && <CircularProgress />}
+                    {manufacturer && (
+                        isAdmin 
+                        ? <AdminManufacturerContent {...manufacturer} />
+                        : <ManufacturerContent {...manufacturer} />
+                    )}
+                </LeftMenuLayout>
             )}
-            </ManufacturerLayout>
         </HeaderLayout>
-        
     )
 }
 

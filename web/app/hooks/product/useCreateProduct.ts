@@ -13,7 +13,7 @@ export const useCreateProduct = (data: ICreateProduct) => {
   const {push} = useRouter()
   const {setIsAdmin} = useContext(RoleContext)
 
-  const { isLoading, mutateAsync: createProduct } = useMutation(
+  const { isLoading, mutateAsync: createProduct, isSuccess } = useMutation(
     ['create product', data],
     (data: ICreateProduct) => ProductService.create(data),
     {
@@ -26,5 +26,5 @@ export const useCreateProduct = (data: ICreateProduct) => {
     }
   )
   
-    return { isLoading, createProduct }
+    return { isLoading, createProduct, isSuccess }
 }

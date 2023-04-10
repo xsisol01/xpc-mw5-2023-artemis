@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ICategory } from '@/app/types/category.type';
+import { ICategory, ICreateCategory } from '@/app/types/category.type';
 
 const instance = axios.create({
   baseURL: `${process.env.apiUrl}/categories`,
@@ -19,12 +19,12 @@ export const CategoryService = {
     return instance.get<ICategory>(`/${id}`)
   },
 
-  async create(data: ICategory) {
-    instance.put('', data)
+  async create(data: ICreateCategory) {
+    instance.post('', data)
   },
 
   async update(data: ICategory) {
-    instance.post(`/${data.id}`, data)
+    instance.put(`/${data.id}`, data)
   },
 
   async delete(id: string) {

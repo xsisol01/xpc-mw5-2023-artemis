@@ -1,3 +1,6 @@
+import { IScrollableListProps } from '@/app/components/shared/scrollableList/ScrollableList';
+import { ISliderProps } from '@/app/components/shared/formFields/slider/Slider';
+import { IRadioProps } from '@/app/components/shared/formFields/radio/Radio';
 
 export const fieldTypeData = Object.freeze({
   list: 'list',
@@ -13,6 +16,8 @@ export interface IFilterItem  {
   options?: any
   unit?: string
 }
+
+export type TProductFilterField = IRadioProps | ISliderProps | IScrollableListProps
 
 export const filterProductData = Object.freeze([
     {

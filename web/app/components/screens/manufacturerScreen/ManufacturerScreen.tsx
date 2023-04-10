@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import ManufacturerLayout from "@/app/components/layout/manufacturerLayout/ManufacturerLayout";
+import ManufacturerLayout from "@/app/components/layout/leftMenuLayout/LeftMenuLayout";
 
 import styles from './manufacturersContent.module.scss'
 import { useRouter } from "next/router";

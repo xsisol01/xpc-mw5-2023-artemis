@@ -44,7 +44,7 @@ const FormInput: FC<IProps> = ({
       return value
     }
 
-    const execObj = validation.exec(value)
+    const execObj = validation?.exec(value)
     return execObj ? execObj[0] : ''
   }
 

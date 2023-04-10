@@ -4,7 +4,7 @@ import { FC, ReactNode } from "react";
 import { Controller } from "react-hook-form";
 
 interface IProps {
-  options: any
+  options?: any
   name: string
   defaultValue?: any
   control: any

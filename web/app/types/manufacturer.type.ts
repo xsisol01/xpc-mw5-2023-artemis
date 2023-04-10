@@ -16,6 +16,7 @@ export interface IManufacturerField {
   type: 'text' | 'select'
   required: boolean
   rows: number
+  validation: RegExp
 }
 
 export interface ICreateManufacturer {

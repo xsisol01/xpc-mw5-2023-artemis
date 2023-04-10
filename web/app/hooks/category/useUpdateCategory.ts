@@ -8,19 +8,13 @@ import { ICategory } from "@/app/types/category.type";
 
 
 export const useUpdateCategory = (data: ICategory) => {
-  const {push} = useRouter()
-  const { setIsAdmin} = useContext(RoleContext)
 
-  const { isLoading, mutateAsync } = useMutation(
+  const { isLoading, mutateAsync: updateCategory } = useMutation(
     ['update category', data],
-    () => CategoryService.update(data),
+    (data: ICategory) => CategoryService.update(data),
     {
       onSuccess: () => {
         alert('Category has been created')
-
-        setIsAdmin(false)
-        
-        push(`/category/${data.id}`)
       },
       onError: (error) => {
         console.log(error)
@@ -28,5 +22,5 @@ export const useUpdateCategory = (data: ICategory) => {
     }
   )
   
-  return { isLoading, mutateAsync }
+  return { isLoading, updateCategory }
 }
