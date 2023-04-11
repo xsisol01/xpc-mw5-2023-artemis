@@ -645,10 +645,25 @@ namespace Eshop.webAPI.FakeDB
             fiskars.addCommodity(lop1);
             fiskars.addCommodity(lop2);
             fiskars.addCommodity(lop3);
+            parkside.addCommodity(vrt1);
+            makita.addCommodity(vrt2);
+            ferrida.addCommodity(skrut1);
+            makita.addCommodity(skrut2);
+            makita.addCommodity(skrut3);
+            bosch.addCommodity(utah1);
+            makita.addCommodity(utah2);
+            parkside.addCommodity(utah3);
+            fiskars.addCommodity(hrab1);
+            fiskars.addCommodity(hrab2);
+            parkside.addCommodity(hrab3);
+            fiskars.addCommodity(vytrh1);
+            ferrida.addCommodity(vytrh2);
+            fiskars.addCommodity(vytrh3);
+            juta.addCommodity(silaz1);
+            juta.addCommodity(silaz2);
+            juta.addCommodity(silaz3);
+            juta.addCommodity(silaz4);
 
-
-
-            
 
 
 
