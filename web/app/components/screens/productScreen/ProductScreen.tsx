@@ -6,8 +6,8 @@ import { RoleContext } from '@/app/providers/roleContextProvider'
 
 import HeaderLayout from '@/app/components/layout/headerLayout/HeaderLayout'
 import { useGetProduct } from '@/app/hooks/product/useGetProduct'
-import AdminProductInfo from '../../ui/productPage/AdminProductInfo'
-import ProductInfo from '../../ui/productPage/ProductInfo'
+import AdminProductInfo from '../../pages/productPage/AdminProductInfo'
+import ProductInfo from '../../pages/productPage/ProductInfo'
 import { Container } from '@mui/system'
 import { CircularProgress } from '@mui/material'
 

@@ -28,7 +28,7 @@ const CreateItem: FC<IProps> = memo(({linkTo}) => {
         }}
       >
         <Link
-          href={`/${linkTo}/new`}
+          href={`${linkTo}/new`}
           style={{
             padding: 0,
             display: 'flex',

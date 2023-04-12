@@ -8,11 +8,11 @@ import { searchProductData } from "./searchProduct.data";
 
 import style from "./searchProduct.module.scss";
 import { getLoweredLetters } from "@/app/utils/getLoweredLetters";
-import { Search as SearchIcon } from "@mui/icons-material";
-import { IconButton, InputBase, Paper } from "@mui/material";
+import { CircularProgress, IconButton, InputBase, Paper } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 
 import ClearIcon from "@mui/icons-material/Clear";
+import SearchIcon from "./SearchIcon";
 
 export interface ISearchProductProps {
   uid: string;
@@ -39,8 +39,8 @@ const SearchProduct: FC<ISearchProductProps> = memo(
     }, [watch]);
 
     function resetSearchBar() {
-      setUrlParams('');
-      reset({ [uid]: '' });
+      setUrlParams("");
+      reset({ [uid]: "" });
     }
 
     function setUrlParams(text: string) {
@@ -50,7 +50,7 @@ const SearchProduct: FC<ISearchProductProps> = memo(
     }
 
     function getUrlParams() {
-        return getParam ? getParam(uid) : ''
+      return getParam ? getParam(uid) : "";
     }
 
     return (
@@ -76,24 +76,7 @@ const SearchProduct: FC<ISearchProductProps> = memo(
                 inputProps={{ "aria-label": searchProductData.ariaLabel }}
               />
 
-              {field.value?.length ? (
-                <IconButton
-                  type="button"
-                  sx={{ p: "10px" }}
-                  aria-label="search"
-                  onClick={resetSearchBar}
-                >
-                  <ClearIcon />
-                </IconButton>
-              ) : (
-                <IconButton
-                  type="button"
-                  sx={{ p: "10px" }}
-                  aria-label="search"
-                >
-                  <SearchIcon />
-                </IconButton>
-              )}
+              <SearchIcon value={field.value} onClose={resetSearchBar} />
             </>
           )}
         />

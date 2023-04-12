@@ -22,8 +22,8 @@ const HomeScreen: FC = memo(() => {
 
   return (
     <HeaderLayout contentPage="home">
-      <Container sx={{ mt: 4 }}>
-        <Grid container spacing={2}>
+      <Container sx={{ mt: 2 }}>
+        <Grid container spacing={2} >
           <Grid item xs={3} sx={globalStyles.fullScroll}>
             <FilterProduct />
           </Grid>

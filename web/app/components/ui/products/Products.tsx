@@ -20,16 +20,21 @@ const Products: FC<IProps> = memo(({products, manufacturer, isLoading}) => {
     const {isAdmin} = useContext(RoleContext)
 
     return (
+        <>
+        {!products?.length && (
+            <Typography variant='h4' sx={{textAlign: 'center', mb: 1}}>
+                {productsData.empty}
+            </Typography>
+        )}
         <Grid container spacing={2}>
+            
+            
             {isAdmin && <ProductItemCreate manufacturer={manufacturer} />}
             {isLoading && <ProductItemPlaceholder />}
-            {!products?.length && (
-                <Typography variant='h4'>
-                    {productsData.empty}
-                </Typography>
-            )}
             {!isLoading && products?.map(product => <ProductItem key={product.id} {...product} />)}
         </Grid>
+        </>
+        
     )
 
 

@@ -4,6 +4,7 @@ import { Controller, FieldValues, Validate } from "react-hook-form";
 import { capitalizeText } from "@/app/utils/capitalizeText";
 
 import { TextField } from "@mui/material";
+import { regex } from "@/app/data/regex";
 
 
 interface IProps {
@@ -17,7 +18,7 @@ interface IProps {
   style?: any
   rows?: number
   required?: boolean
-  validation: RegExp
+  validation?: RegExp
 }
 
 const FormInput: FC<IProps> = ({
@@ -31,7 +32,7 @@ const FormInput: FC<IProps> = ({
   rows,
   required = false,
   placeholder,
-  validation
+  validation = regex.all
   }
   ) => {
 

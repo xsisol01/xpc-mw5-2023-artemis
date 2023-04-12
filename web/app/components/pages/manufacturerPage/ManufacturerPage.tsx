@@ -6,7 +6,7 @@ import { Box, capitalize, Grid, Typography } from "@mui/material";
 import Products from "@/app/components/ui/products/Products";
 
 
-const ManufacturerContent: FC<IManufacturer> = memo(({
+const ManufacturerPage: FC<IManufacturer> = memo(({
   name, imageUrl, country, description, products, id
 }) => {
 
@@ -43,4 +43,4 @@ const ManufacturerContent: FC<IManufacturer> = memo(({
   )
 })
 
-export default ManufacturerContent
+export default ManufacturerPage

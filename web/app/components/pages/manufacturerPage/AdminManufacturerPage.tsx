@@ -1,20 +1,20 @@
 import { FC, memo, useContext, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { manufacturerContentData } from "./manufacturerContent.data";
+import { manufacturerPageData } from "./manufacturerPage.data";
 import { IManufacturer, IManufacturerField } from "@/app/types/manufacturer.type";
 
 import { Box, Grid } from "@mui/material";
 import { useUpdateManufacturer } from "@/app/hooks/manufacturer/useUpdateManufacturer";
 import RightSubmitButton from "@/app/components/shared/button/submitButton/RightSubmitButton";
-import FormInput from "@/app/components/shared/formFields/FormInput";
+import FormInput from "@/app/components/shared/formFields/formInput/FormInput";
 import Products from "@/app/components/ui/products/Products";
 import UploadImage from "@/app/components/shared/button/uploadImage/UploadImage";
-import ManufacturerContent from "./ManufacturerContent";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
+import RightDeleteButton from "../../shared/button/deleteButton/RightDeleteButton";
 
 
-const AdminManufacturerContent: FC<IManufacturer> = memo(props => {
+const AdminManufacturerPage: FC<IManufacturer> = memo(props => {
   const {setCurrentManufacturer} = useContext(ManufacturerContext)
   const { products, id} = props
 
@@ -23,7 +23,7 @@ const AdminManufacturerContent: FC<IManufacturer> = memo(props => {
   }, [])
 
   const { isLoading, updateManufacturer } =
-    useUpdateManufacturer(manufacturerContentData.defaultValues);
+    useUpdateManufacturer(manufacturerPageData.defaultValues);
 
   const { handleSubmit, control } = useForm<IManufacturer>({
     defaultValues: props,
@@ -44,7 +44,7 @@ const AdminManufacturerContent: FC<IManufacturer> = memo(props => {
           </Grid>
           <Grid item xs={12} md={7}>
             <Grid container spacing={2}>
-              {manufacturerContentData.fields.map(({name, rows, xs, md, required}: IManufacturerField) => (
+              {manufacturerPageData.fields.map(({name, rows, xs, md, required}: IManufacturerField) => (
                 <Grid item key={name} xs={xs} md={md}>
                   <FormInput
                     defaultValue={props[name]}
@@ -57,11 +57,14 @@ const AdminManufacturerContent: FC<IManufacturer> = memo(props => {
               ))}
             </Grid>
             <RightSubmitButton disabled={isLoading} />
+            
           </Grid>
         </Grid>
       </form>
 
-        <Box sx={{ borderTop: "1px solid #ccc", pt: 2 }}>
+      <RightDeleteButton id={props.id} elementType='manufacturer' />
+
+        <Box sx={{ borderTop: "1px solid #ccc", pt: 2, mt: 1 }}>
           <Products
             products={products}
             manufacturer={id}
@@ -72,4 +75,4 @@ const AdminManufacturerContent: FC<IManufacturer> = memo(props => {
   )
 });
 
-export default AdminManufacturerContent;
+export default AdminManufacturerPage;

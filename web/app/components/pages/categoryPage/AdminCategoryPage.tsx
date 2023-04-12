@@ -1,14 +1,15 @@
-import { regex } from "@/app/data/regex";
+
 import { useUpdateCategory } from "@/app/hooks/category/useUpdateCategory";
 import { ICategory } from "@/app/types/category.type";
-import { capitalize, Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import RightDeleteButton from "../../shared/button/deleteButton/RightDeleteButton";
 import RightSubmitButton from "../../shared/button/submitButton/RightSubmitButton";
-import FormInput from "../../shared/formFields/FormInput";
-import { categoryContentData } from "./categoryContent.data";
+import FormInput from "../../shared/formFields/formInput/FormInput";
+import { categoryPageData } from "./categoryPage.data";
 
-const AdminCategoryContent: FC<ICategory> = (props) => {
+const AdminCategoryPage: FC<ICategory> = (props) => {
   const { handleSubmit, control } = useForm<ICategory>({
     defaultValues: props,
   });
@@ -27,9 +28,10 @@ const AdminCategoryContent: FC<ICategory> = (props) => {
   };
 
   return (
+    <>
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container></Grid>
-      {categoryContentData.fields.map((field) => (
+      {categoryPageData.fields.map((field) => (
         <Grid item key={field.name} xs={field.xs} md={field.md}>
           <FormInput
             name={field.name}
@@ -38,10 +40,13 @@ const AdminCategoryContent: FC<ICategory> = (props) => {
           />
         </Grid>
       ))}
-
       <RightSubmitButton disabled={isLoading} />
     </form>
+    <RightDeleteButton id={props.id} elementType='category' />
+    </>
+    
+      
   );
 };
 
-export default AdminCategoryContent;
+export default AdminCategoryPage;

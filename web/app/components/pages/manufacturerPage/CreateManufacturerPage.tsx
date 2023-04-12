@@ -8,8 +8,8 @@ import { useCreateManufacturer } from "@/app/hooks/manufacturer/useCreateManufac
 import { Grid } from "@mui/material"
 import RightSubmitButton from "@/app/components/shared/button/submitButton/RightSubmitButton";
 import UploadImage from "@/app/components/shared/button/uploadImage/UploadImage";
-import FormInput from "@/app/components/shared/formFields/FormInput";
-import { manufacturerContentData } from "@/app/components/ui/manufacturerContent/manufacturerContent.data";
+import FormInput from "@/app/components/shared/formFields/formInput/FormInput";
+import { manufacturerContentData } from "@/app/components/pages/manufacturerPage/manufacturerPage.data";
 
 
 

@@ -1,64 +1,64 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from "react";
 
-import { useRouter } from 'next/router'
-import { CircularProgress } from '@mui/material';
+import { useRouter } from "next/router";
+import { isObjectEqual } from "@/app/utils/isObjectEqual";
 
-function withUrlSearchParams <T>(Component: FC<T>): FC<T> {
-    const router = useRouter();
+function withUrlSearchParams<T>(Component: FC<T>): FC<T> {
+  const router = useRouter();
+  const [searchParams, setSearchParams] = useState({});
 
-    if (!router.isReady) {
-        return () => <CircularProgress />
+  const [isDefaultValue, setIsDefaultValue] = useState(false);
+
+  useEffect(() => {
+    if (router.isReady && !isDefaultValue) {
+      const { query } = router;
+      setSearchParams(query);
+      setIsDefaultValue(true);
+    }
+  });
+
+  useEffect(() => {
+    if (!isObjectEqual(searchParams, router.query)) {
+      setSearchParams(router.query);
+    }
+  }, [router.query]);
+
+  useEffect(() => {
+    if (!isObjectEqual(searchParams, router.query)) {
+      router.push({ query: searchParams });
+    }
+  }, [searchParams]);
+
+  function getParam(paramName: string) {
+    return searchParams[paramName as keyof typeof searchParams];
+  }
+
+  function setParam(name: string, value: string) {
+    if (!value.length) {
+      removeParam(name);
+      return;
     }
 
-    return (props: T) => {
-        return <Component {...props} getParam={getParam} setParam={setParam} />
-    } 
+    setSearchParams(prev => {
+      return {
+        ...prev,
+        [name.toLowerCase()]: value.toLowerCase(),
+      }
+      
+    });
+  }
 
-    function getParam(paramName: string) {
-        const urlParams = getNewUrlSearchParams()
-        if (urlParams) {
-            return urlParams.get && urlParams.get(paramName)
-        }
-    }
+  function removeParam(name: string) {
+    const filteredQueries = Object.entries(searchParams).filter(
+      ([key, value]) => key !== name
+    );
 
-    function setParam(name:string, value:string) {
-            if (!value || !value.length) {
-                removeParam(name)
-                return
-            }
-    
-            const currentQuery = router.query
-    
-            router.push({query: {
-                ...currentQuery,
-                [name.toLowerCase()]: value.toLowerCase()
-            }})
-    }
+    setSearchParams(Object.fromEntries(filteredQueries));
+  }
 
-    function removeParam(name: string) {
-        let currentQuery = {}
-
-        if (Object.keys(router.query).length) {
-            currentQuery = router.query
-        }
-
-        const filteredQueries = Object
-            .entries(currentQuery)
-            .filter(([key, value]) => key !== name)
-
-        const newRouter = {
-            query: Object.fromEntries(filteredQueries)
-        }
-
-        router.push({query: Object.fromEntries(filteredQueries)})
-    }
-
-    function getNewUrlSearchParams() {
-        if (typeof window !== "undefined") {
-            const url = new URL(window.location.href)
-            return new URLSearchParams(url.search)
-        }
-    }
+  return (props: T) => {
+    return <Component {...props} getParam={getParam} setParam={setParam} />;
+  };
 }
 
-export default withUrlSearchParams
+export default withUrlSearchParams;

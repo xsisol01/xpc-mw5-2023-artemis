@@ -9,8 +9,8 @@ import { Grid} from "@mui/material";
 import { capitalizeText } from "@/app/utils/capitalizeText";
 import { IProduct, IProductField } from "@/app/types/product.type";
 import { useUpdateProduct } from "@/app/hooks/product/useUpdateProduct";
-import FormInput from "@/app/components/shared/formFields/FormInput";
-import FormSelect from "@/app/components/shared/formFields/FormSelect";
+import FormInput from "@/app/components/shared/formFields/formInput/FormInput";
+import FormSelect from "@/app/components/shared/formFields/formSelect/FormSelect";
 import RightSubmitButton from "@/app/components/shared/button/submitButton/RightSubmitButton";
 import UploadImage from "@/app/components/shared/button/uploadImage/UploadImage";
 

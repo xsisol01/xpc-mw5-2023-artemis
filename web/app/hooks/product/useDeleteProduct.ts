@@ -8,6 +8,8 @@ import { IProduct } from "@/app/types/product.type";
 
 
 export const useDeleteProduct = (id: string) => {
+  const router = useRouter()
+  const {push} = router
 
   const { isLoading, mutateAsync: deleteProduct } = useMutation(
     ['delete product', id],
@@ -15,6 +17,8 @@ export const useDeleteProduct = (id: string) => {
     {
       onSuccess: () => {
         alert('Product has been deleted')
+
+        push('/')
       },
       onError: (error) => {
         console.log(error)

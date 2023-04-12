@@ -1,5 +1,5 @@
-import { regex } from './../../../data/regex';
-export const categoryContentData = Object.freeze({
+import { regex } from '../../../data/regex';
+export const categoryPageData = Object.freeze({
   defaultValues: {
     id: '',
     name: ''

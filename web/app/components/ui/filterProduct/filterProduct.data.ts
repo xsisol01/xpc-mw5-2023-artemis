@@ -1,61 +1,65 @@
-import { IScrollableListProps } from '@/app/components/shared/scrollableList/ScrollableList';
-import { ISliderProps } from '@/app/components/shared/formFields/slider/Slider';
-import { IRadioProps } from '@/app/components/shared/formFields/radio/Radio';
+import { regex } from "./../../../data/regex";
+import { IScrollableListProps } from "@/app/components/shared/scrollableList/ScrollableList";
+import { ISliderProps } from "@/app/components/shared/formFields/slider/Slider";
+import { IRadioProps } from "@/app/components/shared/formFields/radio/Radio";
 
 export const fieldTypeData = Object.freeze({
-  list: 'list',
-  slider: 'slider',
-  radio: 'radio'
-})
+  list: "list",
+  slider: "slider",
+  radio: "radio",
+});
 
-
-export interface IFilterItem  {
-  title: string
-  uid: string
-  type: string
-  options?: any
-  unit?: string
+export interface IFilterItem {
+  title: string;
+  uid: string;
+  type: string;
+  options?: any;
+  unit?: string;
+  validation?: RegExp;
 }
 
-export type TProductFilterField = IRadioProps | ISliderProps | IScrollableListProps
-
-export const filterProductData = Object.freeze([
-    {
-      title: 'Category',
-      uid: 'category',
+export const filterProductData = Object.freeze({
+  defaultValues: {
+    category: {
+      title: "Category",
+      uid: "category",
       type: fieldTypeData.list,
-      options: []
+      options: [],
     },
-    {
-      title: 'Price',
-      uid: 'price',
+    price: {
+      title: "Price",
+      uid: "price",
       type: fieldTypeData.slider,
-      unit: 'CZK'
+      unit: "CZK",
+      validation: regex.price,
     },
-    {
-      title: 'Manufacturer',
-      uid: 'manufacturer',
+    manufacturer: {
+      title: "Manufacturer",
+      uid: "manufacturer",
       type: fieldTypeData.list,
-      options: []
+      options: [],
     },
-    {
-      title: 'Weight',
-      uid: 'weight',
+    weight: {
+      title: "Weight",
+      uid: "weight",
       type: fieldTypeData.slider,
-      unit: 'kg'
+      unit: "kg",
+      validation: regex.weight,
     },
-    {
-      title: 'Rating',
-      uid: 'rating',
-      type: fieldTypeData.slider
+    rating: {
+      title: "Rating",
+      uid: "rating",
+      type: fieldTypeData.slider,
+      validation: regex.all,
     },
-    {
-      title: 'In Stock',
-      uid: 'instock',
+    inStock: {
+      title: "In Stock",
+      uid: "instock",
       type: fieldTypeData.radio,
       options: [
-        {text: 'Yes', value: 'true'},
-        {text: 'No', value: 'false'}
-      ]
-    }
-  ])
+        { text: "Yes", value: "true" },
+        { text: "No", value: "false" },
+      ],
+    },
+  },
+});

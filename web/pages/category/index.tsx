@@ -1,26 +1,17 @@
-import HeaderLayout from "@/app/components/layout/headerLayout/HeaderLayout";
-import LeftMenuLayout from "@/app/components/layout/leftMenuLayout/LeftMenuLayout";
-import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
-import { CircularProgress } from "@mui/material";
 import { NextPage } from "next";
+import RouteToFirstItem from "@/app/components/shared/routeToFirstItem/RouteToFirstItem";
+import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
+import { routes } from "@/app/data/routes";
 
 const Categories: NextPage = () => {
-
-  const {categories, isLoading} = useGetAllCategories()
-
+  const { categories, isLoading } = useGetAllCategories();
   return (
-    <HeaderLayout>
-      {isLoading && <CircularProgress />}
-      {categories && (
-        <LeftMenuLayout options={categories} linkTo='category'>
-          <div>
-            categories
-          </div>
-        </LeftMenuLayout>
-      )}
-      
-    </HeaderLayout>
-  )
-}
+    <RouteToFirstItem
+      items={categories}
+      isLoading={isLoading}
+      baseUrl={routes.category}
+    />
+  );
+};
 
-export default Categories
+export default Categories;

@@ -1,19 +1,22 @@
-type IRating = {
-    rate: number
+type IReview = {
+    id: string
+    stars: number
     description: string
+    title: string
 }
 
 export interface IProduct {
-    id: number
+    id: string
+    averageRating: number
+    reviews: IReview[]
     name: string
     imageUrl: string
     description: string
     price: number
-    manufacturer: string
-    category: string
     weight: number
     stockQuantity: number
-    rating: IRating
+    categoryId: string
+    manufacturerId: string
 }
 
 export interface ICreateProduct {
@@ -21,15 +24,15 @@ export interface ICreateProduct {
     imageUrl: string
     description: string
     price: number 
-    manufacturer: string
-    category: string
+    manufacturerId: string
+    categoryId: string
     weight: number 
     stockQuantity: number
 }
 
 export interface IProductField {
     type: string
-    name: 'name' | 'manufacturer' | 'category' | 'price' | 'weight' | 'stockQuantity' | 'description'
+    name: 'name' | 'manufacturerId' | 'categoryId' | 'price' | 'weight' | 'stockQuantity' | 'description'
     xs: number
     md: number
     required: boolean

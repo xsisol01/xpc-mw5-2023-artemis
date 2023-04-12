@@ -65,7 +65,7 @@ const ScrollableList: FC<IScrollableListProps> = memo(
             onClick={() => setSelected(item.id)}
             sx={{height: 40}}
           >
-            <ListItem>
+            <ListItem sx={{p: 0}}>
               <ListItemText
                 secondary={getOptionText(item, "secondary")}
                 primary={getOptionText(item, "primary")}

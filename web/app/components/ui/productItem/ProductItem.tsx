@@ -16,7 +16,7 @@ import { RoleContext } from '@/app/providers/roleContextProvider'
 import ImagePlaceholder from '../../shared/placeholder/ImagePlaceholder'
 
 
-const ProductItem: FC<IProduct> = memo(({id, name, imageUrl, price, rating, stockQuantity}) => {
+const ProductItem: FC<IProduct> = memo(({id, name, imageUrl, price, averageRating, stockQuantity}) => {
     const {isAdmin} = useContext(RoleContext)
     const isInStock = (stockQuantity > 0)
 
@@ -52,14 +52,18 @@ const ProductItem: FC<IProduct> = memo(({id, name, imageUrl, price, rating, stoc
                 </CardContent>
 
                 <CardActions>
-                    <Rating {...rating} size='small' />
+                    <Rating rate={averageRating} size='small' />
                 </CardActions>
 
                 {isAdmin ? 
                 (
                     <DeleteButton
                         id={id}
-                        className={styles.productItem__delete}
+                        style={{
+                            position: 'absolute',
+                            top: '5px',
+                            right: '5px'
+                        }}
                         elementType='product'
                     >
                         <FaTimes className={styles.productItem__deleteIcon} />

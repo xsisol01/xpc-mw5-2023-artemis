@@ -1,26 +1,22 @@
 import { NextPage } from "next";
 
-import HeaderLayout from "@/app/components/layout/headerLayout/HeaderLayout";
-import LeftMenuLayout from "@/app/components/layout/leftMenuLayout/LeftMenuLayout";
+import CreateCategory from "@/app/components/pages/categoryPage/CreateCategoryPage";
 import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
-import { CircularProgress } from "@mui/material";
-import CreateCategory from "@/app/components/ui/categoryContent/CreateCategory";
+import { routes } from "@/app/data/routes";
+import NewLeftMenuItem from "@/app/components/layout/leftMenuLayout/NewLeftMenuItemPage";
 
-const Manufacturer: NextPage = () => {
-  const {categories, isLoading} = useGetAllCategories()
+const Category: NextPage = () => {
+  const { categories, isLoading } = useGetAllCategories();
 
-    return (
-        <HeaderLayout>
-          {isLoading && <CircularProgress />}
-          {categories && (
-            <LeftMenuLayout options={categories} linkTo='category'>
-                <CreateCategory />
-            </LeftMenuLayout>
-          )}
-            
-        </HeaderLayout>
-        
-    )
-}
+  return (
+    <NewLeftMenuItem
+      items={categories}
+      isLoading={isLoading}
+      linkTo={routes.category}
+    >
+      <CreateCategory />
+    </NewLeftMenuItem>
+  );
+};
 
-export default Manufacturer
+export default Category;

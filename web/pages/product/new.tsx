@@ -1,10 +1,8 @@
 import { NextPage } from "next";
-import NewProductScreen from "@/app/components/screens/newProductScreen/NewProductScreen";
-
+import NewProductScreen from "@/app/components/pages/productPage/NewProductPage";
 
 const NewProduct: NextPage = () => {
+  return <NewProductScreen />;
+};
 
-  return <NewProductScreen />
-}
-
-export default NewProduct
+export default NewProduct;

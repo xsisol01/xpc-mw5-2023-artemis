@@ -1,15 +1,16 @@
-import HeaderLayout from "@/app/components/layout/headerLayout/HeaderLayout";
-import LeftMenuLayout from "@/app/components/layout/leftMenuLayout/LeftMenuLayout";
-import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
-import { useGetCategory } from "@/app/hooks/category/useGetCategory";
-import { CircularProgress } from "@mui/material";
+import { useContext } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
-import CategoryContent from "@/app/components/ui/categoryContent/CategoryContent";
-import AdminCategoryContent from "@/app/components/ui/categoryContent/AdminCategoryContent";
-import { useContext } from "react";
+import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
+import { useGetCategory } from "@/app/hooks/category/useGetCategory";
+
+import { CircularProgress } from "@mui/material";
+import CategoryContent from "@/app/components/pages/categoryPage/CategoryContent";
+import AdminCategoryContent from "@/app/components/pages/categoryPage/AdminCategoryPage";
 import { RoleContext } from "@/app/providers/roleContextProvider";
+import { routes } from "@/app/data/routes";
+import LeftMenuItemPage from "@/app/components/layout/leftMenuLayout/LeftMenuItemPage";
 
 const Category: NextPage = () => {
   const { isAdmin } = useContext(RoleContext);
@@ -21,19 +22,18 @@ const Category: NextPage = () => {
   }
 
   const { category, isLoading } = useGetCategory(pid.toString());
-  const { categories, isLoading: isCategoriesLoading } = useGetAllCategories();
+  const { categories } = useGetAllCategories();
 
   return (
-    <HeaderLayout>
-      {isCategoriesLoading && <CircularProgress />}
-      {categories && (
-        <LeftMenuLayout options={categories} linkTo="category">
-          {isLoading && <CircularProgress />}
-          {category && isAdmin && <AdminCategoryContent {...category} />}
-          {category && !isAdmin && <CategoryContent {...category} />}
-        </LeftMenuLayout>
-      )}
-    </HeaderLayout>
+    <LeftMenuItemPage leftMenuItems={categories} linkTo={routes.category}>
+      {isLoading && <CircularProgress />}
+      {category &&
+        (isAdmin ? (
+          <AdminCategoryContent {...category} />
+        ) : (
+          <CategoryContent {...category} />
+        ))}
+    </LeftMenuItemPage>
   );
 };
 

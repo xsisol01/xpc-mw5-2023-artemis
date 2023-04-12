@@ -13,8 +13,8 @@ import { useCreateProduct } from "@/app/hooks/product/useCreateProduct";
 
 import { Container, Grid } from "@mui/material";
 import HeaderLayout from "@/app/components/layout/headerLayout/HeaderLayout";
-import FormInput from "@/app/components/shared/formFields/FormInput";
-import FormSelect from "@/app/components/shared/formFields/FormSelect";
+import FormInput from "@/app/components/shared/formFields/formInput/FormInput";
+import FormSelect from "@/app/components/shared/formFields/formSelect/FormSelect";
 import RightSubmitButton from "@/app/components/shared/button/submitButton/RightSubmitButton";
 import UploadImage from "@/app/components/shared/button/uploadImage/UploadImage";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
@@ -74,7 +74,6 @@ const NewProductScreen: FC = memo(() => {
         <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
           <Grid container>
             <Grid item xs={6}>
-              {/* <ProductInfoImages image={props.image} /> */}
               <UploadImage />
             </Grid>
             <Grid item xs={6} sx={{ mb: 2 }}>

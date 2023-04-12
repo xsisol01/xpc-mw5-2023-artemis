@@ -1,114 +1,77 @@
-import { FC, memo, useEffect } from "react"
+import { FC, memo, useEffect } from "react";
 
-import Dropdown from "@/app/components/shared/dropdown/dropdown";
-import ScrollableList, { IScrollableListProps } from "@/app/components/shared/scrollableList/ScrollableList";
-import Slider, { ISliderProps } from "@/app/components/shared/formFields/slider/Slider";
-import Radio, { IRadioProps } from "@/app/components/shared/formFields/radio/Radio";
+import Dropdown from "@/app/components/shared/dropdown/Dropdown";
+import ScrollableList, {
+  IScrollableListProps,
+} from "@/app/components/shared/scrollableList/ScrollableList";
+import Slider, {
+  ISliderProps,
+} from "@/app/components/shared/formFields/slider/Slider";
+import Radio, {
+  IRadioProps,
+} from "@/app/components/shared/formFields/radio/Radio";
 
 import withUrlSearchParams from "@/app/components/shared/hoc/withUrlSearchParams";
 
-import { filterProductData, fieldTypeData, IFilterItem } from "./filterProduct.data";
+import {
+  filterProductData,
+  fieldTypeData,
+  IFilterItem,
+} from "./filterProduct.data";
 
-import styles from './filterProduct.module.scss'
+import styles from "./filterProduct.module.scss";
 import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
 import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
 
-interface TField{
-    uid: string
-    options?: any
-    unit?: string
-}
-
 const FilterProduct: FC = memo(() => {
+  const { categories, isLoading: isCategoryLoading } = useGetAllCategories();
+  const { manufacturers, isLoading: isManufacturerLoading } =
+    useGetAllManufacturers();
 
-    const {
-        categories,
-        isLoading: isCategoryLoading,
-    } = useGetAllCategories();
-    const {
-        manufacturers,
-        isLoading: isManufacturerLoading
-    } = useGetAllManufacturers()
+  const { defaultValues } = filterProductData;
 
-    
+  useEffect(() => {
+    console.log("categories", categories);
+    console.log("manufacturers", manufacturers);
+  }, [categories, manufacturers]);
 
-    useEffect(() => {
-        console.log('categories', categories)
-        console.log('manufacturers', manufacturers)
+  return (
+    <aside className={styles.filterProduct}>
+      <div className={styles.filterProduct__inner}>
 
-    }, [categories, manufacturers])
+        <Dropdown title={defaultValues.category.title} key={defaultValues.category.uid}>
+          {withUrlSearchParams<IScrollableListProps>(ScrollableList)({
+            ...defaultValues.category,
+            options: categories
+            })}
+        </Dropdown>
 
+        <Dropdown title={defaultValues.price.title} key={defaultValues.price.uid}>
+          {withUrlSearchParams<ISliderProps>(Slider)({ ...defaultValues.price })}
+        </Dropdown>
 
-    return (
-        <aside className={styles.filterProduct}>
-            <div className={styles.filterProduct__inner}>
+        <Dropdown title={defaultValues.manufacturer.title} key={defaultValues.manufacturer.uid}>
+          {withUrlSearchParams<IScrollableListProps>(ScrollableList)({
+            ...defaultValues.manufacturer,
+            options: manufacturers
+            })}
+        </Dropdown>
 
-                {
-                    filterProductData.map(field => {
+        <Dropdown title={defaultValues.weight.title} key={defaultValues.weight.uid}>
+          {withUrlSearchParams<ISliderProps>(Slider)({ ...defaultValues.weight })}
+        </Dropdown>
 
-                        const Component = getComponent(field.type)
-                        const componentOptions = getComponentOptions(field)
-                        const componentUnit = getComponentUnit(field)
+        <Dropdown title={defaultValues.rating.title} key={defaultValues.rating.uid}>
+          {withUrlSearchParams<ISliderProps>(Slider)({ ...defaultValues.rating })}
+        </Dropdown>
 
-                        let props: TField = {
-                            uid: field.uid,
-                            unit: componentUnit
+        <Dropdown title={defaultValues.inStock.title} key={defaultValues.inStock.uid}>
+          {withUrlSearchParams<IRadioProps>(Radio)({ ...defaultValues.inStock })}
+        </Dropdown>
 
-                        }
+      </div>
+    </aside>
+  );
+});
 
-                        if( componentOptions.length ){
-                            props = {
-                                ...props,
-                                options: [...componentOptions]
-                            }
-                        }
-
-                        return (
-                            <Dropdown title={field.title} key={field.uid}>
-                                {
-                                    withUrlSearchParams<any>
-                                    (Component)({...props})
-                                }
-                            </Dropdown>
-                        )
-                    })
-                }
-            </div>
-        </aside>
-    )
-
-    function getComponentOptions(field: IFilterItem) {
-
-        if (field.options?.length) {
-            return field.options
-        }
-
-        switch (field.uid) {
-            case 'category':
-                return categories ?? []
-            case 'manufacturer':
-                return manufacturers ?? []
-            default:
-                return []
-        }
-    }
-
-    function getComponent(fieldType: string) {
-        switch (fieldType) {
-            case fieldTypeData.list:
-                return ScrollableList
-            case fieldTypeData.radio:
-                return Radio
-            case fieldTypeData.slider:
-                return Slider
-            default:
-                return () => null
-        }
-    }
-
-    function getComponentUnit(field: IFilterItem) {
-        return field.unit ?? ''
-    }
-})
-
-export default FilterProduct
+export default FilterProduct;

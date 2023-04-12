@@ -2,7 +2,7 @@ import { IProduct } from '@/app/types/product.type';
 import { IManufacturer, IManufacturerField } from '@/app/types/manufacturer.type';
 import { regex } from '@/app/data/regex';
 
-export const manufacturerContentData = Object.freeze({
+export const manufacturerPageData = Object.freeze({
   defaultValues: {
     id: '',
     name: '',

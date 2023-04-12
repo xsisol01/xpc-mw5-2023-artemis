@@ -1,36 +1,81 @@
-import { useDeleteProduct } from '@/app/hooks/product/useDeleteProduct'
-import {FC, memo} from 'react'
+import { useDeleteCategory } from "@/app/hooks/category/useDeleteCategory";
+import { useDeleteManufacturer } from "@/app/hooks/manufacturer/useDeleteManufacturer";
+import { useDeleteProduct } from "@/app/hooks/product/useDeleteProduct";
+import { Button } from "@mui/material";
+import { FC, memo, useEffect } from "react";
+import { UseMutateAsyncFunction } from "react-query";
+import { deleteButtonData } from "./deleteButtonData";
 
 interface IProps {
-  className?: string
-  id: string | number
-  elementType: string
-  children: React.ReactNode
+  className?: string;
+  id: string | number;
+  elementType: string;
+  children?: React.ReactNode;
+  style?: any
 }
 
-const DeleteButton: FC<IProps> = memo(({className = '', id, elementType, children}) => {
+const DeleteButton: FC<IProps> = memo(
+  ({ className = "", id, elementType, children, style }) => {
 
-  const {isLoading, deleteProduct} = useDeleteProduct(id.toString())
+    const { isLoading: isProductLoading, deleteProduct } = useDeleteProduct(
+      id.toString()
+    );
+    const { isLoading: isCategoryLoading, deleteCategory } = useDeleteCategory(
+      id.toString()
+    );
+    const { isLoading: isManufacturerLoading, deleteManufacturer } =
+      useDeleteManufacturer(id.toString());
 
-  function onDelete(event: React.MouseEvent<HTMLButtonElement>) {
-    event.stopPropagation()
-    event.preventDefault()
-    event.nativeEvent.stopImmediatePropagation();
+    let deleteMethod: UseMutateAsyncFunction<void, unknown, string, unknown>;
 
-    const isConfirmed = confirm("Are you sure?")
+    useEffect(() => {
+      switch (elementType) {
+        case "product":
+          deleteMethod = deleteProduct;
+          break;
+        case "category":
+          deleteMethod = deleteCategory;
+          break;
+        case "manufacturer":
+          deleteMethod = deleteManufacturer;
+          break;
+        default:
+          break;
+      }
+    }, []);
 
-    if (isConfirmed) {
-      deleteProduct(id.toString())
+    function onDelete(event: React.MouseEvent<HTMLButtonElement>) {
+      event.stopPropagation();
+      event.preventDefault();
+      event.nativeEvent.stopImmediatePropagation();
+
+      const isConfirmed = confirm("Are you sure?");
+
+      if (isConfirmed) {
+        deleteMethod(id.toString());
+      }
     }
+
+    return (
+      <Button
+        variant="contained"
+        disabled={isProductLoading || isCategoryLoading || isManufacturerLoading}
+        type="submit"
+        color="error"
+        onClick={onDelete}
+        style={style}
+        sx={{
+          color: '#d32f2f',
+          border: '1px solid #d32f2f',
+          '&:hover': {
+            color: '#fff'
+          }
+        }}
+        >
+        {children ?? deleteButtonData.delete}
+      </Button>
+    );
   }
+);
 
-  return (
-    <button className={className} onClick={onDelete}>
-      {children}
-    </button>
-  )
-
-  
-})
-
-export default DeleteButton
+export default DeleteButton;

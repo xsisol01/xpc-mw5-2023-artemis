@@ -1,26 +1,25 @@
-import { regex } from "@/app/data/regex";
+
 import { useCreateCategory } from "@/app/hooks/category/useCreateCategory";
-import { useUpdateCategory } from "@/app/hooks/category/useUpdateCategory";
-import { ICategory, ICreateCategory } from "@/app/types/category.type";
-import { capitalize, Grid, Typography } from "@mui/material";
-import { FC, useEffect, useState } from "react";
+import { ICreateCategory } from "@/app/types/category.type";
+import { Grid } from "@mui/material";
+import { FC, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import RightSubmitButton from "../../shared/button/submitButton/RightSubmitButton";
-import FormInput from "../../shared/formFields/FormInput";
-import { categoryContentData } from "./categoryContent.data";
+import FormInput from "../../shared/formFields/formInput/FormInput";
+import { categoryPageData } from "./categoryPage.data";
 
-const CreateCategory: FC = () => {
+const CreateCategoryPage: FC = () => {
 
   const { handleSubmit, control, reset } = useForm<ICreateCategory>({
-    defaultValues: categoryContentData.defaultValues,
+    defaultValues: categoryPageData.defaultValues,
   });
 
-  const { isLoading, createCategory, isSuccess } = useCreateCategory(categoryContentData.defaultValues);
+  const { isLoading, createCategory, isSuccess } = useCreateCategory(categoryPageData.defaultValues);
 
 
   useEffect(() => {
     if(isSuccess) {
-      reset(categoryContentData.defaultValues)
+      reset(categoryPageData.defaultValues)
     }
   }, [isSuccess])
 
@@ -31,7 +30,7 @@ const CreateCategory: FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container></Grid>
-      {categoryContentData.fields.map((field) => (
+      {categoryPageData.fields.map((field) => (
         <Grid item key={field.name} xs={field.xs} md={field.md}>
           <FormInput
             name={field.name}
@@ -46,4 +45,4 @@ const CreateCategory: FC = () => {
   );
 };
 
-export default CreateCategory;
+export default CreateCategoryPage;

@@ -7,7 +7,7 @@ import { ILeftMenuItem } from "../leftMenuItem/leftMenuItem.type";
 import CreateItem from "../leftMenuItem/CreateItem";
 
 interface IProps {
-  options: ILeftMenuItem[];
+  options: ILeftMenuItem[] | undefined;
   linkTo: string;
 }
 
@@ -18,12 +18,11 @@ const LeftMenuItems: FC<IProps> = memo(({ options, linkTo }) => {
     <List
       component="ul"
       sx={{
-        height: "90vh",
+        height: "100%",
         bgcolor: "background.paper",
         position: "relative",
         overflow: "auto",
-        pr: 1,
-        "& ul": { padding: 0 },
+        p: 0,
         "&::-webkit-scrollbar": {
           /* width */ width: "3px",
         },
@@ -37,7 +36,7 @@ const LeftMenuItems: FC<IProps> = memo(({ options, linkTo }) => {
       }}
     >
       {isAdmin && <CreateItem linkTo={linkTo} />}
-      {options.map((manufacturer) => (
+      {options?.map((manufacturer) => (
         <LeftMenuItem key={manufacturer.id} {...manufacturer} linkTo={linkTo} />
       ))}
     </List>
