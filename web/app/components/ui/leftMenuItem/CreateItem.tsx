@@ -1,9 +1,7 @@
 import { FC, memo } from "react";
 import Link from "next/link";
 
-import { IManufacturer } from "@/app/types/manufacturer.type";
-
-import { Box, capitalize,Card,ListItem, ListItemButton, Skeleton, Typography } from "@mui/material";
+import { ListItem, ListItemButton} from "@mui/material";
 
 
 import {Add as AddIcon} from '@mui/icons-material';

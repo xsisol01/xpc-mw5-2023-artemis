@@ -1,7 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import { FC, ReactNode } from "react";
-import HeaderLayout from "../headerLayout/HeaderLayout";
-import LeftMenuLayout from "./LeftMenuLayout";
+import HeaderLayout from "../../layout/headerLayout/HeaderLayout";
+import LeftMenuLayout from "../../layout/leftMenuLayout/LeftMenuLayout";
 
 interface IProps {
   isLoading: boolean;

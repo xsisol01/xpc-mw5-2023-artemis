@@ -1,5 +1,5 @@
 export const routes = Object.freeze({
-  home: '/',
-  manufacturer: '/manufacturer',
-  category: '/category'
-})
+  home: "/",
+  manufacturer: "/manufacturer",
+  category: "/category",
+});

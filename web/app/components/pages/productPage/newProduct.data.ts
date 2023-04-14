@@ -5,9 +5,10 @@ export const newProductData: ICreateProduct = Object.freeze({
   name: '',
   price: 0,
   description: '',
-  manufacturer: '',
-  category: '',
+  manufacturerId: '',
+  categoryId: '',
   weight: 0,
   stockQuantity: 0,
   imageUrl: '',
+  reviews: []
 })

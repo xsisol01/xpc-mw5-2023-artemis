@@ -1,32 +1,29 @@
-import { useEffect, FC, memo } from "react";
+import { useEffect, FC, memo, useContext } from "react";
 import { useForm } from "react-hook-form";
 
 import FormInput from "../formInput/FormInput";
 import { Grid } from "@mui/material";
 import { SliderData } from "./slider.data";
 import { regex } from "@/app/data/regex";
+import { UrlSearchParamsContext } from "@/app/providers/urlSearchParamsProvider";
 
 export interface ISliderProps {
   uid: string;
   inputType?: string;
   unit?: string;
   validation?: RegExp;
-  getParam?: (name: string) => string;
-  setParam?: (name: string, value: string) => void;
 }
 
 const Slider: FC<ISliderProps> = memo(
-  ({ uid, getParam, setParam, unit = "", validation }) => {
+  ({ uid, unit = "", validation }) => {
+    const {getParam, setParam} = useContext(UrlSearchParamsContext)
+
     const minId = `${uid}${SliderData.min}`;
     const maxId = `${uid}${SliderData.max}`;
 
-    if (!getParam || !setParam) {
-      return null;
-    }
-
     const defaultValues = {
-      [minId]: getParam(minId) || "",
-      [maxId]: getParam(maxId) || "",
+      [minId]: getParam(minId) ?? "",
+      [maxId]: getParam(maxId) ?? "",
     };
 
     const { watch, control } = useForm({ defaultValues });
@@ -34,7 +31,7 @@ const Slider: FC<ISliderProps> = memo(
     useEffect(() => {
       const subscription = watch((value, { name }) => {
         if (name) {
-          setParam(name, value[name] ?? "");
+          setParam(name, value[name]?.toString() ?? "");
         }
       });
 
@@ -44,7 +41,7 @@ const Slider: FC<ISliderProps> = memo(
     return (
       <form>
         <Grid container spacing={2}>
-          <Grid item xs={6} key={minId}>
+          <Grid item xs={12} md={6} key={minId}>
             <FormInput
               control={control}
               name={minId}
@@ -53,7 +50,7 @@ const Slider: FC<ISliderProps> = memo(
               validation={validation ?? regex.all}
             />
           </Grid>
-          <Grid item xs={6} key={maxId}>
+          <Grid item xs={12} md={6}  key={maxId}>
             <FormInput
               control={control}
               name={maxId}

@@ -9,13 +9,13 @@ import { Grid } from "@mui/material"
 import RightSubmitButton from "@/app/components/shared/button/submitButton/RightSubmitButton";
 import UploadImage from "@/app/components/shared/button/uploadImage/UploadImage";
 import FormInput from "@/app/components/shared/formFields/formInput/FormInput";
-import { manufacturerContentData } from "@/app/components/pages/manufacturerPage/manufacturerPage.data";
+import { manufacturerPageData } from "@/app/components/pages/manufacturerPage/manufacturerPage.data";
 
 
 
 const CreateManufacturerScreen: FC = () => {
 
-  const {defaultValues} = manufacturerContentData
+  const {defaultValues} = manufacturerPageData
 
   const { isLoading, createManufacturer } =
     useCreateManufacturer(defaultValues);
@@ -38,7 +38,7 @@ const CreateManufacturerScreen: FC = () => {
           </Grid>
           <Grid item xs={12} md={7}>
             <Grid container spacing={2} sx={{mb: 2}}>
-              {manufacturerContentData.fields.map(({name, rows, xs, md, required}: IManufacturerField) => (
+              {manufacturerPageData.fields.map(({name, rows, xs, md, required}: IManufacturerField) => (
                 <Grid item key={name} xs={xs} md={md}>
                   <FormInput
                     defaultValue={defaultValues[name]}

@@ -1,16 +1,12 @@
-import { FC, memo, useState } from "react";
+import { FC, memo } from "react";
 
-import classNames from "classnames";
-
-import { capitalizeText } from "@/app/utils/capitalizeText";
 import { currencyFormatter } from "@/app/utils/currencyFormatter";
 import Rating from "@/app/components/shared/rating/Rating";
 
-import Dropdown from '@/app/components/shared/dropdown/Dropdown'
+import Dropdown from "@/app/components/shared/dropdown/Dropdown";
 
-import { productPageData } from "../../../data/productPage.data";
+import { productPageData } from "./productPage.data";
 
-import styles from "./productInfo.module.scss";
 import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
 import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
 import { IProduct } from "@/app/types/product.type";
@@ -41,7 +37,6 @@ const ProductInfo: FC<IProduct> = memo(
     weight,
     stockQuantity,
   }) => {
-    const [isReviewOpen, setIsReviewOpen] = useState(false);
     const { manufacturers } = useGetAllManufacturers();
     const { categories } = useGetAllCategories();
 
@@ -50,7 +45,12 @@ const ProductInfo: FC<IProduct> = memo(
     return (
       <Grid container spacing={2} sx={{ mt: 1 }}>
         <Grid item md={6} xs={12}>
-          <img src={imageUrl} alt={name} loading="lazy" style={{}} />
+          <img
+            src={imageUrl}
+            alt={name}
+            loading="lazy"
+            style={{ maxHeight: "500px" }}
+          />
         </Grid>
         <Grid item md={6} xs={12} sx={globalStyles.fullScroll}>
           <Box sx={{ mb: 2 }}>
@@ -114,33 +114,27 @@ const ProductInfo: FC<IProduct> = memo(
             )}
           </Box>
 
-          
-
           <Box>
             <Dropdown
-                contentHeight={0}
-                wrapperHeight={0}
-                wrapperWidth={0}
-                title='Show Reviews'
+              contentHeight={0}
+              wrapperHeight={0}
+              wrapperWidth={0}
+              title={productPageData.reviews}
             >
-            {reviews.map((review) => (
-              <Card key={review.id} sx={{mb: 1}}>
-                <CardHeader title={review.title} sx={{pb: 1}} />
-                <CardContent sx={{pt: 1}}>
-                  <Box sx={{ mb: 2 }}>
-                    <Rating rate={review.stars} />
-                  </Box>
-                  <Typography variant="body2" sx={{ mb: 1 }}>
-                    {capitalize(review.description)}
-                  </Typography>
-                </CardContent>
-              </Card>
-            ))}
+              {reviews.map((review) => (
+                <Card key={review.id} sx={{ mb: 1 }}>
+                  <CardHeader title={review.title} sx={{ pb: 1 }} />
+                  <CardContent sx={{ pt: 1 }}>
+                    <Box sx={{ mb: 2 }}>
+                      <Rating rate={review.stars} />
+                    </Box>
+                    <Typography variant="body2" sx={{ mb: 1 }}>
+                      {capitalize(review.description)}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              ))}
             </Dropdown>
-            
-           
-            
-            
           </Box>
         </Grid>
       </Grid>

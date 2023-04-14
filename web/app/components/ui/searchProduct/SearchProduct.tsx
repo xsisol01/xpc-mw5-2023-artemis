@@ -1,38 +1,28 @@
-import { useEffect, useState, FC, memo } from "react";
-
-import classNames from "classnames";
-
-import { FaSearch } from "react-icons/fa";
+import { useEffect, FC, memo, useState, useContext } from "react";
 
 import { searchProductData } from "./searchProduct.data";
 
-import style from "./searchProduct.module.scss";
 import { getLoweredLetters } from "@/app/utils/getLoweredLetters";
-import { CircularProgress, IconButton, InputBase, Paper } from "@mui/material";
+import { InputBase, Paper } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 
-import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "./SearchIcon";
+import { UrlSearchParamsContext } from "@/app/providers/urlSearchParamsProvider";
 
-export interface ISearchProductProps {
-  uid: string;
-  getParam?: (name: string) => string;
-  setParam?: (name: string, value: string) => void;
-}
 
-const SearchProduct: FC<ISearchProductProps> = memo(
-  ({ uid, getParam, setParam }) => {
+const SearchProduct: FC = memo(() => {
+    const {getParam, setParam} = useContext(UrlSearchParamsContext)
+    const {uid, placeholder, ariaLabel} = searchProductData
+
     const { control, reset, watch } = useForm({
       defaultValues: {
-        [uid]: getUrlParams(),
+        [uid]: getParam(uid) ,
       },
     });
 
     useEffect(() => {
-      const subscription = watch((value, { name }) => {
-        if (value && name) {
-          setUrlParams(value[uid] ?? "");
-        }
+      const subscription = watch(value => {
+          setUrlParams(value[uid]?.toString() ?? '');
       });
 
       return () => subscription.unsubscribe();
@@ -44,13 +34,7 @@ const SearchProduct: FC<ISearchProductProps> = memo(
     }
 
     function setUrlParams(text: string) {
-      if (setParam) {
-        setParam(uid, getLoweredLetters(text));
-      }
-    }
-
-    function getUrlParams() {
-      return getParam ? getParam(uid) : "";
+      setParam(uid, getLoweredLetters(text));
     }
 
     return (
@@ -72,11 +56,10 @@ const SearchProduct: FC<ISearchProductProps> = memo(
               <InputBase
                 {...field}
                 sx={{ ml: 1, flex: 1 }}
-                placeholder={searchProductData.placeholder}
-                inputProps={{ "aria-label": searchProductData.ariaLabel }}
+                placeholder={placeholder}
+                inputProps={{ "aria-label": ariaLabel }}
               />
-
-              <SearchIcon value={field.value} onClose={resetSearchBar} />
+              <SearchIcon value={field.value?.toString() ?? ''} onClose={resetSearchBar} />
             </>
           )}
         />

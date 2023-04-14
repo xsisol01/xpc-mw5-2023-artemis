@@ -1,3 +1,4 @@
+import { UrlSearchParamsContext } from "@/app/providers/urlSearchParamsProvider";
 import { capitalizeText } from "@/app/utils/capitalizeText";
 import {
   RadioGroup,
@@ -6,7 +7,7 @@ import {
   FormControl,
   FormLabel,
 } from "@mui/material";
-import { FC, memo } from "react";
+import { FC, memo, useContext } from "react";
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -25,23 +26,20 @@ export interface IRadioProps {
   getParam?: (name: string) => string;
 }
 
-const Radio: FC<IRadioProps> = memo(({ options, uid, setParam, getParam }) => {
+const Radio: FC<IRadioProps> = memo(({ options, uid }) => {
+  const { setParam, getParam } = useContext(UrlSearchParamsContext);
   const [selected, setSelected] = useState("");
 
   useEffect(() => {
-    if (getParam) {
-      const paramValue = getParam(uid);
+    const paramValue = getParam(uid);
 
-      if (paramValue) {
-        setSelected(paramValue);
-      }
+    if (paramValue) {
+      setSelected(paramValue.toString());
     }
   }, []);
 
   useEffect(() => {
-    if (setParam) {
-      setParam(uid, selected);
-    }
+    setParam(uid, selected);
   }, [selected]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,6 +56,7 @@ const Radio: FC<IRadioProps> = memo(({ options, uid, setParam, getParam }) => {
       >
         {options.map((option) => (
           <FormControlLabel
+            key={option.value}
             value={option.value}
             control={<RadioField />}
             label={option.text}

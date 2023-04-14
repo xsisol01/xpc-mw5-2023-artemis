@@ -10,7 +10,7 @@ import CategoryContent from "@/app/components/pages/categoryPage/CategoryContent
 import AdminCategoryContent from "@/app/components/pages/categoryPage/AdminCategoryPage";
 import { RoleContext } from "@/app/providers/roleContextProvider";
 import { routes } from "@/app/data/routes";
-import LeftMenuItemPage from "@/app/components/layout/leftMenuLayout/LeftMenuItemPage";
+import LeftMenuItemPage from "@/app/components/pages/leftMenuPages/LeftMenuItemPage";
 
 const Category: NextPage = () => {
   const { isAdmin } = useContext(RoleContext);

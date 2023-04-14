@@ -1,9 +1,9 @@
-import { FC, memo, useContext, useEffect } from "react";
+import { FC, memo, useContext } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 
 import { newProductData } from "./newProduct.data";
-import { productPageData } from "@/app/data/productPage.data";
+import { productPageData } from "@/app/components/pages/productPage/productPage.data";
 import { ICreateProduct, IProductField } from "@/app/types/product.type";
 import { capitalizeText } from "@/app/utils/capitalizeText";
 
@@ -39,12 +39,10 @@ const NewProductScreen: FC = memo(() => {
 
   if (currentManufacturer) {
     defaultValues = {
-        ...defaultValues,
-        manufacturer: currentManufacturer
+        ...newProductData,
+        manufacturerId: currentManufacturer
     }
   }
-
-  console.log('defaultValues', defaultValues)
 
   const { handleSubmit, control } = useForm<ICreateProduct>({
     defaultValues,
@@ -59,9 +57,9 @@ const NewProductScreen: FC = memo(() => {
 
   function getOptions(field: string) {
     switch (field) {
-      case "manufacturer":
+      case "manufacturerId":
         return manufacturers;
-      case "category":
+      case "categoryId":
         return categories;
       default:
         return [];

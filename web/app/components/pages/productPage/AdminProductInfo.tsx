@@ -2,7 +2,7 @@ import { FC, memo } from "react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { productPageData } from "@/app/data/productPage.data";
+import { productPageData } from "@/app/components/pages/productPage/productPage.data";
 import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
 import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
 import { Grid} from "@mui/material";
@@ -28,9 +28,9 @@ const AdminProductInfo: FC<IProduct> = memo((props) => {
 
   function getOptions(field: string) {
     switch (field) {
-      case "manufacturer":
+      case "manufacturerId":
         return manufacturers;
-      case "category":
+      case "categoryId":
         return categories;
       default:
         return [];

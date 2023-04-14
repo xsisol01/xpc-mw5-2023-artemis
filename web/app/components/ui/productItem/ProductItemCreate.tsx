@@ -12,13 +12,21 @@ interface IProps {
   manufacturer?: string;
 }
 
-const ProductItemCreate: FC<IProps> = memo(({ manufacturer }) => {
-  const href = {
-    pathname: "/product/new",
-    query: {
-      manufacturer,
-    },
+type THref = {
+  pathname: string;
+  query?: {
+    manufacturer: string;
   };
+};
+
+const ProductItemCreate: FC<IProps> = memo(({ manufacturer }) => {
+  let href: THref = {
+    pathname: "/product/new",
+  };
+
+  if (manufacturer) {
+    href = { ...href, query: { manufacturer } };
+  }
 
   return (
     <Grid item xs={12} md={3} sm={6}>

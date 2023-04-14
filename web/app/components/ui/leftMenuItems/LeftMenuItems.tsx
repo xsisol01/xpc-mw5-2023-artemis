@@ -24,20 +24,20 @@ const LeftMenuItems: FC<IProps> = memo(({ options, linkTo }) => {
         overflow: "auto",
         p: 0,
         "&::-webkit-scrollbar": {
-          /* width */ width: "3px",
+          width: "3px",
         },
         "&::-webkit-scrollbar-track": {
-          /* Track */ backgroundColor: "#fff",
+          backgroundColor: "#fff",
         },
         "&::-webkit-scrollbar-thumb": {
-          /* Handle */ backgroundColor: "#ccc",
+          backgroundColor: "#ccc",
           borderRadius: "4px",
         },
       }}
     >
       {isAdmin && <CreateItem linkTo={linkTo} />}
-      {options?.map((manufacturer) => (
-        <LeftMenuItem key={manufacturer.id} {...manufacturer} linkTo={linkTo} />
+      {options?.map((option) => (
+        <LeftMenuItem key={option.id} {...option} linkTo={linkTo} />
       ))}
     </List>
   );

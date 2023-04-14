@@ -6,7 +6,7 @@ import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufa
 import { useGetManufacturer } from "@/app/hooks/manufacturer/useGetManufacturer";
 import { routes } from "@/app/data/routes";
 
-import LeftMenuItemPage from "@/app/components/layout/leftMenuLayout/LeftMenuItemPage";
+import LeftMenuItemPage from "@/app/components/pages/leftMenuPages/LeftMenuItemPage";
 import AdminManufacturerContent from "@/app/components/pages/manufacturerPage/AdminManufacturerPage";
 import ManufacturerContent from "@/app/components/pages/manufacturerPage/ManufacturerPage";
 import { RoleContext } from "@/app/providers/roleContextProvider";

@@ -1,5 +1,5 @@
 import { IProductField } from "@/app/types/product.type";
-import { regex } from "./regex";
+import { regex } from "@/app/data/regex";
 
 export const productPageData = Object.freeze({
   weight: "Weight",
@@ -7,6 +7,7 @@ export const productPageData = Object.freeze({
   inStock: "In stock",
   notInStock: "Not in stock",
   currency: 'CZK',
+  reviews: 'Reviews',
   submit: 'submit',
   fields: [
     {
@@ -19,7 +20,7 @@ export const productPageData = Object.freeze({
       validation: regex.all
     },
     {
-      name: 'manufacturer',
+      name: 'manufacturerId',
       xs: 12,
       md: 6,
       type: 'select',
@@ -28,7 +29,7 @@ export const productPageData = Object.freeze({
       validation: regex.all
     },
     {
-      name: 'category',
+      name: 'categoryId',
       xs: 12,
       md: 6,
       type: 'select',

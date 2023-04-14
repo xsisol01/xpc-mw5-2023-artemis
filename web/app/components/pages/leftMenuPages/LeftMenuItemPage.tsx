@@ -1,8 +1,8 @@
 import { CircularProgress } from "@mui/material";
 import { FC, ReactNode } from "react";
-import HeaderLayout from "../headerLayout/HeaderLayout";
+import HeaderLayout from "../../layout/headerLayout/HeaderLayout";
 
-import LeftMenuLayout from "./LeftMenuLayout";
+import LeftMenuLayout from "../../layout/leftMenuLayout/LeftMenuLayout";
 
 interface IProps {
   leftMenuItems: any[] | undefined;

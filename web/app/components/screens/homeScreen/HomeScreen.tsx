@@ -8,14 +8,10 @@ import Products from "@/app/components/ui/products/Products";
 import { useGetAllProduct } from "@/app/hooks/product/useGetAllProducts";
 import { globalStyles } from "@/app/assets/styles/global.styles";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
-import withUrlSearchParams from "../../shared/hoc/withUrlSearchParams";
-import SearchProduct, {
-  ISearchProductProps,
-} from "../../shared/searchProduct/SearchProduct";
+import SearchProduct from "../../ui/searchProduct/SearchProduct";
 
 const HomeScreen: FC = memo(() => {
   const { products, isLoading } = useGetAllProduct();
-
   const { setCurrentManufacturer } = useContext(ManufacturerContext);
 
   setCurrentManufacturer("");
@@ -23,16 +19,16 @@ const HomeScreen: FC = memo(() => {
   return (
     <HeaderLayout contentPage="home">
       <Container sx={{ mt: 2 }}>
-        <Grid container spacing={2} >
+        <Grid container spacing={2}>
           <Grid item xs={3} sx={globalStyles.fullScroll}>
             <FilterProduct />
           </Grid>
           <Grid item xs={9} sx={globalStyles.fullScroll}>
+            <SearchProduct />
             {isLoading && <CircularProgress />}
-            {withUrlSearchParams<ISearchProductProps>(SearchProduct)({
-              uid: "search",
-            })}
-            <Products products={products} isLoading={isLoading} />
+            {!isLoading && (
+              <Products products={products} isLoading={isLoading} />
+            )}
           </Grid>
         </Grid>
       </Container>

@@ -5,32 +5,10 @@ import { isObjectEqual } from "@/app/utils/isObjectEqual";
 
 function withUrlSearchParams<T>(Component: FC<T>): FC<T> {
   const router = useRouter();
-  const [searchParams, setSearchParams] = useState({});
-
-  const [isDefaultValue, setIsDefaultValue] = useState(false);
-
-  useEffect(() => {
-    if (router.isReady && !isDefaultValue) {
-      const { query } = router;
-      setSearchParams(query);
-      setIsDefaultValue(true);
-    }
-  });
-
-  useEffect(() => {
-    if (!isObjectEqual(searchParams, router.query)) {
-      setSearchParams(router.query);
-    }
-  }, [router.query]);
-
-  useEffect(() => {
-    if (!isObjectEqual(searchParams, router.query)) {
-      router.push({ query: searchParams });
-    }
-  }, [searchParams]);
+  const {query: routerQuery} = router
 
   function getParam(paramName: string) {
-    return searchParams[paramName as keyof typeof searchParams];
+    return  routerQuery[paramName as keyof typeof routerQuery];
   }
 
   function setParam(name: string, value: string) {
@@ -39,26 +17,23 @@ function withUrlSearchParams<T>(Component: FC<T>): FC<T> {
       return;
     }
 
-    setSearchParams(prev => {
-      return {
-        ...prev,
-        [name.toLowerCase()]: value.toLowerCase(),
-      }
-      
-    });
+    router.push({ query: {
+      ...routerQuery,
+      [name.toLowerCase()]: value.toLowerCase()
+    }})
   }
 
   function removeParam(name: string) {
-    const filteredQueries = Object.entries(searchParams).filter(
+    const filteredQueries = Object.entries(routerQuery).filter(
       ([key, value]) => key !== name
     );
 
-    setSearchParams(Object.fromEntries(filteredQueries));
+    router.push({ query: Object.fromEntries(filteredQueries) as typeof routerQuery})
   }
 
-  return (props: T) => {
-    return <Component {...props} getParam={getParam} setParam={setParam} />;
-  };
+  return (props: T) => (
+      <Component {...props} getParam={getParam} setParam={setParam} />
+    );
 }
 
 export default withUrlSearchParams;

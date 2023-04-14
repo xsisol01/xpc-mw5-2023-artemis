@@ -3,7 +3,7 @@ import { FC } from "react";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
-import SearchProduct, { ISearchProductProps } from "@/app/components/shared/searchProduct/SearchProduct";
+import SearchProduct, { ISearchProductProps } from "@/app/components/ui/searchProduct/SearchProduct";
 import withUrlSearchParams from "@/app/components/shared/hoc/withUrlSearchParams";
 import Navbar from "@/app/components/ui/navbar/Navbar";
 

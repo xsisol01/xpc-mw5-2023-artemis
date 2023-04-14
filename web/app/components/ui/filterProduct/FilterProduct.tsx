@@ -38,37 +38,32 @@ const FilterProduct: FC = memo(() => {
   return (
     <aside className={styles.filterProduct}>
       <div className={styles.filterProduct__inner}>
-
-        <Dropdown title={defaultValues.category.title} key={defaultValues.category.uid}>
-          {withUrlSearchParams<IScrollableListProps>(ScrollableList)({
-            ...defaultValues.category,
-            options: categories
-            })}
+        <Dropdown title={defaultValues.category.title}>
+          <ScrollableList {...defaultValues.category} options={categories} />
         </Dropdown>
 
-        <Dropdown title={defaultValues.price.title} key={defaultValues.price.uid}>
-          {withUrlSearchParams<ISliderProps>(Slider)({ ...defaultValues.price })}
+        <Dropdown title={defaultValues.price.title}>
+          <Slider {...defaultValues.price} />
         </Dropdown>
 
-        <Dropdown title={defaultValues.manufacturer.title} key={defaultValues.manufacturer.uid}>
-          {withUrlSearchParams<IScrollableListProps>(ScrollableList)({
-            ...defaultValues.manufacturer,
-            options: manufacturers
-            })}
+        <Dropdown title={defaultValues.manufacturer.title}>
+          <ScrollableList
+            {...defaultValues.manufacturer}
+            options={manufacturers}
+          />
         </Dropdown>
 
-        <Dropdown title={defaultValues.weight.title} key={defaultValues.weight.uid}>
-          {withUrlSearchParams<ISliderProps>(Slider)({ ...defaultValues.weight })}
+        <Dropdown title={defaultValues.weight.title}>
+          <Slider {...defaultValues.weight} />
         </Dropdown>
 
-        <Dropdown title={defaultValues.rating.title} key={defaultValues.rating.uid}>
-          {withUrlSearchParams<ISliderProps>(Slider)({ ...defaultValues.rating })}
+        <Dropdown title={defaultValues.rating.title}>
+          <Slider {...defaultValues.rating} />
         </Dropdown>
 
-        <Dropdown title={defaultValues.inStock.title} key={defaultValues.inStock.uid}>
-          {withUrlSearchParams<IRadioProps>(Radio)({ ...defaultValues.inStock })}
+        <Dropdown title={defaultValues.inStock.title}>
+          <Radio {...defaultValues.inStock} />
         </Dropdown>
-
       </div>
     </aside>
   );

@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import ReactQueryProvider from "@/app/providers/reactQueryProvider";
 import RoleContextProvider from "@/app/providers/roleContextProvider";
 import ManufacturerContextProvider from "@/app/providers/manufacturerContextProvider";
+import UrlSearchParamsProvider from "@/app/providers/urlSearchParamsProvider";
 
 import "@/app/assets/styles/globals.css";
 
@@ -17,7 +18,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <ReactQueryProvider>
       <RoleContextProvider>
         <ManufacturerContextProvider>
-          <Component {...pageProps} />
+          <UrlSearchParamsProvider>
+            <Component {...pageProps} />
+          </UrlSearchParamsProvider>
         </ManufacturerContextProvider>
       </RoleContextProvider>
     </ReactQueryProvider>

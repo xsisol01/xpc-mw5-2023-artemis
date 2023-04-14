@@ -59,10 +59,11 @@ const ProductItem: FC<IProduct> = memo(({id, name, imageUrl, price, averageRatin
                 (
                     <DeleteButton
                         id={id}
-                        style={{
+                        sx={{
                             position: 'absolute',
                             top: '5px',
-                            right: '5px'
+                            right: '5px',
+                            border: 'none'
                         }}
                         elementType='product'
                     >

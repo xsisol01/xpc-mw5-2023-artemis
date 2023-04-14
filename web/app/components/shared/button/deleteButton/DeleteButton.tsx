@@ -12,10 +12,11 @@ interface IProps {
   elementType: string;
   children?: React.ReactNode;
   style?: any
+  sx?: any
 }
 
 const DeleteButton: FC<IProps> = memo(
-  ({ className = "", id, elementType, children, style }) => {
+  ({ className = "", id, elementType, children, style, sx }) => {
 
     const { isLoading: isProductLoading, deleteProduct } = useDeleteProduct(
       id.toString()
@@ -69,7 +70,8 @@ const DeleteButton: FC<IProps> = memo(
           border: '1px solid #d32f2f',
           '&:hover': {
             color: '#fff'
-          }
+          },
+          ...sx
         }}
         >
         {children ?? deleteButtonData.delete}

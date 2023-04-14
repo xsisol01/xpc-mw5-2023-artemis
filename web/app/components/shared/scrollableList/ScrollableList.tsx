@@ -1,12 +1,11 @@
-import { FC, memo } from "react";
+import { FC, memo, useContext } from "react";
 
 import { capitalizeText } from "@/app/utils/capitalizeText";
 import { getLoweredLetters } from "@/app/utils/getLoweredLetters";
 import { isTextEqual } from "@/app/utils/isTextEqual";
 import { useEffect, useState } from "react";
 import { ListItem, ListItemButton, ListItemText } from "@mui/material";
-
-
+import { UrlSearchParamsContext } from "@/app/providers/urlSearchParamsProvider";
 
 const MAX_HEIGHT = 380;
 
@@ -19,30 +18,25 @@ export interface IScrollableListProps {
   options?: IOption[];
   maxHeight?: number;
   uid: string;
-  getParam?: (name: string) => string;
-  setParam?: (name: string, value: string) => void;
 }
 
 const ScrollableList: FC<IScrollableListProps> = memo(
-  ({ uid, options, maxHeight = MAX_HEIGHT, getParam, setParam }) => {
+  ({ uid, options, maxHeight = MAX_HEIGHT }) => {
     const [selected, setSelected] = useState<string>("");
+    const { getParam, setParam } = useContext(UrlSearchParamsContext);
 
     useEffect(() => {
-      if (getParam) {
-        const defaultSelected = getParam(uid);
+      const defaultSelected = getParam(uid);
 
-        if (defaultSelected?.length) {
-          setSelected(defaultSelected);
-        }
+      if (defaultSelected?.length) {
+        setSelected(defaultSelected.toString());
       }
     }, []);
 
     useEffect(() => {
-      if (setParam) {
         const param = getLoweredLetters(selected ?? "");
 
         setParam(uid, param);
-      }
     }, [selected]);
 
     function getIsSelected(optionId: string) {
@@ -63,9 +57,9 @@ const ScrollableList: FC<IScrollableListProps> = memo(
           <ListItemButton
             key={item.id}
             onClick={() => setSelected(item.id)}
-            sx={{height: 40}}
+            sx={{ height: 40 }}
           >
-            <ListItem sx={{p: 0}}>
+            <ListItem sx={{ p: 0 }}>
               <ListItemText
                 secondary={getOptionText(item, "secondary")}
                 primary={getOptionText(item, "primary")}
