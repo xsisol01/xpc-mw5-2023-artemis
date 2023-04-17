@@ -2,18 +2,18 @@
 
 
 
-// TODO NewProductPage and AdminProductPage have same jsx
+
 
 
 // TODO upload image
 // TODO Retype any type
 
 
+// DONE NewProductPage and AdminProductPage have same jsx
+
 // DONE set values to selects product page
 // DONE set searchbar value from url
 // DONE remove border from delete button in productItem
-
-
 // DONE withUrlSearchParam error
 // DONE manufacturers - admin - is not value in inputs
 // DONE manufacturers - delete

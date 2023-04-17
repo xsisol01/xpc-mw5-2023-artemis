@@ -121,7 +121,7 @@ const ProductInfo: FC<IProduct> = memo(
               wrapperWidth={0}
               title={productPageData.reviews}
             >
-              {reviews.map((review) => (
+              {reviews?.map((review) => (
                 <Card key={review.id} sx={{ mb: 1 }}>
                   <CardHeader title={review.title} sx={{ pb: 1 }} />
                   <CardContent sx={{ pt: 1 }}>

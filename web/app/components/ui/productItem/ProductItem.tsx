@@ -24,7 +24,7 @@ const ProductItem: FC<IProduct> = memo(({id, name, imageUrl, price, averageRatin
         <Grid item xs={12} md={3} sm={6}>
             <Card sx={{height: '100%', position: 'relative'}}>
                 <Link href='/product/[pid]' as={`/product/${id}`} className={styles.productItem}>
-                    {imageUrl.length
+                    {imageUrl?.length
                         ? (
                             <CardMedia
                                 src={imageUrl}

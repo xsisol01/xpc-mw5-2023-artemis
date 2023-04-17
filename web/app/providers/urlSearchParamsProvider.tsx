@@ -35,8 +35,6 @@ const UrlSearchParamsProvider: FC<IProps> = memo(({ children }) => {
   });
 
   useEffect(() => {
-    console.log('searchParams', searchParams)
-
     if (Object.keys(searchParams).length) {
       router.push({ query: searchParams });
     }
