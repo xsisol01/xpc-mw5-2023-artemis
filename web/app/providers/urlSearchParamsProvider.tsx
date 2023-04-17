@@ -28,13 +28,15 @@ const UrlSearchParamsProvider: FC<IProps> = memo(({ children }) => {
   const [isDefaultValue, setIsDefaultValue] = useState(false);
 
   useEffect(() => {
-    if (!isDefaultValue) {
+    if (!isDefaultValue && router.isReady) {
       setSearchParams((prev) => ({ ...prev, ...router.query }));
       setIsDefaultValue(true);
     }
-  }, [router.query]);
+  });
 
   useEffect(() => {
+    console.log('searchParams', searchParams)
+
     if (Object.keys(searchParams).length) {
       router.push({ query: searchParams });
     }
@@ -74,7 +76,7 @@ const UrlSearchParamsProvider: FC<IProps> = memo(({ children }) => {
     });
   }
 
-  return router.isReady ? (
+  return router.isReady && isDefaultValue ? (
     <UrlSearchParamsContext.Provider value={value}>
       {children}
     </UrlSearchParamsContext.Provider>

@@ -8,17 +8,22 @@ import { Controller, useForm } from "react-hook-form";
 
 import SearchIcon from "./SearchIcon";
 import { UrlSearchParamsContext } from "@/app/providers/urlSearchParamsProvider";
-
+import FormInput from "../../shared/formFields/formInput/FormInput";
 
 const SearchProduct: FC = memo(() => {
     const {getParam, setParam} = useContext(UrlSearchParamsContext)
     const {uid, placeholder, ariaLabel} = searchProductData
 
-    const { control, reset, watch } = useForm({
+    console.log('SearchProduct', uid, getParam(uid))
+
+    const { control, reset, watch, getValues } = useForm({
       defaultValues: {
-        [uid]: getParam(uid) ,
-      },
+        [uid]: getParam(uid)
+      }
     });
+
+
+    console.log('getValues', getValues())
 
     useEffect(() => {
       const subscription = watch(value => {
@@ -48,21 +53,25 @@ const SearchProduct: FC = memo(() => {
           mb: 2,
         }}
       >
+        
         <Controller
           control={control}
-          name={"search"}
-          render={({ field }) => (
+          name={uid}
+          render={({ field: { value, name, ref, ...restFieldData } }) => (
             <>
               <InputBase
-                {...field}
+                {...restFieldData}
                 sx={{ ml: 1, flex: 1 }}
+                defaultValue={value}
                 placeholder={placeholder}
+                inputRef={ref}
                 inputProps={{ "aria-label": ariaLabel }}
               />
-              <SearchIcon value={field.value?.toString() ?? ''} onClose={resetSearchBar} />
+              <SearchIcon value={value?.toString() ?? ''} onClose={resetSearchBar} />
             </>
           )}
         />
+        
       </Paper>
     );
   }

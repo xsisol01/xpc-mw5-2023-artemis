@@ -30,11 +30,6 @@ const FilterProduct: FC = memo(() => {
 
   const { defaultValues } = filterProductData;
 
-  useEffect(() => {
-    console.log("categories", categories);
-    console.log("manufacturers", manufacturers);
-  }, [categories, manufacturers]);
-
   return (
     <aside className={styles.filterProduct}>
       <div className={styles.filterProduct__inner}>

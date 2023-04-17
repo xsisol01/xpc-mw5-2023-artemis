@@ -29,7 +29,7 @@ const FormInput: FC<IProps> = ({
   variant = 'outlined',
   sx,
   style,
-  rows,
+  rows = 1,
   required = false,
   placeholder,
   validation = regex.all
