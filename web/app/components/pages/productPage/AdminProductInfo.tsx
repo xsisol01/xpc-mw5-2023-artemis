@@ -19,7 +19,15 @@ const AdminProductInfo: FC<IProduct> = memo((props) => {
   const { isLoading, updateProduct } = useUpdateProduct(props);
 
   const onSubmit: SubmitHandler<IProduct> = async (data: IProduct) => {
-    await updateProduct(data);
+    const updatedProduct: IProduct = {
+      ...data,
+      averageRating: Number(data.averageRating),
+      price: Number(data.price),
+      weight: Number(data.weight),
+      stockQuantity: Number(data.stockQuantity),
+    }
+    
+    await updateProduct(updatedProduct);
   };
 
   return (

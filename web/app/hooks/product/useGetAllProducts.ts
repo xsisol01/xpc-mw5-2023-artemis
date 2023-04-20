@@ -1,17 +1,17 @@
-import { useQuery } from "react-query"
-import { ProductService } from '../../services/product.service';
+import { useQuery } from "react-query";
+import { ProductService } from "../../services/product.service";
 
-export const useGetAllProduct = () => {
-  const {data: products, isLoading} = useQuery(
-    'product list',
+export const useGetAllProducts = () => {
+  const { data: products, isLoading } = useQuery(
+    "product list",
     () => ProductService.getAll(),
     {
       onError: (error) => {
-        console.log(error)
+        console.log(error);
       },
-      select: ({data}) => data
+      select: ({ data }) => data,
     }
-  )
+  );
 
-  return { products, isLoading }
-}
+  return { products, isLoading };
+};

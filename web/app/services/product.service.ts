@@ -1,38 +1,65 @@
-import { ICreateProduct } from '@/app/types/product.type';
+import { ICreateProduct } from "@/app/types/product.type";
 import axios from 'axios';
+import https from 'https';
 
-import { IProduct } from '@/app/types/product.type';
+import { IProduct } from "@/app/types/product.type";
 
-const instance = axios.create({
-  baseURL: `${process.env.apiUrl}/products`,
-  headers: {
-    'Content-Type': 'application/json'
-  }
+axios.defaults.httpsAgent = new https.Agent({
+  rejectUnauthorized: false
 })
 
-export const ProductService = {
+const instance = axios.create({
+  baseURL: '/api/Commodity',
+  headers: {
+    "Content-Type": "application/json; charset=utf-8",
+    "Access-Control-Allow-Origin": "*",
+  }
+});
 
+
+export const ProductService = {
   async getAll() {
-    return instance.get<IProduct[]>('')
+    const result = instance.get<IProduct[]>('')
+    console.log('ProductService.getAll', await result)
+    
+    return result
   },
-  
+
   async get(id: string) {
-    return instance.get<IProduct>(`/${id}`)
+
+    const result = instance.get<IProduct[]>(`/${id}`);
+    console.log('ProductService.get', await result)
+    
+    return result
+  },
+
+  async getByName(name: string) {
+    const result = instance.get<IProduct>(`/byName/${name}`);
+    console.log('ProductService.getByName', await result)
+    
+    return result
   },
 
   async create(data: ICreateProduct) {
-    instance.post('', data)
+    const result = instance.post("", data);
+    console.log('ProductService.create', await result)
+    
+    return result
   },
 
   async update(data: IProduct) {
-    try{
-      instance.put(`/${data.id}`, {...data})
-    } catch (error: any) {
-      console.error(error.message)
-    }
+    
+    const result = instance.put(`/${data.id}`, data);
+    console.log('ProductService.update', await result)
+    
+    return result
   },
 
   async delete(id: string) {
-    instance.delete(`/${id}`)
-  }
-}
+    const result = instance.delete(`${id}`);
+
+    console.log('ProductService.delete', await result)
+    
+    return result
+  },
+};

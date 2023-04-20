@@ -1,14 +1,10 @@
-type IReview = {
-    id: string
-    stars: number
-    description: string
-    title: string
-}
+import { IProductReview } from './review.type';
+
 
 export interface IProduct {
     id: string
     averageRating: number
-    reviews: IReview[]
+    reviews: IProductReview[]
     name: string
     imageUrl: string
     description: string

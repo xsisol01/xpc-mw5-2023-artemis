@@ -2,9 +2,9 @@ import { FC, memo, useContext } from "react";
 
 import { List } from "@mui/material";
 import { RoleContext } from "@/app/providers/roleContextProvider";
-import LeftMenuItem from "@/app/components/ui/leftMenuItem/LeftMenuItem";
-import { ILeftMenuItem } from "../leftMenuItem/leftMenuItem.type";
-import CreateItem from "../leftMenuItem/CreateItem";
+import LeftMenuItem from "@/app/components/ui/leftMenuItems/leftMenuItem/LeftMenuItem";
+import { ILeftMenuItem } from "./leftMenuItem/leftMenuItem.type";
+import CreateItem from "./leftMenuItem/CreateItem";
 
 interface IProps {
   options: ILeftMenuItem[] | undefined;

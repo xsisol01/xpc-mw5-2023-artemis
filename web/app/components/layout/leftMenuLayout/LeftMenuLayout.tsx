@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import { globalStyles } from "@/app/assets/styles/global.styles";
 import LeftMenuItems from "../../ui/leftMenuItems/LeftMenuItems";
-import { ILeftMenuItem } from "../../ui/leftMenuItem/leftMenuItem.type";
+import { ILeftMenuItem } from "../../ui/leftMenuItems/leftMenuItem/leftMenuItem.type";
 
 interface IProps {
   options: ILeftMenuItem[] | undefined

@@ -13,7 +13,7 @@ import { Card, CardActions, CardContent, CardMedia, Grid, Skeleton, Typography }
 import { IProduct } from '@/app/types/product.type'
 import { capitalizeText } from '@/app/utils/capitalizeText'
 import { RoleContext } from '@/app/providers/roleContextProvider'
-import ImagePlaceholder from '../../shared/placeholder/ImagePlaceholder'
+import ImagePlaceholder from '../../../shared/placeholder/ImagePlaceholder'
 
 
 const ProductItem: FC<IProduct> = memo(({id, name, imageUrl, price, averageRating, stockQuantity}) => {

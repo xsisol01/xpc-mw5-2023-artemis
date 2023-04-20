@@ -5,13 +5,13 @@ import HeaderLayout from "@/app/components/layout/headerLayout/HeaderLayout";
 import FilterProduct from "@/app/components/ui/filterProduct/FilterProduct";
 import Products from "@/app/components/ui/products/Products";
 
-import { useGetAllProduct } from "@/app/hooks/product/useGetAllProducts";
+import { useGetAllProducts } from "@/app/hooks/product/useGetAllProducts";
 import { globalStyles } from "@/app/assets/styles/global.styles";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
 import SearchProduct from "../../ui/searchProduct/SearchProduct";
 
 const HomeScreen: FC = memo(() => {
-  const { products, isLoading } = useGetAllProduct();
+  const { products, isLoading } = useGetAllProducts();
   const { setCurrentManufacturer } = useContext(ManufacturerContext);
 
   setCurrentManufacturer("");

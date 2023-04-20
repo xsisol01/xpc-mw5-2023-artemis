@@ -23,6 +23,7 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 import { globalStyles } from "@/app/assets/styles/global.styles";
+import Reviews from "../../ui/reviews/Reviews";
 
 const ProductInfo: FC<IProduct> = memo(
   ({
@@ -114,28 +115,7 @@ const ProductInfo: FC<IProduct> = memo(
             )}
           </Box>
 
-          <Box>
-            <Dropdown
-              contentHeight={0}
-              wrapperHeight={0}
-              wrapperWidth={0}
-              title={productPageData.reviews}
-            >
-              {reviews?.map((review) => (
-                <Card key={review.id} sx={{ mb: 1 }}>
-                  <CardHeader title={review.title} sx={{ pb: 1 }} />
-                  <CardContent sx={{ pt: 1 }}>
-                    <Box sx={{ mb: 2 }}>
-                      <Rating rate={review.stars} />
-                    </Box>
-                    <Typography variant="body2" sx={{ mb: 1 }}>
-                      {capitalize(review.description)}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              ))}
-            </Dropdown>
-          </Box>
+          <Reviews reviews={reviews ?? []} />
         </Grid>
       </Grid>
     );

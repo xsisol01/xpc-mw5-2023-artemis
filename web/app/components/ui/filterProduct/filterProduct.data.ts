@@ -1,4 +1,4 @@
-import { regex } from "./../../../data/regex";
+import { regex } from "../../../data/regex";
 import { IScrollableListProps } from "@/app/components/shared/scrollableList/ScrollableList";
 import { ISliderProps } from "@/app/components/shared/formFields/slider/Slider";
 import { IRadioProps } from "@/app/components/shared/formFields/radio/Radio";

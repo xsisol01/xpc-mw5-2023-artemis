@@ -1,4 +1,4 @@
-import { ICreateCategory } from './../../types/category.type';
+import { ICreateCategory } from '../../types/category.type';
 
 import { useMutation } from "react-query";
 

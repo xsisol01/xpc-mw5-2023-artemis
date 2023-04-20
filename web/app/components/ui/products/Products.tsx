@@ -1,13 +1,13 @@
 import { useContext, FC, memo } from "react";
 
 import { RoleContext } from "@/app/providers/roleContextProvider";
-import { useGetAllProduct } from "@/app/hooks/product/useGetAllProducts";
+import { useGetAllProducts } from "@/app/hooks/product/useGetAllProducts";
 import { IProduct } from "@/app/types/product.type";
 
 import { Grid, Typography } from "@mui/material";
-import ProductItemPlaceholder from "@/app/components/ui/productItem/ProductItemCreate";
-import ProductItemCreate from "@/app/components/ui/productItem/ProductItemCreate";
-import ProductItem from "@/app/components/ui/productItem/ProductItem";
+import ProductItemPlaceholder from "@/app/components/ui/products/productItem/ProductItemCreate";
+import ProductItemCreate from "@/app/components/ui/products/productItem/ProductItemCreate";
+import ProductItem from "@/app/components/ui/products/productItem/ProductItem";
 import { productsData } from "./products.data";
 
 interface IProps {
@@ -19,6 +19,8 @@ interface IProps {
 const Products: FC<IProps> = memo(({ products, manufacturer, isLoading }) => {
   const { isAdmin } = useContext(RoleContext);
 
+  console.log('ui Products --- products', products)
+
   return (
     <>
       {!products?.length && (
@@ -27,12 +29,15 @@ const Products: FC<IProps> = memo(({ products, manufacturer, isLoading }) => {
         </Typography>
       )}
       <Grid container spacing={2}>
+        <>
         {isAdmin && <ProductItemCreate manufacturer={manufacturer} />}
         {isLoading && <ProductItemPlaceholder />}
         {!isLoading &&
           products?.map((product) => (
             <ProductItem key={product.id} {...product} />
           ))}
+        </>
+        
       </Grid>
     </>
   );

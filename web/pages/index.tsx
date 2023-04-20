@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import HomeScreen from '@/app/components/screens/homeScreen/HomeScreen'
+import { useEffect } from 'react'
+import { ProductService } from '@/app/services/product.service'
 
 export default function Home() {
+
   return (
     <>
       <Head>
