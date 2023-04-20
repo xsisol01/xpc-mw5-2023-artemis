@@ -21,6 +21,7 @@ export const productPageData = Object.freeze({
     },
     {
       name: 'manufacturerId',
+      placeholder: 'manufacturer',
       xs: 12,
       md: 6,
       type: 'select',
@@ -30,6 +31,7 @@ export const productPageData = Object.freeze({
     },
     {
       name: 'categoryId',
+      placeholder: 'category',
       xs: 12,
       md: 6,
       type: 'select',
@@ -57,6 +59,7 @@ export const productPageData = Object.freeze({
     },
     {
       name: 'stockQuantity',
+      placeholder: 'stock quantity',
       xs: 12,
       md: 6,
       type: 'text',

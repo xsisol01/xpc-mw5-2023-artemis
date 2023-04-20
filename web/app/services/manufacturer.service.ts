@@ -8,6 +8,7 @@ axios.defaults.httpsAgent = new https.Agent({
 })
 
 const instance = axios.create({
+  baseURL: '/api/manufacturer',
   headers: {
     'Content-Type': 'application/json',
     "Access-Control-Allow-Origin": "*",
@@ -15,28 +16,27 @@ const instance = axios.create({
 })
 
 export const ManufacturerService = {
-
   async getAll() {
-    return instance.get<IManufacturer[]>('/api/Manufacturer')
+    return instance.get<IManufacturer[]>('')
   },
   
   async get(id: string) {
-    return instance.get<IManufacturer>(`/api/Manufacturer/${id}`)
+    return instance.get<IManufacturer>(`/${id}`)
+  },
+
+  async getByName(name: string) {
+    return instance.get<IManufacturer>(`/byName/${name}`)
   },
 
   async create(data: ICreateManufacturer) {
-    instance.post('/api/Manufacturer', data)
+    return instance.post('', data)
   },
 
   async update(data: IManufacturer) {
-    try{
-      instance.put(`/api/Manufacturer/${data.id}`, {...data})
-    } catch (error: any) {
-      console.error(error.message)
-    }
+    return instance.put(`/${data.id}`, data)
   },
-
+  
   async delete(id: string) {
-    instance.delete(`/api/Manufacturer/${id}`)
+    return instance.delete(`/${id}`)
   }
 }

@@ -1,14 +1,10 @@
 import axios from 'axios';
-import https from 'https'
 
 import { ICategory, ICreateCategory } from '@/app/types/category.type';
 
-axios.defaults.httpsAgent = new https.Agent({
-  rejectUnauthorized: false
-})
-
-
 const instance = axios.create({
+  baseURL: '/api/category',
+
   headers: {
     'Content-Type': 'application/json',
     "Access-Control-Allow-Origin": "*",
@@ -18,22 +14,26 @@ const instance = axios.create({
 export const CategoryService = {
 
   async getAll() {
-    return instance.get<ICategory[]>('/api/Category')
+    return instance.get<ICategory[]>('')
   },
   
   async get(id: string) {
-    return instance.get<ICategory>(`/api/Category/${id}`)
+    return instance.get<ICategory>(`/${id}`)
+  },
+
+  async getByName(id: string) {
+    return instance.get<ICategory>(`/byName/${id}`)
   },
 
   async create(data: ICreateCategory) {
-    instance.post('/api/Category', data)
+    instance.post('', data)
   },
 
   async update(data: ICategory) {
-    instance.put(`/api/Category/${data.id}`, data)
+    instance.put(`/${data.id}`, data)
   },
 
   async delete(id: string) {
-    instance.delete(`/api/Category/${id}`)
+    instance.delete(`/${id}`)
   }
 }

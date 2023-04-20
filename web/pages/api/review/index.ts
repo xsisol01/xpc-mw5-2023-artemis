@@ -2,8 +2,8 @@ import https from "https";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const categoryApi = axios.create({
-  baseURL: `${process.env.apiUrl}/Category`,
+const reviewApi = axios.create({
+  baseURL: `${process.env.apiUrl}/Review`,
   httpsAgent: new https.Agent({
     rejectUnauthorized: false,
   }),
@@ -23,11 +23,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
-  const data = await categoryApi.get("").then((res) => [...res.data]);
+  const data = await reviewApi.get("").then((res) => [...res.data]);
   res.json([...data]);
 }
 
 async function post(req: NextApiRequest, res: NextApiResponse) {
-  const data = await categoryApi.post("", req.body);
+  const data = await reviewApi.post("", req.body);
   return res.status(200).json(data);
 }

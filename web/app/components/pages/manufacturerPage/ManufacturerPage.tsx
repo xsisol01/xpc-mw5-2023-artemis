@@ -7,7 +7,7 @@ import Products from "@/app/components/ui/products/Products";
 
 
 const ManufacturerPage: FC<IManufacturer> = memo(({
-  name, imageUrl, country, description, products, id
+  name, imageUrl, country, description, commodityIds, id
 }) => {
 
 
@@ -34,11 +34,11 @@ const ManufacturerPage: FC<IManufacturer> = memo(({
         </Grid>
       </Grid>
 
-      {products.length ? (
+      {/* {commodityIds.length ? (
         <Box sx={{borderTop: '1px solid #ccc', pt: 2}}>
-          <Products products={products} manufacturer={id} />
+          <Products products={commodityIds} manufacturer={id} />
         </Box>
-      ) : null}
+      ) : null} */}
     </div>
   )
 })

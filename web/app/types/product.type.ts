@@ -34,4 +34,5 @@ export interface IProductField {
     required: boolean
     rows: number,
     validation: RegExp
+    placeholder?: string
   }

@@ -15,6 +15,7 @@ interface IProps {
   rows?: number
   required?: boolean
   validation: RegExp
+  placeholder?: string
 }
 
 const FormSelect: FC<IProps> = (
@@ -25,7 +26,8 @@ const FormSelect: FC<IProps> = (
     defaultValue,
     sx,
     rows,
-    validation
+    validation,
+    placeholder
   }) => {
 
   return (
@@ -62,7 +64,7 @@ const FormSelect: FC<IProps> = (
                       inputRef={props.field.ref}
                       rows={rows}
                       multiline={!!rows && rows > 1}
-                      label={capitalizeText(name)}
+                      label={capitalizeText(placeholder ?? name)}
                     />
                   )
               }

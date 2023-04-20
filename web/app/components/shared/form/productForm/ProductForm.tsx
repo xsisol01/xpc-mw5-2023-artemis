@@ -41,6 +41,7 @@ const ProductForm: FC<IProps> = ({ onSubmit, defaultValues, isLoading }) => {
                 required,
                 rows,
                 validation,
+                placeholder
               }: IProductField) => (
                 <Grid key={name} item xs={xs} md={md}>
                   {type === "text" ? (
@@ -53,6 +54,7 @@ const ProductForm: FC<IProps> = ({ onSubmit, defaultValues, isLoading }) => {
                       required={required}
                       rows={rows}
                       validation={validation}
+                      placeholder={placeholder}
                     />
                   ) : type === "select" ? (
                     getOptions(name)?.length && (
@@ -69,6 +71,7 @@ const ProductForm: FC<IProps> = ({ onSubmit, defaultValues, isLoading }) => {
                         rows={rows}
                         required={required}
                         validation={validation}
+                        placeholder={placeholder}
                       />
                     )
                   ) : (

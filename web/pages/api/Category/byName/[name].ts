@@ -1,11 +1,12 @@
+import { ICategory } from '@/app/types/category.type';
 import https from "https";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const categoryApi = axios.create({
-  baseURL: `${process.env.apiUrl}/Category`,
+  baseURL: `${process.env.apiUrl}/Category/byName`,
   httpsAgent: new https.Agent({
-    rejectUnauthorized: false,
+    rejectUnauthorized: false
   }),
   headers: {
     "Content-Type": "application/json; charset=utf-8",
@@ -14,20 +15,18 @@ const categoryApi = axios.create({
 });
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  switch (req.method) {
-    case "GET":
-      return get(req, res);
-    case "POST":
-      return post(req, res);
+  switch(req.method) {
+    case "GET": 
+      return get(req, res)
   }
 }
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
-  const data = await categoryApi.get("").then((res) => [...res.data]);
-  res.json([...data]);
-}
+  const { name } = req.query;
 
-async function post(req: NextApiRequest, res: NextApiResponse) {
-  const data = await categoryApi.post("", req.body);
-  return res.status(200).json(data);
+  const data = await categoryApi
+    .get<ICategory>(`${name}`)
+    .then((res) => res.data);
+
+  return res.json(data);
 }

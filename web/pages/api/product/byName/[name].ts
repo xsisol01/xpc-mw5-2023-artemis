@@ -4,7 +4,7 @@ import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const commodityApi = axios.create({
-  baseURL: `${process.env.apiUrl}/Commodity/byId`,
+  baseURL: `${process.env.apiUrl}/Commodity/byName`,
   httpsAgent: new https.Agent({
     rejectUnauthorized: false
   }),
@@ -22,10 +22,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
-  const { pid } = req.query;
+  const { name } = req.query;
 
   const data = await commodityApi
-    .get<IProduct>(`${pid}`)
+    .get<IProduct>(`${name}`)
     .then((res) => res.data);
 
   return res.json(data);

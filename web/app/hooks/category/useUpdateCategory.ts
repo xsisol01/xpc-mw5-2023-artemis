@@ -14,7 +14,7 @@ export const useUpdateCategory = (data: ICategory) => {
     (data: ICategory) => CategoryService.update(data),
     {
       onSuccess: () => {
-        alert('Category has been created')
+        alert('Category has been updated')
       },
       onError: (error) => {
         console.log(error)

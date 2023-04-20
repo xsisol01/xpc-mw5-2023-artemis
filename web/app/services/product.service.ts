@@ -9,7 +9,7 @@ axios.defaults.httpsAgent = new https.Agent({
 })
 
 const instance = axios.create({
-  baseURL: '/api/Commodity',
+  baseURL: '/api/product',
   headers: {
     "Content-Type": "application/json; charset=utf-8",
     "Access-Control-Allow-Origin": "*",
