@@ -15,11 +15,17 @@
             get
             {
                 int sum = 0;
-                foreach (ReviewModel review in _reviews)
+                int reviewsCount = _reviews.Count();
+                if (reviewsCount > 0)
                 {
-                    sum = sum + review.Stars;
+                    foreach (ReviewModel review in _reviews)
+                    {
+                        sum = sum + review.Stars;
+                    }
+                    return sum / reviewsCount;
                 }
-                return sum / _reviews.Count();
+
+                return 0;
             }
         }
         public CategoryModel Category { get; set; }
