@@ -72,7 +72,7 @@ namespace Eshop.webAPI.FakeDB
                 Id = Guid.NewGuid(), 
                 Name = "Bosch",
                 Country = "Nemecko",
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Bosch-logo.svg/2560px-Bosch-logo.svg.png",
                 Description = "Spoločnosť Bosch, ktorá bola založená Robertom Boschom v Stuttgarte," +
                               " pôsobí na trhu už od roku 1886, kedy začínala len s telefónnymi systémami a elektrickými zvončekmi." +
                               " V súčasnosti je oblasť pôsobenia veľmi široká a do jej sortimentu patrí najrôznejšie vybavenie" +
@@ -84,7 +84,7 @@ namespace Eshop.webAPI.FakeDB
                 Id = Guid.NewGuid(), 
                 Name = "Parkside",
                 Country = "Nemecko",
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://rodavigo.net/datos/logos-marcas-png/parkside.png",
                 Description = "S PARKSIDE si môžeš byť istý: aby si mohol úlohy v dome a v záhrade zvládnuť sám," +
                               " dostaneš najvyššiu kvalitu a výkon za najlepšiu možnú cenu. Môžeš očakávať nespočetné množstvo" +
                               " oblastí použitia, rôzne výkonnostné triedy a naše vlastné produktové systémy – napríklad našu " +
@@ -97,7 +97,7 @@ namespace Eshop.webAPI.FakeDB
                 Id = Guid.NewGuid(), 
                 Name = "Ferrida",
                 Country = "Nemecko",
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://logos.textgiraffe.com/logos/logo-name/Ferida-designstyle-popstar-m.png",
                 Description = "Značka Ferrida predstavuje to najlepšie náradie pre všetkých domácich majstrov, " +
                               "príležitostných hodinových manželov a záhradkárov.Zodpovedne a s nasadením vám " +
                               "prinášame kvalitné náradie a stroje, ktoré vydržia dlhé roky a pritom výrazne nezasiahnu"+
@@ -111,7 +111,7 @@ namespace Eshop.webAPI.FakeDB
                 Id = Guid.NewGuid(), 
                 Name = "Blackmont",
                 Country = "Rakúsko",
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://logos.flamingtext.com/City-Logos/Blackmont-Logo-Design.png",
                 Description = "Blackmont prináša na trh auto-moto doplnky, ako sú ochranné plachty, strešné boxy, nabíjacie káble, " +
                                "reťaze na kolesá, praktické súpravy náradia, pracovné oblečenie alebo efektívne nabíjačky autobatérií. " +
                                "Pestrý sortiment dopĺňajú aj chladiace boxy a autochladničky, ideálna výbava na cesty. To všetko s vysokým " +
@@ -123,7 +123,7 @@ namespace Eshop.webAPI.FakeDB
                 Id = Guid.NewGuid(),
                 Name = "Fiskars",
                 Country = "Fínsko",
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Fiskars_logo.svg/1280px-Fiskars_logo.svg.png",
                 Description = "Fiskars už od svojho založenia absolútne vyniká a dá vyniknúť aj Vám . Fiskars vám dovolí prácu si " +
                               "užívať a nie sa drieť. Fiskars to je : Premyslená funkčnosť každého nástroja pre jednoduchšiu prácu. " +
                               "Dokonalá ergonómia a pohodlie pre pevné uchopenie. Špičkové materiály pre čo najvyššiu kvalitu. " +
@@ -134,7 +134,7 @@ namespace Eshop.webAPI.FakeDB
                 Id = Guid.NewGuid(), 
                 Name = "JUTA",
                 Country = "Česká republika",
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://iaks.sport/sites/default/files/styles/max_325x325/public/images/Logo/2019-04/juta%20logo%202881.png?itok=nMroA48e",
                 Description = "JUTA a. s. je významným českým výrobcom širokého sortimentu produktov pre stavebníctvo a poľnohospodárstvo, " +
                               "obalových materiálov a umelého trávniku pre šport a volný čas. S 18 závodmi a ročným obratom " +
                               "7,5 miliárd korún sa riadi k najväčším výrobcom v jednotlivých odvetviach. Viac než 75% produkcie je " +
@@ -144,7 +144,7 @@ namespace Eshop.webAPI.FakeDB
                 Id = Guid.NewGuid(),
                 Name = "Makita", 
                 Country = "Japonsko",
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Makita_Logo.svg/2560px-Makita_Logo.svg.png",
                 Description = "Makita vďačí za svoju reputáciu výrobe náradia špičkovej kvality, ktoré začala vyrábať pred viac " +
                               "ako 100 rok-mi, keď v r. 1915 Masaburo Makita s tromi spolupracovníkmi zakladajú v Nagoya City firmu " +
                               "na výrobu elektromotorov generátorov." 
@@ -162,7 +162,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 12,
                 Manufacturer = parkside,  
                 Category = vrtacky,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://www.lidl.sk/assets/gcpa7a54b7a1e3348ada9db90369b1f5f06.jpeg",
                 Description = "Na výkonné opracovávanie betónu, kameňa, kovu alebo dreva. Pneumatické kladivo s vysokou silou úderu " +
                               "Rýchloupínacie skľučovadlo s upnutím podľa systému SDS plus. Centrálny prepínač pre všetky funkcie: Vŕtanie, " +
                               "príklepové vŕtanie so zapnutou funkciou kladiva, nastavenie polohy sekáča, sekanie so zapnutou funkciou kladiva, " +
@@ -181,7 +181,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 4,
                 Manufacturer = makita,
                 Category = vrtacky,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://im9.cz/iR/importprodukt-orig/f3b/f3be864250803c9d9264cb53ea439f9c.jpg",
                 Description = "Renomovaný japonský výrobca elektrického náradi Maktia prichádza na trh s veľmi šikovným modelom elktrickej " +
                               "vrtačky s príklepom HP1630K, ktorá sa stane neoddeliteľnou súčasťou vašej dieľne. Tento model sa môže pochváliť " +
                               "predovšetkým vysoko kvalitným spracovaním zaručujúcim spoľahlivý chod, ďalej solidným výkonom a praktickou sadou " +
@@ -198,7 +198,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 8,
                 Manufacturer = ferrida,
                 Category = skrutkovace,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://cdn.bscom.cz/images/0/2dea2e9576075996/2/ferrida-sada-sroubovaku-6-kusu.jpg",
                 Description = "Sada skrutkovačov – 3 veľkosti plochých (3×75, 5.5×100, 6.5×100mm) a 3 veľkosti krížových (0×75, 1×75, 2×100mm) skrutkovačov, " +
                               "magnetické špičky, ergonomická rukoväť, chróm-vanádiová oceľ"
             };
@@ -212,7 +212,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 16,
                 Manufacturer = makita,
                 Category = skrutkovace,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://www.makita-eshop.cz/images/55/380ffce9281bee0e0e3643c9d4a9e6da-wm-1100x999.jpg",
                 Description = "Sada skrutkovačov – s ergonomickou protišmykovou rukoväťou, obsahuje PZ1 × 80 mm, PZ2 × 100 mm, SL4,0 × 100 mm, " +
                               "SL5,5 × 100 mm, SL6,5 × 125 mm, SL8,0 × 150 mm - 3,32 €/ks"
             };
@@ -226,7 +226,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 7,
                 Manufacturer = makita,
                 Category = skrutkovace,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://www.makita-eshop.cz/images/55/42529f42df32bda8acffa1ca9ca92a24-wm-1100x999.jpg",
                 Description = "Sada skrutkovačov – s ergonomickou protišmykovou rukoväťou, T10×100mm, T15×100mm, T20×100mm, T25×100mm, T30×100mm - 3,78 €/ks"
                 
             };
@@ -240,7 +240,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 2,
                 Manufacturer = bosch ,
                 Category = utahovacky,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://cdn.bscom.cz/images/0/4ca7beb24b8e6847/2/bosch-gdr-18v-200-c-2x4-0ah-procore-l-boxx-136.jpg",
                 Description = "Rázový uťahovák aku, typ prichytenia: vnútorný šesťhran 1/4, 3400ot./min, krútiaci moment 200Nm"
             };
 
@@ -253,7 +253,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 6,
                 Manufacturer = makita,
                 Category = utahovacky,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://im9.cz/iR/importprodukt-orig/52d/52d7223bd9c1f6b04644a1ca4abf87b3--mmf400x400.jpg",
                 Description = "Rázový uťahovák aku, typ prichytenia: vonkajší štvorhran 3/8\", 2600ot./min, krútiaci moment 135Nm"
             };
 
@@ -266,7 +266,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 9,
                 Manufacturer = parkside,
                 Category = utahovacky ,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://www.lidl.cz/assets/gcp55ca4007127043db9cbdc46493d27b3f.jpeg",
                 Description = "Výkonný rázový uťahovák na montáž kolies osobných automobilov, plynulo nastaviteľný počet otáčok/úderov, " +
                               "5 predvoliteľných stupňov krútiaceho momentu: 100/150/200/300/400 Nm, protišmykové držadlo s mäkkým povrchom, " +
                               "praktická spona na opasok, vrátane otvárača na fľaše, zabudované LED pracovné svetlo"
@@ -281,7 +281,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 21,
                 Manufacturer = fiskars,
                 Category = lopaty,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://images.obi.cz/product/CZ/1500x1500/106794_2.jpg",
                 Description = "Lopata rovný tvar čepele."
             };
 
@@ -294,7 +294,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 5,
                 Manufacturer = fiskars,
                 Category = lopaty,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://www.mall.cz/i/40876670/1000/1000",
                 Description = "Lopata rovný tvar čepele, ergonomický úchyt."
             };
 
@@ -307,7 +307,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 8,
                 Manufacturer = fiskars,
                 Category = lopaty,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://images.obi.cz/product/CZ/1500x1500/479693_2.jpg",
                 Description = "Lopata s čepeľou so šírkou 24 cm, rovný tvar čepele."
             };
 
@@ -320,7 +320,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 11,
                 Manufacturer = fiskars,
                 Category = hrable,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://images.obi.cz/product/CZ/1500x1500/455729_2.jpg",
                 Description = "Hrable na lístie, so záberom 52 cm, materiál pracovnej časti: plast."
             };
 
@@ -333,7 +333,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 3 ,
                 Manufacturer = fiskars,
                 Category = hrable,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://y1.sk/t/p/1280e780/6582357/i.jpg",
                 Description = "Hrable na lístie, so záberom 50 cm, materiál pracovnej časti: plast + potreba dokúpiť Náasadu Fiskars Quickfit."
             };
 
@@ -346,7 +346,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 23,
                 Manufacturer = parkside,
                 Category = hrable,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://www.lidl.sk/assets/gcp2fac194ace6642208f0fcaaafeb7ae13.jpeg",
                 Description = "Extra široké hrable s 24 stabilnými hrotmi (12 na každej strane) na rýchle a dôkladné hrabanie – tiež na veľkých plochách."
             };
 
@@ -359,7 +359,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 2,
                 Manufacturer = fiskars,
                 Category = vytrhavaceBuriny,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://www.pricemania.cz/assets/product/8045860/01.jpg",
                 Description = "Vytrhávač buriny – dĺžka 119 cm, teleskopický, hmotnosť 1,25 kg, čierna farba."
             };
 
@@ -372,7 +372,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 6,
                 Manufacturer = ferrida,
                 Category = vytrhavaceBuriny,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://cdn.alza.cz/ImgW.ashx?fd=f5&cd=FRDGT008",
                 Description = "Odstraňovač buriny elektrický, 2000W, teleskopická rukoväť, prietok vzduchu 500 l / min, 2 teplotné stupne 50 ° C / 600 ° C, " +
                               "vymeniteľné nástavce, možno použiť aj ako teplovzdušnú pištoľ, podpaľovač grilu, rozmrazovač"
             };
@@ -386,7 +386,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 6,
                 Manufacturer = fiskars,
                 Category = vytrhavaceBuriny,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://im9.cz/iR/importprodukt-orig/8a5/8a539845503d64ac178bcf81d0f71a1c--mmf400x400.jpg",
                 Description = "Vytrhávač buriny – vhodný na odstránenie burín, materiál bórová oceľ, mechanizmus zámku QuikFit na pripojenie na univerzálny " +
                               "pracovný adaptér alebo násadu"
             };
@@ -400,7 +400,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 5,
                 Manufacturer = juta,
                 Category = silaznePlachty,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://images.webobal.cz/obr/productFotoRetina/attachments/silazni-folie-plachta.jpeg",
                 Description = "Silážne plachty sú vyrábané z hygienicky nezávadného koextrudovaného polyetylénu."
             };
 
@@ -413,7 +413,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 12,
                 Manufacturer = juta,
                 Category = silaznePlachty,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://www.agrozet.cz/files/agrozetshop/images/eshop/size5-165599190331-175.jpg",
                 Description = "Silážne plachty sú vyrábané z hygienicky nezávadného koextrudovaného polyetylénu."
             };
 
@@ -426,7 +426,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 5,
                 Manufacturer = juta,
                 Category = silaznePlachty,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://www.mall.cz/i/85672963/235/240",
                 Description = "Silážne plachty sú vyrábané z hygienicky nezávadného koextrudovaného polyetylénu. Čierna/Biela."
             };
 
@@ -439,7 +439,7 @@ namespace Eshop.webAPI.FakeDB
                 StockQuantity = 32,
                 Manufacturer = juta,
                 Category = silaznePlachty,
-                ImageUrl = "TODO/TODO/TODO",
+                ImageUrl = "https://webobal.cz/attachments/juta-plachta-silazni-10x5-m-150-mikronu-cerna-bila.jpeg?width=500&height=500",
                 Description = "Silážne plachty sú vyrábané z hygienicky nezávadného koextrudovaného polyetylénu.  Čierna/Biela."
             };
 
