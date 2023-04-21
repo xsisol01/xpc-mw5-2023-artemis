@@ -237,7 +237,7 @@ namespace Eshop.webAPI.FakeDB
                 Name = "Bosch GDR 18V-200 C (2× 4,0Ah ProCore, Lboxx 136)",
                 Price = (float?)426.90,
                 Weight = (float?)1.1,
-                StockQuantity = 2,
+                StockQuantity = 0,
                 Manufacturer = bosch ,
                 Category = utahovacky,
                 ImageUrl = "https://cdn.bscom.cz/images/0/4ca7beb24b8e6847/2/bosch-gdr-18v-200-c-2x4-0ah-procore-l-boxx-136.jpg",
