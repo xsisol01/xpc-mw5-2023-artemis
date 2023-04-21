@@ -9,10 +9,13 @@ import { useGetAllProducts } from "@/app/hooks/product/useGetAllProducts";
 import { globalStyles } from "@/app/assets/styles/global.styles";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
 import SearchProduct from "../../ui/searchProduct/SearchProduct";
+import { UrlSearchParamsContext } from "@/app/providers/urlSearchParamsProvider";
+import { filter } from "@/app/utils/productFilter";
 
 const HomeScreen: FC = memo(() => {
   const { products, isLoading } = useGetAllProducts();
   const { setCurrentManufacturer } = useContext(ManufacturerContext);
+  const {allParams} = useContext(UrlSearchParamsContext)
 
   setCurrentManufacturer("");
 
@@ -27,7 +30,7 @@ const HomeScreen: FC = memo(() => {
             <SearchProduct />
             {isLoading && <CircularProgress />}
             {!isLoading && (
-              <Products products={products} isLoading={isLoading} />
+              <Products products={filter(products ?? [], allParams)} isLoading={isLoading} />
             )}
           </Grid>
         </Grid>

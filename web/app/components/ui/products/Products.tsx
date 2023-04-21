@@ -19,8 +19,6 @@ interface IProps {
 const Products: FC<IProps> = memo(({ products, manufacturer, isLoading }) => {
   const { isAdmin } = useContext(RoleContext);
 
-  console.log('ui Products --- products', products)
-
   return (
     <>
       {!products?.length && (
@@ -28,17 +26,18 @@ const Products: FC<IProps> = memo(({ products, manufacturer, isLoading }) => {
           {productsData.empty}
         </Typography>
       )}
-      <Grid container spacing={2}>
-        <>
-        {isAdmin && <ProductItemCreate manufacturer={manufacturer} />}
-        {isLoading && <ProductItemPlaceholder />}
-        {!isLoading &&
-          products?.map((product) => (
-            <ProductItem key={product.id} {...product} />
-          ))}
-        </>
-        
-      </Grid>
+      {products && products?.length > 0 && (
+          <Grid container spacing={2}>
+            <>
+            {isAdmin && <ProductItemCreate manufacturer={manufacturer} />}
+            {isLoading && <ProductItemPlaceholder />}
+            {!isLoading &&
+              products?.map((product) => (
+                <ProductItem key={product.id} {...product} />
+              ))}
+            </>
+        </Grid>
+        )}
     </>
   );
 });

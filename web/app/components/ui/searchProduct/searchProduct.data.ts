@@ -1,5 +1,5 @@
 export const searchProductData = Object.freeze({
-    placeholder: 'Zboží, výrobce, hodnocení ...',
+    placeholder: `The product's name`,
     inputType: 'search',
     uid: 'search',
     ariaLabel: 'Search product'

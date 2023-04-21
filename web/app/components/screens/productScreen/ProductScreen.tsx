@@ -15,7 +15,7 @@ const ProductScreen: FC = memo(() => {
     const {query, push} = useRouter()
     const {isAdmin} = useContext(RoleContext)
 
-    const {product, isLoading, } = useGetProduct(String(query.pid))
+    const { product, isLoading } = useGetProduct(String(query.pid))
 
     if (isLoading) {
         return  <CircularProgress />

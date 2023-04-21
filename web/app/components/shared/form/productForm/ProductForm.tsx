@@ -1,3 +1,4 @@
+import { globalStyles } from "@/app/assets/styles/global.styles";
 import { productPageData } from "@/app/components/pages/productPage/productPage.data";
 import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
 import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
@@ -25,12 +26,12 @@ const ProductForm: FC<IProps> = ({ onSubmit, defaultValues, isLoading }) => {
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
+    <form onSubmit={handleSubmit(onSubmit)} >
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item xs={6} sx={{mt: 2}}>
           <UploadImage />
         </Grid>
-        <Grid item xs={6} sx={{ mb: 2 }}>
+        <Grid item xs={6} sx={{pt: 2, ...globalStyles.fullScroll }}>
           <Grid container spacing={2}>
             {productPageData.fields.map(
               ({
@@ -81,9 +82,9 @@ const ProductForm: FC<IProps> = ({ onSubmit, defaultValues, isLoading }) => {
               )
             )}
           </Grid>
+          <RightSubmitButton disabled={isLoading} />
         </Grid>
       </Grid>
-      <RightSubmitButton disabled={isLoading} />
     </form>
   );
 

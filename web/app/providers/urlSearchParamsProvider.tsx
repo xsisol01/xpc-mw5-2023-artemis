@@ -13,6 +13,7 @@ import { CircularProgress } from "@mui/material";
 interface IContext {
   getParam: (name: string) => string | string[] | undefined;
   setParam: (name: string, value: string) => void;
+  allParams: any
 }
 
 export const UrlSearchParamsContext = createContext<IContext>({} as IContext);
@@ -35,15 +36,14 @@ const UrlSearchParamsProvider: FC<IProps> = memo(({ children }) => {
   });
 
   useEffect(() => {
-    if (Object.keys(searchParams).length) {
-      router.push({ query: searchParams });
-    }
+    router.push({ query: searchParams })
   }, [searchParams]);
 
   const value = useMemo(
     () => ({
       getParam,
       setParam,
+      allParams: searchParams
     }),
     [searchParams]
   );

@@ -11,6 +11,7 @@ import { FC, useState } from "react";
 import Rating from "@/app/components/shared/rating/Rating";
 import ReviewForm from "@/app/components/shared/form/reviewForm/ReviewForm";
 import AddIcon from "@mui/icons-material/Add";
+import { reviewData } from "./review.data";
 
 interface IProps {
   productId: string
@@ -42,9 +43,8 @@ const ReviewCreate: FC<IProps> = ({productId}) => {
       ) : (
         <>
           <ReviewForm productId={productId} />
-          <Button variant="text" onClick={toggleForm}>Cancel</Button>
+          <Button variant="text" onClick={toggleForm}>{reviewData.cancel}</Button>
         </>
-        
       )}
     </Card>
   );

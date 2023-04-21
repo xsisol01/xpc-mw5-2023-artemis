@@ -11,6 +11,7 @@ import { FC, memo, useContext } from "react";
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { radioData } from "./radio.data";
 
 import styles from "./radio.module.scss";
 
@@ -54,6 +55,12 @@ const Radio: FC<IRadioProps> = memo(({ options, uid }) => {
         value={selected}
         onChange={handleChange}
       >
+        <FormControlLabel
+            key={radioData.all.value}
+            value={radioData.all.value}
+            control={<RadioField />}
+            label={radioData.all.text}
+          />
         {options.map((option) => (
           <FormControlLabel
             key={option.value}

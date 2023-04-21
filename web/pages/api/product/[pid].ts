@@ -32,9 +32,7 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
   const data = await commodityApi
     .get<IProduct>(`/byId/${pid}`)
     .then((res) => res.data);
-
-    console.log('PRODUCT.ID --- GET -------------------', data)
-
+    
   return res.json(data);
 }
 

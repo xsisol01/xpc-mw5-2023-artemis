@@ -6,6 +6,7 @@ import { isTextEqual } from "@/app/utils/isTextEqual";
 import { useEffect, useState } from "react";
 import { ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { UrlSearchParamsContext } from "@/app/providers/urlSearchParamsProvider";
+import { ScrollableListData } from "./scrollabelList.data";
 
 const MAX_HEIGHT = 380;
 
@@ -22,7 +23,7 @@ export interface IScrollableListProps {
 
 const ScrollableList: FC<IScrollableListProps> = memo(
   ({ uid, options, maxHeight = MAX_HEIGHT }) => {
-    const [selected, setSelected] = useState<string>("");
+    const [selected, setSelected] = useState<string>(ScrollableListData.all.id);
     const { getParam, setParam } = useContext(UrlSearchParamsContext);
 
     useEffect(() => {
@@ -53,6 +54,17 @@ const ScrollableList: FC<IScrollableListProps> = memo(
 
     return (
       <ul>
+        <ListItemButton
+            onClick={() => setSelected(ScrollableListData.all.id)}
+            sx={{ height: 40 }}
+          >
+            <ListItem sx={{ p: 0 }}>
+              <ListItemText
+                secondary={getOptionText(ScrollableListData.all, "secondary")}
+                primary={getOptionText(ScrollableListData.all, "primary")}
+              />
+            </ListItem>
+          </ListItemButton>
         {options?.map((item) => (
           <ListItemButton
             key={item.id}

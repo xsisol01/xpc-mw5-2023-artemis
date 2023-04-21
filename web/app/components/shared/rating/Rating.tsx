@@ -19,6 +19,7 @@ interface IProps {
   disabled?: boolean;
   noRatingGiven?: boolean;
   onChange?: (value: number | null) => void;
+  style?: any
 }
 
 const Rating: FC<IProps> = memo(
@@ -29,6 +30,7 @@ const Rating: FC<IProps> = memo(
     disabled = false,
     noRatingGiven = false,
     onChange,
+    style
   }) => {
     const [value, setValue] = useState<number | null>(rate);
 
@@ -57,6 +59,7 @@ const Rating: FC<IProps> = memo(
           [styles.stars__small]: size === "small",
           [styles.stars__full]: size !== "small",
         })}
+        style={style}
       >
         <MURaring
           name="rating"
