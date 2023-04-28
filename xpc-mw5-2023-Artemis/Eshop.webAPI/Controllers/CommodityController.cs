@@ -77,6 +77,44 @@ namespace Eshop.webAPI.Controllers
             }         
         }
 
+        [HttpGet("byListOfId", Name = "GetCommodities")]
+        public ActionResult<List<CommodityDTO>> GetCommodities([FromQuery] List<Guid> ids)
+        {
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
+
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
+            {
+                try
+                {
+                    var commodities = new List<CommodityModel>();
+                    foreach(var id in ids)
+                    {
+                        var commodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Id == id);
+                        if(commodity != null)
+                        {
+                            commodities.Add(commodity);
+                        }
+                        else
+                        {
+                            _logger.LogWarning($"Commodity with ID {id} not found");
+                            return NotFound();
+                        }
+                    }
+
+                    var results = _mapper.Map<List<CommodityDTO>>(commodities);
+
+                    _logger.LogInformation($"Proccessing of request successful");
+                    return Ok(results);    
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(GetCommodities)}");
+                    return StatusCode(500, "Internal Server Error. Please try again later.");
+                }
+            }
+        }
+
 
         [HttpGet("byName/{name}")]
         public ActionResult<CommodityDTO> GetCommodityByName(string name)

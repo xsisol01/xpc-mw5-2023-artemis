@@ -55,7 +55,7 @@ namespace Eshop.webAPI.Controllers
         }
 
         [HttpGet("byId/{id}", Name = "GetReview")]
-        public ActionResult<ReviewDTO> GetReviewById(Guid id)
+        public ActionResult<ReviewDTO> GetReview(Guid id)
         {
             var requestUrl = HttpContext.Request.Path;
             var method = HttpContext.Request.Method;
@@ -81,7 +81,7 @@ namespace Eshop.webAPI.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, $"Error in {nameof(GetReviewById)}");
+                    _logger.LogError(ex, $"Error in {nameof(GetReview)}");
                     return StatusCode(500, "Internal Server Error. Please try again later.");
                 }
             }
@@ -121,7 +121,7 @@ namespace Eshop.webAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ReviewDTO> CreateReview([FromBody] CreateReviewDTO reviewDTO)
+        public ActionResult<ReviewDTO> CreateReview(Guid id, [FromBody] CreateReviewDTO reviewDTO)
         {
             var requestUrl = HttpContext.Request.Path;
             var method = HttpContext.Request.Method;
@@ -130,19 +130,30 @@ namespace Eshop.webAPI.Controllers
             {
                 try
                 {
+                    var commodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Id == id);
                     if (FakeDatabase.Reviews.Any(r => r.Title == reviewDTO.Title))
                     {
                         _logger.LogWarning($"Review with title {reviewDTO.Title} already exists");
                         return Conflict();
                     }
+                    if (commodity != null)
+                    {
+                        var review = _mapper.Map<ReviewModel>(reviewDTO);
 
-                    var review = _mapper.Map<ReviewModel>(reviewDTO);
-                    FakeDatabase.AddReview(review);
+                        commodity.addReview(review);
+                        FakeDatabase.AddReview(review);
 
-                    var result = _mapper.Map<ReviewDTO>(review);
+                        var result = _mapper.Map<ReviewDTO>(review);
 
-                    _logger.LogInformation($"Proccessing of request successful");
-                    return CreatedAtRoute(nameof(GetReviewById), new { id = result.Id }, result);
+                        _logger.LogInformation($"Proccessing of request successful");
+                        return CreatedAtRoute(nameof(GetReview), new { id = result.Id }, result);
+                    }
+                    else
+                    {
+                        _logger.LogError($"Commodity with {id} not found in {nameof(CreateReview)}");
+                        return NotFound("Commodity not found");
+                    }
+
                 }
                 catch (Exception ex)
                 {
