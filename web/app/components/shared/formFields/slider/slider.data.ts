@@ -1,4 +1,4 @@
 export const SliderData = Object.freeze({
-  min: 'min',
-  max: 'max'
-})
+  min: "min",
+  max: "max",
+});

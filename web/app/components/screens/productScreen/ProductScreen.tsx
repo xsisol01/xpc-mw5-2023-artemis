@@ -1,47 +1,25 @@
-import {FC, memo, useContext} from 'react'
+import { FC, memo, useContext } from "react";
 
-import { useRouter } from 'next/router'
+import { RoleContext } from "@/app/providers/roleContextProvider";
 
-import { RoleContext } from '@/app/providers/roleContextProvider'
+import AdminProductInfo from "@/app/components/pages/productPage/AdminProductInfo";
+import ProductInfo from "@/app/components/pages/productPage/ProductInfo";
+import { IProduct } from "@/app/types/product.type";
 
-import HeaderLayout from '@/app/components/layout/headerLayout/HeaderLayout'
-import { useGetProduct } from '@/app/hooks/product/useGetProduct'
-import AdminProductInfo from '../../pages/productPage/AdminProductInfo'
-import ProductInfo from '../../pages/productPage/ProductInfo'
-import { Container } from '@mui/system'
-import { CircularProgress } from '@mui/material'
+interface IProps {
+  product: IProduct;
+}
 
-const ProductScreen: FC = memo(() => {
-    const {query, push} = useRouter()
-    const {isAdmin} = useContext(RoleContext)
+const ProductScreen: FC<IProps> = memo(({ product }) => {
+  const { isAdmin } = useContext(RoleContext);
 
-    const { product, isLoading } = useGetProduct(String(query.pid))
+  return isAdmin ? (
+    <AdminProductInfo {...product} />
+  ) : (
+    <ProductInfo {...product} />
+  );
+});
 
-    if (isLoading) {
-        return  <CircularProgress />
-    }
+ProductScreen.displayName = "ProductScreen";
 
-    if (!product) {
-        push("/404")
-
-        return (
-            <HeaderLayout>
-                <div>Not Found</div>
-            </HeaderLayout>
-        )
-    }
-
-    return (
-        <HeaderLayout >
-            <Container>
-                {isAdmin ? (
-                    <AdminProductInfo {...product} />
-                ) : (
-                    <ProductInfo {...product} />
-                )}
-            </Container>
-        </HeaderLayout>
-    )
-})
-
-export default ProductScreen
+export default ProductScreen;

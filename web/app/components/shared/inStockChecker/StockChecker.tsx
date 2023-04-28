@@ -25,4 +25,6 @@ const StockChecker: FC<TProps> = memo(({isInStock, className}) => {
   )
 })
 
+StockChecker.displayName = 'StockChecker'
+
 export default StockChecker

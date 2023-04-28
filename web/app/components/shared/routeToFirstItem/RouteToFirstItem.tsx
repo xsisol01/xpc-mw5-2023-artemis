@@ -1,20 +1,14 @@
-import { CircularProgress } from "@mui/material";
+import { FC, memo } from "react";
 import { useRouter } from "next/router";
-import { FC } from "react";
 
 interface IProps {
-  items: any[] | undefined
-  isLoading: boolean
-  baseUrl: string
+  items: any[] | undefined;
+  baseUrl: string;
 }
 
-const RouteToFirstItem: FC<IProps> = ({ items, isLoading, baseUrl }) => {
+const RouteToFirstItem: FC<IProps> = memo(({ items, baseUrl }) => {
   const router = useRouter();
   const { push } = router;
-
-  if (isLoading) {
-    return <CircularProgress />;
-  }
 
   if (items?.length) {
     const firstCategoryId = items[0].id;
@@ -23,7 +17,10 @@ const RouteToFirstItem: FC<IProps> = ({ items, isLoading, baseUrl }) => {
     return null;
   }
 
-  return null;
-};
+  push('/404')
+  return null
+});
+
+RouteToFirstItem.displayName = "RouteToFirstItem";
 
 export default RouteToFirstItem;

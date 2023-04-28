@@ -1,11 +1,4 @@
-import {
-  FC,
-  memo,
-  SyntheticEvent,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { FC, memo, SyntheticEvent, useEffect, useState } from "react";
 
 import classNames from "classnames";
 
@@ -19,7 +12,7 @@ interface IProps {
   disabled?: boolean;
   noRatingGiven?: boolean;
   onChange?: (value: number | null) => void;
-  style?: any
+  style?: any;
 }
 
 const Rating: FC<IProps> = memo(
@@ -30,7 +23,7 @@ const Rating: FC<IProps> = memo(
     disabled = false,
     noRatingGiven = false,
     onChange,
-    style
+    style,
   }) => {
     const [value, setValue] = useState<number | null>(rate);
 
@@ -50,7 +43,7 @@ const Rating: FC<IProps> = memo(
       if (onChange) {
         onChange(value);
       }
-    }, [value]);
+    }, [value, onChange]);
 
     return (
       <div
@@ -72,5 +65,7 @@ const Rating: FC<IProps> = memo(
     );
   }
 );
+
+Rating.displayName = "Rating";
 
 export default Rating;

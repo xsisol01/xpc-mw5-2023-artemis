@@ -1,12 +1,13 @@
+import { FC, memo } from "react";
+
 import { Box } from "@mui/material";
-import { FC } from "react";
 import SubmitButton from "./SubmitButton";
 
 interface IProps {
   disabled: boolean;
 }
 
-const RightSubmitButton: FC<IProps> = ({ disabled }) => {
+const RightSubmitButton: FC<IProps> = memo(({ disabled }) => {
   return (
     <Box
       component="div"
@@ -15,6 +16,8 @@ const RightSubmitButton: FC<IProps> = ({ disabled }) => {
       <SubmitButton disabled={disabled} />
     </Box>
   );
-};
+});
+
+RightSubmitButton.displayName = "RightSubmitButton";
 
 export default RightSubmitButton;

@@ -1,18 +1,19 @@
-import { regex } from '../../../data/regex';
+import { regex } from "@/app/data/regex";
+
 export const categoryPageData = Object.freeze({
   defaultValues: {
-    id: '',
-    name: ''
+    id: "",
+    name: "",
   },
   fields: [
     {
-      name: 'name',
+      name: "name",
       xs: 12,
       md: 12,
-      type: 'text',
+      type: "text",
       required: true,
       rows: 1,
-      validation: regex.all
-    }
-  ]
-})
+      validation: regex.all,
+    },
+  ],
+});

@@ -1,19 +1,34 @@
 import { NextPage } from "next";
 
-import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
 import RouteToFirstItem from "@/app/components/shared/routeToFirstItem/RouteToFirstItem";
 import { routes } from "@/app/data/routes";
+import { ManufacturerService } from "@/app/services/manufacturer.service";
+import { IManufacturer } from "@/app/types/manufacturer.type";
+import { useContext, useEffect } from "react";
+import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
 
-const AllManufacturers: NextPage = () => {
-  const { manufacturers, isLoading } = useGetAllManufacturers();
+interface IProps {
+  staticManufacturers: IManufacturer[];
+}
+
+const AllManufacturers: NextPage<IProps> = ({ staticManufacturers }) => {
+  const { manufacturers, setManufacturers } = useContext(ManufacturerContext);
+
+  useEffect(() => {
+    if (!manufacturers.length) {
+      setManufacturers(staticManufacturers);
+    }
+  }, [staticManufacturers]);
 
   return (
-    <RouteToFirstItem
-      items={manufacturers}
-      isLoading={isLoading}
-      baseUrl={routes.manufacturer}
-    />
+    <RouteToFirstItem items={manufacturers} baseUrl={routes.manufacturer} />
   );
 };
 
 export default AllManufacturers;
+
+export async function getServerSideProps() {
+  const staticManufacturers = await ManufacturerService.getAll();
+
+  return { props: { staticManufacturers } };
+}

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import { IconButton } from "@mui/material";
 import { Clear, Search } from "@mui/icons-material";
@@ -9,7 +9,7 @@ interface IProps {
   onClose?: () => void;
 }
 
-const SearchIcon: FC<IProps> = ({ value, onClose, onSearch }) => {
+const SearchIcon: FC<IProps> = memo(({ value, onClose, onSearch }) => {
   return value?.length ? (
     <IconButton
       type="button"
@@ -29,6 +29,8 @@ const SearchIcon: FC<IProps> = ({ value, onClose, onSearch }) => {
       <Search />
     </IconButton>
   );
-};
+});
+
+SearchIcon.displayName = "SearchIcon";
 
 export default SearchIcon;

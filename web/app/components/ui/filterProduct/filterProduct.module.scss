@@ -1,24 +1,24 @@
 .filterProduct1 {
-    min-width: 240px;
-    width: 240px;
+  min-width: 240px;
+  width: 240px;
 
-    &__ {
-        &inner {
-            width: inherit;
-            position: fixed;
-            width: inherit;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            position: fixed;
-            max-height: 92vh;
-            padding-bottom: 60px;
+  &__ {
+    &inner {
+      width: inherit;
+      position: fixed;
+      width: inherit;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      position: fixed;
+      max-height: 92vh;
+      padding-bottom: 60px;
 
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
 
-            &::-webkit-scrollbar {
-                display: none;
-            }
-        }
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
+  }
 }

@@ -1,14 +1,15 @@
 import { FC, memo } from "react";
+import Image from "next/image";
 
 interface IProps {
-  alt: string
-  height: number | string
-  width?: number | string
+  alt: string;
+  height: number | string;
+  width?: number | string;
 }
 
-const ImagePlaceholder: FC<IProps> = memo(({alt, height, width = '100%'}) => {
+const ImagePlaceholder: FC<IProps> = memo(({ alt, height, width = "100%" }) => {
   return (
-    <img
+    <Image
       src="imagePlaceholder.png"
       alt={alt}
       style={{ height, width }}
@@ -17,4 +18,6 @@ const ImagePlaceholder: FC<IProps> = memo(({alt, height, width = '100%'}) => {
   );
 });
 
-export default ImagePlaceholder
+ImagePlaceholder.displayName = "ImagePlaceholder";
+
+export default ImagePlaceholder;

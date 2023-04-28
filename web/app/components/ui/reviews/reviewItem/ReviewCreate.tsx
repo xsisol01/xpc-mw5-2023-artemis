@@ -1,28 +1,21 @@
-import {
-  Box,
-  Button,
-  capitalize,
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-} from "@mui/material";
-import { FC, useState } from "react";
-import Rating from "@/app/components/shared/rating/Rating";
-import ReviewForm from "@/app/components/shared/form/reviewForm/ReviewForm";
-import AddIcon from "@mui/icons-material/Add";
+import { FC, useState, memo } from "react";
+
 import { reviewData } from "./review.data";
 
+import { Box, Button, Card } from "@mui/material";
+import ReviewForm from "@/app/components/shared/form/reviewForm/ReviewForm";
+import AddIcon from "@mui/icons-material/Add";
+
 interface IProps {
-  productId: string
+  productId: string;
 }
 
-const ReviewCreate: FC<IProps> = ({productId}) => {
+const ReviewCreate: FC<IProps> = memo(({ productId }) => {
   const [isFormShown, setIsFormShown] = useState(false);
 
   const toggleForm = () => {
-    setIsFormShown(isShown => !isShown)
-  }
+    setIsFormShown((isShown) => !isShown);
+  };
 
   return (
     <Card sx={{ mb: 1, width: "100%", minHeight: 48 }}>
@@ -34,7 +27,7 @@ const ReviewCreate: FC<IProps> = ({productId}) => {
             justifyContent: "center",
             width: "100%",
             height: 48,
-            cursor: 'pointer'
+            cursor: "pointer",
           }}
           onClick={toggleForm}
         >
@@ -43,11 +36,15 @@ const ReviewCreate: FC<IProps> = ({productId}) => {
       ) : (
         <>
           <ReviewForm productId={productId} />
-          <Button variant="text" onClick={toggleForm}>{reviewData.cancel}</Button>
+          <Button variant="text" onClick={toggleForm}>
+            {reviewData.cancel}
+          </Button>
         </>
       )}
     </Card>
   );
-};
+});
+
+ReviewCreate.displayName = "ReviewCreate";
 
 export default ReviewCreate;

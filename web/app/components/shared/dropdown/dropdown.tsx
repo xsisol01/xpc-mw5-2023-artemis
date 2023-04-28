@@ -1,25 +1,18 @@
+import { useState, FC, memo } from "react";
+
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Collapse, List, ListItemButton, ListItemText } from "@mui/material";
-import { useState, FC, memo } from "react";
 
 interface IProps {
   title: string;
   children: React.ReactNode;
   wrapperWidth?: number;
   wrapperHeight?: number;
-  contentWidth?: number;
   contentHeight?: number;
 }
 
 const Dropdown: FC<IProps> = memo(
-  ({
-    title,
-    children,
-    wrapperWidth,
-    wrapperHeight,
-    contentWidth,
-    contentHeight,
-  }) => {
+  ({ title, children, wrapperWidth, wrapperHeight, contentHeight }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleClick = () => {
@@ -30,9 +23,9 @@ const Dropdown: FC<IProps> = memo(
       <List
         sx={{
           width: "100%",
-          maxWidth: wrapperWidth === 0 ? '100%' : 360,
+          maxWidth: wrapperWidth === 0 ? "100%" : 360,
           bgcolor: "background.paper",
-          maxHeight: wrapperHeight === 0 ? '100%' :  360,
+          maxHeight: wrapperHeight === 0 ? "100%" : 360,
           pt: 0,
         }}
         component="nav"
@@ -47,7 +40,7 @@ const Dropdown: FC<IProps> = memo(
             sx={{
               p: 1,
               width: "100%",
-              maxHeight: contentHeight === 0 ? '100%' : 300,
+              maxHeight: contentHeight === 0 ? "100%" : 300,
               bgcolor: "background.paper",
               position: "relative",
               overflow: "auto",
@@ -74,5 +67,7 @@ const Dropdown: FC<IProps> = memo(
     );
   }
 );
+
+Dropdown.displayName = "Dropdown";
 
 export default Dropdown;

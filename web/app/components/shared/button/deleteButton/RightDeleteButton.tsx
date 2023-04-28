@@ -1,14 +1,15 @@
+import { FC, memo, ReactNode } from "react";
+
 import { Box } from "@mui/material";
-import { FC, ReactNode } from "react";
 import DeleteButton from "./DeleteButton";
 
 interface IProps {
-  id: string
-  elementType: string
-  children?: ReactNode
+  id: string;
+  elementType: string;
+  children?: ReactNode;
 }
 
-const RightDeleteButton: FC<IProps> = ({ id, elementType, children }) => {
+const RightDeleteButton: FC<IProps> = memo(({ id, elementType, children }) => {
   return (
     <Box
       component="div"
@@ -19,6 +20,8 @@ const RightDeleteButton: FC<IProps> = ({ id, elementType, children }) => {
       </DeleteButton>
     </Box>
   );
-};
+});
+
+RightDeleteButton.displayName = "RightDeleteButton";
 
 export default RightDeleteButton;

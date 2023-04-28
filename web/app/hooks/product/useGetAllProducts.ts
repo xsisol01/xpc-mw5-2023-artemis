@@ -9,7 +9,7 @@ export const useGetAllProducts = () => {
       onError: (error) => {
         console.log(error);
       },
-      select: ({ data }) => data,
+      select: (data) => data,
     }
   );
 

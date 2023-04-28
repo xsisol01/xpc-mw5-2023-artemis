@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 const commodityApi = axios.create({
   baseURL: `${process.env.apiUrl}/Commodity/byName`,
   httpsAgent: new https.Agent({
-    rejectUnauthorized: false
+    rejectUnauthorized: false,
   }),
   headers: {
     "Content-Type": "application/json; charset=utf-8",
@@ -15,9 +15,9 @@ const commodityApi = axios.create({
 });
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  switch(req.method) {
-    case "GET": 
-      return get(req, res)
+  switch (req.method) {
+    case "GET":
+      return get(req, res);
   }
 }
 

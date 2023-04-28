@@ -1,30 +1,25 @@
-import { useContext } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import { useMutation } from "react-query";
-
-import { RoleContext } from '@/app/providers/roleContextProvider';
-import { ProductService } from '@/app/services/product.service';
-import { IProduct } from "@/app/types/product.type";
-
+import { ProductService } from "@/app/services/product.service";
 
 export const useDeleteProduct = (id: string) => {
-  const router = useRouter()
-  const {push} = router
+  const router = useRouter();
+  const { push } = router;
 
   const { isLoading, mutateAsync: deleteProduct } = useMutation(
-    ['delete product', id],
+    ["delete product", id],
     (id: string) => ProductService.delete(id),
     {
       onSuccess: () => {
-        alert('Product has been deleted')
+        alert("Product has been deleted");
 
-        push('/')
+        push("/");
       },
       onError: (error) => {
-        console.log(error)
-      }
+        console.log(error);
+      },
     }
-  )
-  
-  return { isLoading, deleteProduct }
-}
+  );
+
+  return { isLoading, deleteProduct };
+};

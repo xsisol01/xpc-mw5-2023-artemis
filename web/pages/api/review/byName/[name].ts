@@ -1,4 +1,4 @@
-import { ICategory } from '@/app/types/category.type';
+import { ICategory } from "@/app/types/category.type";
 import https from "https";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 const reviewApi = axios.create({
   baseURL: `${process.env.apiUrl}/Review/byName`,
   httpsAgent: new https.Agent({
-    rejectUnauthorized: false
+    rejectUnauthorized: false,
   }),
   headers: {
     "Content-Type": "application/json; charset=utf-8",
@@ -15,9 +15,9 @@ const reviewApi = axios.create({
 });
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  switch(req.method) {
-    case "GET": 
-      return get(req, res)
+  switch (req.method) {
+    case "GET":
+      return get(req, res);
   }
 }
 

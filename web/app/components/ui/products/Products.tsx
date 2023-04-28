@@ -1,23 +1,22 @@
 import { useContext, FC, memo } from "react";
 
 import { RoleContext } from "@/app/providers/roleContextProvider";
-import { useGetAllProducts } from "@/app/hooks/product/useGetAllProducts";
 import { IProduct } from "@/app/types/product.type";
-
-import { Grid, Typography } from "@mui/material";
-import ProductItemPlaceholder from "@/app/components/ui/products/productItem/ProductItemCreate";
-import ProductItemCreate from "@/app/components/ui/products/productItem/ProductItemCreate";
-import ProductItem from "@/app/components/ui/products/productItem/ProductItem";
 import { productsData } from "./products.data";
 
-interface IProps {
-  products?: IProduct[];
-  manufacturer?: string;
-  isLoading?: boolean;
-}
+import { Grid, Typography } from "@mui/material";
+import ProductItemPlaceholder from "@/app/components/ui/productItem/ProductItemCreate";
+import ProductItemCreate from "@/app/components/ui/productItem/ProductItemCreate";
+import ProductItem from "@/app/components/ui/productItem/ProductItem";
+import { ProductContext } from "@/app/providers/productContextProvider";
+import { UrlSearchParamsContext } from "@/app/providers/urlSearchParamsProvider";
+import { filterProduct } from "@/app/utils/productFilter";
 
-const Products: FC<IProps> = memo(({ products, manufacturer, isLoading }) => {
+const Products: FC = memo(() => {
   const { isAdmin } = useContext(RoleContext);
+
+  const { products } = useContext(ProductContext);
+  const { allParams } = useContext(UrlSearchParamsContext);
 
   return (
     <>
@@ -27,19 +26,19 @@ const Products: FC<IProps> = memo(({ products, manufacturer, isLoading }) => {
         </Typography>
       )}
       {products && products?.length > 0 && (
-          <Grid container spacing={2}>
-            <>
-            {isAdmin && <ProductItemCreate manufacturer={manufacturer} />}
-            {isLoading && <ProductItemPlaceholder />}
-            {!isLoading &&
-              products?.map((product) => (
-                <ProductItem key={product.id} {...product} />
-              ))}
-            </>
+        <Grid container spacing={2}>
+          <>
+            {isAdmin && <ProductItemCreate />}
+            {filterProduct(products, allParams)?.map((product) => (
+              <ProductItem key={product.id} {...product} />
+            ))}
+          </>
         </Grid>
-        )}
+      )}
     </>
   );
 });
+
+Products.displayName = "Products";
 
 export default Products;

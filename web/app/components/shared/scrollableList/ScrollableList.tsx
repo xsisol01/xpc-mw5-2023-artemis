@@ -1,14 +1,16 @@
-import { FC, memo, useContext } from "react";
+import { FC, memo, useContext, useEffect, useState } from "react";
 
-import { capitalizeText } from "@/app/utils/capitalizeText";
+import { ScrollableListData } from "./scrollableList.data";
 import { getLoweredLetters } from "@/app/utils/getLoweredLetters";
 import { isTextEqual } from "@/app/utils/isTextEqual";
-import { useEffect, useState } from "react";
-import { ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { UrlSearchParamsContext } from "@/app/providers/urlSearchParamsProvider";
-import { ScrollableListData } from "./scrollabelList.data";
 
-const MAX_HEIGHT = 380;
+import {
+  capitalize,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
 
 export type IOption = {
   id: string;
@@ -21,67 +23,67 @@ export interface IScrollableListProps {
   uid: string;
 }
 
-const ScrollableList: FC<IScrollableListProps> = memo(
-  ({ uid, options, maxHeight = MAX_HEIGHT }) => {
-    const [selected, setSelected] = useState<string>(ScrollableListData.all.id);
-    const { getParam, setParam } = useContext(UrlSearchParamsContext);
+const ScrollableList: FC<IScrollableListProps> = memo(({ uid, options }) => {
+  const [selected, setSelected] = useState<string>(ScrollableListData.all.id);
+  const { getParam, setParam } = useContext(UrlSearchParamsContext);
 
-    useEffect(() => {
-      const defaultSelected = getParam(uid);
+  useEffect(() => {
+    const defaultSelected = getParam(uid);
 
-      if (defaultSelected?.length) {
-        setSelected(defaultSelected.toString());
-      }
-    }, []);
-
-    useEffect(() => {
-        const param = getLoweredLetters(selected ?? "");
-
-        setParam(uid, param);
-    }, [selected]);
-
-    function getIsSelected(optionId: string) {
-      return isTextEqual(selected ?? "", optionId);
+    if (defaultSelected?.length) {
+      setSelected(defaultSelected.toString());
     }
+  }, [getParam, uid]);
 
-    function getOptionText(option: IOption, type: string) {
-      return getIsSelected(option.id) && type === "primary"
-        ? capitalizeText(option.name)
-        : !getIsSelected(option.id) && type === "secondary"
-        ? capitalizeText(option.name)
-        : null;
-    }
+  useEffect(() => {
+    const param = getLoweredLetters(selected ?? "");
 
-    return (
-      <ul>
-        <ListItemButton
-            onClick={() => setSelected(ScrollableListData.all.id)}
-            sx={{ height: 40 }}
-          >
-            <ListItem sx={{ p: 0 }}>
-              <ListItemText
-                secondary={getOptionText(ScrollableListData.all, "secondary")}
-                primary={getOptionText(ScrollableListData.all, "primary")}
-              />
-            </ListItem>
-          </ListItemButton>
-        {options?.map((item) => (
-          <ListItemButton
-            key={item.id}
-            onClick={() => setSelected(item.id)}
-            sx={{ height: 40 }}
-          >
-            <ListItem sx={{ p: 0 }}>
-              <ListItemText
-                secondary={getOptionText(item, "secondary")}
-                primary={getOptionText(item, "primary")}
-              />
-            </ListItem>
-          </ListItemButton>
-        ))}
-      </ul>
-    );
+    setParam(uid, param);
+  }, [selected, setParam, uid]);
+
+  function getIsSelected(optionId: string) {
+    return isTextEqual(selected ?? "", optionId);
   }
-);
+
+  function getOptionText(option: IOption, type: string) {
+    return getIsSelected(option.id) && type === "primary"
+      ? capitalize(option.name)
+      : !getIsSelected(option.id) && type === "secondary"
+      ? capitalize(option.name)
+      : null;
+  }
+
+  return (
+    <ul>
+      <ListItemButton
+        onClick={() => setSelected(ScrollableListData.all.id)}
+        sx={{ height: 40 }}
+      >
+        <ListItem sx={{ p: 0 }}>
+          <ListItemText
+            secondary={getOptionText(ScrollableListData.all, "secondary")}
+            primary={getOptionText(ScrollableListData.all, "primary")}
+          />
+        </ListItem>
+      </ListItemButton>
+      {options?.map((item) => (
+        <ListItemButton
+          key={item.id}
+          onClick={() => setSelected(item.id)}
+          sx={{ height: 40 }}
+        >
+          <ListItem sx={{ p: 0 }}>
+            <ListItemText
+              secondary={getOptionText(item, "secondary")}
+              primary={getOptionText(item, "primary")}
+            />
+          </ListItem>
+        </ListItemButton>
+      ))}
+    </ul>
+  );
+});
+
+ScrollableList.displayName = "ScrollableList";
 
 export default ScrollableList;

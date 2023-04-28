@@ -1,45 +1,46 @@
-import { IProduct } from '@/app/types/product.type';
-import { IManufacturer, IManufacturerField } from '@/app/types/manufacturer.type';
-import { regex } from '@/app/data/regex';
+import { IProduct } from "@/app/types/product.type";
+import {
+  IManufacturer,
+  IManufacturerField,
+} from "@/app/types/manufacturer.type";
+import { regex } from "@/app/data/regex";
 
 export const manufacturerPageData = Object.freeze({
   defaultValues: {
-    id: '',
-    name: '',
-    imageUrl: '',
-    description: '',
-    country: '',
-    products: [] as IProduct[]
+    id: "",
+    name: "",
+    imageUrl: "",
+    description: "",
+    country: "",
+    products: [] as IProduct[],
   } as IManufacturer,
   fields: [
     {
-      name: 'name',
+      name: "name",
       xs: 12,
       md: 12,
-      type: 'text',
+      type: "text",
       required: true,
       rows: 1,
-      validation: regex.all
+      validation: regex.all,
     },
     {
-      name: 'country',
+      name: "country",
       xs: 12,
       md: 12,
-      type: 'text',
+      type: "text",
       required: true,
       rows: 1,
-      validation: regex.all
+      validation: regex.all,
     },
     {
-      name: 'description',
+      name: "description",
       xs: 12,
       md: 12,
-      type: 'text',
+      type: "text",
       required: true,
       rows: 10,
-      validation: regex.all
-    }
-
-  ] as IManufacturerField[]
-  
-})
+      validation: regex.all,
+    },
+  ] as IManufacturerField[],
+});

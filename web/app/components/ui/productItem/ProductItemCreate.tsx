@@ -1,12 +1,12 @@
 import { FC, memo } from "react";
 
 import classNames from "classnames";
-import Link from "next/link";
 
+import Link from "next/link";
 import { TiPlus } from "react-icons/ti";
+import { Card, Grid } from "@mui/material";
 
 import styles from "./productItem.module.scss";
-import { Card, Grid } from "@mui/material";
 
 interface IProps {
   manufacturer?: string;
@@ -43,5 +43,7 @@ const ProductItemCreate: FC<IProps> = memo(({ manufacturer }) => {
     </Grid>
   );
 });
+
+ProductItemCreate.displayName = "ProductItemCreate";
 
 export default ProductItemCreate;

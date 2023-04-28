@@ -1,12 +1,11 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import { adminButtonData } from "./adminButton.data";
 
 import { Typography, Box } from "@mui/material";
-
 import Switch from "@/app/components/shared/button/switch/Switch";
 
-const AdminButton: FC = () => {
+const AdminButton: FC = memo(() => {
   return (
     <Box
       sx={{
@@ -21,6 +20,8 @@ const AdminButton: FC = () => {
       <Switch />
     </Box>
   );
-};
+});
 
-export default AdminButton
+AdminButton.displayName = "AdminButton";
+
+export default AdminButton;

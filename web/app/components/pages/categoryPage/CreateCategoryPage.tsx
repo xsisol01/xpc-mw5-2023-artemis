@@ -1,29 +1,32 @@
+import { FC, useEffect, memo } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { useCreateCategory } from "@/app/hooks/category/useCreateCategory";
 import { ICreateCategory } from "@/app/types/category.type";
-import { Grid } from "@mui/material";
-import { FC, useEffect } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import RightSubmitButton from "../../shared/button/submitButton/RightSubmitButton";
-import FormInput from "../../shared/formFields/formInput/FormInput";
 import { categoryPageData } from "./categoryPage.data";
 
-const CreateCategoryPage: FC = () => {
+import { Grid } from "@mui/material";
+import RightSubmitButton from "@/app/components/shared/button/submitButton/RightSubmitButton";
+import FormInput from "@/app/components/shared/formFields/formInput/FormInput";
 
+const CreateCategoryPage: FC = memo(() => {
   const { handleSubmit, control, reset } = useForm<ICreateCategory>({
     defaultValues: categoryPageData.defaultValues,
   });
 
-  const { isLoading, createCategory, isSuccess } = useCreateCategory(categoryPageData.defaultValues);
-
+  const { isLoading, createCategory, isSuccess } = useCreateCategory(
+    categoryPageData.defaultValues
+  );
 
   useEffect(() => {
-    if(isSuccess) {
-      reset(categoryPageData.defaultValues)
+    if (isSuccess) {
+      reset(categoryPageData.defaultValues);
     }
-  }, [isSuccess])
+  }, [isSuccess, reset]);
 
-  const onSubmit: SubmitHandler<ICreateCategory> = async (data: ICreateCategory) => {
+  const onSubmit: SubmitHandler<ICreateCategory> = async (
+    data: ICreateCategory
+  ) => {
     await createCategory(data);
   };
 
@@ -43,6 +46,8 @@ const CreateCategoryPage: FC = () => {
       <RightSubmitButton disabled={isLoading} />
     </form>
   );
-};
+});
+
+CreateCategoryPage.displayName = "CreateCategoryPage";
 
 export default CreateCategoryPage;

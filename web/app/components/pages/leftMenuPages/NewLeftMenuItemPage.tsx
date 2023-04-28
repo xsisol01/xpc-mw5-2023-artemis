@@ -1,31 +1,29 @@
+import { FC, ReactNode, memo } from "react";
+
 import { CircularProgress } from "@mui/material";
-import { FC, ReactNode } from "react";
-import HeaderLayout from "../../layout/headerLayout/HeaderLayout";
-import LeftMenuLayout from "../../layout/leftMenuLayout/LeftMenuLayout";
+import HeaderLayout from "@/app/components/layout/headerLayout/HeaderLayout";
+import LeftMenuLayout from "@/app/components/layout/leftMenuLayout/LeftMenuLayout";
 
 interface IProps {
-  isLoading: boolean;
   items: any[] | undefined;
   linkTo: string;
   children: ReactNode;
 }
 
-const NewLeftMenuItemPage: FC<IProps> = ({
-  isLoading,
-  items,
-  linkTo,
-  children,
-}) => {
-  return (
-    <HeaderLayout>
-      {isLoading && <CircularProgress />}
-      {items && (
-        <LeftMenuLayout options={items} linkTo={linkTo}>
-          {children}
-        </LeftMenuLayout>
-      )}
-    </HeaderLayout>
-  );
-};
+const NewLeftMenuItemPage: FC<IProps> = memo(
+  ({ items, linkTo, children }) => {
+    return (
+      <HeaderLayout>
+        {items && (
+          <LeftMenuLayout options={items} linkTo={linkTo}>
+            {children}
+          </LeftMenuLayout>
+        )}
+      </HeaderLayout>
+    );
+  }
+);
+
+NewLeftMenuItemPage.displayName = "NewLeftMenuItemPage";
 
 export default NewLeftMenuItemPage;

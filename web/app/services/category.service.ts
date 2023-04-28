@@ -1,39 +1,37 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { ICategory, ICreateCategory } from '@/app/types/category.type';
+import { ICategory, ICreateCategory } from "@/app/types/category.type";
 
 const instance = axios.create({
-  baseURL: '/api/category',
-
+  baseURL: `${process.env.apiUrl}/Category`,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
-  }
-})
+  },
+});
 
 export const CategoryService = {
-
   async getAll() {
-    return instance.get<ICategory[]>('')
+    return instance.get<ICategory[]>("").then(res => res.data);
   },
-  
+
   async get(id: string) {
-    return instance.get<ICategory>(`/${id}`)
+    return instance.get<ICategory>(`/byId/${id}`).then(res => res.data);
   },
 
   async getByName(id: string) {
-    return instance.get<ICategory>(`/byName/${id}`)
+    return instance.get<ICategory>(`/byName/${id}`).then(res => res.data);
   },
 
   async create(data: ICreateCategory) {
-    instance.post('', data)
+    return instance.post("/api/category", data);
   },
 
   async update(data: ICategory) {
-    instance.put(`/${data.id}`, data)
+    return instance.put(`/api/category/${data.id}`, data);
   },
 
   async delete(id: string) {
-    instance.delete(`/${id}`)
-  }
-}
+    return instance.delete(`/api/category/${id}`);
+  },
+};

@@ -8,12 +8,11 @@ import {
   useRef,
 } from "react";
 import { useRouter } from "next/router";
-import { CircularProgress } from "@mui/material";
 
 interface IContext {
   getParam: (name: string) => string | string[] | undefined;
   setParam: (name: string, value: string) => void;
-  allParams: any
+  allParams: any;
 }
 
 export const UrlSearchParamsContext = createContext<IContext>({} as IContext);
@@ -36,14 +35,14 @@ const UrlSearchParamsProvider: FC<IProps> = memo(({ children }) => {
   });
 
   useEffect(() => {
-    router.push({ query: searchParams })
+    router.push({ query: searchParams });
   }, [searchParams]);
 
   const value = useMemo(
     () => ({
       getParam,
       setParam,
-      allParams: searchParams
+      allParams: searchParams,
     }),
     [searchParams]
   );
@@ -80,5 +79,7 @@ const UrlSearchParamsProvider: FC<IProps> = memo(({ children }) => {
     </UrlSearchParamsContext.Provider>
   ) : null;
 });
+
+UrlSearchParamsProvider.displayName = "UrlSearchParamsProvider";
 
 export default UrlSearchParamsProvider;

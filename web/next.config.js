@@ -2,36 +2,22 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  appDir: true,
   env: {
-    apiUrl: 'https://localhost:7242/api'
+    apiUrl: 'https://localhost:7242/api',
+    CLOUD_UPDATE_PRESET: 'xpc-mw5',
+    CLOUD_NAME: 'dsukq0bf7',
+    CLOUD_API: 'https://api.cloudinary.com/v1_1/dsukq0bf7/image/upload'
   },
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '*.*', // fakestoreapi.com
-         port: '',
-        pathname: '/img/**',
+        hostname: '*.*', 
+        port: '',
+        pathname: '/*/**',
       }
     ]
-  },
-  async rewrites() {
-    return [
-      // {
-      //   source: "/api/:path*",
-      //   destination: "https://localhost:7242/api/:path*",
-      // },
-      // {
-      //   source: "/api/Commodity",
-      //   destination: "https://localhost:7242/api/Commodity",
-      // },
-      // {
-      //   source: "/api/Commodity/byId/:path*",
-      //   destination: "https://localhost:7242/api/Commodity/byId/:path*",
-      // },
-    ];
-   }
+  }
 }
 
 module.exports = nextConfig

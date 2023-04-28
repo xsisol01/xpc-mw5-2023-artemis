@@ -1,30 +1,43 @@
-import { createContext, useState, useMemo, Dispatch, SetStateAction, FC, memo } from 'react';
+import {
+  createContext,
+  useState,
+  useMemo,
+  Dispatch,
+  SetStateAction,
+  FC,
+  memo,
+} from "react";
+import { IManufacturer } from "../types/manufacturer.type";
 
 interface IContext {
-    currentManufacturer: string
-    setCurrentManufacturer: Dispatch<SetStateAction<string>>
+  manufacturers: IManufacturer[];
+  setManufacturers: Dispatch<SetStateAction<IManufacturer[]>>;
 }
 
-export const ManufacturerContext = createContext<IContext>({} as IContext)
+export const ManufacturerContext = createContext<IContext>({} as IContext);
 
 interface IProps {
-    children: React.ReactNode
+  children: React.ReactNode;
 }
 
-const ManufacturerContextProvider: FC<IProps> = memo(({children}) => {
+const ManufacturerContextProvider: FC<IProps> = memo(({ children }) => {
+  const [manufacturers, setManufacturers] = useState<IManufacturer[]>([] as IManufacturer[]);
 
-    const [ currentManufacturer, setCurrentManufacturer ] = useState<string>('');
+  const value = useMemo(
+    () => ({
+      setManufacturers,
+      manufacturers,
+    }),
+    [manufacturers]
+  );
 
-    const value = useMemo(() => ({
-        currentManufacturer,
-        setCurrentManufacturer
-    }), [currentManufacturer])
+  return (
+    <ManufacturerContext.Provider value={value}>
+      {children}
+    </ManufacturerContext.Provider>
+  );
+});
 
-    return(
-        <ManufacturerContext.Provider value={value}>
-            {children}
-        </ManufacturerContext.Provider>
-    )
-})
+ManufacturerContextProvider.displayName = "ManufacturerContextProvider";
 
-export default ManufacturerContextProvider
+export default ManufacturerContextProvider;
