@@ -23,147 +23,202 @@ namespace Eshop.webAPI.Controllers
         [HttpGet]
         public IActionResult GetCommodities()
         {
-            try
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
+
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
             {
-                var commodities = FakeDatabase.Commodities;
-                var results = _mapper.Map<List<CommodityDTO>>(commodities);
-                return Ok(results);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in {nameof(GetCommodities)}");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                try
+                {
+                    var commodities = FakeDatabase.Commodities;
+                    var results = _mapper.Map<List<CommodityDTO>>(commodities);
+
+                    _logger.LogInformation($"Proccessing of request successful");
+                    return Ok(results);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(GetCommodities)}");
+                    return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                }
             }
         }
 
 
-        [HttpGet("byId/{id}")]
-        public IActionResult GetCommodity(Guid id)
+        [HttpGet("byId/{id}", Name = "GetCommodity")]
+        public ActionResult<CommodityDTO> GetCommodity(Guid id)
         {
-            try
-            {
-                var commodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Id == id);
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
 
-                if (commodity != null)
-                {
-                    var result = _mapper.Map<CommodityDTO>(commodity);
-                    return Ok(result);
-                }
-                else
-                {
-                    _logger.LogWarning($"Commodity with ID '{id}' not found");
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
             {
-                _logger.LogError(ex, $"Error in {nameof(GetCommodity)}");
-                return StatusCode(500, "Internal Server Error. Please try again later.");
-            }
+                try
+                {
+                    var commodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Id == id);
+
+                    if (commodity != null)
+                    {
+                        var result = _mapper.Map<CommodityDTO>(commodity);
+                        _logger.LogInformation($"Proccessing of request successful");
+                        return Ok(result);
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"Commodity with ID {id} not found");
+                        return NotFound();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(GetCommodity)}");
+                    return StatusCode(500, "Internal Server Error. Please try again later.");
+                }
+            }         
         }
 
 
         [HttpGet("byName/{name}")]
-        public IActionResult GetCommodityByName(string name)
+        public ActionResult<CommodityDTO> GetCommodityByName(string name)
         {
-            try
-            {
-                var commodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Name == name);
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
 
-                if (commodity != null)
-                {
-                    var result = _mapper.Map<CommodityDTO>(commodity);
-                    return Ok(result);
-                }
-                else
-                {
-                    _logger.LogWarning($"Commodity with name '{name}' not found");
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
             {
-                _logger.LogError(ex, $"Something went wrong in {nameof(GetCommodityByName)}");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                try
+                {
+                    var commodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Name == name);
+
+                    if (commodity != null)
+                    {
+                        var result = _mapper.Map<CommodityDTO>(commodity);
+
+                        _logger.LogInformation("Proccessing of request successful");
+                        return Ok(result);
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"Commodity with name {name} not found");
+                        return NotFound();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(GetCommodityByName)}");
+                    return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                }
             }
         }
 
 
         [HttpPost]
-        public IActionResult CreateCommodity([FromBody] CreateCommodityDTO commodityDTO)
+        public ActionResult<CommodityDTO> CreateCommodity([FromBody] CreateCommodityDTO commodityDTO)
         {
-            try
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
+
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
             {
-                if (FakeDatabase.Commodities.Any(c => c.Name == commodityDTO.Name))
+                try
                 {
-                    _logger.LogWarning($"Commodity with name '{commodityDTO.Name}' already exists");
-                    return Conflict();
+                    if (FakeDatabase.Commodities.Any(c => c.Name == commodityDTO.Name))
+                    {
+                        _logger.LogWarning($"Commodity with name {commodityDTO.Name} already exists");
+                        return Conflict();
+                    }
+
+                    var commodity = _mapper.Map<CommodityModel>(commodityDTO);
+                    FakeDatabase.AddCommodity(commodity);
+
+                    var result = _mapper.Map<CommodityDTO>(commodity);
+
+                    _logger.LogInformation($"Proccessing of request successful");
+                    return CreatedAtRoute(nameof(GetCommodity), new { id = result.Id }, result);
                 }
-
-                var commodity = _mapper.Map<CommodityModel>(commodityDTO);
-                FakeDatabase.AddCommodity(commodity);
-
-                var result = _mapper.Map<CommodityDTO>(commodity);
-                return CreatedAtRoute("GetCommodity", new { id = result.Id }, result);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in {nameof(CreateCommodity)}");
-                return StatusCode(500, "Internal Server Error. Please try again later.");
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(CreateCommodity)}");
+                    return StatusCode(500, "Internal Server Error. Please try again later.");
+                }
             }
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCommodity(Guid id)
+        public ActionResult<CommodityDTO> DeleteCommodity(Guid id)
         {
-            try
-            {
-                var commodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Id == id);
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
 
-                if (commodity == null)
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
+            {
+                try
                 {
-                    _logger.LogWarning($"Could not find commodity with id '{id}'");
-                    return NotFound();
-                }
+                    var commodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Id == id);
 
-                FakeDatabase.Commodities.Remove(commodity);
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong while deleting commodity with id '{id}'");
-                return StatusCode(500, "Internal Server Error. Please try again later.");
+                    if (commodity == null)
+                    {
+                        _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteCommodity)}, No record with Id : {id}");
+                        return NotFound("Commodity not found");
+                    }
+
+                    FakeDatabase.Commodities.Remove(commodity);
+
+                    _logger.LogInformation($"Proccessing of request successful");
+                    return NoContent();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(DeleteCommodity)}");
+                    return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                }
             }
         }
 
 
         [HttpPut("{id}")]
-        public IActionResult UpdateCommodity(Guid id, [FromBody] CreateCommodityDTO commodityDTO)
+        public ActionResult<CommodityDTO> UpdateCommodity(Guid id, [FromBody] CreateCommodityDTO commodityDTO)
         {
-            try
-            {
-                var existingCommodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Id == id);
-                if (existingCommodity == null)
-                {
-                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCommodity)})");
-                    return BadRequest("Commodity not found.");
-                }
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
 
-                var newCommodity = _mapper.Map<CommodityModel>(commodityDTO);
-                if (FakeDatabase.Commodities.Any(c => c.Id != id && c.Name == newCommodity.Name))
-                {
-                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCommodity)})");
-                    return BadRequest("Commodity name already exists.");
-                }
-
-                existingCommodity.Name = newCommodity.Name;
-                var updatedCommodityDTO = _mapper.Map<CommodityModel>(commodityDTO);
-                return Ok(updatedCommodityDTO);
-            }
-            catch (Exception ex)
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(UpdateCommodity)}");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                try
+                {
+                    var existingCommodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Id == id);
+                    if (existingCommodity == null)
+                    {
+                        _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCommodity)}, No record with Id : {id}");
+                        return BadRequest("Commodity not found.");
+                    }
+
+                    var newCommodity = _mapper.Map<CommodityModel>(commodityDTO);
+                    if (FakeDatabase.Commodities.Any(c => c.Id != id && c.Name == newCommodity.Name))
+                    {
+                        _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCommodity)}, Already Existing Record with Id : {id}");
+                        return BadRequest("Commodity name already exists.");
+                    }
+
+                    existingCommodity.Name = newCommodity.Name;
+                    existingCommodity.Weight = newCommodity.Weight;
+                    existingCommodity.Price = newCommodity.Price;
+                    existingCommodity.Manufacturer = newCommodity.Manufacturer;
+                    existingCommodity.Category = newCommodity.Category;
+                    existingCommodity.StockQuantity = newCommodity.StockQuantity;
+                    existingCommodity.Description = newCommodity.Description;
+                    existingCommodity.ImageUrl = newCommodity.ImageUrl;
+
+                    var updatedCommodityDTO = _mapper.Map<CommodityModel>(commodityDTO);
+                    
+                    _logger.LogInformation($"Proccessing of request successful");
+                    return Ok(updatedCommodityDTO);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(UpdateCommodity)}");
+                    return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                }
             }
         }
     }

@@ -1,13 +1,22 @@
 using Eshop.webAPI.Configurations;
 using Eshop.webAPI.FakeDB;
 using Eshop.webAPI.Models;
+using Microsoft.Extensions.Options;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.AddSimpleConsole(options =>
+{
+    options.IncludeScopes = true;
+    options.SingleLine = true;
+    options.TimestampFormat = "HH:mm:ss ";
+});
 // Add services to the container.
 
-builder.Services.AddControllers().AddNewtonsoftJson(op => 
-    op.SerializerSettings.ReferenceLoopHandling = 
+builder.Services.AddControllers().AddNewtonsoftJson(op =>
+    op.SerializerSettings.ReferenceLoopHandling =
     Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

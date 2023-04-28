@@ -21,158 +21,208 @@ namespace Eshop.webAPI.Controllers
         }
 
         [HttpGet("byCommodityId/{id}")]
-        public IActionResult GetReviewByCommodityId(Guid id)
+        public ActionResult<List<ReviewDTO>> GetReviewByCommodityId(Guid id)
         {
-            try
-            {
-                var commodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Id == id);
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
 
-                if (commodity != null)
-                {
-                    var reviews = commodity.Reviews;
-                    var result = _mapper.Map<List<ReviewDTO>>(reviews);
-                    return Ok(result);
-                }
-                else
-                {
-                    _logger.LogWarning($"Commodity with ID '{id}' not found");
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
             {
-                _logger.LogError(ex, $"Error in {nameof(GetReviewByCommodityId)}");
-                return StatusCode(500, "Internal Server Error. Please try again later.");
+                try
+                {
+                    var commodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Id == id);
+
+                    if (commodity != null)
+                    {
+                        var reviews = commodity.Reviews;
+                        var result = _mapper.Map<List<ReviewDTO>>(reviews);
+
+                        _logger.LogInformation($"Proccessing of request successful");
+                        return Ok(result);
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"Commodity with ID {id} not found");
+                        return NotFound();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(GetReviewByCommodityId)}");
+                    return StatusCode(500, "Internal Server Error. Please try again later.");
+                }
             }
         }
 
-        [HttpGet("byId/{id}")]
-        public IActionResult GetReviewById(Guid id)
+        [HttpGet("byId/{id}", Name = "GetReview")]
+        public ActionResult<ReviewDTO> GetReviewById(Guid id)
         {
-            try
-            {
-                var review = FakeDatabase.Reviews.FirstOrDefault(r => r.Id == id);
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
 
-                if (review != null)
-                {
-                    var result = _mapper.Map<ReviewDTO>(review);
-                    return Ok(result);
-                }
-                else
-                {
-                    _logger.LogWarning($"Review with ID '{id}' not found");
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
             {
-                _logger.LogError(ex, $"Error in {nameof(GetReviewById)}");
-                return StatusCode(500, "Internal Server Error. Please try again later.");
+                try
+                {
+                    var review = FakeDatabase.Reviews.FirstOrDefault(r => r.Id == id);
+
+                    if (review != null)
+                    {
+                        var result = _mapper.Map<ReviewDTO>(review);
+
+                        _logger.LogInformation($"Proccessing of request successful");
+                        return Ok(result);
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"Review with ID {id} not found");
+                        return NotFound();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(GetReviewById)}");
+                    return StatusCode(500, "Internal Server Error. Please try again later.");
+                }
             }
         }
 
         [HttpGet("byName/{name}")]
-        public IActionResult GetReviewByName(string name)
+        public ActionResult<ReviewDTO> GetReviewByName(string name)
         {
-            try
-            {
-                var review = FakeDatabase.Reviews.FirstOrDefault(r => r.Title == name);
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
 
-                if (review != null)
-                {
-                    var result = _mapper.Map<ReviewDTO>(review);
-                    return Ok(result);
-                }
-                else
-                {
-                    _logger.LogWarning($"Review with title '{name}' not found");
-                    return NotFound();
-                }
-            }
-            catch (Exception ex)
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
             {
-                _logger.LogError(ex, $"Something went wrong in {nameof(GetReviewByName)}");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                try
+                {
+                    var review = FakeDatabase.Reviews.FirstOrDefault(r => r.Title == name);
+
+                    if (review != null)
+                    {
+                        var result = _mapper.Map<ReviewDTO>(review);
+
+                        _logger.LogInformation($"Proccessing of request successful");
+                        return Ok(result);
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"Review with title {name} not found");
+                        return NotFound();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error {nameof(GetReviewByName)}");
+                    return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                }
             }
         }
 
         [HttpPost]
-        public IActionResult CreateReview([FromBody] CreateReviewDTO reviewDTO)
+        public ActionResult<ReviewDTO> CreateReview([FromBody] CreateReviewDTO reviewDTO)
         {
-            try
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
+
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
             {
-                if (FakeDatabase.Reviews.Any(r => r.Title == reviewDTO.Title))
+                try
                 {
-                    _logger.LogWarning($"Review with title '{reviewDTO.Title}' already exists");
-                    return Conflict();
+                    if (FakeDatabase.Reviews.Any(r => r.Title == reviewDTO.Title))
+                    {
+                        _logger.LogWarning($"Review with title {reviewDTO.Title} already exists");
+                        return Conflict();
+                    }
+
+                    var review = _mapper.Map<ReviewModel>(reviewDTO);
+                    FakeDatabase.AddReview(review);
+
+                    var result = _mapper.Map<ReviewDTO>(review);
+
+                    _logger.LogInformation($"Proccessing of request successful");
+                    return CreatedAtRoute(nameof(GetReviewById), new { id = result.Id }, result);
                 }
-
-                var review = _mapper.Map<ReviewModel>(reviewDTO);
-                FakeDatabase.AddReview(review);
-
-                var result = _mapper.Map<ReviewDTO>(review);
-                return CreatedAtRoute("GetReviewById", new { id = result.Id }, result);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong in {nameof(CreateReview)}");
-                return StatusCode(500, "Internal Server Error. Please try again later.");
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(CreateReview)}");
+                    return StatusCode(500, "Internal Server Error. Please try again later.");
+                }
             }
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteReview(Guid id)
+        public ActionResult<ReviewDTO> DeleteReview(Guid id)
         {
-            try
-            {
-                var review = FakeDatabase.Reviews.FirstOrDefault(r => r.Id == id);
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
 
-                if (review == null)
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
+            {
+                try
                 {
-                    _logger.LogWarning($"Could not find review with id '{id}'");
-                    return NotFound();
-                }
+                    var review = FakeDatabase.Reviews.FirstOrDefault(r => r.Id == id);
 
-                FakeDatabase.Reviews.Remove(review);
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Something went wrong while deleting review with id '{id}'");
-                return StatusCode(500, "Internal Server Error. Please try again later.");
+                    if (review == null)
+                    {
+                        _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteReview)}, No record with Id : {id}");
+                        return NotFound();
+                    }
+
+                    FakeDatabase.Reviews.Remove(review);
+
+                    _logger.LogInformation($"Proccessing of request successful");
+                    return NoContent();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(DeleteReview)}");
+                    return StatusCode(500, "Internal Server Error. Please try again later.");
+                }
             }
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateReview(Guid id, [FromBody] CreateReviewDTO reviewDTO)
+        public ActionResult<ReviewDTO> UpdateReview(Guid id, [FromBody] CreateReviewDTO reviewDTO)
         {
-            try
-            {
-                var existingReview = FakeDatabase.Reviews.FirstOrDefault(r => r.Id == id);
-                if (existingReview == null)
-                {
-                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateReview)})");
-                    return BadRequest("Review not found.");
-                }
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
 
-                var newReview = _mapper.Map<ReviewModel>(reviewDTO);
-                if (FakeDatabase.Reviews.Any(r => r.Id != id && r.Title == newReview.Title))
-                {
-                    _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateReview)})");
-                    return BadRequest("Review name already exists.");
-                }
-
-                newReview.Title = newReview.Title;
-                var updatedReviewDTO = _mapper.Map<ReviewModel>(reviewDTO);
-                return Ok(updatedReviewDTO);
-            }
-            catch (Exception ex)
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(UpdateReview)}");
-                return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                try
+                {
+                    var existingReview = FakeDatabase.Reviews.FirstOrDefault(r => r.Id == id);
+                    if (existingReview == null)
+                    {
+                        _logger.LogError($"Invalid attempt in {nameof(UpdateReview)}, No record with Id : {id}");
+                        return BadRequest("Review not found.");
+                    }
+
+                    var newReview = _mapper.Map<ReviewModel>(reviewDTO);
+
+                    if (FakeDatabase.Reviews.Any(r => r.Id != id && r.Title == newReview.Title))
+                    {
+                        _logger.LogError($"Invalid attempt in {nameof(UpdateReview)}, Already Existing Record with Id : {id}");
+                        return BadRequest("Review name already exists.");
+                    }
+
+                    existingReview.Title = newReview.Title;
+                    existingReview.Stars = newReview.Stars;
+                    existingReview.Description = newReview.Description;
+
+                    var updatedReviewDTO = _mapper.Map<ReviewModel>(reviewDTO);
+
+                    _logger.LogInformation($"Proccessing of request successful");
+                    return Ok(updatedReviewDTO);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(UpdateReview)}");
+                    return StatusCode(500, "Internal Server Error. Please Try Again Later.");
+                }
             }
         }
-
-
     }
 }
