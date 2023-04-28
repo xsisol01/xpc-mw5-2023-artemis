@@ -31,7 +31,7 @@ namespace Eshop.webAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<CategoryDTO> GetCategories()
+        public ActionResult<List<CategoryDTO>> GetCategories()
         {
             var requestUrl = HttpContext.Request.Path;
             var method = HttpContext.Request.Method;

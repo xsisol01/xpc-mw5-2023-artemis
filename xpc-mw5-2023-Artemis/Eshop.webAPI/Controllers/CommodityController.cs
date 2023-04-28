@@ -21,7 +21,7 @@ namespace Eshop.webAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCommodities()
+        public ActionResult<List<CommodityDTO>> GetCommodities()
         {
             var requestUrl = HttpContext.Request.Path;
             var method = HttpContext.Request.Method;
