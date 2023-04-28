@@ -1,26 +1,16 @@
-import { FC, memo, useContext } from "react";
+import { FC, memo } from "react";
 
-import { CircularProgress, Container, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import HeaderLayout from "@/app/components/layout/headerLayout/HeaderLayout";
 import FilterProduct from "@/app/components/ui/filterProduct/FilterProduct";
 import Products from "@/app/components/ui/products/Products";
 
-import { useGetAllProducts } from "@/app/hooks/product/useGetAllProducts";
 import { globalStyles } from "@/app/assets/styles/global.styles";
-import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
-import SearchProduct from "../../ui/searchProduct/SearchProduct";
-import { UrlSearchParamsContext } from "@/app/providers/urlSearchParamsProvider";
-import { filter } from "@/app/utils/productFilter";
+import SearchProduct from "@/app/components/ui/searchProduct/SearchProduct";
 
 const HomeScreen: FC = memo(() => {
-  const { products, isLoading } = useGetAllProducts();
-  const { setCurrentManufacturer } = useContext(ManufacturerContext);
-  const {allParams} = useContext(UrlSearchParamsContext)
-
-  setCurrentManufacturer("");
-
   return (
-    <HeaderLayout contentPage="home">
+    <HeaderLayout>
       <Container sx={{ mt: 2 }}>
         <Grid container spacing={2}>
           <Grid item xs={3} sx={globalStyles.fullScroll}>
@@ -28,15 +18,14 @@ const HomeScreen: FC = memo(() => {
           </Grid>
           <Grid item xs={9} sx={globalStyles.fullScroll}>
             <SearchProduct />
-            {isLoading && <CircularProgress />}
-            {!isLoading && (
-              <Products products={filter(products ?? [], allParams)} isLoading={isLoading} />
-            )}
+            <Products />
           </Grid>
         </Grid>
       </Container>
     </HeaderLayout>
   );
 });
+
+HomeScreen.displayName = "HomeScreen";
 
 export default HomeScreen;

@@ -1,23 +1,23 @@
-import {FC, memo} from 'react'
+import { FC, memo } from "react";
 
-import Header from '@/app/components/ui/header/Header'
-
-import styles from './headerLayout.module.scss'
+import Header from "@/app/components/ui/header/Header";
+import { Box, Container } from "@mui/material";
 
 interface IProps {
-    children: React.ReactNode,
-    contentPage?: 'home'
+  children: React.ReactNode;
 }
 
-const HeaderLayout: FC<IProps> = memo(({children, contentPage}) => {
-    return (
-        <div className={styles.headerLayout}>
-            <Header contentPage={contentPage}/>
-            <div className={styles.headerLayout__content}>
-                {children}
-            </div>
-        </div>
-    )
-})
+const HeaderLayout: FC<IProps> = memo(({ children }) => {
+  return (
+    <>
+      <Header />
+      <Container sx={{mt: 8, pt: 1}}>
+        {children}
+      </Container>
+    </>
+  );
+});
 
-export default HeaderLayout
+HeaderLayout.displayName = "HeaderLayout";
+
+export default HeaderLayout;

@@ -1,34 +1,35 @@
-import { FC } from "react";
+import { FC, memo } from "react";
+
 import { submitButtonData } from "./submitButton.data";
 
 import { Box, Button } from "@mui/material";
 
 interface IProps {
-  disabled: boolean
+  disabled: boolean;
 }
 
-const SubmitButton: FC<IProps> = ({disabled}) => {
-
+const SubmitButton: FC<IProps> = memo(({ disabled }) => {
   return (
-    <Box >
+    <Box>
       <Button
-          variant="contained"
-          disabled={disabled}
-          type="submit"
-          color="success"
-          sx={{
-            color: '#388e3c',
-            border: '1px solid #388e3c',
-            '&:hover': {
-              color: '#fff'
-            }
-          }}
+        variant="contained"
+        disabled={disabled}
+        type="submit"
+        color="success"
+        sx={{
+          color: "#388e3c",
+          border: "1px solid #388e3c",
+          "&:hover": {
+            color: "#fff",
+          },
+        }}
       >
-          {submitButtonData.submit}
+        {submitButtonData.submit}
       </Button>
     </Box>
-      
-  )
-}
+  );
+});
 
-export default SubmitButton
+SubmitButton.displayName = "SubmitButton";
+
+export default SubmitButton;

@@ -1,9 +1,44 @@
-import Head from 'next/head'
-import HomeScreen from '@/app/components/screens/homeScreen/HomeScreen'
-import { useEffect } from 'react'
-import { ProductService } from '@/app/services/product.service'
+import Head from "next/head";
+import HomeScreen from "@/app/components/screens/homeScreen/HomeScreen";
+import { ProductService } from "@/app/services/product.service";
+import { IProduct } from "@/app/types/product.type";
+import { ManufacturerService } from "@/app/services/manufacturer.service";
+import { CategoryService } from "@/app/services/category.service";
+import { IManufacturer } from "@/app/types/manufacturer.type";
+import { ICategory } from "@/app/types/category.type";
+import { useContext, useEffect } from "react";
+import { ProductContext } from "@/app/providers/productContextProvider";
+import CategoryContent from "@/app/components/pages/categoryPage/CategoryContent";
+import { CategoryContext } from "@/app/providers/categoryContextProvider";
+import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
 
-export default function Home() {
+interface IProps {
+  staticProducts: IProduct[];
+  staticManufacturers: IManufacturer[];
+  staticCategories: ICategory[];
+}
+
+export default function Home({
+  staticProducts,
+  staticManufacturers,
+  staticCategories,
+}: IProps) {
+  const { setProducts } = useContext(ProductContext);
+  const { setCategories } = useContext(CategoryContext);
+  const { setManufacturers } = useContext(ManufacturerContext);
+
+  useEffect(() => {
+    setProducts(staticProducts);
+    setCategories(staticCategories);
+    setManufacturers(staticManufacturers);
+  }, [
+    setProducts,
+    setCategories,
+    setManufacturers,
+    staticProducts,
+    staticManufacturers,
+    staticCategories,
+  ]);
 
   return (
     <>
@@ -15,5 +50,13 @@ export default function Home() {
       </Head>
       <HomeScreen />
     </>
-  )
+  );
+}
+
+export async function getServerSideProps() {
+  const staticProducts = await ProductService.getAll();
+  const staticManufacturers = await ManufacturerService.getAll();
+  const staticCategories = await CategoryService.getAll();
+
+  return { props: { staticProducts, staticManufacturers, staticCategories } };
 }

@@ -1,29 +1,19 @@
-import { FC, memo } from "react";
+import { FC, memo, useContext } from "react";
 
 import { currencyFormatter } from "@/app/utils/currencyFormatter";
-import Rating from "@/app/components/shared/rating/Rating";
-
-import Dropdown from "@/app/components/shared/dropdown/Dropdown";
-
+import { IProduct } from "@/app/types/product.type";
 import { productPageData } from "./productPage.data";
 
-import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
-import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
-import { IProduct } from "@/app/types/product.type";
-import {
-  Box,
-  capitalize,
-  Card,
-  CardContent,
-  CardHeader,
-  Grid,
-  Typography,
-} from "@mui/material";
+import Rating from "@/app/components/shared/rating/Rating";
+import { Box, capitalize, Grid, Typography } from "@mui/material";
 
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 import { globalStyles } from "@/app/assets/styles/global.styles";
-import Reviews from "../../ui/reviews/Reviews";
+import Reviews from "@/app/components/ui/reviews/Reviews";
+import Image from "next/image";
+import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
+import { CategoryContext } from "@/app/providers/categoryContextProvider";
 
 const ProductInfo: FC<IProduct> = memo(
   ({
@@ -38,27 +28,22 @@ const ProductInfo: FC<IProduct> = memo(
     weight,
     stockQuantity,
   }) => {
-    const { manufacturers } = useGetAllManufacturers();
-    const { categories } = useGetAllCategories();
+
+    const {manufacturers} = useContext(ManufacturerContext)
+    const {categories} = useContext(CategoryContext)
 
     const isInStock = stockQuantity > 0;
 
     return (
-      <Grid container spacing={2} sx={{ mt: 1 }}>
+      <Grid container spacing={2} sx={{ mt: 1, ...globalStyles.fullScroll }} >
         <Grid item md={6} xs={12}>
-          <img
-            src={imageUrl}
-            alt={name}
-            loading="lazy"
-            style={{ maxHeight: "500px" }}
-          />
+          <Image src={imageUrl} alt={name} width={370} height={300} />
         </Grid>
-        <Grid item md={6} xs={12} sx={globalStyles.fullScroll}>
+        <Grid item md={6} xs={12} >
           <Box sx={{ mb: 2 }}>
             <Typography variant="h3" sx={{ mb: 3 }}>
               {name}
             </Typography>
-
             <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
               <Typography variant="h6" sx={{ fontWeight: 400, p: 1, mr: 2 }}>
                 {capitalize(
@@ -121,5 +106,7 @@ const ProductInfo: FC<IProduct> = memo(
     );
   }
 );
+
+ProductInfo.displayName = "ProductInfo";
 
 export default ProductInfo;

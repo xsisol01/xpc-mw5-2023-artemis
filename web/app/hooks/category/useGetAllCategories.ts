@@ -1,17 +1,17 @@
-import { useQuery } from "react-query"
-import { CategoryService } from '@/app/services/category.service';
+import { useQuery } from "react-query";
+import { CategoryService } from "@/app/services/category.service";
 
 export const useGetAllCategories = () => {
-  const {data: categories, isLoading} = useQuery(
-    'category list',
+  const { data: categories, isLoading } = useQuery(
+    "category list",
     () => CategoryService.getAll(),
     {
       onError: (error) => {
-        console.log(error)
+        console.log(error);
       },
-      select: ({data}) => data
+      select: (data) => data,
     }
-  )
+  );
 
-  return { categories, isLoading }
-}
+  return { categories, isLoading };
+};

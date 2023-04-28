@@ -1,55 +1,53 @@
-import { IProductFilterParams } from './../types/productFilter.type';
 
 export const productFilterData = Object.freeze({
   search: {
-    filter: 'search',
-    productParam: 'name',
-    filterType: 'string'
+    filter: "search",
+    productParam: "name",
+    filterType: "string",
   },
   category: {
-    filter: 'category',
-    productParam: 'categoryId',
-    filterType: 'string'
+    filter: "category",
+    productParam: "categoryId",
+    filterType: "string",
   },
   manufacturer: {
-    filter: 'manufacturer',
-    productParam: 'manufacturerId',
-    filterType: 'string'
+    filter: "manufacturer",
+    productParam: "manufacturerId",
+    filterType: "string",
   },
   pricemin: {
-    filter: 'price',
-    productParam: 'price',
-    filterType: 'slider'
+    filter: "price",
+    productParam: "price",
+    filterType: "slider",
   },
   pricemax: {
-    filter: 'price',
-    productParam: 'price',
-    filterType: 'slider'
+    filter: "price",
+    productParam: "price",
+    filterType: "slider",
   },
   weightmin: {
-    filter: 'weight',
-    productParam: 'weight',
-    filterType: 'slider'
+    filter: "weight",
+    productParam: "weight",
+    filterType: "slider",
   },
   weightmax: {
-    filter: 'weight',
-    productParam: 'weight',
-    filterType: 'slider'
+    filter: "weight",
+    productParam: "weight",
+    filterType: "slider",
   },
   ratingmin: {
-    filter: 'rating',
-    productParam: 'averageRating',
-    filterType: 'slider'
+    filter: "rating",
+    productParam: "averageRating",
+    filterType: "slider",
   },
   ratingmax: {
-    filter: 'rating',
-    productParam: 'averageRating',
-    filterType: 'slider'
+    filter: "rating",
+    productParam: "averageRating",
+    filterType: "slider",
   },
   instock: {
-    filter: 'instock',
-    productParam: 'stockQuantity',
-    filterType: 'isInStock'
-  }
-})
-
+    filter: "instock",
+    productParam: "stockQuantity",
+    filterType: "isInStock",
+  },
+});

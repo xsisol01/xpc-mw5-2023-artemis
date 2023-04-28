@@ -11,17 +11,22 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-
+import ProductContextProvider from "@/app/providers/productContextProvider";
+import CategoryContextProvider from "@/app/providers/categoryContextProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ReactQueryProvider>
       <RoleContextProvider>
-        <ManufacturerContextProvider>
-          <UrlSearchParamsProvider>
-            <Component {...pageProps} />
-          </UrlSearchParamsProvider>
-        </ManufacturerContextProvider>
+        <ProductContextProvider>
+          <ManufacturerContextProvider>
+            <CategoryContextProvider>
+              <UrlSearchParamsProvider>
+                <Component {...pageProps} />
+              </UrlSearchParamsProvider>
+            </CategoryContextProvider>
+          </ManufacturerContextProvider>
+        </ProductContextProvider>
       </RoleContextProvider>
     </ReactQueryProvider>
   );

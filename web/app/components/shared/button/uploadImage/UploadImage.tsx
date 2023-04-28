@@ -1,21 +1,55 @@
 import { FC, memo } from "react";
+import { Controller } from "react-hook-form";
 
-import { PhotoCamera } from "@mui/icons-material";
-import { Button, IconButton, Stack } from "@mui/material";
+import { imageUpload } from "@/app/utils/imageUpload";
 
-const UploadImage: FC = memo(() => {
+import { Stack } from "@mui/material";
+import Image from "next/image";
+import DropFile from "@/app/components/shared/dropFile/DropFile";
+
+interface IProps {
+  control: any;
+  name: string;
+  imageUrl: string;
+}
+
+const UploadImage: FC<IProps> = memo(({ control, imageUrl, name }) => {
+  console.log(
+    typeof imageUrl !== "string" ? URL.createObjectURL(imageUrl) : imageUrl
+  );
+
+  const uploadImage = (file: File, cb: (value: string) => void) => {
+    const imageUrl = URL.createObjectURL(file);
+
+    imageUpload(file);
+
+    cb(imageUrl);
+  };
+
   return (
-    <Stack direction="row" alignItems="center" spacing={2}>
-      <Button variant="contained" component="label">
-        Upload
-        <input hidden accept="image/*" multiple type="file" />
-      </Button>
-      <IconButton color="primary" aria-label="upload picture" component="label">
-        <input hidden accept="image/*" type="file" />
-        <PhotoCamera />
-      </IconButton>
+    <Stack direction="row" alignItems="center" sx={{ position: "relative" }}>
+      <Image
+        src={
+          typeof imageUrl !== "string"
+            ? URL.createObjectURL(imageUrl)
+            : imageUrl
+        }
+        alt={name}
+        width={600}
+        height={600}
+      />
+      <Controller
+        name={name}
+        control={control}
+        defaultValue={imageUrl}
+        render={({ field: { onChange, value } }) => (
+          <DropFile onChange={(file: File) => uploadImage(file, onChange)} />
+        )}
+      />
     </Stack>
   );
 });
+
+UploadImage.displayName = "UploadImage";
 
 export default UploadImage;

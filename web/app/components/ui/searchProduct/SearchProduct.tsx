@@ -1,4 +1,4 @@
-import { useEffect, FC, memo, useState, useContext } from "react";
+import { useEffect, FC, memo, useContext, useCallback } from "react";
 
 import { searchProductData } from "./searchProduct.data";
 
@@ -8,17 +8,23 @@ import { Controller, useForm } from "react-hook-form";
 
 import SearchIcon from "./SearchIcon";
 import { UrlSearchParamsContext } from "@/app/providers/urlSearchParamsProvider";
-import FormInput from "../../shared/formFields/formInput/FormInput";
 
 const SearchProduct: FC = memo(() => {
   const { getParam, setParam } = useContext(UrlSearchParamsContext);
   const { uid, placeholder, ariaLabel } = searchProductData;
 
-  const { control, reset, watch, getValues } = useForm({
+  const { control, reset, watch } = useForm({
     defaultValues: {
       [uid]: getParam(uid),
     },
   });
+
+  const setUrlParams = useCallback(
+    (text: string) => {
+      setParam(uid, getLoweredLetters(text));
+    },
+    [setParam, uid]
+  );
 
   useEffect(() => {
     const subscription = watch((value) => {
@@ -26,15 +32,11 @@ const SearchProduct: FC = memo(() => {
     });
 
     return () => subscription.unsubscribe();
-  }, [watch]);
+  }, [watch, setUrlParams, uid]);
 
   function resetSearchBar() {
     setUrlParams("");
     reset({ [uid]: "" });
-  }
-
-  function setUrlParams(text: string) {
-    setParam(uid, getLoweredLetters(text));
   }
 
   return (
@@ -71,5 +73,7 @@ const SearchProduct: FC = memo(() => {
     </Paper>
   );
 });
+
+SearchProduct.displayName = "SearchProduct";
 
 export default SearchProduct;

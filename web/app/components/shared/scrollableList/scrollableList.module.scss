@@ -1,44 +1,43 @@
-@import '@/_vars';
+@import "@/_vars";
 
-.scrollableList{
-    overflow-x: hidden;
-    overflow-y: scroll;
-    height: 100%;
+.scrollableList {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100%;
 
+  //-ms-overflow-style: none;  /* IE and Edge */
+  //scrollbar-width: none;  /* Firefox */
 
-    //-ms-overflow-style: none;  /* IE and Edge */
-    //scrollbar-width: none;  /* Firefox */
+  // &::-webkit-scrollbar {
+  //     display: none;
+  // }
 
-    // &::-webkit-scrollbar {
-    //     display: none;
-    // }
+  /* width */
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
 
-    /* width */
-    &::-webkit-scrollbar {
-        width: 3px;
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $color-black-900;
+    border-radius: 4px;
+  }
+
+  &__ {
+    &item {
+      margin-bottom: 3px;
+      font-size: 18px;
+      cursor: pointer;
+      color: $color-black-900;
     }
-    
-    /* Track */
-    &::-webkit-scrollbar-track {
-        background: #fff;
-    }
-    
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: $color-black-900;
-        border-radius: 4px;
-    }
 
-    &__ {
-        &item{
-            margin-bottom: 3px;
-            font-size: 18px;
-            cursor: pointer;
-            color: $color-black-900;
-        }
-
-        &active {
-            font-weight: bold;
-        }
+    &active {
+      font-weight: bold;
     }
+  }
 }

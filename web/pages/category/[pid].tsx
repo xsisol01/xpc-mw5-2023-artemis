@@ -1,40 +1,54 @@
-import { useContext } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
-import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
-import { useGetCategory } from "@/app/hooks/category/useGetCategory";
-
-import { CircularProgress } from "@mui/material";
-import CategoryContent from "@/app/components/pages/categoryPage/CategoryContent";
-import AdminCategoryContent from "@/app/components/pages/categoryPage/AdminCategoryPage";
-import { RoleContext } from "@/app/providers/roleContextProvider";
 import { routes } from "@/app/data/routes";
 import LeftMenuItemPage from "@/app/components/pages/leftMenuPages/LeftMenuItemPage";
+import CategoryPage from "@/app/components/pages/categoryPage/CategoryPage";
+import { CategoryService } from "@/app/services/category.service";
+import { ICategory } from "@/app/types/category.type";
+import { useContext, useEffect } from "react";
+import { CategoryContext } from "@/app/providers/categoryContextProvider";
 
-const Category: NextPage = () => {
-  const { isAdmin } = useContext(RoleContext);
-  const { query } = useRouter();
-  const { pid } = query;
+interface IProps {
+  staticCategory: ICategory
+  staticCategories: ICategory[]
+}
 
-  if (!pid) {
-    return <CircularProgress />;
+const Category: NextPage<IProps> = ({staticCategory, staticCategories}) => {
+  const { push } = useRouter();
+  const {categories, setCategories} = useContext(CategoryContext)
+
+  useEffect(() => {
+    if (!categories.length) {
+      setCategories(staticCategories)
+    }
+  }, [staticCategories])
+
+  if (!staticCategory || !staticCategories) {
+    push('/404')
   }
-
-  const { category, isLoading } = useGetCategory(pid.toString());
-  const { categories } = useGetAllCategories();
 
   return (
     <LeftMenuItemPage leftMenuItems={categories} linkTo={routes.category}>
-      {isLoading && <CircularProgress />}
-      {category &&
-        (isAdmin ? (
-          <AdminCategoryContent {...category} />
-        ) : (
-          <CategoryContent {...category} />
-        ))}
+      <CategoryPage category={staticCategory} />
     </LeftMenuItemPage>
   );
 };
 
 export default Category;
+
+interface IServerSideProps {
+  params: {
+    pid: string;
+  };
+}
+
+export async function getServerSideProps({
+  params: { pid },
+}: IServerSideProps) {
+  const staticCategory = await CategoryService.get(pid);
+  const staticCategories = await CategoryService.getAll();
+
+  return { props: { staticCategory, staticCategories } };
+}
+

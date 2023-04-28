@@ -1,3 +1,3 @@
 export const headerData = Object.freeze({
-  title: 'xpc-mw5'
-})
+  title: "xpc-mw5",
+});

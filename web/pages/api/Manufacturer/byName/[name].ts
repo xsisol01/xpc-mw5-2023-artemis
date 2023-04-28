@@ -1,13 +1,12 @@
-import { IManufacturer } from '@/app/types/manufacturer.type';
+import { IManufacturer } from "@/app/types/manufacturer.type";
 import https from "https";
-import { IProduct } from "@/app/types/product.type";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const manufacturerApi = axios.create({
   baseURL: `${process.env.apiUrl}/Manufacturer/byName`,
   httpsAgent: new https.Agent({
-    rejectUnauthorized: false
+    rejectUnauthorized: false,
   }),
   headers: {
     "Content-Type": "application/json; charset=utf-8",
@@ -16,9 +15,9 @@ const manufacturerApi = axios.create({
 });
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  switch(req.method) {
-    case "GET": 
-      return get(req, res)
+  switch (req.method) {
+    case "GET":
+      return get(req, res);
   }
 }
 

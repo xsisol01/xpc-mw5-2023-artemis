@@ -30,5 +30,5 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
 
 async function post(req: NextApiRequest, res: NextApiResponse) {
   const data = await commodityApi.post("", req.body);
-  return res.status(200).json(data);
+  return res.json(data);
 }

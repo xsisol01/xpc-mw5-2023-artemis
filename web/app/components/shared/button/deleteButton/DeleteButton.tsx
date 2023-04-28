@@ -1,23 +1,24 @@
+import { FC, memo, useEffect, useRef } from "react";
+import { AxiosResponse } from "axios";
+import { UseMutateAsyncFunction } from "react-query";
+
 import { useDeleteCategory } from "@/app/hooks/category/useDeleteCategory";
 import { useDeleteManufacturer } from "@/app/hooks/manufacturer/useDeleteManufacturer";
 import { useDeleteProduct } from "@/app/hooks/product/useDeleteProduct";
+
 import { Button } from "@mui/material";
-import { FC, memo, useEffect } from "react";
-import { UseMutateAsyncFunction } from "react-query";
 import { deleteButtonData } from "./deleteButtonData";
 
 interface IProps {
-  className?: string;
   id: string | number;
   elementType: string;
   children?: React.ReactNode;
-  style?: any
-  sx?: any
+  style?: any;
+  sx?: any;
 }
 
 const DeleteButton: FC<IProps> = memo(
-  ({ className = "", id, elementType, children, style, sx }) => {
-
+  ({ id, elementType, children, style, sx }) => {
     const { isLoading: isProductLoading, deleteProduct } = useDeleteProduct(
       id.toString()
     );
@@ -27,23 +28,31 @@ const DeleteButton: FC<IProps> = memo(
     const { isLoading: isManufacturerLoading, deleteManufacturer } =
       useDeleteManufacturer(id.toString());
 
-    let deleteMethod: UseMutateAsyncFunction<void, unknown, string, unknown>;
+    const deleteMethod =
+      useRef<
+        UseMutateAsyncFunction<
+          AxiosResponse<any, any>,
+          unknown,
+          string,
+          unknown
+        >
+      >(deleteProduct);
 
     useEffect(() => {
       switch (elementType) {
         case "product":
-          deleteMethod = deleteProduct;
+          deleteMethod.current = deleteProduct;
           break;
         case "category":
-          deleteMethod = deleteCategory;
+          deleteMethod.current = deleteCategory;
           break;
         case "manufacturer":
-          deleteMethod = deleteManufacturer;
+          deleteMethod.current = deleteManufacturer;
           break;
         default:
           break;
       }
-    }, []);
+    }, [deleteCategory, deleteManufacturer, deleteProduct, elementType]);
 
     function onDelete(event: React.MouseEvent<HTMLButtonElement>) {
       event.stopPropagation();
@@ -53,31 +62,35 @@ const DeleteButton: FC<IProps> = memo(
       const isConfirmed = confirm("Are you sure?");
 
       if (isConfirmed) {
-        deleteMethod(id.toString());
+        deleteMethod.current(id.toString());
       }
     }
 
     return (
       <Button
         variant="contained"
-        disabled={isProductLoading || isCategoryLoading || isManufacturerLoading}
+        disabled={
+          isProductLoading || isCategoryLoading || isManufacturerLoading
+        }
         type="submit"
         color="error"
         onClick={onDelete}
         style={style}
         sx={{
-          color: '#d32f2f',
-          border: '1px solid #d32f2f',
-          '&:hover': {
-            color: '#fff'
+          color: "#d32f2f",
+          border: "1px solid #d32f2f",
+          "&:hover": {
+            color: "#fff",
           },
-          ...sx
+          ...sx,
         }}
-        >
+      >
         {children ?? deleteButtonData.delete}
       </Button>
     );
   }
 );
+
+DeleteButton.displayName = "DeleteButton";
 
 export default DeleteButton;

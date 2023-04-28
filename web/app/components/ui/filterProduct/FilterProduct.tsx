@@ -1,32 +1,19 @@
-import { FC, memo, useEffect } from "react";
+import { FC, memo, useContext } from "react";
+
+import { filterProductData } from "./filterProduct.data";
 
 import Dropdown from "@/app/components/shared/dropdown/Dropdown";
-import ScrollableList, {
-  IScrollableListProps,
-} from "@/app/components/shared/scrollableList/ScrollableList";
-import Slider, {
-  ISliderProps,
-} from "@/app/components/shared/formFields/slider/Slider";
-import Radio, {
-  IRadioProps,
-} from "@/app/components/shared/formFields/radio/Radio";
-
-import withUrlSearchParams from "@/app/components/shared/hoc/withUrlSearchParams";
-
-import {
-  filterProductData,
-  fieldTypeData,
-  IFilterItem,
-} from "./filterProduct.data";
+import ScrollableList from "@/app/components/shared/scrollableList/ScrollableList";
+import Slider from "@/app/components/shared/formFields/slider/Slider";
+import Radio from "@/app/components/shared/formFields/radio/Radio";
 
 import styles from "./filterProduct.module.scss";
-import { useGetAllCategories } from "@/app/hooks/category/useGetAllCategories";
-import { useGetAllManufacturers } from "@/app/hooks/manufacturer/useGetAllManufacturers";
+import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
+import { CategoryContext } from "@/app/providers/categoryContextProvider";
 
 const FilterProduct: FC = memo(() => {
-  const { categories, isLoading: isCategoryLoading } = useGetAllCategories();
-  const { manufacturers, isLoading: isManufacturerLoading } =
-    useGetAllManufacturers();
+  const { manufacturers } = useContext(ManufacturerContext);
+  const { categories } = useContext(CategoryContext);
 
   const { defaultValues } = filterProductData;
 
@@ -63,5 +50,7 @@ const FilterProduct: FC = memo(() => {
     </aside>
   );
 });
+
+FilterProduct.displayName = "FilterProduct";
 
 export default FilterProduct;

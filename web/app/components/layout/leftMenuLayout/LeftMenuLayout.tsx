@@ -2,17 +2,18 @@ import { FC, memo, ReactNode } from "react";
 
 import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
+import LeftMenuItems from "@/app/components/ui/leftMenuItems/LeftMenuItems";
+
+import { ILeftMenuItem } from "@/app/components/ui/leftMenuItem/leftMenuItem.type";
 import { globalStyles } from "@/app/assets/styles/global.styles";
-import LeftMenuItems from "../../ui/leftMenuItems/LeftMenuItems";
-import { ILeftMenuItem } from "../../ui/leftMenuItems/leftMenuItem/leftMenuItem.type";
 
 interface IProps {
-  options: ILeftMenuItem[] | undefined
-  children?: ReactNode
-  linkTo: string
+  options: ILeftMenuItem[] | undefined;
+  children?: ReactNode;
+  linkTo: string;
 }
 
-const ManufacturerLayout: FC<IProps> = memo(({ children, options, linkTo}) => {
+const ManufacturerLayout: FC<IProps> = memo(({ children, options, linkTo }) => {
   return (
     <Container>
       <Grid container spacing={2}>
@@ -26,5 +27,7 @@ const ManufacturerLayout: FC<IProps> = memo(({ children, options, linkTo}) => {
     </Container>
   );
 });
+
+ManufacturerLayout.displayName = "ManufacturerLayout";
 
 export default ManufacturerLayout;

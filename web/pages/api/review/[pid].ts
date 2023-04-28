@@ -3,8 +3,8 @@ import { IProduct } from "@/app/types/product.type";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const manufacturerApi = axios.create({
-  baseURL: `${process.env.apiUrl}/Manufacturer`,
+const reviewApi = axios.create({
+  baseURL: `${process.env.apiUrl}/Review`,
   httpsAgent: new https.Agent({
     rejectUnauthorized: false,
   }),
@@ -26,29 +26,27 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
-  const { mid } = req.query;
+  const { pid } = req.query;
 
-  const data = await manufacturerApi
-    .get<IProduct>(`/byId/${mid}`)
+  const data = await reviewApi
+    .get<IProduct>(`/byId/${pid}`)
     .then((res) => res.data);
 
   return res.json(data);
 }
 
 async function put(req: NextApiRequest, res: NextApiResponse) {
-  const { mid } = req.query;
+  const { pid } = req.query;
 
-  const data = await manufacturerApi
-    .put(`/${mid}`, req.body)
-    .then((res) => res.data);
+  const data = await reviewApi.put(`/${pid}`, req.body).then((res) => res.data);
 
   return res.json(data);
 }
 
 async function remove(req: NextApiRequest, res: NextApiResponse) {
-  const { mid } = req.query;
+  const { pid } = req.query;
 
-  const data = await manufacturerApi.delete(`/${mid}`).then((res) => res.data);
+  const data = await reviewApi.delete(`/${pid}`).then((res) => res.data);
 
   return res.json(data);
 }
