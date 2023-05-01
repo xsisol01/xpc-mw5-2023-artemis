@@ -131,7 +131,7 @@ namespace Eshop.webAPI.Controllers
                     }
 
                     var manufacturer = _mapper.Map<ManufacturerModel>(manufacturerDTO);
-                    FakeDatabase.AddManufacturer(manufacturer);
+                    FakeDatabase.Manufacturers.Add(manufacturer);
 
                     var result = _mapper.Map<ManufacturerDTO>(manufacturer);
 

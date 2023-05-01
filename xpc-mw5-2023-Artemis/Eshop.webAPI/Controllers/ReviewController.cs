@@ -13,11 +13,13 @@ namespace Eshop.webAPI.Controllers
     {
         private readonly ILogger<ReviewController> _logger;
         private readonly IMapper _mapper;
+        
 
         public ReviewController(ILogger<ReviewController> logger, IMapper mapper)
         {
             _logger = logger;
             _mapper = mapper;
+            
         }
 
         [HttpGet("byCommodityId/{id}")]
@@ -141,7 +143,7 @@ namespace Eshop.webAPI.Controllers
                         var review = _mapper.Map<ReviewModel>(reviewDTO);
 
                         commodity.addReview(review);
-                        FakeDatabase.AddReview(review);
+                        FakeDatabase.Reviews.Add(review);
 
                         var result = _mapper.Map<ReviewDTO>(review);
 

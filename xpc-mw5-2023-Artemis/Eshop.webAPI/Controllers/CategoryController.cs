@@ -12,6 +12,7 @@ using System.Net;
 using System.Xml.Linq;
 
 
+
 namespace Eshop.webAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -28,6 +29,7 @@ namespace Eshop.webAPI.Controllers
         {
             _logger = logger;
             _mapper = mapper;
+            
         }
 
         [HttpGet]
@@ -140,7 +142,7 @@ namespace Eshop.webAPI.Controllers
                     }
 
                     var category = _mapper.Map<CategoryModel>(categoryDTO);
-                    FakeDatabase.AddCategory(category);
+                    FakeDatabase.Categories.Add(category);
 
                     var result = _mapper.Map<CategoryDTO>(category);
 

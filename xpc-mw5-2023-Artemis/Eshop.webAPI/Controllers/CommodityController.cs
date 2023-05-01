@@ -167,7 +167,7 @@ namespace Eshop.webAPI.Controllers
                     }
 
                     var commodity = _mapper.Map<CommodityModel>(commodityDTO);
-                    FakeDatabase.AddCommodity(commodity);
+                    FakeDatabase.Commodities.Add(commodity);
 
                     var result = _mapper.Map<CommodityDTO>(commodity);
 

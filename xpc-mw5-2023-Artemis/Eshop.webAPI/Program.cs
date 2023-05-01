@@ -18,6 +18,7 @@ builder.Logging.AddSimpleConsole(options =>
 builder.Services.AddControllers().AddNewtonsoftJson(op =>
     op.SerializerSettings.ReferenceLoopHandling =
     Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+//builder.Services.AddSingleton<FakeDatabase>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -36,7 +37,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Initialization of FakeDatabase
-FakeDatabase.InitDatabase();
+new FakeDatabase();
 
 
 app.UseAuthorization();
