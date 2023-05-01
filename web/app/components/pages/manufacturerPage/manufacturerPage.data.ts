@@ -12,7 +12,7 @@ export const manufacturerPageData = Object.freeze({
     imageUrl: "",
     description: "",
     country: "",
-    products: [] as IProduct[],
+    commodityIds: [] as string[],
   } as IManufacturer,
   fields: [
     {

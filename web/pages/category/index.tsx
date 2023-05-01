@@ -14,9 +14,7 @@ const Categories: NextPage<IProps> = ({ staticCategories }) => {
   const {categories, setCategories} = useContext(CategoryContext)
 
   useEffect(() => {
-    if (!categories.length) {
-      setCategories(staticCategories)
-    }
+    setCategories(staticCategories)
   }, [staticCategories])
 
   return (

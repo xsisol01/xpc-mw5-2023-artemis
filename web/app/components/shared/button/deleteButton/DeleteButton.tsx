@@ -62,7 +62,7 @@ const DeleteButton: FC<IProps> = memo(
       const isConfirmed = confirm("Are you sure?");
 
       if (isConfirmed) {
-        deleteMethod.current(id.toString());
+        deleteMethod.current(id?.toString());
       }
     }
 

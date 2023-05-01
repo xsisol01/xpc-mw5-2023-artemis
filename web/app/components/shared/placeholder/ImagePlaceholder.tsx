@@ -3,17 +3,18 @@ import Image from "next/image";
 
 interface IProps {
   alt: string;
-  height: number | string;
-  width?: number | string;
+  height: number ;
+  width: number;
 }
 
-const ImagePlaceholder: FC<IProps> = memo(({ alt, height, width = "100%" }) => {
+const ImagePlaceholder: FC<IProps> = memo(({ alt, height, width = 200 }) => {
   return (
     <Image
-      src="imagePlaceholder.png"
+      src="/imagePlaceholder.png"
       alt={alt}
-      style={{ height, width }}
       loading="lazy"
+      height={height}
+      width={width}
     />
   );
 });

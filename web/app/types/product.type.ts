@@ -18,11 +18,11 @@ export interface ICreateProduct {
   name: string;
   imageUrl: string;
   description: string;
-  price: number;
+  price: string;
   manufacturerId: string;
   categoryId: string;
-  weight: number;
-  stockQuantity: number;
+  weight: string;
+  stockQuantity: string;
 }
 
 export interface IProductField {

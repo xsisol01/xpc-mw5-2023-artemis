@@ -31,6 +31,7 @@ const NewProductScreen: FC = memo(() => {
     <HeaderLayout>
       <Container>
         <ProductForm
+          shouldReset={true}
           onSubmit={onSubmit}
           defaultValues={newProductData}
           isLoading={isLoading}

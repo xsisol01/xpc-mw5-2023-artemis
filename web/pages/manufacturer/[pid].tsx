@@ -9,23 +9,32 @@ import { ManufacturerService } from "@/app/services/manufacturer.service";
 import { IManufacturer } from "@/app/types/manufacturer.type";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
 import { useContext, useEffect } from "react";
+import { ProductService } from "@/app/services/product.service";
+import { IProduct } from "@/app/types/product.type";
+import { ProductContext } from "@/app/providers/productContextProvider";
+import ManufacturerScreen from "@/app/components/screens/manufacturerScreen/ManufacturerScreen";
 
 interface IProps {
   staticManufacturer: IManufacturer;
   staticManufacturers: IManufacturer[];
+  staticProducts: IProduct[];
 }
 
 const Manufacturer: NextPage<IProps> = ({
   staticManufacturers,
   staticManufacturer,
+  staticProducts,
 }) => {
   const { push } = useRouter();
   const { manufacturers, setManufacturers } = useContext(ManufacturerContext);
+  const { setProducts } = useContext(ProductContext);
 
   useEffect(() => {
-    if (!manufacturers.length) {
-      setManufacturers(staticManufacturers);
-    }
+    setProducts(staticProducts);
+  }, [staticProducts]);
+
+  useEffect(() => {
+    setManufacturers(staticManufacturers);
   }, [staticManufacturers]);
 
   if (!staticManufacturer || !staticManufacturers) {
@@ -38,7 +47,7 @@ const Manufacturer: NextPage<IProps> = ({
       leftMenuItems={manufacturers}
       linkTo={routes.manufacturer}
     >
-      <ManufacturerPage manufacturer={staticManufacturer} />
+      <ManufacturerScreen {...staticManufacturer} />
     </LeftMenuItemPage>
   );
 };
@@ -57,5 +66,13 @@ export async function getServerSideProps({
   const staticManufacturer = await ManufacturerService.get(pid);
   const staticManufacturers = await ManufacturerService.getAll();
 
-  return { props: { staticManufacturer, staticManufacturers } };
+  let staticProducts: IProduct[] = [];
+
+  if (staticManufacturer.commodityIds.length) {
+    staticProducts = await ProductService.getByIds(
+      staticManufacturer.commodityIds
+    );
+  }
+
+  return { props: { staticManufacturer, staticManufacturers, staticProducts } };
 }

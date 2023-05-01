@@ -1,3 +1,4 @@
+import https from 'https';
 import axios from "axios";
 
 import { ICategory, ICreateCategory } from "@/app/types/category.type";
@@ -8,6 +9,9 @@ const instance = axios.create({
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   },
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false,
+  })
 });
 
 export const CategoryService = {
@@ -24,14 +28,14 @@ export const CategoryService = {
   },
 
   async create(data: ICreateCategory) {
-    return instance.post("/api/category", data);
+    return axios.post("/api/category", data);
   },
 
   async update(data: ICategory) {
-    return instance.put(`/api/category/${data.id}`, data);
+    return axios.put(`/api/category/${data.id}`, data);
   },
 
   async delete(id: string) {
-    return instance.delete(`/api/category/${id}`);
+    return axios.delete(`/api/category/${id}`);
   },
 };

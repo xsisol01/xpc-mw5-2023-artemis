@@ -29,6 +29,6 @@ async function post(req: NextApiRequest, res: NextApiResponse) {
     "api/image ---------------------------------------------------------------------------",
     req.body
   );
-  const data = await imageApi.post("", req.body);
+  const data = await imageApi.post("", req.body).then((res) => res.data);
   res.json(data);
 }

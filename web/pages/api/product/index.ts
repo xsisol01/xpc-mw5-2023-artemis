@@ -24,11 +24,27 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
-  const data = await commodityApi.get("").then((res) => [...res.data]);
-  res.json([...data]);
+  const { ids } = req.query;
+
+  try {
+    const data = await commodityApi
+      .get("byListOfId", {
+        params: {
+          ids,
+        },
+      })
+      .then((res) => res.data);
+    res.json([...data]);
+  } catch (error: any) {
+    console.log(error.message);
+  }
 }
 
 async function post(req: NextApiRequest, res: NextApiResponse) {
-  const data = await commodityApi.post("", req.body);
-  return res.json(data);
+  try {
+    const data = await commodityApi.post("", req.body).then((res) => res.data);
+    return res.json(data);
+  } catch (e: any) {
+    console.log(e.message);
+  }
 }

@@ -4,12 +4,11 @@ import https from "https";
 
 import { IProduct } from "@/app/types/product.type";
 
-axios.defaults.httpsAgent = new https.Agent({
-  rejectUnauthorized: false,
-});
-
 const instance = axios.create({
   baseURL: `${process.env.apiUrl}/Commodity`,
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false,
+  }),
   headers: {
     "Content-Type": "application/json; charset=utf-8",
     "Access-Control-Allow-Origin": "*",
@@ -29,25 +28,20 @@ export const ProductService = {
     return instance.get<IProduct>(`/byName/${name}`).then((res) => res.data);
   },
 
-  async create(data: ICreateProduct) {
-    const result = axios.post("/api/product", data);
-    console.log("ProductService.create", await result);
+  async getByIds(ids: string[]) {
+    const idsString = ids.join('&ids=')
+    return instance.get<IProduct[]>(`/byListOfId?ids=${idsString}`).then((res) => res.data);
+  },
 
-    return result;
+  async create(data: ICreateProduct) {
+    return axios.post("/api/product", data);
   },
 
   async update(data: IProduct) {
-    const result = instance.put(`/api/product/${data.id}`, data);
-    console.log("ProductService.update", await result);
-
-    return result;
+    return axios.put(`/api/product/${data.id}`, data);
   },
 
   async delete(id: string) {
-    const result = instance.delete(`/api/product/${id}`);
-
-    console.log("ProductService.delete", await result);
-
-    return result;
+    return axios.delete(`/api/product/${id}`);
   },
 };

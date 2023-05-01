@@ -11,8 +11,12 @@ import SearchProduct from "@/app/components/ui/searchProduct/SearchProduct";
 const HomeScreen: FC = memo(() => {
   return (
     <HeaderLayout>
-      <Container sx={{ mt: 2 }}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{
+          '& > .MuiGrid-item': {
+            px: 1,
+            mx: 0
+          }
+        }}>
           <Grid item xs={3} sx={globalStyles.fullScroll}>
             <FilterProduct />
           </Grid>
@@ -21,7 +25,6 @@ const HomeScreen: FC = memo(() => {
             <Products />
           </Grid>
         </Grid>
-      </Container>
     </HeaderLayout>
   );
 });

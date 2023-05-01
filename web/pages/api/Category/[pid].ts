@@ -28,27 +28,38 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 async function get(req: NextApiRequest, res: NextApiResponse) {
   const { pid } = req.query;
 
-  const data = await categoryApi
-    .get<IProduct>(`/byId/${pid}`)
-    .then((res) => res.data);
+  try {
+    const data = await categoryApi
+      .get<IProduct>(`/byId/${pid}`)
+      .then((res) => res.data);
 
-  return res.json(data);
+    return res.json(data);
+  } catch (error: any) {
+    console.log(error.message);
+  }
 }
 
 async function put(req: NextApiRequest, res: NextApiResponse) {
   const { pid } = req.query;
+  try {
+    const data = await categoryApi
+      .put(`/${pid}`, req.body)
+      .then((res) => res.data);
 
-  const data = await categoryApi
-    .put(`/${pid}`, req.body)
-    .then((res) => res.data);
-
-  return res.json(data);
+    return res.json(data);
+  } catch (error: any) {
+    console.log(error.message);
+  }
 }
 
 async function remove(req: NextApiRequest, res: NextApiResponse) {
   const { pid } = req.query;
 
-  const data = await categoryApi.delete(`/${pid}`).then((res) => res.data);
+  try {
+    const data = await categoryApi.delete(`/${pid}`).then((res) => res.data);
 
-  return res.json(data);
+    return res.json(data);
+  } catch (error: any) {
+    console.log(error.message);
+  }
 }

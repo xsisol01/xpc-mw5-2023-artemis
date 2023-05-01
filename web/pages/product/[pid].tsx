@@ -25,17 +25,12 @@ const Product: NextPage<IProps> = ({
 }) => {
   const { push } = useRouter();
 
-  const { categories, setCategories } = useContext(CategoryContext);
-  const { manufacturers, setManufacturers } = useContext(ManufacturerContext);
+  const { setCategories } = useContext(CategoryContext);
+  const { setManufacturers } = useContext(ManufacturerContext);
 
   useEffect(() => {
-    if (!categories.length) {
-      setCategories(staticCategories);
-    }
-
-    if (!manufacturers.length) {
-      setManufacturers(staticManufacturers);
-    }
+    setCategories(staticCategories);
+    setManufacturers(staticManufacturers);
   }, [staticCategories, staticManufacturers]);
 
   if (!staticProduct) {

@@ -2,12 +2,11 @@ import { ICreateProduct } from "@/app/types/product.type";
 
 export const newProductData: ICreateProduct = Object.freeze({
   name: "",
-  price: 0,
+  price: "",
   description: "",
   manufacturerId: "",
   categoryId: "",
-  weight: 0,
-  stockQuantity: 0,
-  imageUrl: "",
-  reviews: [],
+  weight: "",
+  stockQuantity: "",
+  imageUrl: ""
 });

@@ -18,6 +18,7 @@ interface IProps {
   rows?: number;
   required?: boolean;
   validation?: RegExp;
+  autoFocus?: boolean
 }
 
 const FormInput: FC<IProps> = memo(
@@ -33,6 +34,7 @@ const FormInput: FC<IProps> = memo(
     required = false,
     placeholder,
     validation = regex.all,
+    autoFocus = false
   }) => {
     const isValid = (value: string) => {
       return validation.test(value);
@@ -62,6 +64,7 @@ const FormInput: FC<IProps> = memo(
         render={({ field: { onChange, value } }) => (
           <TextField
             required={required}
+            autoFocus={autoFocus}
             id={name}
             label={capitalizeText(placeholder ?? name)}
             variant={variant}

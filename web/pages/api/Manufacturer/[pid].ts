@@ -27,28 +27,41 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
   const { pid } = req.query;
+  try {
+    const data = await manufacturerApi
+      .get<IProduct>(`/byId/${pid}`)
+      .then((res) => res.data);
 
-  const data = await manufacturerApi
-    .get<IProduct>(`/byId/${pid}`)
-    .then((res) => res.data);
-
-  return res.json(data);
+    return res.json(data);
+  } catch (error: any) {
+    console.log(error.message);
+  }
 }
 
 async function put(req: NextApiRequest, res: NextApiResponse) {
   const { pid } = req.query;
 
-  const data = await manufacturerApi
-    .put(`/${pid}`, req.body)
-    .then((res) => res.data);
+  try {
+    const data = await manufacturerApi
+      .put(`/${pid}`, req.body)
+      .then((res) => res.data);
 
-  return res.json(data);
+    return res.json(data);
+  } catch (error: any) {
+    console.log(error.message);
+  }
 }
 
 async function remove(req: NextApiRequest, res: NextApiResponse) {
   const { pid } = req.query;
 
-  const data = await manufacturerApi.delete(`/${pid}`).then((res) => res.data);
+  try {
+    const data = await manufacturerApi
+      .delete(`/${pid}`)
+      .then((res) => res.data);
 
-  return res.json(data);
+    return res.json(data);
+  } catch (error: any) {
+    console.log(error.message);
+  }
 }

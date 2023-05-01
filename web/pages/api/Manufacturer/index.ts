@@ -24,12 +24,22 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
-  const data = await manufacturerApi.get("").then((res) => [...res.data]);
-  res.json([...data]);
+  try {
+    const data = await manufacturerApi.get("").then((res) => res.data);
+    res.json([...data]);
+  } catch (error: any) {
+    console.log(error.message);
+  }
 }
 
 async function post(req: NextApiRequest, res: NextApiResponse) {
-  const data = await manufacturerApi.post("", req.body);
+  try {
+    const data = await manufacturerApi
+      .post("", req.body)
+      .then((res) => res.data);
 
-  return res.status(200).json(data);
+    return res.status(200).json(data);
+  } catch (error: any) {
+    console.log(error.message);
+  }
 }

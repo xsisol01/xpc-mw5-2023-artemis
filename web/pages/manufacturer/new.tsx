@@ -16,9 +16,7 @@ const Manufacturer: NextPage<IProps> = ({ staticManufacturers }) => {
   const { manufacturers, setManufacturers } = useContext(ManufacturerContext);
 
   useEffect(() => {
-    if (!manufacturers.length) {
-      setManufacturers(staticManufacturers);
-    }
+    setManufacturers(staticManufacturers);
   }, [staticManufacturers]);
 
   return (

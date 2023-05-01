@@ -6,7 +6,7 @@ export interface IManufacturer {
   imageUrl: string;
   description: string;
   country: string;
-  products: IProduct[];
+  commodityIds: string[];
 }
 
 export interface IManufacturerField {

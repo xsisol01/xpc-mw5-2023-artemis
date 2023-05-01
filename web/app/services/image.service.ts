@@ -1,3 +1,4 @@
+import https from 'https';
 import axios from "axios";
 
 const instance = axios.create({
@@ -7,6 +8,9 @@ const instance = axios.create({
       "multipart/form-data; boundary=<calculated when request is sent>",
     "Access-Control-Allow-Origin": "*",
   },
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false,
+  }),
 });
 
 export const ImageService = {

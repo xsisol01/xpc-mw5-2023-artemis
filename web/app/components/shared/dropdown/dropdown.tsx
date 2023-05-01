@@ -9,11 +9,19 @@ interface IProps {
   wrapperWidth?: number;
   wrapperHeight?: number;
   contentHeight?: number;
+  defaultOpen?: boolean;
 }
 
 const Dropdown: FC<IProps> = memo(
-  ({ title, children, wrapperWidth, wrapperHeight, contentHeight }) => {
-    const [isOpen, setIsOpen] = useState(false);
+  ({
+    title,
+    children,
+    wrapperWidth,
+    wrapperHeight,
+    contentHeight,
+    defaultOpen = false,
+  }) => {
+    const [isOpen, setIsOpen] = useState(defaultOpen);
 
     const handleClick = () => {
       setIsOpen((isOpen) => !isOpen);

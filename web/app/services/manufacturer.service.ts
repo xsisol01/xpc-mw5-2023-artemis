@@ -6,14 +6,15 @@ import {
   ICreateManufacturer,
 } from "@/app/types/manufacturer.type";
 
-axios.defaults.httpsAgent = new https.Agent({
-  rejectUnauthorized: false,
-});
+
 
 const instance = axios.create({
   baseURL: `${process.env.apiUrl}/Manufacturer`,
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false,
+  }),
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type": "application/json; charset=utf-8",
     "Access-Control-Allow-Origin": "*",
   },
 });
@@ -32,14 +33,14 @@ export const ManufacturerService = {
   },
 
   async create(data: ICreateManufacturer) {
-    return instance.post("/api/manufacturer", data);
+    return axios.post("/api/manufacturer", data);
   },
 
   async update(data: IManufacturer) {
-    return instance.put(`/api/manufacturer/${data.id}`, data);
+    return axios.put(`/api/manufacturer/${data.id}`, data);
   },
 
   async delete(id: string) {
-    return instance.delete(`/api/manufacturer/${id}`);
+    return axios.delete(`/api/manufacturer/${id}`);
   },
 };

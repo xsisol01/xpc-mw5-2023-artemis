@@ -10,22 +10,20 @@ import { useContext, useEffect } from "react";
 import { CategoryContext } from "@/app/providers/categoryContextProvider";
 
 interface IProps {
-  staticCategory: ICategory
-  staticCategories: ICategory[]
+  staticCategory: ICategory;
+  staticCategories: ICategory[];
 }
 
-const Category: NextPage<IProps> = ({staticCategory, staticCategories}) => {
+const Category: NextPage<IProps> = ({ staticCategory, staticCategories }) => {
   const { push } = useRouter();
-  const {categories, setCategories} = useContext(CategoryContext)
+  const { categories, setCategories } = useContext(CategoryContext);
 
   useEffect(() => {
-    if (!categories.length) {
-      setCategories(staticCategories)
-    }
-  }, [staticCategories])
+    setCategories(staticCategories);
+  }, [staticCategories]);
 
   if (!staticCategory || !staticCategories) {
-    push('/404')
+    push("/404");
   }
 
   return (
@@ -51,4 +49,3 @@ export async function getServerSideProps({
 
   return { props: { staticCategory, staticCategories } };
 }
-

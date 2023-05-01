@@ -1,39 +1,48 @@
 import { FC, memo, useContext, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { globalStyles } from "@/app/assets/styles/global.styles";
-import { IProductField } from "@/app/types/product.type";
+import { IProduct, IProductField } from "@/app/types/product.type";
 
 import { productPageData } from "@/app/components/pages/productPage/productPage.data";
 import { capitalize, Grid } from "@mui/material";
 import RightSubmitButton from "@/app/components/shared/button/submitButton/RightSubmitButton";
-import UploadImage from "@/app/components/shared/button/uploadImage/UploadImage";
+import UploadImage from "@/app/components/shared/uploadImage/UploadImage";
 import FormInput from "@/app/components/shared/formFields/formInput/FormInput";
 import FormSelect from "@/app/components/shared/formFields/formSelect/FormSelect";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
 import { CategoryContext } from "@/app/providers/categoryContextProvider";
+import { newProductData } from "@/app/components/pages/productPage/newProduct.data";
 
 interface IProps {
   onSubmit: (data: any) => void;
   defaultValues: any;
   isLoading: boolean;
+  shouldReset?: boolean;
 }
 
 const ProductForm: FC<IProps> = memo(
-  ({ onSubmit, defaultValues, isLoading }) => {
+  ({ onSubmit, defaultValues, isLoading, shouldReset = false }) => {
     const { manufacturers } = useContext(ManufacturerContext);
     const { categories } = useContext(CategoryContext);
 
-    const { control, handleSubmit, watch, getValues } = useForm({
+    const { control, handleSubmit, getValues, reset } = useForm({
       defaultValues,
     });
 
-    useEffect(() => {
-      const subscription = watch((value, { name, type }) =>
-        console.log(value, name, type)
-      );
-      return () => subscription.unsubscribe();
-    }, [watch]);
+    let imageUrl = getValues("imageUrl")
+
+    if (!imageUrl.length) {
+      imageUrl = '/imagePlaceholder.png'
+    }
+
+    const submitForm: SubmitHandler<IProduct> = async (data: IProduct) => {
+      onSubmit(data);
+
+      if (shouldReset) {
+        reset(newProductData);
+      }
+    };
 
     function getOptions(field: string) {
       switch (field) {
@@ -47,13 +56,13 @@ const ProductForm: FC<IProps> = memo(
     }
 
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(submitForm)}>
         <Grid container spacing={2} sx={{ mt: 1 }}>
           <Grid item xs={6} sx={{ mt: 2 }}>
             <UploadImage
               control={control}
               name="imageUrl"
-              imageUrl={getValues("imageUrl")}
+              imageUrl={imageUrl}
             />
           </Grid>
           <Grid item xs={6} sx={{ pt: 2, ...globalStyles.fullScroll }}>

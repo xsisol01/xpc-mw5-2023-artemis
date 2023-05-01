@@ -17,6 +17,7 @@ import { CategoryContext } from "@/app/providers/categoryContextProvider";
 
 const ProductInfo: FC<IProduct> = memo(
   ({
+    id,
     name,
     price,
     description,
@@ -28,18 +29,17 @@ const ProductInfo: FC<IProduct> = memo(
     weight,
     stockQuantity,
   }) => {
-
-    const {manufacturers} = useContext(ManufacturerContext)
-    const {categories} = useContext(CategoryContext)
+    const { manufacturers } = useContext(ManufacturerContext);
+    const { categories } = useContext(CategoryContext);
 
     const isInStock = stockQuantity > 0;
 
     return (
-      <Grid container spacing={2} sx={{ mt: 1, ...globalStyles.fullScroll }} >
+      <Grid container spacing={2} sx={{ mt: 1, ...globalStyles.fullScroll }}>
         <Grid item md={6} xs={12}>
           <Image src={imageUrl} alt={name} width={370} height={300} />
         </Grid>
-        <Grid item md={6} xs={12} >
+        <Grid item md={6} xs={12}>
           <Box sx={{ mb: 2 }}>
             <Typography variant="h3" sx={{ mb: 3 }}>
               {name}
@@ -100,7 +100,7 @@ const ProductInfo: FC<IProduct> = memo(
             )}
           </Box>
 
-          <Reviews reviews={reviews ?? []} />
+          <Reviews reviews={reviews ?? []} productId={id} />
         </Grid>
       </Grid>
     );

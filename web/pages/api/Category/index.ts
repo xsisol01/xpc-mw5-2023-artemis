@@ -23,11 +23,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
-  const data = await categoryApi.get("").then((res) => [...res.data]);
+  const data = await categoryApi.get("").then((res) => res.data);
   res.json([...data]);
 }
 
 async function post(req: NextApiRequest, res: NextApiResponse) {
-  const data = await categoryApi.post("", req.body);
+  const data = await categoryApi.post("", req.body).then((res) => res.data);
   return res.status(200).json(data);
 }

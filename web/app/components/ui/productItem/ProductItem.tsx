@@ -45,7 +45,7 @@ const ProductItem: FC<IProduct> = memo(
                 component="img"
               />
             ) : (
-              <ImagePlaceholder alt={name} height={140} />
+              <ImagePlaceholder alt={name} height={140} width={200} />
             )}
           </Link>
           <CardContent sx={{ pb: 0 }}>

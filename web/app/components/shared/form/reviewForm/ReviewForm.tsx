@@ -6,10 +6,12 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 // import { IProduct } from "@/app/types/product.type";
 import { ICreateProductReview, IProductReview } from "@/app/types/review.type";
 
-import { CircularProgress, Paper } from "@mui/material";
+import { Box, CircularProgress, Paper, Typography } from "@mui/material";
 import RightSubmitButton from "@/app/components/shared/button/submitButton/RightSubmitButton";
 import FormInput from "@/app/components/shared/formFields/formInput/FormInput";
 import Rating from "@/app/components/shared/rating/Rating";
+import { useCreateReview } from "@/app/hooks/review/useCreateReview";
+import { ReviewFormData } from "./reviewFormData";
 
 const reviewFromData = Object.freeze({
   title: "title",
@@ -22,26 +24,37 @@ interface IProps {
 }
 
 const ReviewForm: FC<IProps> = memo(({ productId }) => {
-  // const {product, isLoading: isProductLoading} = useGetProduct(productId)
+  const { createReview, isLoading } = useCreateReview(
+    ReviewFormData.defaultValues
+  );
 
-  // if (!product && isProductLoading) {
-  //   return null
-  // }
-
-  // if(!product) {
-  //   return null
-  // }
-
-  const { control, handleSubmit } = useForm({
-    defaultValues: {} as IProductReview,
+  const { control, handleSubmit, reset } = useForm({
+    defaultValues: ReviewFormData.defaultValues,
   });
 
-  //const { isLoading, updateProduct } = useUpdateProduct({} as IProduct);
-
-  const onSubmit: SubmitHandler<ICreateProductReview> = async (
-    data: ICreateProductReview
+  const onSubmit: SubmitHandler<IProductReview> = async (
+    data: IProductReview
   ) => {
-    console.log(data);
+    const newReview = {
+      ...data,
+      id: productId,
+    };
+
+    if (isValid(data)) {
+      createReview(newReview);
+      reset(ReviewFormData.defaultValues)
+    } else {
+      alert("Fill all fields");
+    }
+  };
+
+  const isValid = (obj: IProductReview) => {
+    return (
+      obj.description &&
+      obj.description.length > 0 &&
+      obj.title &&
+      obj.title.length > 0
+    );
   };
 
   return (
@@ -51,21 +64,36 @@ const ReviewForm: FC<IProps> = memo(({ productId }) => {
       onSubmit={handleSubmit(onSubmit)}
       sx={{ px: 1 }}
     >
-      <FormInput control={control} name={reviewFromData.title} sx={{ my: 2 }} />
+      <FormInput
+        control={control}
+        required={true}
+        name={reviewFromData.title}
+        sx={{ my: 2 }}
+        autoFocus={true}
+      />
       <Controller
+        rules={{
+          required: true,
+        }}
         control={control}
         name={reviewFromData.stars}
-        render={({ field: { onChange } }) => (
-          <Rating
-            disabled={false}
-            onChange={onChange}
-            style={{ marginBottom: "8px" }}
-            readOnly={false}
-          />
+        render={({ field: { onChange, value } }) => (
+            <Rating
+              rate={value}
+              disabled={false}
+              onChange={onChange}
+              style={{ marginBottom: "16px" }}
+              readOnly={false}
+            />
         )}
       />
-      <FormInput control={control} name={reviewFromData.description} rows={5} />
-      <RightSubmitButton disabled={false} />
+      <FormInput
+        control={control}
+        required={true}
+        name={reviewFromData.description}
+        rows={5}
+      />
+      <RightSubmitButton disabled={isLoading} />
     </Paper>
   );
 });

@@ -28,29 +28,40 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 async function get(req: NextApiRequest, res: NextApiResponse) {
   const { pid } = req.query;
 
-  const data = await commodityApi
+  try{
+    const data = await commodityApi
     .get<IProduct>(`/byId/${pid}`)
     .then((res) => res.data);
 
   return res.json(data);
+  } catch (e: any) {
+    console.log(e.message)
+  }
 }
 
 async function put(req: NextApiRequest, res: NextApiResponse) {
-  const { pid } = req.query;
+  const {id, reviews, averageRating, ...requiredData} = req.body
 
-  const data = await axios
-    .put(`https://localhost:7242/api/Commodity/${pid}`, req.body)
+  try {
+    const data = await commodityApi
+    .put(`/${id}`, requiredData)
     .then((res) => res.data);
 
-  return res.json(data);
+    return res.json(data);
+  } catch(e: any) {
+    console.log(e.message)
+  }
 }
 
 async function deleteProduct(req: NextApiRequest, res: NextApiResponse) {
   const { pid } = req.query;
-
-  const data = await axios
-    .delete(`https://localhost:7242/api/Commodity/${pid}`)
+  try {
+    const data = await commodityApi
+    .delete(`/${pid}`)
     .then((res) => res.data);
 
-  return res.json(data);
+    return res.json(data);
+  } catch (e: any) {
+    console.log(e.message)
+  }
 }

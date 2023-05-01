@@ -7,6 +7,7 @@ import {
   FC,
   memo,
 } from "react";
+
 import { IProduct } from "../types/product.type";
 
 interface IContext {
@@ -32,9 +33,7 @@ const ProductContextProvider: FC<IProps> = memo(({ children }) => {
   );
 
   return (
-    <ProductContext.Provider value={value}>
-      {children}
-    </ProductContext.Provider>
+    <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
   );
 });
 

@@ -47,7 +47,7 @@ const SearchProduct: FC = memo(() => {
         display: "flex",
         alignItems: "center",
         width: "100%",
-        mb: 2,
+        mb: 2
       }}
     >
       <Controller

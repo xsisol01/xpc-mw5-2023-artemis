@@ -11,9 +11,10 @@ interface IProps {
   control: any;
   name: string;
   imageUrl: string;
+  sx?: any
 }
 
-const UploadImage: FC<IProps> = memo(({ control, imageUrl, name }) => {
+const UploadImage: FC<IProps> = memo(({ control, imageUrl, name, sx = {} }) => {
   console.log(
     typeof imageUrl !== "string" ? URL.createObjectURL(imageUrl) : imageUrl
   );
@@ -27,7 +28,7 @@ const UploadImage: FC<IProps> = memo(({ control, imageUrl, name }) => {
   };
 
   return (
-    <Stack direction="row" alignItems="center" sx={{ position: "relative" }}>
+    <Stack direction="row" alignItems="center" sx={{ position: "relative", ...sx }}>
       <Image
         src={
           typeof imageUrl !== "string"
@@ -35,8 +36,8 @@ const UploadImage: FC<IProps> = memo(({ control, imageUrl, name }) => {
             : imageUrl
         }
         alt={name}
-        width={600}
-        height={600}
+        width={370}
+        height={300}
       />
       <Controller
         name={name}
