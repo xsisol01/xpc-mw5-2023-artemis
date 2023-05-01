@@ -8,7 +8,6 @@ import { IManufacturer } from "@/app/types/manufacturer.type";
 import { ICategory } from "@/app/types/category.type";
 import { useContext, useEffect } from "react";
 import { ProductContext } from "@/app/providers/productContextProvider";
-import CategoryContent from "@/app/components/pages/categoryPage/CategoryContent";
 import { CategoryContext } from "@/app/providers/categoryContextProvider";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
 
@@ -31,14 +30,7 @@ export default function Home({
     setProducts(staticProducts);
     setCategories(staticCategories);
     setManufacturers(staticManufacturers);
-  }, [
-    setProducts,
-    setCategories,
-    setManufacturers,
-    staticProducts,
-    staticManufacturers,
-    staticCategories,
-  ]);
+  }, []);
 
   return (
     <>

@@ -55,12 +55,14 @@ async function put(req: NextApiRequest, res: NextApiResponse) {
 
 async function deleteProduct(req: NextApiRequest, res: NextApiResponse) {
   const { pid } = req.query;
+  console.log('PID --------------------------------------------------', pid)
   try {
     const data = await commodityApi
     .delete(`/${pid}`)
     .then((res) => res.data);
 
     return res.json(data);
+
   } catch (e: any) {
     console.log(e.message)
   }
