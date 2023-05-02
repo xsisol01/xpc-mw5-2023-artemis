@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "npm install && npm run build && next start",
-    "lint": "next lint"
+    "start": "next start",
+    "lint": "next lint",
+    "install-build-start": "npm install && next build && next start"
   },
   "dependencies": {
     "@azure/storage-blob": "^12.13.0",

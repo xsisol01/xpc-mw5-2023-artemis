@@ -29,7 +29,7 @@ export const useCreateProduct = (data: ICreateProduct) => {
 
         console.log(data)
 
-        push(`/product/${data.id}`)
+        push(`${routes.product}/${data.id}`)
         
       },
       onError: (error) => {

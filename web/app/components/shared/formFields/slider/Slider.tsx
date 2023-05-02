@@ -36,7 +36,7 @@ const Slider: FC<ISliderProps> = memo(({ uid, unit = "", validation }) => {
     });
 
     return () => subscription.unsubscribe();
-  }, [watch, setParam]);
+  }, [watch]);
 
   return (
     <form>

@@ -8,6 +8,7 @@ import { CategoryService } from "@/app/services/category.service";
 import { ICategory } from "@/app/types/category.type";
 import { useContext, useEffect } from "react";
 import { CategoryContext } from "@/app/providers/categoryContextProvider";
+import Preloader from "@/app/components/shared/preloader/Preloader";
 
 interface IProps {
   staticCategory: ICategory;
@@ -15,7 +16,6 @@ interface IProps {
 }
 
 const Category: NextPage<IProps> = ({ staticCategory, staticCategories }) => {
-  const { push } = useRouter();
   const { categories, setCategories } = useContext(CategoryContext);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Category: NextPage<IProps> = ({ staticCategory, staticCategories }) => {
   }, [staticCategories]);
 
   if (!staticCategory || !staticCategories) {
-    push("/404");
+    return <Preloader />
   }
 
   return (

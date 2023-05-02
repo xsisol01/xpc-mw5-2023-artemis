@@ -4,7 +4,7 @@ import { Controller } from "react-hook-form";
 import { imageUpload } from "@/app/utils/imageUpload";
 
 import { Stack } from "@mui/material";
-import Image from "next/image";
+import Image from "@/app/components/ui/image/Image";
 import DropFile from "@/app/components/shared/dropFile/DropFile";
 
 interface IProps {

@@ -22,7 +22,7 @@ const CreateCategoryPage: FC = memo(() => {
     if (isSuccess) {
       reset(categoryPageData.defaultValues);
     }
-  }, [isSuccess, reset]);
+  }, [isSuccess]);
 
   const onSubmit: SubmitHandler<ICreateCategory> = async (
     data: ICreateCategory

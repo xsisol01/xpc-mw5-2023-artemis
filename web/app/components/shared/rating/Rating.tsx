@@ -43,7 +43,7 @@ const Rating: FC<IProps> = memo(
       if (onChange) {
         onChange(value);
       }
-    }, [value, onChange]);
+    }, [value]);
 
     return (
       <div

@@ -1,3 +1,5 @@
+import { ProductContext } from './../../providers/productContextProvider';
+import { routes } from '@/app/data/routes';
 import { notificationType } from '@/app/providers/notificationContextProvider';
 import { useContext } from 'react';
 import { NotificationContext } from '@/app/providers/notificationContextProvider';
@@ -7,8 +9,8 @@ import { ProductService } from "@/app/services/product.service";
 
 export const useDeleteProduct = (id: string) => {
   const {addMessage} = useContext(NotificationContext)
-  const router = useRouter();
-  const { push } = router;
+  const {setProducts} = useContext(ProductContext)
+  const {push} = useRouter();
 
   const { isLoading, mutateAsync: deleteProduct } = useMutation(
     ["delete product", id],
@@ -20,7 +22,9 @@ export const useDeleteProduct = (id: string) => {
           text: "Product has been deleted"
         })
 
-        push("/");
+        setProducts(prev => prev.filter(product => product.id !== id))
+
+        push(routes.home);
       },
       onError: (error) => {
         addMessage({

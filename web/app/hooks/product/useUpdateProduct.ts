@@ -1,3 +1,4 @@
+import { routes } from '@/app/data/routes';
 import { notificationType } from '@/app/providers/notificationContextProvider';
 import { NotificationContext } from '@/app/providers/notificationContextProvider';
 import { RoleContext } from '@/app/providers/roleContextProvider';
@@ -26,7 +27,7 @@ export const useUpdateProduct = (data: IProduct) => {
         const {data} = config
         const parsedData = JSON.parse(data)
 
-        push(`/product/${parsedData.id}`)
+        push(`${routes.product}/${parsedData.id}`)
         setIsAdmin(false)
       },
       onError: (error) => {

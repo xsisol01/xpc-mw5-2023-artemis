@@ -15,23 +15,22 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ReactQueryProvider>
-      <RoleContextProvider>
-        <ProductContextProvider>
-          <ManufacturerContextProvider>
-            <CategoryContextProvider>
-              <UrlSearchParamsProvider>
-                <NotificationContextProvider>
-                  <Component {...pageProps} />
-                </NotificationContextProvider>
-              </UrlSearchParamsProvider>
-            </CategoryContextProvider>
-          </ManufacturerContextProvider>
-        </ProductContextProvider>
-      </RoleContextProvider>
-    </ReactQueryProvider>
-  );
+        <ReactQueryProvider>
+          <RoleContextProvider>
+            <ProductContextProvider>
+              <ManufacturerContextProvider>
+                <CategoryContextProvider>
+                  <UrlSearchParamsProvider>
+                    <NotificationContextProvider>
+                      <Component {...pageProps} />
+                    </NotificationContextProvider>
+                  </UrlSearchParamsProvider>
+                </CategoryContextProvider>
+              </ManufacturerContextProvider>
+            </ProductContextProvider>
+          </RoleContextProvider>
+        </ReactQueryProvider>
+      )
 }

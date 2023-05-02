@@ -61,6 +61,7 @@ async function deleteProduct(req: NextApiRequest, res: NextApiResponse) {
     .then((res) => res.data);
 
     return res.json(data);
+
   } catch (e: any) {
     console.log(e.message)
   }

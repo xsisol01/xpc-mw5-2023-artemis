@@ -20,12 +20,12 @@ const Products: FC = memo(() => {
 
   return (
     <>
-      {!products?.length && (
+      {!!products && products?.length === 0 && (
         <Typography variant="h4" sx={{ textAlign: "center", mb: 1 }}>
           {productsData.empty}
         </Typography>
       )}
-      {products && products?.length > 0 && (
+      {!!products && products?.length > 0 && (
         <Grid container spacing={2}>
           <>
             {isAdmin && <ProductItemCreate />}

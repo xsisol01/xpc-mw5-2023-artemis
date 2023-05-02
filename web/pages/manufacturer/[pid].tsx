@@ -43,7 +43,7 @@ const Manufacturer: NextPage<IProps> = ({
   }
 
   return (
-    <LeftMenuItemPage
+      <LeftMenuItemPage
       leftMenuItems={manufacturers}
       linkTo={routes.manufacturer}
     >
@@ -66,9 +66,9 @@ export async function getServerSideProps({
   const staticManufacturer = await ManufacturerService.get(pid);
   const staticManufacturers = await ManufacturerService.getAll();
 
-  let staticProducts: IProduct[] = [];
+  let staticProducts: IProduct[] | undefined= [];
 
-  if (staticManufacturer.commodityIds.length) {
+  if (staticManufacturer && staticManufacturer.commodityIds.length) {
     staticProducts = await ProductService.getByIds(
       staticManufacturer.commodityIds
     );

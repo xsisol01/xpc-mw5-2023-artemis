@@ -16,7 +16,7 @@ const AllManufacturers: NextPage<IProps> = ({ staticManufacturers }) => {
 
   useEffect(() => {
     setManufacturers(staticManufacturers);
-  }, [staticManufacturers]);
+  }, []);
 
   return (
     <RouteToFirstItem items={manufacturers} baseUrl={routes.manufacturer} />

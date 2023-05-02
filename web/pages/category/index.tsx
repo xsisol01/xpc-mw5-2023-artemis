@@ -15,7 +15,7 @@ const Categories: NextPage<IProps> = ({ staticCategories }) => {
 
   useEffect(() => {
     setCategories(staticCategories)
-  }, [staticCategories])
+  }, [])
 
   return (
     <RouteToFirstItem items={categories} baseUrl={routes.category} />

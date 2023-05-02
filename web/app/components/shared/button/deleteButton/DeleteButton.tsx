@@ -52,7 +52,7 @@ const DeleteButton: FC<IProps> = memo(
         default:
           break;
       }
-    }, [deleteCategory, deleteManufacturer, deleteProduct, elementType]);
+    }, [elementType]);
 
     function onDelete(event: React.MouseEvent<HTMLButtonElement>) {
       event.stopPropagation();

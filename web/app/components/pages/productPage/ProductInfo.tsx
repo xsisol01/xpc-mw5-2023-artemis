@@ -11,7 +11,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 import { globalStyles } from "@/app/assets/styles/global.styles";
 import Reviews from "@/app/components/ui/reviews/Reviews";
-import Image from "next/image";
+import Image from "@/app/components/ui/image/Image";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
 import { CategoryContext } from "@/app/providers/categoryContextProvider";
 

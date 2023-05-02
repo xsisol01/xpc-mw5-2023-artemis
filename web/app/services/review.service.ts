@@ -19,6 +19,10 @@ export const ReviewService = {
   },
 
   async delete(id: string) {
-    return instance.delete(`/api/review/${id}`);
+    try {
+      return instance.delete(`/api/review/${id}`);
+    } catch (error: any) {
+      console.log(error.message)
+    }
   },
 };
