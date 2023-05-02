@@ -17,20 +17,36 @@ const instance = axios.create({
 
 export const ProductService = {
   async getAll() {
-    return instance.get<IProduct[]>("").then((res) => res.data);
+    try {
+      return instance.get<IProduct[]>("").then((res) => res.data);
+    } catch (error: any) {
+      console.log(error.message)
+    }
   },
 
   async get(id: string) {
-    return instance.get<IProduct>(`/byId/${id}`).then((res) => res.data);
+    try {
+      return instance.get<IProduct>(`/byId/${id}`).then((res) => res.data);
+    } catch (error: any) {
+      console.log(error.message)
+    }
   },
 
   async getByName(name: string) {
-    return instance.get<IProduct>(`/byName/${name}`).then((res) => res.data);
+    try {
+      return instance.get<IProduct>(`/byName/${name}`).then((res) => res.data);
+    } catch (error: any) {
+      console.log(error.message)
+    }
   },
 
   async getByIds(ids: string[]) {
     const idsString = ids.join('&ids=')
-    return instance.get<IProduct[]>(`/byListOfId?ids=${idsString}`).then((res) => res.data);
+    try {
+      return instance.get<IProduct[]>(`/byListOfId?ids=${idsString}`).then((res) => res.data);
+    } catch (error: any) {
+      console.log(error.message)
+    }
   },
 
   async create(data: ICreateProduct) {

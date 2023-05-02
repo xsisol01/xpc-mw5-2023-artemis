@@ -16,15 +16,27 @@ const instance = axios.create({
 
 export const CategoryService = {
   async getAll() {
-    return instance.get<ICategory[]>("").then(res => res.data);
+    try {
+      return instance.get<ICategory[]>("").then(res => res.data);
+    } catch (error: any) {
+      console.log(error.message)
+    }
   },
 
   async get(id: string) {
-    return instance.get<ICategory>(`/byId/${id}`).then(res => res.data);
+    try {
+      return instance.get<ICategory>(`/byId/${id}`).then(res => res.data);
+    } catch (error: any) {
+      console.log(error.message)
+    }
   },
 
   async getByName(id: string) {
-    return instance.get<ICategory>(`/byName/${id}`).then(res => res.data);
+    try {
+      return instance.get<ICategory>(`/byName/${id}`).then(res => res.data);
+    } catch (error: any) {
+      console.log(error.message)
+    }
   },
 
   async create(data: ICreateCategory) {

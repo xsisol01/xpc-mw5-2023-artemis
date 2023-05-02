@@ -17,7 +17,7 @@ import {
   Typography,
 } from "@mui/material";
 import { RoleContext } from "@/app/providers/roleContextProvider";
-import ImagePlaceholder from "@/app/components/shared/placeholder/ImagePlaceholder";
+import Image from "@/app/components/ui/image/Image";
 
 import styles from "./productItem.module.scss";
 
@@ -31,22 +31,12 @@ const ProductItem: FC<IProduct> = memo(
         <Card sx={{ height: "100%", position: "relative" }}>
           <Link
             href={{
-              pathname: 'product/[pid]',
-              query: {pid: id}
+              pathname: "product/[pid]",
+              query: { pid: id },
             }}
             className={styles.productItem}
           >
-            {imageUrl?.length ? (
-              <CardMedia
-                src={imageUrl}
-                alt={name}
-                title={name}
-                sx={{ height: 140 }}
-                component="img"
-              />
-            ) : (
-              <ImagePlaceholder alt={name} height={140} width={200} />
-            )}
+            <Image alt={name} height={140} width={200} src={imageUrl} />
           </Link>
           <CardContent sx={{ pb: 0 }}>
             <Typography variant="body1" component="h4">

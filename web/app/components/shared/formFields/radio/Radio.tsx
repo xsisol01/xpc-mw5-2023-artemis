@@ -32,11 +32,11 @@ const Radio: FC<IRadioProps> = memo(({ options, uid }) => {
     if (paramValue) {
       setSelected(paramValue.toString());
     }
-  }, [getParam, uid]);
+  }, []);
 
   useEffect(() => {
     setParam(uid, selected);
-  }, [selected, setParam, uid]);
+  }, [selected]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelected((event.target as HTMLInputElement).value);

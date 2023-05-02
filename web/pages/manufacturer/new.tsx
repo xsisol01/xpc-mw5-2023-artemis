@@ -17,7 +17,7 @@ const Manufacturer: NextPage<IProps> = ({ staticManufacturers }) => {
 
   useEffect(() => {
     setManufacturers(staticManufacturers);
-  }, [staticManufacturers]);
+  }, []);
 
   return (
     <NewLeftMenuItem items={manufacturers} linkTo={routes.manufacturer}>

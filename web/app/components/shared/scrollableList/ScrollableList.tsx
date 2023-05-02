@@ -33,13 +33,13 @@ const ScrollableList: FC<IScrollableListProps> = memo(({ uid, options }) => {
     if (defaultSelected?.length) {
       setSelected(defaultSelected.toString());
     }
-  }, [getParam, uid]);
+  }, [uid]);
 
   useEffect(() => {
     const param = getLoweredLetters(selected ?? "");
 
     setParam(uid, param);
-  }, [selected, setParam, uid]);
+  }, [selected, uid]);
 
   function getIsSelected(optionId: string) {
     return isTextEqual(selected ?? "", optionId);

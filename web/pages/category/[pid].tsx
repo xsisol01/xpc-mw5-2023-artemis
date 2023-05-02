@@ -20,7 +20,7 @@ const Category: NextPage<IProps> = ({ staticCategory, staticCategories }) => {
 
   useEffect(() => {
     setCategories(staticCategories);
-  }, [staticCategories]);
+  }, []);
 
   if (!staticCategory || !staticCategories) {
     push("/404");

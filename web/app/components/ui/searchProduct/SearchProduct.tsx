@@ -23,7 +23,7 @@ const SearchProduct: FC = memo(() => {
     (text: string) => {
       setParam(uid, getLoweredLetters(text));
     },
-    [setParam, uid]
+    [uid]
   );
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const SearchProduct: FC = memo(() => {
     });
 
     return () => subscription.unsubscribe();
-  }, [watch, setUrlParams, uid]);
+  }, [watch, uid]);
 
   function resetSearchBar() {
     setUrlParams("");

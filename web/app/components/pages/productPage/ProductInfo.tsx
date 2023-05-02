@@ -11,7 +11,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 import { globalStyles } from "@/app/assets/styles/global.styles";
 import Reviews from "@/app/components/ui/reviews/Reviews";
-import Image from "next/image";
+import Image from "@/app/components/ui/image/Image";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
 import { CategoryContext } from "@/app/providers/categoryContextProvider";
 
@@ -33,6 +33,8 @@ const ProductInfo: FC<IProduct> = memo(
     const { categories } = useContext(CategoryContext);
 
     const isInStock = stockQuantity > 0;
+
+    console.log('imageUrl', imageUrl)
 
     return (
       <Grid container spacing={2} sx={{ mt: 1, ...globalStyles.fullScroll }}>
