@@ -34,8 +34,6 @@ const ProductInfo: FC<IProduct> = memo(
 
     const isInStock = stockQuantity > 0;
 
-    console.log('imageUrl', imageUrl)
-
     return (
       <Grid container spacing={2} sx={{ mt: 1, ...globalStyles.fullScroll }}>
         <Grid item md={6} xs={12}>

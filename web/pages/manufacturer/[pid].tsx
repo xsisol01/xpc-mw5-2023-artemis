@@ -31,8 +31,11 @@ const Manufacturer: NextPage<IProps> = ({
 
   useEffect(() => {
     setProducts(staticProducts);
+  }, [staticProducts]);
+
+  useEffect(() => {
     setManufacturers(staticManufacturers);
-  }, []);
+  }, [staticManufacturers]);
 
   if (!staticManufacturer || !staticManufacturers) {
     push("/404");
