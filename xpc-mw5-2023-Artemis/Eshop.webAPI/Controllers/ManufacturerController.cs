@@ -79,6 +79,39 @@ namespace Eshop.webAPI.Controllers
             }
         }
 
+        [HttpGet("getCommodities/{id}", Name = "GetManufacturersCommodities")]
+        public ActionResult<List<CommodityDTO>> GetManufacturersCommodities(Guid id)
+        {
+            var requestUrl = HttpContext.Request.Path;
+            var method = HttpContext.Request.Method;
+
+            using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
+            {
+                try
+                {
+                    var manufacturer = FakeDatabase.Manufacturers.FirstOrDefault(m => m.Id == id);
+
+                    if (manufacturer != null)
+                    {
+                        var commodities = manufacturer.Commodities;
+                        var result = _mapper.Map<List<CommodityDTO>>(commodities);
+
+                        _logger.LogInformation($"Proccessing of request successful");
+                        return Ok(result);
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"Manufacturer with ID {id} not found");
+                        return NotFound();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error in {nameof(GetManufacturer)}");
+                    return StatusCode(500, "Internal Server Error. Please try again later.");
+                }
+            }
+        }
 
         [HttpGet("byName/{name}")]
         public ActionResult<ManufacturerDTO> GetManufacturerByName(string name)
