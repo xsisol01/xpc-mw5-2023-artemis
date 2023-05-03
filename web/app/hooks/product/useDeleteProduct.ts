@@ -23,8 +23,6 @@ export const useDeleteProduct = (id: string) => {
         })
 
         setProducts(prev => prev.filter(product => product.id !== id))
-
-        push(routes.home);
       },
       onError: (error) => {
         addMessage({

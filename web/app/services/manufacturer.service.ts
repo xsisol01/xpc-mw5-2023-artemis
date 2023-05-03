@@ -44,6 +44,14 @@ export const ManufacturerService = {
     }
   },
 
+  async getProducts(id: string) {
+    try {
+      return instance.get<IManufacturer>(`/getCommodities/${id}`).then(res => res.data);
+    } catch (error: any) {
+      console.log(error.message)
+    }
+  },
+
   async create(data: ICreateManufacturer) {
     return axios.post("/api/manufacturer", data);
   },

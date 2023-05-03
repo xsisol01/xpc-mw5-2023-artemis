@@ -40,10 +40,10 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function put(req: NextApiRequest, res: NextApiResponse) {
-  const { pid } = req.query;
+  const {id, ...category} = req.body
   try {
     const data = await categoryApi
-      .put(`/${pid}`, req.body)
+      .put(`/${id}`, category)
       .then((res) => res.data);
 
     return res.json(data);

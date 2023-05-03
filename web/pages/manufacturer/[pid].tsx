@@ -4,12 +4,10 @@ import { useRouter } from "next/router";
 import { routes } from "@/app/data/routes";
 
 import LeftMenuItemPage from "@/app/components/pages/leftMenuPages/LeftMenuItemPage";
-import ManufacturerPage from "@/app/components/pages/manufacturerPage/ManufacturerPage";
 import { ManufacturerService } from "@/app/services/manufacturer.service";
 import { IManufacturer } from "@/app/types/manufacturer.type";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
 import { useContext, useEffect } from "react";
-import { ProductService } from "@/app/services/product.service";
 import { IProduct } from "@/app/types/product.type";
 import { ProductContext } from "@/app/providers/productContextProvider";
 import ManufacturerScreen from "@/app/components/screens/manufacturerScreen/ManufacturerScreen";
@@ -43,7 +41,7 @@ const Manufacturer: NextPage<IProps> = ({
   }
 
   return (
-      <LeftMenuItemPage
+    <LeftMenuItemPage
       leftMenuItems={manufacturers}
       linkTo={routes.manufacturer}
     >
@@ -65,14 +63,7 @@ export async function getServerSideProps({
 }: IServerSideProps) {
   const staticManufacturer = await ManufacturerService.get(pid);
   const staticManufacturers = await ManufacturerService.getAll();
-
-  let staticProducts: IProduct[] | undefined= [];
-
-  if (staticManufacturer && staticManufacturer.commodityIds.length) {
-    staticProducts = await ProductService.getByIds(
-      staticManufacturer.commodityIds
-    );
-  }
+  const staticProducts = await ManufacturerService.getProducts(pid);
 
   return { props: { staticManufacturer, staticManufacturers, staticProducts } };
 }

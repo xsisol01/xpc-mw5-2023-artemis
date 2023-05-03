@@ -36,7 +36,12 @@ const ProductItem: FC<IProduct> = memo(
             }}
             className={styles.productItem}
           >
-            <Image alt={name} height={140} width={200} src={imageUrl} />
+            <CardMedia
+              component="img"
+              height="140"
+              image={imageUrl || '/imagePlaceholder.png'}
+              alt={name}
+            />
           </Link>
           <CardContent sx={{ pb: 0 }}>
             <Typography variant="body1" component="h4">

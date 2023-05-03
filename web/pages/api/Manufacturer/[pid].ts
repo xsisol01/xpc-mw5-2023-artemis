@@ -39,11 +39,11 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function put(req: NextApiRequest, res: NextApiResponse) {
-  const { pid } = req.query;
+  const {id, ...reqBody} = req.body
 
   try {
     const data = await manufacturerApi
-      .put(`/${pid}`, req.body)
+      .put(`/${id}`, reqBody)
       .then((res) => res.data);
 
     return res.json(data);
