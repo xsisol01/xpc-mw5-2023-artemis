@@ -17,7 +17,6 @@ import {
   Typography,
 } from "@mui/material";
 import { RoleContext } from "@/app/providers/roleContextProvider";
-import Image from "@/app/components/ui/image/Image";
 
 import styles from "./productItem.module.scss";
 
@@ -28,21 +27,24 @@ const ProductItem: FC<IProduct> = memo(
 
     return (
       <Grid item xs={12} md={3} sm={6}>
-        <Card sx={{ height: "100%", position: "relative" }}>
-          <Link
+        <Link
             href={{
-              pathname: "product/[pid]",
+              pathname: "/product/[pid]",
               query: { pid: id },
             }}
             className={styles.productItem}
           >
+        <Card sx={{ height: "100%", position: "relative" }}>
             <CardMedia
               component="img"
               height="140"
               image={imageUrl || '/imagePlaceholder.png'}
-              alt={name}
+              alt={''}
+              sx={{
+                backgroundImage: `url(/imagePlaceholder.png)`,
+                minHeight: '140px'
+              }}
             />
-          </Link>
           <CardContent sx={{ pb: 0 }}>
             <Typography variant="body1" component="h4">
               {capitalize(name)}
@@ -84,6 +86,7 @@ const ProductItem: FC<IProduct> = memo(
             />
           )}
         </Card>
+        </Link>
       </Grid>
     );
   }

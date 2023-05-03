@@ -2,6 +2,7 @@ import { FC, memo } from "react";
 
 import NextImage from "next/image";
 import { imageData } from "./imageData";
+import { Box } from "@mui/material";
 
 interface IProps {
   alt?: string;
@@ -12,14 +13,19 @@ interface IProps {
 }
 
 const Image: FC<IProps> = memo(
-  ({ alt = "", src, width, height, style = {} }) => {
+  ({ src, width, height, style = {} }) => {
     return (
-      <NextImage
-        alt={alt}
-        src={src || imageData.imagePlaceholder}
-        width={width}
-        height={height}
-        style={style}
+        <NextImage
+          alt={imageData.alt}
+          src={src || imageData.imagePlaceholder}
+          width={width}
+          height={height}
+          style={{
+            width: '500px',
+            height: 'auto',
+            backgroundImage: `url(${imageData.imagePlaceholder})`,
+            ...style
+          }}
       />
     );
   }

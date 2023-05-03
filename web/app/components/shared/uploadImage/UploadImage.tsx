@@ -6,7 +6,6 @@ import { imageUpload } from "@/app/utils/imageUpload";
 import { Stack} from "@mui/material";
 import Image from "@/app/components/ui/image/Image";
 import DropFile from "@/app/components/shared/dropFile/DropFile";
-import FormInput from "../formFields/formInput/FormInput";
 
 interface IProps {
   control: any;
