@@ -13,7 +13,7 @@ const SearchProduct: FC = memo(() => {
   const { getParam, setParam } = useContext(UrlSearchParamsContext);
   const { uid, placeholder, ariaLabel } = searchProductData;
 
-  const { control, reset, watch } = useForm({
+  const { control, reset, watch, getValues } = useForm({
     defaultValues: {
       [uid]: getParam(uid),
     },
@@ -35,7 +35,6 @@ const SearchProduct: FC = memo(() => {
   }, [watch, uid]);
 
   function resetSearchBar() {
-    setUrlParams("");
     reset({ [uid]: "" });
   }
 
@@ -53,18 +52,16 @@ const SearchProduct: FC = memo(() => {
       <Controller
         control={control}
         name={uid}
-        render={({ field: { value, name, ref, ...restFieldData } }) => (
+        render={({ field }) => (
           <>
             <InputBase
-              {...restFieldData}
+              {...field}
               sx={{ ml: 1, flex: 1 }}
-              defaultValue={value}
               placeholder={placeholder}
-              inputRef={ref}
               inputProps={{ "aria-label": ariaLabel }}
             />
             <SearchIcon
-              value={value?.toString() ?? ""}
+              value={getValues(uid)?.toString() ?? ''}
               onClose={resetSearchBar}
             />
           </>

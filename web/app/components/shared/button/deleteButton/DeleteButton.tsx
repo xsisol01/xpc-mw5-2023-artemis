@@ -77,6 +77,7 @@ const DeleteButton: FC<IProps> = memo(
         onClick={onDelete}
         style={style}
         sx={{
+          backgroundColor: '#fff',
           color: "#d32f2f",
           border: "1px solid #d32f2f",
           "&:hover": {

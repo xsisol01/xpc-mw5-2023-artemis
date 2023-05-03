@@ -3,9 +3,10 @@ import { Controller } from "react-hook-form";
 
 import { imageUpload } from "@/app/utils/imageUpload";
 
-import { Stack } from "@mui/material";
+import { Stack} from "@mui/material";
 import Image from "@/app/components/ui/image/Image";
 import DropFile from "@/app/components/shared/dropFile/DropFile";
+import FormInput from "../formFields/formInput/FormInput";
 
 interface IProps {
   control: any;
@@ -19,12 +20,15 @@ const UploadImage: FC<IProps> = memo(({ control, imageUrl, name, sx = {} }) => {
     typeof imageUrl !== "string" ? URL.createObjectURL(imageUrl) : imageUrl
   );
 
-  const uploadImage = (file: File, cb: (value: string) => void) => {
-    const imageUrl = URL.createObjectURL(file);
+  const uploadImage = (image: File | string, cb: (value: string) => void) => {
+    let imageUrl = image
 
-    imageUpload(file);
-
-    cb(imageUrl);
+    if (typeof image !== 'string') {
+      imageUrl = URL.createObjectURL(image);
+      imageUpload(image);
+    }
+    
+    cb(imageUrl as string);
   };
 
   return (
@@ -44,7 +48,7 @@ const UploadImage: FC<IProps> = memo(({ control, imageUrl, name, sx = {} }) => {
         control={control}
         defaultValue={imageUrl}
         render={({ field: { onChange, value } }) => (
-          <DropFile onChange={(file: File) => uploadImage(file, onChange)} />
+          <DropFile onChange={(file: File | string) => uploadImage(file, onChange)} />
         )}
       />
     </Stack>

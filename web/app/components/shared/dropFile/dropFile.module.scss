@@ -10,8 +10,35 @@
 
   background-color: transparent;
 
+
+  & input {
+    color: transparent;
+  }
+
+  & .MuiInputBase-root {
+    width: 100%;
+  }
+
+  & .css-q0jhri-MuiInputBase-root-MuiInput-root:before,
+  & .css-q0jhri-MuiInputBase-root-MuiInput-root:after {
+    border-width: 0;
+  } 
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.2);
+
+    & input {
+      color: currentColor;
+      width: 100%;
+    }
+
+    & .css-q0jhri-MuiInputBase-root-MuiInput-root::before {
+      border-width: 1px;
+    }
+
+    & .css-q0jhri-MuiInputBase-root-MuiInput-root::after {
+      border-width: 2px;
+    }
   }
 
   &:hover &__ {
@@ -54,7 +81,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 200px;
       padding: 20px;
       color: transparent;
       cursor: pointer;

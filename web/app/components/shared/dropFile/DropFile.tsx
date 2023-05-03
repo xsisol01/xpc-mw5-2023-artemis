@@ -1,12 +1,24 @@
-import { ChangeEvent, FC, memo } from "react";
+import { ChangeEvent, FC, memo, useEffect, useState } from "react";
 
 import styles from "./dropFile.module.scss";
+import { Input, TextField, Typography, capitalize } from "@mui/material";
+import { dropFileData } from "./dropFile.data";
+import FormInput from "../formFields/formInput/FormInput";
 
 interface IProps {
-  onChange: (file: File) => void;
+  onChange: (file: File | string) => void;
 }
 
 const DropFile: FC<IProps> = memo(({ onChange }) => {
+
+  const [imageUrl, setImageUrl] = useState('')
+
+  useEffect(() => {
+    if(imageUrl.length > 0) {
+      onChange(imageUrl)
+    }
+  }, [imageUrl])
+
   const uploadImage = (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
       return;
@@ -29,6 +41,10 @@ const DropFile: FC<IProps> = memo(({ onChange }) => {
     onChange(file);
   };
 
+  function onInputChange (event: ChangeEvent<HTMLInputElement>) {
+    setImageUrl(event.target.value)
+  }
+
   return (
     <div className={styles.dropFile}>
       <label htmlFor="images" className={styles.dropFile__container}>
@@ -41,6 +57,7 @@ const DropFile: FC<IProps> = memo(({ onChange }) => {
           className={styles.dropFile__input}
           onChange={uploadImage}
         />
+        <Input placeholder={capitalize(dropFileData.pasteImageUrl)} value={imageUrl} onChange={onInputChange}  />
       </label>
     </div>
   );
