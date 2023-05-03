@@ -39,7 +39,7 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function put(req: NextApiRequest, res: NextApiResponse) {
-  const {id, ...reqBody} = req.body
+  const {id, commodityIds, ...reqBody} = req.body
 
   try {
     const data = await manufacturerApi
