@@ -15,9 +15,11 @@ const Navbar: FC = memo(() => {
       <ul className={styles.navbar__list}>
         {navbarData.navLink.map((t) => (
           <li key={t.link}>
-            <Link href={{
-                pathname: t.link
-            }}>
+            <Link
+              href={{
+                pathname: t.link,
+              }}
+            >
               <Typography variant="h6">{capitalizeText(t.name)}</Typography>
             </Link>
           </li>

@@ -20,7 +20,7 @@ export const ProductService = {
     try {
       return instance.get<IProduct[]>("").then((res) => res.data);
     } catch (error: any) {
-      console.log(error.message)
+      console.log(error.message);
     }
   },
 
@@ -28,24 +28,7 @@ export const ProductService = {
     try {
       return instance.get<IProduct>(`/byId/${id}`).then((res) => res.data);
     } catch (error: any) {
-      console.log(error.message)
-    }
-  },
-
-  async getByName(name: string) {
-    try {
-      return instance.get<IProduct>(`/byName/${name}`).then((res) => res.data);
-    } catch (error: any) {
-      console.log(error.message)
-    }
-  },
-
-  async getByIds(ids: string[]) {
-    const idsString = ids.join('&ids=')
-    try {
-      return instance.get<IProduct[]>(`/byListOfId?ids=${idsString}`).then((res) => res.data);
-    } catch (error: any) {
-      console.log(error.message)
+      console.log(error.message);
     }
   },
 

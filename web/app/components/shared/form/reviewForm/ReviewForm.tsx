@@ -1,12 +1,9 @@
 import { FC, memo } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
-// import { useGetProduct } from "@/app/hooks/product/useGetProduct";
-// import { useUpdateProduct } from "@/app/hooks/product/useUpdateProduct";
-// import { IProduct } from "@/app/types/product.type";
-import { ICreateProductReview, IProductReview } from "@/app/types/review.type";
+import { IProductReview } from "@/app/types/review.type";
 
-import { Box, CircularProgress, Paper, Typography } from "@mui/material";
+import { Paper } from "@mui/material";
 import RightSubmitButton from "@/app/components/shared/button/submitButton/RightSubmitButton";
 import FormInput from "@/app/components/shared/formFields/formInput/FormInput";
 import Rating from "@/app/components/shared/rating/Rating";
@@ -42,7 +39,7 @@ const ReviewForm: FC<IProps> = memo(({ productId }) => {
 
     if (isValid(data)) {
       createReview(newReview);
-      reset(ReviewFormData.defaultValues)
+      reset(ReviewFormData.defaultValues);
     } else {
       alert("Fill all fields");
     }
@@ -78,13 +75,13 @@ const ReviewForm: FC<IProps> = memo(({ productId }) => {
         control={control}
         name={reviewFromData.stars}
         render={({ field: { onChange, value } }) => (
-            <Rating
-              rate={value}
-              disabled={false}
-              onChange={onChange}
-              style={{ marginBottom: "16px" }}
-              readOnly={false}
-            />
+          <Rating
+            rate={value}
+            disabled={false}
+            onChange={onChange}
+            style={{ marginBottom: "16px" }}
+            readOnly={false}
+          />
         )}
       />
       <FormInput

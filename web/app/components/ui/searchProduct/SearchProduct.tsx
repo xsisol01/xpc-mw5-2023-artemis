@@ -46,7 +46,7 @@ const SearchProduct: FC = memo(() => {
         display: "flex",
         alignItems: "center",
         width: "100%",
-        mb: 2
+        mb: 2,
       }}
     >
       <Controller
@@ -61,7 +61,7 @@ const SearchProduct: FC = memo(() => {
               inputProps={{ "aria-label": ariaLabel }}
             />
             <SearchIcon
-              value={getValues(uid)?.toString() ?? ''}
+              value={getValues(uid)?.toString() ?? ""}
               onClose={resetSearchBar}
             />
           </>

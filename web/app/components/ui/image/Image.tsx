@@ -2,7 +2,6 @@ import { FC, memo } from "react";
 
 import NextImage from "next/image";
 import { imageData } from "./imageData";
-import { Box } from "@mui/material";
 
 interface IProps {
   alt?: string;
@@ -12,24 +11,22 @@ interface IProps {
   style?: any;
 }
 
-const Image: FC<IProps> = memo(
-  ({ src, width, height, style = {} }) => {
-    return (
-        <NextImage
-          alt={imageData.alt}
-          src={src || imageData.imagePlaceholder}
-          width={width}
-          height={height}
-          style={{
-            width: '500px',
-            height: 'auto',
-            backgroundImage: `url(${imageData.imagePlaceholder})`,
-            ...style
-          }}
-      />
-    );
-  }
-);
+const Image: FC<IProps> = memo(({ src, width, height, style = {} }) => {
+  return (
+    <NextImage
+      alt={imageData.alt}
+      src={src || imageData.imagePlaceholder}
+      width={width}
+      height={height}
+      style={{
+        width: "500px",
+        height: "auto",
+        backgroundImage: `url(${imageData.imagePlaceholder})`,
+        ...style,
+      }}
+    />
+  );
+});
 
 Image.displayName = "Image";
 

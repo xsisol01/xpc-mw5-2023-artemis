@@ -8,7 +8,7 @@ import {
   memo,
 } from "react";
 
-import { IProduct } from "../types/product.type";
+import { IProduct } from "@/app/types/product.type";
 
 interface IContext {
   products: IProduct[];

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 interface IProps {
   alt: string;
-  height: number ;
+  height: number;
   width: number;
 }
 

@@ -8,62 +8,11 @@
   align-items: center;
   justify-content: center;
 
-  background-color: transparent;
-
-
-  & input {
-    color: transparent;
-  }
-
-  & .MuiInputBase-root {
-    width: 100%;
-  }
-
-  & .css-q0jhri-MuiInputBase-root-MuiInput-root:before,
-  & .css-q0jhri-MuiInputBase-root-MuiInput-root:after {
-    border-width: 0;
-  } 
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-
-    & input {
-      color: currentColor;
-      width: 100%;
-    }
-
-    & .css-q0jhri-MuiInputBase-root-MuiInput-root::before {
-      border-width: 1px;
-    }
-
-    & .css-q0jhri-MuiInputBase-root-MuiInput-root::after {
-      border-width: 2px;
-    }
-  }
-
-  &:hover &__ {
-    &container {
-      color: #444;
-      transition: all 0.2s ease-in-out, border 0.2s ease-in-out;
-      background: #eee;
-      border-color: #111;
-    }
-
-    &title {
-      color: #222;
-    }
-
-    &input {
-      &::file-selector-button {
-        background: #084cdf;
-        color: #fff;
-      }
-    }
-  }
+  background-color: rgba(0, 0, 0, 0.2);
 
   &__ {
     &title {
-      color: transparent;
+      color: #222;
       font-size: 20px;
       font-weight: bold;
       text-align: center;
@@ -71,9 +20,8 @@
     }
 
     &container {
-      //display: none;
-      background-color: transparent;
-      border: 2px dashed transparent;
+      background-color: #eee;
+      border: 2px dashed #111;
       border-radius: 10px;
       position: relative;
       display: flex;
@@ -82,19 +30,20 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      color: transparent;
       cursor: pointer;
+      color: #444;
+      transition: all 0.2s ease-in-out, border 0.2s ease-in-out;
     }
 
     &input {
       &::file-selector-button {
         margin-right: 20px;
         border: none;
-        background: transparent;
         padding: 10px 20px;
         border-radius: 10px;
-        color: transparent;
         cursor: pointer;
+        background: #084cdf;
+        color: #fff;
         transition: all 0.2s ease-in-out;
       }
 

@@ -13,8 +13,8 @@
       max-height: 92vh;
       padding-bottom: 60px;
 
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; 
+      scrollbar-width: none; 
 
       &::-webkit-scrollbar {
         display: none;

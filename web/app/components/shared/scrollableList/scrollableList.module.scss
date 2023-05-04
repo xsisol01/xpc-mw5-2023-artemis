@@ -5,24 +5,14 @@
   overflow-y: scroll;
   height: 100%;
 
-  //-ms-overflow-style: none;  /* IE and Edge */
-  //scrollbar-width: none;  /* Firefox */
-
-  // &::-webkit-scrollbar {
-  //     display: none;
-  // }
-
-  /* width */
   &::-webkit-scrollbar {
     width: 3px;
   }
 
-  /* Track */
   &::-webkit-scrollbar-track {
     background: #fff;
   }
 
-  /* Handle */
   &::-webkit-scrollbar-thumb {
     background: $color-black-900;
     border-radius: 4px;

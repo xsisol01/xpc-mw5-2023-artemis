@@ -4,10 +4,14 @@ import { ICategory } from "@/app/types/category.type";
 
 import { capitalize, Typography } from "@mui/material";
 
-const CategoryContent: FC<ICategory> = memo(({ name }) => {
+interface IProps {
+  category?: ICategory;
+}
+
+const CategoryContent: FC<IProps> = memo(({ category }) => {
   return (
     <Typography variant="h5" sx={{ textAlign: "center" }}>
-      {capitalize(name)}
+      {capitalize(category?.name ?? "Category list is empty")}
     </Typography>
   );
 });

@@ -10,7 +10,6 @@ import styles from "./productItem.module.scss";
 import { routes } from "@/app/data/routes";
 
 const ProductItemCreate: FC = memo(() => {
-
   return (
     <Grid item xs={12} md={3} sm={6}>
       <Card sx={{ height: "100%" }}>

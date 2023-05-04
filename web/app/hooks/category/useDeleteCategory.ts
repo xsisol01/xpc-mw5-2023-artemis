@@ -1,14 +1,15 @@
-import { notificationType } from '@/app/providers/notificationContextProvider';
-import { useContext } from 'react';
-import { NotificationContext } from '@/app/providers/notificationContextProvider';
+import { notificationType } from "@/app/providers/notificationContextProvider";
+import { useContext } from "react";
+import { NotificationContext } from "@/app/providers/notificationContextProvider";
 import { useRouter } from "next/router";
 
 import { useMutation } from "react-query";
 
 import { CategoryService } from "@/app/services/category.service";
+import { routes } from "@/app/data/routes";
 
 export const useDeleteCategory = (id: string) => {
-  const {addMessage} = useContext(NotificationContext)
+  const { addMessage } = useContext(NotificationContext);
   const router = useRouter();
   const { push } = router;
 
@@ -19,15 +20,16 @@ export const useDeleteCategory = (id: string) => {
       onSuccess: () => {
         addMessage({
           type: notificationType.success,
-          text: "Category has been deleted"
-        })
-        push("/category");
+          text: "Category has been deleted",
+        });
+
+        push(routes.category); 
       },
       onError: (error) => {
         addMessage({
           type: notificationType.error,
-          text: "Category has not been deleted"
-        })
+          text: "Category has not been deleted",
+        });
         console.log(error);
       },
     }

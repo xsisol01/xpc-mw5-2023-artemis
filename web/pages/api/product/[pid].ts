@@ -28,41 +28,38 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 async function get(req: NextApiRequest, res: NextApiResponse) {
   const { pid } = req.query;
 
-  try{
+  try {
     const data = await commodityApi
-    .get<IProduct>(`/byId/${pid}`)
-    .then((res) => res.data);
+      .get<IProduct>(`/byId/${pid}`)
+      .then((res) => res.data);
 
-  return res.json(data);
+    return res.json(data);
   } catch (e: any) {
-    console.log(e.message)
+    console.log(e.message);
   }
 }
 
 async function put(req: NextApiRequest, res: NextApiResponse) {
-  const {id, reviews, averageRating, ...requiredData} = req.body
+  const { id, reviews, averageRating, ...requiredData } = req.body;
 
   try {
     const data = await commodityApi
-    .put(`/${id}`, requiredData)
-    .then((res) => res.data);
+      .put(`/${id}`, requiredData)
+      .then((res) => res.data);
 
     return res.json(data);
-  } catch(e: any) {
-    console.log(e.message)
+  } catch (e: any) {
+    console.log(e.message);
   }
 }
 
 async function deleteProduct(req: NextApiRequest, res: NextApiResponse) {
   const { pid } = req.query;
   try {
-    const data = await commodityApi
-    .delete(`/${pid}`)
-    .then((res) => res.data);
+    const data = await commodityApi.delete(`/${pid}`).then((res) => res.data);
 
     return res.json(data);
-
   } catch (e: any) {
-    console.log(e.message)
+    console.log(e.message);
   }
 }

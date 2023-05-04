@@ -7,7 +7,7 @@ import {
   FC,
   memo,
 } from "react";
-import { ICategory } from "../types/category.type";
+import { ICategory } from "@/app/types/category.type";
 
 interface IContext {
   categories: ICategory[];

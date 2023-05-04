@@ -6,6 +6,8 @@ import { ManufacturerService } from "@/app/services/manufacturer.service";
 import { IManufacturer } from "@/app/types/manufacturer.type";
 import { useContext, useEffect } from "react";
 import { ManufacturerContext } from "@/app/providers/manufacturerContextProvider";
+import LeftMenuItemPage from "@/app/components/pages/leftMenuPages/LeftMenuItemPage";
+import ManufacturerScreen from "@/app/components/screens/manufacturerScreen/ManufacturerScreen";
 
 interface IProps {
   staticManufacturers: IManufacturer[];
@@ -16,7 +18,15 @@ const AllManufacturers: NextPage<IProps> = ({ staticManufacturers }) => {
 
   useEffect(() => {
     setManufacturers(staticManufacturers);
-  }, []);
+  });
+
+  if (!staticManufacturers.length) {
+    return (
+      <LeftMenuItemPage leftMenuItems={staticManufacturers} linkTo={routes.manufacturer}>
+        <ManufacturerScreen  />
+      </LeftMenuItemPage>
+    )
+  }
 
   return (
     <RouteToFirstItem items={manufacturers} baseUrl={routes.manufacturer} />

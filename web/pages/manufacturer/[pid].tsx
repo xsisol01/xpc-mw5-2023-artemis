@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import { useRouter } from "next/router";
 
 import { routes } from "@/app/data/routes";
 
@@ -11,6 +10,7 @@ import { useContext, useEffect } from "react";
 import { IProduct } from "@/app/types/product.type";
 import { ProductContext } from "@/app/providers/productContextProvider";
 import ManufacturerScreen from "@/app/components/screens/manufacturerScreen/ManufacturerScreen";
+import Preloader from "@/app/components/shared/preloader/Preloader";
 
 interface IProps {
   staticManufacturer: IManufacturer;
@@ -23,7 +23,6 @@ const Manufacturer: NextPage<IProps> = ({
   staticManufacturer,
   staticProducts,
 }) => {
-  const { push } = useRouter();
   const { manufacturers, setManufacturers } = useContext(ManufacturerContext);
   const { setProducts } = useContext(ProductContext);
 
@@ -35,9 +34,8 @@ const Manufacturer: NextPage<IProps> = ({
     setManufacturers(staticManufacturers);
   }, [staticManufacturers]);
 
-  if (!staticManufacturer || !staticManufacturers) {
-    push("/404");
-    return null;
+  if (!staticManufacturers || !staticManufacturer) {
+    return <Preloader />;
   }
 
   return (
@@ -45,7 +43,7 @@ const Manufacturer: NextPage<IProps> = ({
       leftMenuItems={manufacturers}
       linkTo={routes.manufacturer}
     >
-      <ManufacturerScreen {...staticManufacturer} />
+      <ManufacturerScreen manufacturer={staticManufacturer} />
     </LeftMenuItemPage>
   );
 };

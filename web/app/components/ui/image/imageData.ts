@@ -1,4 +1,4 @@
 export const imageData = Object.freeze({
-  imagePlaceholder: '/imagePlaceholder.png',
-  alt: 'unable to load image'
-})
+  imagePlaceholder: "/imagePlaceholder.png",
+  alt: "unable to load image",
+});

@@ -17,20 +17,20 @@ import "@fontsource/roboto/700.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-        <ReactQueryProvider>
-          <RoleContextProvider>
-            <ProductContextProvider>
-              <ManufacturerContextProvider>
-                <CategoryContextProvider>
-                  <UrlSearchParamsProvider>
-                    <NotificationContextProvider>
-                      <Component {...pageProps} />
-                    </NotificationContextProvider>
-                  </UrlSearchParamsProvider>
-                </CategoryContextProvider>
-              </ManufacturerContextProvider>
-            </ProductContextProvider>
-          </RoleContextProvider>
-        </ReactQueryProvider>
-      )
+    <ReactQueryProvider>
+      <RoleContextProvider>
+        <ProductContextProvider>
+          <ManufacturerContextProvider>
+            <CategoryContextProvider>
+              <UrlSearchParamsProvider>
+                <NotificationContextProvider>
+                  <Component {...pageProps} />
+                </NotificationContextProvider>
+              </UrlSearchParamsProvider>
+            </CategoryContextProvider>
+          </ManufacturerContextProvider>
+        </ProductContextProvider>
+      </RoleContextProvider>
+    </ReactQueryProvider>
+  );
 }

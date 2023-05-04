@@ -17,7 +17,7 @@ const Category: NextPage<IProps> = memo(({ staticCategories }) => {
 
   useEffect(() => {
     setCategories(staticCategories);
-  }, []);
+  });
 
   return (
     <NewLeftMenuItem items={categories} linkTo={routes.category}>
