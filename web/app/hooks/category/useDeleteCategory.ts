@@ -7,9 +7,11 @@ import { useMutation } from "react-query";
 
 import { CategoryService } from "@/app/services/category.service";
 import { routes } from "@/app/data/routes";
+import { CategoryContext } from "@/app/providers/categoryContextProvider";
 
 export const useDeleteCategory = (id: string) => {
   const { addMessage } = useContext(NotificationContext);
+  const { setCategories } = useContext(CategoryContext);
   const router = useRouter();
   const { push } = router;
 
@@ -17,13 +19,23 @@ export const useDeleteCategory = (id: string) => {
     ["delete category", id],
     (id: string) => CategoryService.delete(id),
     {
-      onSuccess: () => {
+      onSuccess: ({ config, data }) => {
         addMessage({
           type: notificationType.success,
           text: "Category has been deleted",
         });
 
-        push(routes.category); 
+        const urlArr = config.url?.split("/") ?? [];
+        const idIndex = urlArr?.length - 1;
+        const deletedId = urlArr[idIndex];
+
+        if (deletedId) {
+          setCategories((prev) => prev.filter((t) => t.id !== deletedId));
+        }
+
+        setTimeout(() => {
+          push(routes.category);
+        }, 1000);
       },
       onError: (error) => {
         addMessage({
