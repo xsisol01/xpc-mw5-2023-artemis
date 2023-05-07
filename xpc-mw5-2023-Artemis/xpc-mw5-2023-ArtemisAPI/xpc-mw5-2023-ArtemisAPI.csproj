@@ -7,9 +7,14 @@
     <RootNamespace>xpc_mw5_2023_ArtemisAPI</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
+  <ItemGroup>
+        <InternalsVisibleTo Include="Artemis.Tests" />
+    </ItemGroup>
 
 </Project>

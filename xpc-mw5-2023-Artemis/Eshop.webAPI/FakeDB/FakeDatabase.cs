@@ -21,7 +21,7 @@ namespace Eshop.webAPI.FakeDB
             var categorySample = new Faker<CategoryModel>()
                 .CustomInstantiator(f => new CategoryModel())
                 .RuleFor(c => c.Id, f => f.Random.Guid())
-                .RuleFor(c => c.Name, f => f.Name.JobTitle());
+               .RuleFor(c => c.Name, f => f.Commerce.Product());
             categories = categorySample.Generate(10);
 
             var reviewSample = new Faker<ReviewModel>()
@@ -77,6 +77,8 @@ namespace Eshop.webAPI.FakeDB
             
             
         }
+
+        
 
         //public static CategoryModel GenerateCategory()
         //{
