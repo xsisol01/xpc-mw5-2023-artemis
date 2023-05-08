@@ -15,12 +15,12 @@
 ```bash
 npm run install-build-start
 ```
-to install all dependencies, build and run the application
-or 
+#### to install all dependencies, build and run the application
+#### or 
 ```basр
 npm run start
 ```
-if you have already installed all dependencies an built the application
+#### if you have already installed all dependencies an built the application
 
 <hr />
 
