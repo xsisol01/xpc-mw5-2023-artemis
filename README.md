@@ -14,8 +14,6 @@
 ### 3. You can use 
 ```bash
 npm run install-build-start
-npm run start
-# if you have already installed all dependencies an built the application
 ```
 to install all dependencies, build and run the application
 or 
