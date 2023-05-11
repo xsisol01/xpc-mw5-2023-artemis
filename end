@@ -1,0 +1,138 @@
+[33m49991f7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m rename webapi to to pascal
+[33m7595156[m sln renamed from pascal case back to orignial
+[33m671051f[m last push of cleanup
+[33mfe09cd9[m try
+[33m886d46d[m cleanup again
+[33m2ba7441[m cleanup
+[33m0610e55[m little cleanup
+[33mcb7bdfb[m Delete xpc-mw5-2023-Artemis/xpc-mw5-2023-ArtemisAPI directory
+[33m3fde58f[m Delete xpc-mw5-2023-Artemis/Eshop.DAL directory
+[33m8afef6a[m Update README.md
+[33m13cc651[m Update README.md
+[33ma43b421[m Added steps for launching the react application
+[33mf46ea32[m integration tests
+[33mc9bbc51[m integration tests try
+[33m07f1359[m fixed route to not existing element
+[33mb8428c9[m refactored
+[33ma403b01[m added image placeholder
+[33m114f449[m fixed bugs
+[33m5ca5bcd[m Rename web/pages/api/Manufacturer/byName/[name].ts to web/pages/api/manufacturer/byName/[name].ts
+[33m94c5727[m Rename web/pages/api/Manufacturer/[pid].ts to web/pages/api/manufacturer/[pid].ts
+[33m8bf68f9[m Rename web/pages/api/Manufacturer/index.ts to web/pages/api/manufacturer/index.ts
+[33mbaa6ac5[m Rename web/pages/api/Category/byName/[name].ts to web/pages/api/category/byName/[name].ts
+[33m4947815[m Rename web/pages/api/Category/[pid].ts to web/pages/api/category/[pid].ts
+[33m04c2cf1[m Rename web/pages/api/Category/index.ts to web/pages/api/category/index.ts
+[33m89bfe38[m refactoring
+[33m94e4d51[m updated manufacturer.PUT req body
+[33m2f80207[m added new manufacturer api method
+[33m3db2508[m Merge branch 'main' of https://github.com/xsisol01/Artemis
+[33md0f1394[m GetCommodities in ManufacturerController
+[33m6eeaba5[m added reload page onchange element
+[33m2e08796[m Rename dropdown.tsx to Dropdown.tsx
+[33m91a24b8[m updated app
+[33mfdffa30[m added install-build-start script
+[33me405097[m Bogus Working
+[33mb9ecfb1[m bogus
+[33md657b04[m updated start script
+[33mea07e01[m Merge remote-tracking branch 'refs/remotes/origin/main'
+[33m0e3908e[m updated start script
+[33mf19e1f2[m updated .gitignore
+[33mb2e6995[m added build, TODO: upload images
+[33m4fd3484[m Remove group from  csproj
+[33mc0483bc[m Endpoint commodityIDS return commodities, Endpoint Reviews post with commodityID, POST Endpoints not returning 500 when success.
+[33m7a83f1e[m more
+[33m3d178fb[m Merge branch 'main' of https://github.com/xsisol01/Artemis
+[33m065a654[m Scoped logging, POST methods without 500 error, ActionResult<T> return type for documentation
+[33mda74861[m added serverSideProps for ssr
+[33m0f5ba3f[m added product filter
+[33meef5c90[m Added commodity with stockQuantity = 0
+[33maba2563[m Added images url
+[33m45a2340[m added api methods for category, manufacturer and review
+[33mc5adfb5[m added a check for the reviewsCount
+[33mc41d54e[m used data from localhost:7242, implemented get/put/post/delete product methods
+[33m4ab79b2[m created new component with product form
+[33m8480a78[m default filter values are passed from url
+[33m59ee8b7[m renamed manufacturer/category -> manufacturerId/caregoryId
+[33m80fb575[m release/2023/01
+[33m22e1de0[m release/2023/01
+[33m20afad9[m fixed withUrlSearchParam error, manufacturers page - default input values, added delete category and manufacturers buttons, restyled components with mui, moved duplicaded logic new layout, updated db.json, added reviews to prouduct page
+[33m1b961d1[m release/2023/01
+[33m5705bac[m dotnet --list-sdks
+[33m4588bf0[m release/2023/01
+[33m3735c4d[m fixed updating of query string
+[33m94d62fe[m added categories page, implemented create and update methods
+[33mcdc7c9b[m added input validation
+[33m6bbdf8f[m added manufacturer admin page
+[33m64b8772[m Merge remote-tracking branch 'refs/remotes/origin/main'
+[33me2bd24f[m added manufacturer page
+[33mc30fd35[m Man and review DTO visual
+[33mdc67f05[m Merge branch 'main' of https://github.com/xsisol01/Artemis
+[33mc456580[m Controllers done, working with IDs
+[33m96fe302[m added delete methods into manufacturer and category services
+[33m268554c[m removed excess and unused code
+[33m390aa7d[m Merge remote-tracking branch 'refs/remotes/origin/main'
+[33mc1a1d6f[m used material ui in product filter
+[33mc612a97[m actions update
+[33m00b3fcf[m action
+[33md750a51[m action update
+[33mb64431d[m yml update
+[33mdf38bc0[m Create .github/workflows/dotnet.yml
+[33m5dad165[m Merge remote-tracking branch 'refs/remotes/origin/main'
+[33mce98f6d[m renamed producer -> manufacturer, fixed bug with autocomplite on admin product page, and created delete product method
+[33m70eef0e[m Commodity, Category, Manufacturer models refactored and fully functional in swagger
+[33m268c26a[m merge
+[33m6c8d6e7[m nic
+[33m22811b5[m refactorin process
+[33m67210db[m added description of reviews to fakeDB
+[33mba1cbc7[m added material ui and form for updating product
+[33m3dc2111[m add reviews to fakeDB
+[33me2ee673[m fakeDb update
+[33m25825f4[m Conventions update
+[33m1ef3a59[m CategoryController same name in POST request handler
+[33m4fb8411[m CategoryController fully functional (POST,GET,DELETE,PUT)
+[33md98f2d0[m FakeDatabase fill complete (cat,com,man)
+[33mcec7285[m Database fill 70prc - reviews TODO
+[33mb198e2d[m merged and pushed to continue on desktop
+[33maf22684[m commodity 1/2 done, push to continue on desktop
+[33mec55026[m manufacturer controller,fakedb update,manfacDTO
+[33mb6df2a5[m ReviewModel and CommodityModel update
+[33m79d830e[m renamed Category to CategoryModel. goodnight
+[33m6ac2fc7[m CategoryController fully working (GET,POST) with logging and DTOs converting Input/Output
+[33m2500979[m Merge branch 'main' of https://github.com/xsisol01/Artemis
+[33m2f85038[m Added automapper, DTO and not working Category Controller
+[33m59ba3d9[m using react-query and axios instead of rtk-query
+[33med5684a[m ProducerController GET operating correctly
+[33m217dcba[m Merge remote-tracking branch 'refs/remotes/origin/main'
+[33m7619f3a[m added producer page
+[33ma3e8d07[m models
+[33m51a5231[m First code in fakedb and controller for Producer (not working)
+[33m5d25cf7[m ProducerModel properties should be fine
+[33mdc96492[m ProducerModel push
+[33mdbd5844[m ProducerModel example
+[33mf2d1246[m third try producer model change
+[33m2fe2cff[m seccond try change to model
+[33m9238cdd[m change from entity to model
+[33md91b813[m databaza
+[33mdf6e4fe[m added products admin and tried to connect to azure
+[33m1aeeedf[m search: fixed bug with url
+[33m580d491[m added search bar
+[33mdfb11a3[m added filter
+[33mb4126c6[m added fake database
+[33m05d9c4b[m using fake db, added producers and categories to fake db, removed global exoprt file, added fields in product info page in admin mode
+[33m71727d9[m webAPI proj create
+[33m58d4537[m added fake store db
+[33mb607c29[m Change to .NET 7 + add of EntityBase and IEntity
+[33m58161d7[m DAL-properties of entities done
+[33m9769702[m final structure "i hope"
+[33mb1da02e[m delete
+[33m7d53c94[m delete garbage files
+[33m907085f[m Structure n.2
+[33m2fb1fff[m Structure of Project
+[33m66e19b1[m delete console app
+[33mee67839[m add blank sln + console app
+[33mfa46172[m sln backend delete
+[33m87185c2[m Merge branch 'main' of https://github.com/xsisol01/Artemis
+[33m0604bad[m init web
+[33mc725057[m aspnet test
+[33m156e7fa[m test
+[33ma2b8ac4[m Add .gitattributes, .gitignore, and README.md.
