@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1705.4
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshop.webAPI", "Eshop.webAPI.csproj", "{183DA032-F464-43AA-9EA0-2B1A2421F5F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eshop.WebAPI", "Eshop.WebAPI.csproj", "{183DA032-F464-43AA-9EA0-2B1A2421F5F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
