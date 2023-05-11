@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
-using Eshop.WebAPI.DTO;
-using Eshop.WebAPI.FakeDB;
-using Eshop.WebAPI.Models;
+using Eshop.webAPI.DTO;
+using Eshop.webAPI.FakeDB;
+using Eshop.webAPI.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Xml.Linq;
 
-namespace Eshop.WebAPI.Controllers
+namespace Eshop.webAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -236,7 +239,7 @@ namespace Eshop.WebAPI.Controllers
                     existingManufacturer.Country = newManufacturer.Country;
                     existingManufacturer.Description = newManufacturer.Description;
                     existingManufacturer.ImageUrl = newManufacturer.ImageUrl;
-
+                    
                     var updatedManufacturerDTO = _mapper.Map<ManufacturerModel>(manufacturerDTO);
 
                     _logger.LogInformation($"Proccessing of request successful");

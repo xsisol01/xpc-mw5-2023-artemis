@@ -1,4 +1,4 @@
-﻿namespace Eshop.WebAPI.Models
+﻿namespace Eshop.webAPI.Models
 {
     public class ReviewModel : ModelBase
     {
@@ -6,6 +6,9 @@
         public string Description { get; set; }
         public string Title { get; set; }
 
-
+        public ReviewModel()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }

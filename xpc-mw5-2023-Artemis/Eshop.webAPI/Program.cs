@@ -1,5 +1,8 @@
-using Eshop.WebAPI.Configurations;
-using Eshop.WebAPI.FakeDB;
+using Eshop.webAPI.Configurations;
+using Eshop.webAPI.FakeDB;
+using Eshop.webAPI.Models;
+using Microsoft.Extensions.Options;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +39,7 @@ app.UseHttpsRedirection();
 
 // Initialization of FakeDatabase
 new FakeDatabase();
+
 
 app.UseAuthorization();
 

@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
-using Eshop.WebAPI.DTO;
-using Eshop.WebAPI.FakeDB;
-using Eshop.WebAPI.Models;
+using Eshop.webAPI.DTO;
+using Eshop.webAPI.FakeDB;
+using Eshop.webAPI.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Eshop.WebAPI.Controllers
+namespace Eshop.webAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -12,11 +13,13 @@ namespace Eshop.WebAPI.Controllers
     {
         private readonly ILogger<ReviewController> _logger;
         private readonly IMapper _mapper;
+        
 
         public ReviewController(ILogger<ReviewController> logger, IMapper mapper)
         {
             _logger = logger;
             _mapper = mapper;
+            
         }
 
         [HttpGet("byCommodityId/{id}")]

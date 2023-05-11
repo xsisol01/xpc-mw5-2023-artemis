@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Eshop.webAPI.FakeDB;
+using Eshop.webAPI.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace Eshop.WebAPI.DTO
+namespace Eshop.webAPI.DTO
 {
     public class ManufacturerDTO : CreateManufacturerDTO
     {

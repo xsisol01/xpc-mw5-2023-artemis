@@ -28,6 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Eshop.webAPI\Eshop.WebAPI.csproj" />
+    <ProjectReference Include="..\Eshop.webAPI\Eshop.webAPI.csproj" />
   </ItemGroup>
 </Project>

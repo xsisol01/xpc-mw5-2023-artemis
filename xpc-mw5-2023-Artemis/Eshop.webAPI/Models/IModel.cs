@@ -1,4 +1,7 @@
-﻿namespace Eshop.WebAPI.Models
+﻿using System;
+using System.Text.Json.Serialization;
+
+namespace Eshop.webAPI.Models
 {
     public interface IModel
     {

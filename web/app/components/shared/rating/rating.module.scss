@@ -1,0 +1,63 @@
+@import "@/_vars";
+
+.rating {
+  display: flex;
+  align-items: center;
+
+  &__ {
+    &rate {
+      display: flex;
+      align-items: center;
+    }
+
+    &stars {
+      display: flex;
+      align-items: flex-start;
+
+      color: $color-black-700;
+
+      & svg {
+        line-height: 28px;
+        font-size: 28px;
+        cursor: pointer;
+      }
+    }
+
+    &value {
+      font-size: 15px;
+      line-height: 19px;
+      color: $color-black-400;
+      align-self: start;
+      margin-top: 3px;
+    }
+
+    &description {
+      margin-left: 10px;
+      color: $color-black-700;
+    }
+  }
+}
+
+.stars {
+  &__ {
+    &full {
+      margin-right: 10px;
+
+      & svg {
+        line-height: 28px;
+        font-size: 28px;
+      }
+    }
+
+    &small {
+      & svg {
+        line-height: 18px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.gold {
+  color: $color-gold-1000;
+}

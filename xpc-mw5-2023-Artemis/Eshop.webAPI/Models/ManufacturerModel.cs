@@ -1,4 +1,6 @@
-﻿namespace Eshop.WebAPI.Models
+﻿using System;
+
+namespace Eshop.webAPI.Models
 
 
 {
@@ -11,7 +13,10 @@
         public string Country { get; set; }
         public List<CommodityModel> Commodities { get { return _commodities; } }
 
-
+        public ManufacturerModel()
+        {
+            Id = Guid.NewGuid();
+        }
 
         public void addCommodity(CommodityModel commodity)
         {

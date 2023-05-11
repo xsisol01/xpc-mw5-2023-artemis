@@ -1,4 +1,4 @@
-﻿namespace Eshop.WebAPI.DTO
+﻿namespace Eshop.webAPI.DTO
 {
     public class CreateReviewDTO
     {

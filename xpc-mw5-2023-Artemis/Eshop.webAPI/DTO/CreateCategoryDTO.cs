@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Eshop.WebAPI.DTO
+namespace Eshop.webAPI.DTO
 {
     public class CreateCategoryDTO
     {
