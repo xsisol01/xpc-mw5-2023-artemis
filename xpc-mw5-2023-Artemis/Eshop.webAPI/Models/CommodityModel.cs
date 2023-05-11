@@ -1,4 +1,4 @@
-﻿namespace Eshop.webAPI.Models
+﻿namespace Eshop.WebAPI.Models
 {
     public class CommodityModel : ModelBase
     {
@@ -32,10 +32,7 @@
         public ManufacturerModel Manufacturer { get; set; }
         public List<ReviewModel>? Reviews { get { return _reviews; } }
 
-        public CommodityModel()
-        {
-            Id = Guid.NewGuid();
-        }
+
         public void addReview(ReviewModel review)
         {
             _reviews.Add(review);

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Eshop.webAPI.DTO;
-using Eshop.webAPI.FakeDB;
-using Eshop.webAPI.Models;
+using Eshop.WebAPI.DTO;
+using Eshop.WebAPI.FakeDB;
+using Eshop.WebAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Eshop.webAPI.Controllers
+namespace Eshop.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

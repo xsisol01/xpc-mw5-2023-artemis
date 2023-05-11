@@ -1,7 +1,7 @@
 ﻿using Bogus;
-using Eshop.webAPI.Models;
+using Eshop.WebAPI.Models;
 
-namespace Eshop.webAPI.FakeDB
+namespace Eshop.WebAPI.FakeDB
 {
     public sealed class FakeDatabase
     {
@@ -21,7 +21,7 @@ namespace Eshop.webAPI.FakeDB
                 .CustomInstantiator(f => new CategoryModel())
                 .RuleFor(c => c.Id, f => f.Random.Guid())
                .RuleFor(c => c.Name, f => f.Commerce.Product());
-            categories = categorySample.Generate(10);
+            _categories = categorySample.Generate(10);
 
             var reviewSample = new Faker<ReviewModel>()
                 .RuleFor(r => r.Id, f => f.Random.Guid())
@@ -35,7 +35,6 @@ namespace Eshop.webAPI.FakeDB
                 .RuleFor(m => m.ImageUrl, f => f.Image.PicsumUrl())
                 .RuleFor(m => m.Description, f => f.Lorem.Sentences(2))
                 .RuleFor(m => m.Country, f => f.Address.Country());
-
             _manufacturers = manufacturerSample.Generate(8);
 
             var commoditySample = new Faker<CommodityModel>()
@@ -59,12 +58,11 @@ namespace Eshop.webAPI.FakeDB
                     }
                 });
             _commodities = commoditySample.Generate(40);
+
             foreach (var c in _commodities)
             {
                 c.Manufacturer.addCommodity(c);
             }
-
-
         }
     }
 }

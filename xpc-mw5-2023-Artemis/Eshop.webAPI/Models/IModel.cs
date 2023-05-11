@@ -1,4 +1,4 @@
-﻿namespace Eshop.webAPI.Models
+﻿namespace Eshop.WebAPI.Models
 {
     public interface IModel
     {

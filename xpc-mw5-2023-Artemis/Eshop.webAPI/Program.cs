@@ -1,5 +1,5 @@
-using Eshop.webAPI.Configurations;
-using Eshop.webAPI.FakeDB;
+using Eshop.WebAPI.Configurations;
+using Eshop.WebAPI.FakeDB;
 
 
 var builder = WebApplication.CreateBuilder(args);

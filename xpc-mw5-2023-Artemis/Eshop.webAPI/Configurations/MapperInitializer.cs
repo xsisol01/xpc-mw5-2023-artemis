@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Eshop.webAPI.DTO;
-using Eshop.webAPI.Models;
+using Eshop.WebAPI.DTO;
+using Eshop.WebAPI.Models;
 
-namespace Eshop.webAPI.Configurations
+namespace Eshop.WebAPI.Configurations
 {
     public class MapperInitializer : Profile
     {

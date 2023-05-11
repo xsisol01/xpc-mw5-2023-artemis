@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1CE8C209-05D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{982A0676-3C5A-4EE3-941F-D228D581513B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshop.webAPI", "Eshop.webAPI\Eshop.webAPI.csproj", "{1B6EC763-DEE0-44B5-9FD7-2220A9225699}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eshop.WebAPI", "Eshop.webAPI\Eshop.WebAPI.csproj", "{1B6EC763-DEE0-44B5-9FD7-2220A9225699}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{1164742C-F75C-450A-AC99-AB93662541FC}"
 EndProject

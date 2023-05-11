@@ -1,7 +1,7 @@
-﻿using Eshop.webAPI.Models;
+﻿using Eshop.WebAPI.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Eshop.webAPI.DTO
+namespace Eshop.WebAPI.DTO
 {
     public class CommodityDTO
     {

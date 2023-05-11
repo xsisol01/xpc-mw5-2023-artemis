@@ -1,13 +1,10 @@
-﻿namespace Eshop.webAPI.Models
+﻿namespace Eshop.WebAPI.Models
 {
     public class CategoryModel : ModelBase
     {
         public string Name { get; set; }
 
-        public CategoryModel()
-        {
-            Id = Guid.NewGuid();
-        }
+
 
     }
 }

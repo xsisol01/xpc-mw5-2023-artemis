@@ -1,4 +1,4 @@
-﻿namespace Eshop.webAPI.Models
+﻿namespace Eshop.WebAPI.Models
 {
     public abstract class ModelBase : IModel
     {
