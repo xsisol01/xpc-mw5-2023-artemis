@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 
 import Header from "@/app/components/ui/header/Header";
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 
 interface IProps {
   children: React.ReactNode;

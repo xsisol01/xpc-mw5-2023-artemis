@@ -1,26 +1,15 @@
 import {
   INotification,
   NotificationContext,
-  notificationType,
 } from "@/app/providers/notificationContextProvider";
 import {
   Button,
   capitalize,
   Card,
   CardActions,
-  createTheme,
   Typography,
 } from "@mui/material";
 import { FC, memo, useContext } from "react";
-import DeleteButton from "../../shared/button/deleteButton/DeleteButton";
-
-// const theme = createTheme({
-//   palette: {
-//     [notificationType.error]: {
-//       main: theme.palette.success.dark
-//     }
-//   },
-// });
 
 const NotificationMessage: FC<INotification> = memo(({ id, text, type }) => {
   const { deleteMessage } = useContext(NotificationContext);
@@ -44,9 +33,9 @@ const NotificationMessage: FC<INotification> = memo(({ id, text, type }) => {
           sx={{
             m: 0,
             p: 0,
-            minWidth: '20px',
+            minWidth: "20px",
             backgroundColor: "transparent",
-            color: '#fff'
+            color: "#fff",
           }}
         >
           x

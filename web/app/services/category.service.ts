@@ -1,4 +1,4 @@
-import https from 'https';
+import https from "https";
 import axios from "axios";
 
 import { ICategory, ICreateCategory } from "@/app/types/category.type";
@@ -11,31 +11,23 @@ const instance = axios.create({
   },
   httpsAgent: new https.Agent({
     rejectUnauthorized: false,
-  })
+  }),
 });
 
 export const CategoryService = {
   async getAll() {
     try {
-      return instance.get<ICategory[]>("").then(res => res.data);
+      return instance.get<ICategory[]>("").then((res) => res.data);
     } catch (error: any) {
-      console.log(error.message)
+      console.log(error.message);
     }
   },
 
   async get(id: string) {
     try {
-      return instance.get<ICategory>(`/byId/${id}`).then(res => res.data);
+      return instance.get<ICategory>(`/byId/${id}`).then((res) => res.data);
     } catch (error: any) {
-      console.log(error.message)
-    }
-  },
-
-  async getByName(id: string) {
-    try {
-      return instance.get<ICategory>(`/byName/${id}`).then(res => res.data);
-    } catch (error: any) {
-      console.log(error.message)
+      console.log(error.message);
     }
   },
 

@@ -8,19 +8,27 @@ import ManufacturerPage from "@/app/components/pages/manufacturerPage/Manufactur
 import { Box } from "@mui/material";
 import Products from "@/app/components/ui/products/Products";
 
-const ManufacturerScreen: FC<IManufacturer> = memo((props) => {
+interface IProps {
+  manufacturer?: IManufacturer;
+}
+
+const ManufacturerScreen: FC<IProps> = memo(({ manufacturer }) => {
   const { isAdmin } = useContext(RoleContext);
 
   return (
     <>
-      {isAdmin ? (
-        <AdminManufacturerPage {...props} />
-      ) : (
-        <ManufacturerPage {...props} />
+      {!manufacturer && <ManufacturerPage manufacturer={manufacturer} />}
+      {manufacturer && isAdmin && (
+        <AdminManufacturerPage manufacturer={manufacturer} />
       )}
-      <Box sx={{ borderTop: "1px solid #ccc", pt: 2, mt: 1 }}>
-        <Products />
-      </Box>
+      {manufacturer && !isAdmin && (
+        <ManufacturerPage manufacturer={manufacturer} />
+      )}
+      {manufacturer && (
+        <Box sx={{ borderTop: "1px solid #ccc", pt: 2, mt: 1 }}>
+          <Products />
+        </Box>
+      )}
     </>
   );
 });

@@ -17,8 +17,8 @@ const RouteToFirstItem: FC<IProps> = memo(({ items, baseUrl }) => {
     return null;
   }
 
-  push('/404')
-  return null
+  push("/404");
+  return null;
 });
 
 RouteToFirstItem.displayName = "RouteToFirstItem";

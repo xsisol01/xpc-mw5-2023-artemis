@@ -1,25 +1,24 @@
 import { FC, memo, useContext } from "react";
 
-import {
-  capitalize,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { capitalize, Grid, Typography } from "@mui/material";
 import Image from "@/app/components/ui/image/Image";
 import { RoleContext } from "@/app/providers/roleContextProvider";
 import AdminManufacturerContent from "@/app/components/pages/manufacturerPage/AdminManufacturerPage";
 import { IManufacturer } from "@/app/types/manufacturer.type";
 
-const ManufacturerPage: FC<IManufacturer> = memo((props) => {
-  const { isAdmin } = useContext(RoleContext);
 
-  const manufacturer = props
+interface IProps {
+  manufacturer?: IManufacturer
+}
+
+const ManufacturerPage: FC<IProps> = memo(({manufacturer}) => {
+  const { isAdmin } = useContext(RoleContext);
 
   return (
     <>
-      {manufacturer &&
+      {manufacturer ?
         (isAdmin ? (
-          <AdminManufacturerContent {...manufacturer} />
+          <AdminManufacturerContent manufacturer={manufacturer}/>
         ) : (
           <Grid container sx={{ mb: 2 }} spacing={2}>
             <Grid item xs={12} md={6}>
@@ -46,7 +45,7 @@ const ManufacturerPage: FC<IManufacturer> = memo((props) => {
               </Typography>
             </Grid>
           </Grid>
-        ))}
+        )) : <Typography variant="h5">Manufacturer list is empty</Typography>}
     </>
   );
 });

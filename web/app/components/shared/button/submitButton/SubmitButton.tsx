@@ -17,6 +17,7 @@ const SubmitButton: FC<IProps> = memo(({ disabled }) => {
         type="submit"
         color="success"
         sx={{
+          backgroundColor: "#fff",
           color: "#388e3c",
           border: "1px solid #388e3c",
           "&:hover": {

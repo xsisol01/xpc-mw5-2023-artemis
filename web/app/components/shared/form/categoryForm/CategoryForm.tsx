@@ -13,33 +13,28 @@ interface IProps {
   isLoading: boolean;
 }
 
-const CategoryForm: FC<IProps> = memo(({
-  defaultValues,
-  onSubmit,
-  shouldReset = false,
-  isLoading
-}) => {
+const CategoryForm: FC<IProps> = memo(
+  ({ defaultValues, onSubmit, shouldReset = false, isLoading }) => {
+    const { handleSubmit, reset, control } = useForm({
+      defaultValues,
+    });
 
-  const {handleSubmit, reset, control} = useForm({
-    defaultValues
-  })
-
-  useEffect(() => {
-    reset(defaultValues)
-  }, [defaultValues])
-
-  const submitForm: SubmitHandler<ICreateCategory> = async (
-    data: ICreateCategory
-  ) => {
-    onSubmit(data);
-
-    if (shouldReset) {
+    useEffect(() => {
       reset(defaultValues);
-    }
-  };
+    }, [defaultValues]);
 
-  return (
-    <form onSubmit={handleSubmit(submitForm)}>
+    const submitForm: SubmitHandler<ICreateCategory> = async (
+      data: ICreateCategory
+    ) => {
+      onSubmit(data);
+
+      if (shouldReset) {
+        reset(defaultValues);
+      }
+    };
+
+    return (
+      <form onSubmit={handleSubmit(submitForm)}>
         <Grid container></Grid>
         {categoryPageData.fields.map((field) => (
           <Grid item key={field.name} xs={field.xs} md={field.md}>
@@ -52,9 +47,10 @@ const CategoryForm: FC<IProps> = memo(({
         ))}
         <RightSubmitButton disabled={isLoading} />
       </form>
-  )
-})
+    );
+  }
+);
 
-CategoryForm.displayName = 'CategoryForm'
+CategoryForm.displayName = "CategoryForm";
 
-export default CategoryForm
+export default CategoryForm;

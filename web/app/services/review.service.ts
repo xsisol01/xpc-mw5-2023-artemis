@@ -1,6 +1,6 @@
-import https from 'https';
+import https from "https";
 import axios from "axios";
-import { IProductReview } from "../types/review.type";
+import { IProductReview } from "@/app/types/review.type";
 
 const instance = axios.create({
   baseURL: `${process.env.apiUrl}/Commodity`,
@@ -22,7 +22,7 @@ export const ReviewService = {
     try {
       return instance.delete(`/api/review/${id}`);
     } catch (error: any) {
-      console.log(error.message)
+      console.log(error.message);
     }
   },
 };

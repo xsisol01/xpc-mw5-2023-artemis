@@ -1,29 +1,25 @@
 import { FC, memo } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-
 import { useUpdateCategory } from "@/app/hooks/category/useUpdateCategory";
 import { ICategory, ICreateCategory } from "@/app/types/category.type";
-import { categoryPageData } from "./categoryPage.data";
-
-import { Grid } from "@mui/material";
 
 import RightDeleteButton from "@/app/components/shared/button/deleteButton/RightDeleteButton";
-import RightSubmitButton from "@/app/components/shared/button/submitButton/RightSubmitButton";
-import FormInput from "@/app/components/shared/formFields/formInput/FormInput";
 import CategoryForm from "../../shared/form/categoryForm/CategoryForm";
+import { categoryPageData } from "./categoryPage.data";
 
-const AdminCategoryPage: FC<ICategory> = memo((props) => {
-  const { handleSubmit, control } = useForm<ICategory>({
-    defaultValues: props,
-  });
 
-  const { isLoading, updateCategory } = useUpdateCategory(props);
+interface IProps {
+  category?: ICategory
+}
+
+const AdminCategoryPage: FC<IProps> = memo(({category}) => {
+
+  const { isLoading, updateCategory } = useUpdateCategory(category ?? categoryPageData.defaultValues);
 
   const onSubmit = async (data: ICreateCategory) => {
     const formData = {
       ...data,
-      id: props.id
-    }
+      id: category?.id ?? categoryPageData.defaultValues.id,
+    };
 
     await updateCategory(formData);
   };
@@ -32,10 +28,10 @@ const AdminCategoryPage: FC<ICategory> = memo((props) => {
     <>
       <CategoryForm
         onSubmit={onSubmit}
-        defaultValues={props}
+        defaultValues={category ?? categoryPageData.defaultValues}
         isLoading={isLoading}
       />
-      <RightDeleteButton id={props.id} elementType="category" />
+      <RightDeleteButton id={category?.id ?? categoryPageData.defaultValues.id} elementType="category" />
     </>
   );
 });

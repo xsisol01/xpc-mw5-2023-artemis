@@ -1,10 +1,10 @@
-import { IProductReview } from '@/app/types/review.type';
+import { IProductReview } from "@/app/types/review.type";
 
 export const ReviewFormData = Object.freeze({
   defaultValues: {
-    id: '',
+    id: "",
     stars: 0,
-    description: '',
-    title: ''
-  } as IProductReview
-})
+    description: "",
+    title: "",
+  } as IProductReview,
+});

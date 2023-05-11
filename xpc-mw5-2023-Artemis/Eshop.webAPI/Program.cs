@@ -4,6 +4,7 @@ using Eshop.webAPI.FakeDB;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 builder.Logging.AddSimpleConsole(options =>
 {
     options.IncludeScopes = true;
@@ -41,3 +42,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+public partial class Program { }

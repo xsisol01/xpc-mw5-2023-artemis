@@ -1,12 +1,12 @@
-import { notificationType } from '@/app/providers/notificationContextProvider';
-import { useContext } from 'react';
-import { NotificationContext } from '@/app/providers/notificationContextProvider';
-import { ReviewService } from './../../services/review.service';
+import { notificationType } from "@/app/providers/notificationContextProvider";
+import { useContext } from "react";
+import { NotificationContext } from "@/app/providers/notificationContextProvider";
+import { ReviewService } from "@/app/services/review.service";
 import { useRouter } from "next/router";
 import { useMutation } from "react-query";
 
 export const useDeleteReview = (id: string) => {
-  const {addMessage} = useContext(NotificationContext)
+  const { addMessage } = useContext(NotificationContext);
   const router = useRouter();
   const { push } = router;
 
@@ -17,16 +17,16 @@ export const useDeleteReview = (id: string) => {
       onSuccess: () => {
         addMessage({
           type: notificationType.success,
-          text: "Review has been deleted"
-        })
+          text: "Review has been deleted",
+        });
 
         push("/");
       },
       onError: (error) => {
         addMessage({
           type: notificationType.error,
-          text: "Review has not been deleted"
-        })
+          text: "Review has not been deleted",
+        });
         console.log(error);
       },
     }

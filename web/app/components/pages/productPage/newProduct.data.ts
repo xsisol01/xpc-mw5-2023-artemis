@@ -8,5 +8,5 @@ export const newProductData: ICreateProduct = Object.freeze({
   categoryId: "",
   weight: "",
   stockQuantity: "",
-  imageUrl: ""
+  imageUrl: "",
 });

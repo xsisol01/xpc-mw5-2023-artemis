@@ -1,3 +1,3 @@
 export const reviewsData = Object.freeze({
-  title: 'Reviews'
-})
+  title: "Reviews",
+});

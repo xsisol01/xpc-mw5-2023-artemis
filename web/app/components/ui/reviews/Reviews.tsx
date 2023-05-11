@@ -9,11 +9,11 @@ import ReviewCreate from "@/app/components/ui/reviewItem/ReviewCreate";
 
 interface IProps {
   reviews: IProductReview[];
-  productId: string
+  productId: string;
 }
 
 const Reviews: FC<IProps> = memo(({ productId, reviews }) => {
-  const reverseReviews = [...reviews].reverse()
+  const reverseReviews = [...reviews].reverse();
 
   return (
     <Dropdown

@@ -11,19 +11,22 @@ interface IProps {
   style?: any;
 }
 
-const Image: FC<IProps> = memo(
-  ({ alt = "", src, width, height, style = {} }) => {
-    return (
-      <NextImage
-        alt={alt}
-        src={src || imageData.imagePlaceholder}
-        width={width}
-        height={height}
-        style={style}
-      />
-    );
-  }
-);
+const Image: FC<IProps> = memo(({ src, width, height, style = {} }) => {
+  return (
+    <NextImage
+      alt={imageData.alt}
+      src={src || imageData.imagePlaceholder}
+      width={width}
+      height={height}
+      style={{
+        width: "500px",
+        height: "auto",
+        backgroundImage: `url(${imageData.imagePlaceholder})`,
+        ...style,
+      }}
+    />
+  );
+});
 
 Image.displayName = "Image";
 

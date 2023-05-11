@@ -1,35 +1,29 @@
-import {
-  createContext,
-  useState,
-  useMemo,
-  FC,
-  memo,
-} from "react";
+import { createContext, useState, useMemo, FC, memo } from "react";
 
-import Notifications from '@/app/components/ui/notifications/Notifications'
-import { createId } from "../utils/createId";
+import Notifications from "@/app/components/ui/notifications/Notifications";
+import { createId } from "@/app/utils/createId";
 
 interface IContext {
-  addMessage: (message: ICreateNotification) => void
-  deleteMessage: (messageId: string) => void
+  addMessage: (message: ICreateNotification) => void;
+  deleteMessage: (messageId: string) => void;
 }
 
 export const notificationType = Object.freeze({
-  success: 'success',
-  warning: 'warning',
-  info: 'info',
-  error: 'error'
-})
+  success: "success",
+  warning: "warning",
+  info: "info",
+  error: "error",
+});
 
 export interface INotification {
-  id: string
-  text: string
-  type: 'success' | 'warning' | 'error' | 'info'
+  id: string;
+  text: string;
+  type: "success" | "warning" | "error" | "info";
 }
 
 export interface ICreateNotification {
-  text: string
-  type: 'success' | 'warning' | 'error' | 'info'
+  text: string;
+  type: "success" | "warning" | "error" | "info";
 }
 
 export const NotificationContext = createContext<IContext>({} as IContext);
@@ -39,29 +33,31 @@ interface IProps {
 }
 
 const NotificationContextProvider: FC<IProps> = memo(({ children }) => {
-  const [messages, setMessage] = useState<INotification[]>([] as INotification[]);
+  const [messages, setMessage] = useState<INotification[]>(
+    [] as INotification[]
+  );
 
   const addMessage = (message: ICreateNotification) => {
     const newMessage = {
       ...message,
-      id: createId()
-    }
+      id: createId(),
+    };
 
     setTimeout(() => {
-      deleteMessage(newMessage.id)
-    }, 3000)
+      deleteMessage(newMessage.id);
+    }, 3000);
 
-    setMessage(prev => [...prev, newMessage])
-  }
+    setMessage((prev) => [...prev, newMessage]);
+  };
 
   const deleteMessage = (id: string) => {
-    setMessage(prev => prev.filter(message => message.id !== id))
-  }
+    setMessage((prev) => prev.filter((message) => message.id !== id));
+  };
 
   const value = useMemo(
     () => ({
       addMessage,
-      deleteMessage
+      deleteMessage,
     }),
     []
   );

@@ -1,16 +1,13 @@
-import { ProductContext } from './../../providers/productContextProvider';
-import { routes } from '@/app/data/routes';
-import { notificationType } from '@/app/providers/notificationContextProvider';
-import { useContext } from 'react';
-import { NotificationContext } from '@/app/providers/notificationContextProvider';
-import { useRouter } from "next/router";
+import { ProductContext } from "@/app/providers/productContextProvider";
+import { notificationType } from "@/app/providers/notificationContextProvider";
+import { useContext } from "react";
+import { NotificationContext } from "@/app/providers/notificationContextProvider";
 import { useMutation } from "react-query";
 import { ProductService } from "@/app/services/product.service";
 
 export const useDeleteProduct = (id: string) => {
-  const {addMessage} = useContext(NotificationContext)
-  const {setProducts} = useContext(ProductContext)
-  const {push} = useRouter();
+  const { addMessage } = useContext(NotificationContext);
+  const { setProducts } = useContext(ProductContext);
 
   const { isLoading, mutateAsync: deleteProduct } = useMutation(
     ["delete product", id],
@@ -19,16 +16,16 @@ export const useDeleteProduct = (id: string) => {
       onSuccess: () => {
         addMessage({
           type: notificationType.success,
-          text: "Product has been deleted"
-        })
+          text: "Product has been deleted",
+        });
 
-        setProducts(prev => prev.filter(product => product.id !== id))
+        setProducts((prev) => prev.filter((product) => product.id !== id));
       },
       onError: (error) => {
         addMessage({
           type: notificationType.error,
-          text: "Product has not been deleted"
-        })
+          text: "Product has not been deleted",
+        });
         console.log(error);
       },
     }

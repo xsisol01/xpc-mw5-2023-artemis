@@ -1,4 +1,4 @@
-import { FC, memo} from "react";
+import { FC, memo } from "react";
 
 import { manufacturerPageData } from "./manufacturerPage.data";
 import {
@@ -6,31 +6,37 @@ import {
   IManufacturer,
 } from "@/app/types/manufacturer.type";
 
-import { Box } from "@mui/material";
 import { useUpdateManufacturer } from "@/app/hooks/manufacturer/useUpdateManufacturer";
-import Products from "@/app/components/ui/products/Products";
 import RightDeleteButton from "@/app/components/shared/button/deleteButton/RightDeleteButton";
-import ManufacturerForm from "../../shared/form/manufacturerForm/ManufacturerForm";
+import ManufacturerForm from "@/app/components/shared/form/manufacturerForm/ManufacturerForm";
 
-const AdminManufacturerPage: FC<IManufacturer> = memo((props) => {
+interface IProps {
+  manufacturer?: IManufacturer;
+}
+
+const AdminManufacturerPage: FC<IProps> = memo(({ manufacturer }) => {
   const { isLoading, updateManufacturer } = useUpdateManufacturer(
     manufacturerPageData.defaultValues
   );
 
-  const onSubmit = async (
-    data: ICreateManufacturer
-  ) => {
-    await updateManufacturer({ ...props, ...data });
+  const onSubmit = async (data: ICreateManufacturer) => {
+    await updateManufacturer({
+      ...(manufacturer ?? manufacturerPageData.defaultValues),
+      ...data,
+    });
   };
 
   return (
     <>
       <ManufacturerForm
-        defaultValues={props}
+        defaultValues={manufacturer ?? manufacturerPageData.defaultValues}
         onSubmit={onSubmit}
         isLoading={isLoading}
       />
-      <RightDeleteButton id={props.id} elementType="manufacturer" />
+      <RightDeleteButton
+        id={manufacturer?.id ?? manufacturerPageData.defaultValues.id}
+        elementType="manufacturer"
+      />
     </>
   );
 });

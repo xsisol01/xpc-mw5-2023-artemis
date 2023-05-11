@@ -18,7 +18,7 @@ interface IProps {
   rows?: number;
   required?: boolean;
   validation?: RegExp;
-  autoFocus?: boolean
+  autoFocus?: boolean;
 }
 
 const FormInput: FC<IProps> = memo(
@@ -34,7 +34,7 @@ const FormInput: FC<IProps> = memo(
     required = false,
     placeholder,
     validation = regex.all,
-    autoFocus = false
+    autoFocus = false,
   }) => {
     const isValid = (value: string) => {
       return validation.test(value);

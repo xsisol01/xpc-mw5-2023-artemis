@@ -1,4 +1,3 @@
-import { IProduct } from "@/app/types/product.type";
 import {
   IManufacturer,
   IManufacturerField,

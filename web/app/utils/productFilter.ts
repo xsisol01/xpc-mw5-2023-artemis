@@ -1,7 +1,7 @@
 import { getLoweredLetters } from "@/app/utils/getLoweredLetters";
-import { IProductFilterParams } from "./../types/productFilter.type";
+import { IProductFilterParams } from "@/app/types/productFilter.type";
 import { IProduct } from "@/app/types/product.type";
-import { productFilterData } from "../data/productFilterData";
+import { productFilterData } from "@/app/data/productFilterData";
 
 export const filterProduct = (
   products: IProduct[],
@@ -48,7 +48,7 @@ export const filterProduct = (
 function filterIsInStock<T>(items: T[], isInStock: boolean, param: string) {
   return items.filter((item) => {
     const productParam = item[param as keyof typeof item];
-    if (isInStock && productParam > 0) {
+    if (isInStock && (productParam as number) > 0) {
       return item;
     }
 

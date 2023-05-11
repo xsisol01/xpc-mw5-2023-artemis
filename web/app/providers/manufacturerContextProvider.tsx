@@ -7,7 +7,7 @@ import {
   FC,
   memo,
 } from "react";
-import { IManufacturer } from "../types/manufacturer.type";
+import { IManufacturer } from "@/app/types/manufacturer.type";
 
 interface IContext {
   manufacturers: IManufacturer[];
@@ -21,7 +21,9 @@ interface IProps {
 }
 
 const ManufacturerContextProvider: FC<IProps> = memo(({ children }) => {
-  const [manufacturers, setManufacturers] = useState<IManufacturer[]>([] as IManufacturer[]);
+  const [manufacturers, setManufacturers] = useState<IManufacturer[]>(
+    [] as IManufacturer[]
+  );
 
   const value = useMemo(
     () => ({

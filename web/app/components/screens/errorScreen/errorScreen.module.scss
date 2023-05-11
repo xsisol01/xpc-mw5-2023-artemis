@@ -1,13 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Ubuntu);
-$purple: #28254C;
-$l-purple: #332F63;
-$t-purple: #8C8AA7;
-$pink: #FF5E65;
+$purple: #28254c;
+$l-purple: #332f63;
+$t-purple: #8c8aa7;
+$pink: #ff5e65;
 $white: #fff;
 
-.box_wrapper{
+.box_wrapper {
   background: $purple;
-  font-family: 'Ubuntu';
+  font-family: "Ubuntu";
   height: 100vh;
   overflow: hidden;
 }
@@ -24,7 +24,7 @@ $white: #fff;
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 30px 50px;
-  
+
   .box__ghost {
     padding: 15px 25px 25px;
     position: absolute;
@@ -32,13 +32,14 @@ $white: #fff;
     top: 30%;
     transform: translate(-50%, -30%);
 
-    .symbol{
+    .symbol {
       &:nth-child(1) {
-        opacity: .2;
+        opacity: 0.2;
         animation: shine 4s ease-in-out 3s infinite;
-        
-        &:before, &:after {
-          content: '';
+
+        &:before,
+        &:after {
+          content: "";
           width: 12px;
           height: 4px;
           background: $white;
@@ -63,15 +64,16 @@ $white: #fff;
         border: 4px solid;
         border-radius: 50%;
         border-color: $white;
-        opacity: .2;
+        opacity: 0.2;
         animation: shine 4s ease-in-out 1.3s infinite;
       }
       &:nth-child(3) {
-        opacity: .2;
-        animation: shine 3s ease-in-out .5s infinite;
-        
-        &:before, &:after {
-          content: '';
+        opacity: 0.2;
+        animation: shine 3s ease-in-out 0.5s infinite;
+
+        &:before,
+        &:after {
+          content: "";
           width: 12px;
           height: 4px;
           background: $white;
@@ -88,11 +90,12 @@ $white: #fff;
         }
       }
       &:nth-child(4) {
-        opacity: .2;
+        opacity: 0.2;
         animation: shine 6s ease-in-out 1.6s infinite;
-        
-        &:before, &:after {
-          content: '';
+
+        &:before,
+        &:after {
+          content: "";
           width: 15px;
           height: 4px;
           background: $white;
@@ -117,15 +120,16 @@ $white: #fff;
         border: 3px solid;
         border-radius: 50%;
         border-color: $white;
-        opacity: .2;
+        opacity: 0.2;
         animation: shine 1.7s ease-in-out 7s infinite;
       }
       &:nth-child(6) {
-        opacity: .2;
+        opacity: 0.2;
         animation: shine 2s ease-in-out 6s infinite;
-        
-        &:before, &:after {
-          content: '';
+
+        &:before,
+        &:after {
+          content: "";
           width: 15px;
           height: 4px;
           background: $white;
@@ -152,41 +156,38 @@ $white: #fff;
       margin: 0 auto;
       animation: upndown 3s ease-in-out infinite;
 
-      
-        
-        .box__eye_left {
-          width: 12px;
-          height: 12px;
-          background: $l-purple;
-          border-radius: 50%;
-          margin: 0 10px;
-          position: absolute;
-          left: 0;
-        }
-        .box__eye_right {
-          width: 12px;
-          height: 12px;
-          background: $l-purple;
-          border-radius: 50%;   
-          margin: 0 10px;
-          position: absolute;
-          right: 0;
-        }
-      
+      .box__eye_left {
+        width: 12px;
+        height: 12px;
+        background: $l-purple;
+        border-radius: 50%;
+        margin: 0 10px;
+        position: absolute;
+        left: 0;
+      }
+      .box__eye_right {
+        width: 12px;
+        height: 12px;
+        background: $l-purple;
+        border-radius: 50%;
+        margin: 0 10px;
+        position: absolute;
+        right: 0;
+      }
 
       .box__ghost_bottom {
-        display:flex;
+        display: flex;
         position: absolute;
-        top:100%;
-        left:0;
-        right:0;
+        top: 100%;
+        left: 0;
+        right: 0;
 
         div {
-          flex-grow:1;
+          flex-grow: 1;
           position: relative;
-          top:-10px;
-          height:20px;
-          border-radius:100%;
+          top: -10px;
+          height: 20px;
+          border-radius: 100%;
           background-color: $white;
 
           &:nth-child(2n) {
@@ -198,32 +199,32 @@ $white: #fff;
         }
       }
     }
-      
+
     .box__ghost_shadow {
       height: 20px;
-      box-shadow: 0 50px 15px 5px #3B3769;
+      box-shadow: 0 50px 15px 5px #3b3769;
       border-radius: 50%;
       margin: 0 auto;
       animation: smallnbig 3s ease-in-out infinite;
     }
   }
-  
+
   .box__description {
     position: absolute;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    
+
     .box__description_container {
       color: $white;
       text-align: center;
       width: 200px;
       font-size: 16px;
       margin: 0 auto;
-    
+
       .box__description_title {
         font-size: 24px;
-        letter-spacing: .5px;
+        letter-spacing: 0.5px;
       }
 
       .box__description_text {
@@ -232,7 +233,7 @@ $white: #fff;
         margin-top: 20px;
       }
     }
-    
+
     .box__button {
       display: block;
       position: relative;
@@ -248,12 +249,12 @@ $white: #fff;
       padding: 0 70px;
       white-space: nowrap;
       margin-top: 25px;
-      transition: background .5s ease;
+      transition: background 0.5s ease;
       overflow: hidden;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
-      
+
       &:before {
-        content: '';
+        content: "";
         position: absolute;
         width: 20px;
         height: 100px;
@@ -262,13 +263,13 @@ $white: #fff;
         left: 0;
         border: 2px solid $white;
         transform: translateX(-50px) rotate(45deg);
-        transition: transform .5s ease;
+        transition: transform 0.5s ease;
       }
-      
+
       &:hover {
         background: transparent;
         border-color: $white;
-        
+
         &:before {
           transform: translateX(250px) rotate(45deg);
         }
@@ -279,18 +280,38 @@ $white: #fff;
 
 //keyframes
 @keyframes upndown {
-  0% {transform: translateY(5px);}
-  50% {transform: translateY(15px);}
-  100% {transform: translateY(5px);}
+  0% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
 }
 @keyframes smallnbig {
-  0% {width: 90px;}
-  50% {width: 100px;}
-  100% {width: 90px;}
+  0% {
+    width: 90px;
+  }
+  50% {
+    width: 100px;
+  }
+  100% {
+    width: 90px;
+  }
 }
 @keyframes shine {
-  0% {opacity: .2;}
-  25% {opacity: .1;}
-  50% {opacity: .2;}
-  100% {opacity: .2;}
+  0% {
+    opacity: 0.2;
+  }
+  25% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }

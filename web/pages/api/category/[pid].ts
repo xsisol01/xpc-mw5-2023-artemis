@@ -40,7 +40,7 @@ async function get(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function put(req: NextApiRequest, res: NextApiResponse) {
-  const {id, ...category} = req.body
+  const { id, ...category } = req.body;
   try {
     const data = await categoryApi
       .put(`/${id}`, category)

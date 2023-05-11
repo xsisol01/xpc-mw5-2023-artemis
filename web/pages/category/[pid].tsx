@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import { useRouter } from "next/router";
 
 import { routes } from "@/app/data/routes";
 import LeftMenuItemPage from "@/app/components/pages/leftMenuPages/LeftMenuItemPage";
@@ -23,7 +22,7 @@ const Category: NextPage<IProps> = ({ staticCategory, staticCategories }) => {
   }, [staticCategories]);
 
   if (!staticCategory || !staticCategories) {
-    return <Preloader />
+    return <Preloader />;
   }
 
   return (

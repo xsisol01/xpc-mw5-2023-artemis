@@ -1,4 +1,4 @@
-import { FC, memo, useContext, useEffect } from "react";
+import { FC, memo, useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { globalStyles } from "@/app/assets/styles/global.styles";
@@ -30,12 +30,6 @@ const ProductForm: FC<IProps> = memo(
       defaultValues,
     });
 
-    let imageUrl = getValues("imageUrl")
-
-    if (!imageUrl.length) {
-      imageUrl = '/imagePlaceholder.png'
-    }
-
     const submitForm: SubmitHandler<IProduct> = async (data: IProduct) => {
       onSubmit(data);
 
@@ -62,7 +56,7 @@ const ProductForm: FC<IProps> = memo(
             <UploadImage
               control={control}
               name="imageUrl"
-              imageUrl={imageUrl}
+              imageUrl={getValues("imageUrl") || "/imagePlaceholder.png"}
             />
           </Grid>
           <Grid item xs={6} sx={{ pt: 2, ...globalStyles.fullScroll }}>

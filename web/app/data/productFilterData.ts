@@ -1,4 +1,3 @@
-
 export const productFilterData = Object.freeze({
   search: {
     filter: "search",

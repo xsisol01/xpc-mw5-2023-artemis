@@ -10,23 +10,24 @@ const Preloader: FC = memo(() => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        position: 'absolute',
+        position: "absolute",
         top: 0,
         left: 0,
-        backgroundColor: 'rgba(0,0,0,0.2)'
+        backgroundColor: "rgba(0,0,0,0.2)",
       }}
     >
       <CircularProgress
-      style={{
-        width: '60px',
-          height: '60px',
-      }}
-       sx={{
-        '& svg': {
-          width: '60px',
-          height: '60px',
-        }
-      }} />
+        style={{
+          width: "60px",
+          height: "60px",
+        }}
+        sx={{
+          "& svg": {
+            width: "60px",
+            height: "60px",
+          },
+        }}
+      />
     </Box>
   );
 });
