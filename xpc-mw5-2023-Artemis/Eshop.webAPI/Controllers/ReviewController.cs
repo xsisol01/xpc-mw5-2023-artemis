@@ -13,12 +13,10 @@ namespace Eshop.WebAPI.Controllers
         private readonly ILogger<ReviewController> _logger;
         private readonly IMapper _mapper;
 
-
         public ReviewController(ILogger<ReviewController> logger, IMapper mapper)
         {
             _logger = logger;
             _mapper = mapper;
-
         }
 
         [HttpGet("byCommodityId/{id}")]

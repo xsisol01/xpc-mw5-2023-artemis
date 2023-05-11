@@ -4,8 +4,6 @@ using Eshop.WebAPI.FakeDB;
 using Eshop.WebAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
-//hello
-
 namespace Eshop.WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -22,7 +20,6 @@ namespace Eshop.WebAPI.Controllers
         {
             _logger = logger;
             _mapper = mapper;
-
         }
 
         [HttpGet]
@@ -67,7 +64,6 @@ namespace Eshop.WebAPI.Controllers
 
                         _logger.LogInformation("Proccessing of request successful");
                         return Ok(result);
-
                     }
                     else
                     {
