@@ -10,7 +10,7 @@
 ## How to run the frontend application
 
 ### 1. Install [node.js](https://nodejs.org/en/download)
-### 2. Go to web directory in terminal
+### 2. Go to Eshop.Frontend directory in terminal
 ### 3. You can use 
 ```bash
 npm run install-build-start
