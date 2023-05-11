@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Eshop.webAPI.Models
+﻿namespace Eshop.webAPI.Models
 
 
 {

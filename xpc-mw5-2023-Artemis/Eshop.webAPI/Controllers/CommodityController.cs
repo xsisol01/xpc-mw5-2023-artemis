@@ -2,7 +2,6 @@
 using Eshop.webAPI.DTO;
 using Eshop.webAPI.FakeDB;
 using Eshop.webAPI.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eshop.webAPI.Controllers
@@ -74,7 +73,7 @@ namespace Eshop.webAPI.Controllers
                     _logger.LogError(ex, $"Error in {nameof(GetCommodity)}");
                     return StatusCode(500, "Internal Server Error. Please try again later.");
                 }
-            }         
+            }
         }
 
         [HttpGet("byListOfId", Name = "GetCommodities")]
@@ -88,10 +87,10 @@ namespace Eshop.webAPI.Controllers
                 try
                 {
                     var commodities = new List<CommodityModel>();
-                    foreach(var id in ids)
+                    foreach (var id in ids)
                     {
                         var commodity = FakeDatabase.Commodities.FirstOrDefault(c => c.Id == id);
-                        if(commodity != null)
+                        if (commodity != null)
                         {
                             commodities.Add(commodity);
                         }
@@ -105,7 +104,7 @@ namespace Eshop.webAPI.Controllers
                     var results = _mapper.Map<List<CommodityDTO>>(commodities);
 
                     _logger.LogInformation($"Proccessing of request successful");
-                    return Ok(results);    
+                    return Ok(results);
                 }
                 catch (Exception ex)
                 {
@@ -248,7 +247,7 @@ namespace Eshop.webAPI.Controllers
                     existingCommodity.ImageUrl = newCommodity.ImageUrl;
 
                     var updatedCommodityDTO = _mapper.Map<CommodityModel>(commodityDTO);
-                    
+
                     _logger.LogInformation($"Proccessing of request successful");
                     return Ok(updatedCommodityDTO);
                 }

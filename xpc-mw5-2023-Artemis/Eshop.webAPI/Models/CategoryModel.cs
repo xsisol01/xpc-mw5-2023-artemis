@@ -6,7 +6,7 @@
 
         public CategoryModel()
         {
-            Id= Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
     }

@@ -2,14 +2,7 @@
 using Eshop.webAPI.DTO;
 using Eshop.webAPI.FakeDB;
 using Eshop.webAPI.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Data;
-using System.Net;
-using System.Xml.Linq;
 
 
 
@@ -19,8 +12,8 @@ namespace Eshop.webAPI.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
 
-        
-{
+
+    {
         private readonly ILogger<CategoryController> _logger;
         private readonly IMapper _mapper;
 
@@ -29,7 +22,7 @@ namespace Eshop.webAPI.Controllers
         {
             _logger = logger;
             _mapper = mapper;
-            
+
         }
 
         [HttpGet]
@@ -45,7 +38,7 @@ namespace Eshop.webAPI.Controllers
                     var categories = FakeDatabase.Categories;
                     var results = _mapper.Map<IList<CategoryDTO>>(categories);
                     _logger.LogInformation($"Proccessing of request successful");
-                    return Ok(results); 
+                    return Ok(results);
                 }
                 catch (Exception ex)
                 {
@@ -53,7 +46,7 @@ namespace Eshop.webAPI.Controllers
                     return StatusCode(500, "Internal Server Error. Please try again later.");
                 }
             }
-                
+
         }
 
         [HttpGet("byId/{id}", Name = "GetCategory")]
@@ -63,18 +56,18 @@ namespace Eshop.webAPI.Controllers
             var method = HttpContext.Request.Method;
 
             using (var scope = _logger.BeginScope($"{method} : Processing request from {requestUrl}"))
-            {         
+            {
                 try
                 {
                     var category = FakeDatabase.Categories.FirstOrDefault(c => c.Id == id);
-                                
+
                     if (category != null)
                     {
                         var result = _mapper.Map<CategoryDTO>(category);
 
                         _logger.LogInformation("Proccessing of request successful");
                         return Ok(result);
-                    
+
                     }
                     else
                     {

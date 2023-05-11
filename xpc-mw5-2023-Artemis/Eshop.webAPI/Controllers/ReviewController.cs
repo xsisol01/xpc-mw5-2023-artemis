@@ -2,7 +2,6 @@
 using Eshop.webAPI.DTO;
 using Eshop.webAPI.FakeDB;
 using Eshop.webAPI.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eshop.webAPI.Controllers
@@ -13,13 +12,13 @@ namespace Eshop.webAPI.Controllers
     {
         private readonly ILogger<ReviewController> _logger;
         private readonly IMapper _mapper;
-        
+
 
         public ReviewController(ILogger<ReviewController> logger, IMapper mapper)
         {
             _logger = logger;
             _mapper = mapper;
-            
+
         }
 
         [HttpGet("byCommodityId/{id}")]

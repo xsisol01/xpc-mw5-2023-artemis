@@ -2,10 +2,7 @@
 using Eshop.webAPI.DTO;
 using Eshop.webAPI.FakeDB;
 using Eshop.webAPI.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Xml.Linq;
 
 namespace Eshop.webAPI.Controllers
 {
@@ -239,7 +236,7 @@ namespace Eshop.webAPI.Controllers
                     existingManufacturer.Country = newManufacturer.Country;
                     existingManufacturer.Description = newManufacturer.Description;
                     existingManufacturer.ImageUrl = newManufacturer.ImageUrl;
-                    
+
                     var updatedManufacturerDTO = _mapper.Map<ManufacturerModel>(manufacturerDTO);
 
                     _logger.LogInformation($"Proccessing of request successful");

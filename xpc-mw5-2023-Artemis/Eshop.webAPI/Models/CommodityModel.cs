@@ -30,11 +30,11 @@
         }
         public CategoryModel Category { get; set; }
         public ManufacturerModel Manufacturer { get; set; }
-        public List<ReviewModel>? Reviews { get { return _reviews; }}
+        public List<ReviewModel>? Reviews { get { return _reviews; } }
 
         public CommodityModel()
         {
-            Id= Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
         public void addReview(ReviewModel review)
         {

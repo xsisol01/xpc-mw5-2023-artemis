@@ -1,6 +1,4 @@
-﻿using Eshop.webAPI.FakeDB;
-using Eshop.webAPI.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Eshop.webAPI.DTO
 {
